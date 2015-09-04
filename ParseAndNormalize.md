@@ -27,7 +27,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages documents given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
-* **language** (Optional) -- ISO 639-1 language code. Default is "en". [Click here for the current list of language defaults by service.](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/ResumeParsing.md#current-supported-languages)
+* **language** (Optional) -- ISO 639-1 language code. Default is "en". Because the Parse and Normalize service interacts with several of our other APIs, the only languages the service can support are those supported by every service upon which it depends. Currently the following language codes are supported: bg, de, en, es, fi, fr, hu, it, lt, lv, mt, nl, pl, pt, ro, sk. (Please let us know if your application requires support for languages not on this list.)
 
 
 Response Structure
