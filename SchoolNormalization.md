@@ -42,13 +42,190 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia tech
 #Supported Countries
 Possible taxonomies (with links to full taxonomy results)
 
-| Taxonomy | description |
-|----------|--------------|
-| [onet15](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet15.md) | Original oNets used at CB |
-| [onet17](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet17.md) | Updated oNets |
-| [carotenev1](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV1.md) | Original carotene list |
-| [carotenev2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.md) | Full update, more accurate and comprehensive |
-| [carotenev2.2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.2.md) | Renames duplicated job titles from carotenev2 |
+|    |                                  | 
+|----|----------------------------------| 
+| 13 | Afghanistan                      | 
+| AL | Albania                          | 
+| DZ | Algeria                          | 
+| AS | American Samoa                   | 
+| AG | Antigua and Barbuda              | 
+| AR | Argentina                        | 
+| AM | Armenia                          | 
+| AW | Aruba                            | 
+| AU | Australia                        | 
+| AT | Austria                          | 
+| AZ | Azerbaijan                       | 
+| BS | Bahamas                          | 
+| BH | Bahrain                          | 
+| BD | Bangladesh                       | 
+| BB | Barbados                         | 
+| BY | Belarus                          | 
+| BE | Belgium                          | 
+| BZ | Belize                           | 
+| BJ | Benin                            | 
+| BM | Bermuda                          | 
+| BT | Bhutan                           | 
+| BO | Bolivia                          | 
+| BA | Bosnia and Herzegovina           | 
+| BW | Botswana                         | 
+| BR | Brazil                           | 
+| VG | British Virgin Islands           | 
+| BN | Brunei                           | 
+| BG | Bulgaria                         | 
+| KH | Cambodia                         | 
+| CM | Cameroon                         | 
+| CA | Canada                           | 
+| CV | Cape Verde                       | 
+| KY | Cayman islands                   | 
+| CF | Central African Republic         | 
+| TD | Chad                             | 
+| CL | Chile                            | 
+| CN | China                            | 
+| CO | Colombia                         | 
+| CR | Costa rica                       | 
+| HR | Croatia                          | 
+| CU | Cuba                             | 
+| CW | Curaçao                          | 
+| CY | Cyprus                           | 
+| CZ | Czech Republic                   | 
+| CD | Democratic Republic of the Congo | 
+| DK | Denmark                          | 
+| DJ | Djibouti                         | 
+| DO | Dominican republic               | 
+| EC | Ecuador                          | 
+| EG | Egypt                            | 
+| SV | El Salvador                      | 
+| GB | England                          | 
+| GQ | Equatorial Guinea                | 
+| ER | Eritrea                          | 
+| EE | Estonia                          | 
+| ET | Ethiopia                         | 
+| FJ | Fiji                             | 
+| FI | Finland                          | 
+| FR | France                           | 
+| PF | French Polynesia                 | 
+| GM | Gambia                           | 
+| GE | Georgia                          | 
+| DE | Germany                          | 
+| GH | Ghana                            | 
+| GR | Greece                           | 
+| GD | Grenada                          | 
+| GU | Guam                             | 
+| GT | Guatemala                        | 
+| GW | Guinea                           | 
+| GY | Guyana                           | 
+| HT | Haiti                            | 
+| HN | Honduras                         | 
+| HK | Hong kong                        | 
+| HU | Hungary                          | 
+| IS | Iceland                          | 
+| IN | India                            | 
+| ID | Indonesia                        | 
+| IR | Iran                             | 
+| IQ | Iraq                             | 
+| IE | Ireland                          | 
+| IM | Isle of Man                      | 
+| IL | Israel                           | 
+| IT | Italy                            | 
+| JM | Jamaica                          | 
+| JP | Japan                            | 
+| KE | Jenya                            | 
+| JE | Jersey                           | 
+| JO | Jordan                           | 
+| KG | Jyrgyzstan                       | 
+| KZ | Kazakhstan                       | 
+| KR | Korea                            | 
+| XK | Kosovo                           | 
+| KW | Kuwait                           | 
+| LA | Lao Pdr                          | 
+| LV | Latvia                           | 
+| LB | Lebanon                          | 
+| LS | Lesotho                          | 
+| LR | Liberia                          | 
+| LY | Libya                            | 
+| LI | Liechtenstein                    | 
+| LT | Lithuania                        | 
+| LU | Luxembourg                       | 
+| MO | Macau                            | 
+| MW | Malawi                           | 
+| MY | Malaysia                         | 
+| MV | Maldives                         | 
+| MH | Marshall islands                 | 
+| MR | Mauritania                       | 
+| MX | Mexico                           | 
+| MD | Moldova                          | 
+| MN | Mongolia                         | 
+| ME | Montenegro                       | 
+| MA | Morocco                          | 
+| MM | Myanmar                          | 
+| NA | Namibia                          | 
+| NP | Nepal                            | 
+| NL | Netherlands                      | 
+| NZ | New Zealand                      | 
+| NI | Nicaragua                        | 
+| NG | Nigeria                          | 
+| MP | Northern mariana islands         | 
+| NO | Norway                           | 
+| OM | Oman                             | 
+| PK | Pakistan                         | 
+| PS | Palestine                        | 
+| PA | Panama                           | 
+| PG | Papua New Guinea                 | 
+| PY | Paraguay                         | 
+| PE | Peru                             | 
+| PH | Philippines                      | 
+| PL | Poland                           | 
+| PT | Portugal                         | 
+| PR | Puerto Rico                      | 
+| QA | Qatar                            | 
+| MK | Republic of macedonia            | 
+| RO | Romania                          | 
+| RU | Russia                           | 
+| RW | Rwanda                           | 
+| LC | Saint Lucia                      | 
+| VC | Saint Vincent and the Grenadines | 
+| KN | Saint kitts                      | 
+| WS | Samoa                            | 
+| SA | Saudi Arabia                     | 
+| SN | Senegal                          | 
+| RS | Serbia                           | 
+| SC | Seychelles                       | 
+| SL | Sierra Leone                     | 
+| SG | Singapore                        | 
+| SK | Slovak Republic                  | 
+| SI | Slovenia                         | 
+| SB | Solomon Islands                  | 
+| SO | Somalia                          | 
+| ZA | South Africa                     | 
+| ES | Spain                            | 
+| LK | Sri Lanka                        | 
+| WL | St Lucia                         | 
+| SD | Sudan                            | 
+| SR | Suriname                         | 
+| SZ | Swaziland                        | 
+| SE | Sweden                           | 
+| CH | Switzerland                      | 
+| SY | Syria                            | 
+| TW | Taiwan                           | 
+| TZ | Tanzania                         | 
+| TH | Thailand                         | 
+| TG | Togo                             | 
+| TO | Ton                              | 
+| TT | Trinidad and Tobago              | 
+| TN | Tunisia                          | 
+| TR | Turkey                           | 
+| TM | Turkmenistan                     | 
+| US | US                               | 
+| UG | Uganda                           | 
+| UA | Ukraine                          | 
+| AE | United Arab Emirates             | 
+| UZ | Uzbekistan                       | 
+| VE | Venezuela                        | 
+| VN | Vietnam                          | 
+| YE | Yemen                            | 
+| ZM | Zambia                           | 
+| ZW | Zimbabwe                         | 
+
 
 #Translation Information
 
