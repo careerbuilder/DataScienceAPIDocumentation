@@ -15,10 +15,10 @@ _________
 
 HTTP method: GET or POST
 Parameters (query/form):
--        query (required) : query 
--        country (optional) : country. Accepted language codes are [here](#supported-countries)
+-        query (required) : query The educational instutution data to be queried.
+-        country (optional) : 2 digit ISO country code of eductaionl institution. Accepted country codes are [here](#supported-countries)
  
-Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia tech&country=us
+Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20tech&country=us
 
 #Sample Response
 
@@ -42,7 +42,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia tech
 #Supported Countries
 Possible taxonomies (with links to full taxonomy results)
 
-| Service Input | Full Country Name | 
+| Country Code | Full Country Name | 
 |----|----------------------------------| 
 | AF | Afghanistan                      | 
 | AL | Albania                          | 
