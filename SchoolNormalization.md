@@ -40,7 +40,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
 ```
 
 #Supported Countries
-Possible taxonomies (with links to full taxonomy results)
+Supported ISO Country Codes (with full country name)
 
 | Country Code | Full Country Name | 
 |----|----------------------------------| 
