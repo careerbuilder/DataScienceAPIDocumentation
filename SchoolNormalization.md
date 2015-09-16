@@ -1,11 +1,11 @@
-Job Title Service
+SchoolNormalizationService
 =============
 
 Table of Contents
 _________
 - [Request Information](#request-information)
 - [Sample Response](#sample-response)
-- [Supported Countries](#countries)
+- [Supported Countries](#supported-countries)
 - [Versioning](#versioning)
 
 
@@ -16,29 +16,30 @@ _________
 HTTP method: GET or POST
 Parameters (query/form):
 -        query (required) : query 
--        country (optional) : country. Accepted language codes are as follows: ar, bg, ca, zhCHS, zhCHT, cs, da, nl, en, et, tl, fi, fr, de, el, ht, he, hi, hu, id, it, ja, kn, ko, lv, lt, ms, mt, no, fa, pl, pt, ro, ru, sk, sl, es, sv, th, tr, uk, ur, vi, cy.
+-        country (optional) : country. Accepted language codes are [here](#supportedcountries)
  
-Example: https://api.careerbuilder.com/core/
+Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia tech&country=us
 
 #Sample Response
 
 
 ```
-<titleList>
-    <titles>
-        <title>Janitors and Cleaners, Except Maids and Housekeeping Cleaners</title>
-        <id>37-2011.00</id>
-        <confidence>90.0</confidence>
-    </titles>
-    <titles>
-        <title>First-Line Supervisors/Managers of Housekeeping and Janitorial Workers</title>
-        <id>37-1011.00</id>
-        <confidence>56.0</confidence>
-    </titles>
-</titleList>
+{
+    "data": {
+        "normalized_schools": [
+            {
+                "normalized_school_name": "Georgia Institute of Technology",
+                "id": "53bff579e4b04710d09fa98d",
+                "country": "US",
+                "surface_form": "georgia tech",
+                "confidence": 2
+            }
+        ]
+    }
+}
 ```
 
-#Taxonomies
+#Supported Countries
 Possible taxonomies (with links to full taxonomy results)
 
 | Taxonomy | description |
@@ -57,13 +58,7 @@ When "auto" is supplied as the contentLang parameter and our service's built-in 
 
 #Versioning
 -----------
-JobTitle versions the API contract and taxonomies separately.  The API version controls the format of the API call and response.  The taxonomy version controls what data is returned for the call.  The current API version is 1.0.
-
-Calls that do not specify an english language have unversioned data.  We use a machine translation waterfall to translate these into english if needed, and neither our code nor our vendors are versioned.
-
-English Carotene calls have versioned data.  More languages will become versioned as we expand our native language Carotene capabilities.
-
-English ONet calls are unversioned.  We will occasionally update our vendor and will not version that change.  In addition very rarely our vendor will return different results for the same input.  Neither of these will introduce new items into the taxonomy.
+The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to preform the normalization is also versioned with the current version being 1.0.0, however customers will not have the ability to use older versions of the data set as the updates are done to improve the accuracy of the results rather, and will not impact the response.
 
 Our general versioning strategy is available [here](/Versioning.md).
 
