@@ -5,8 +5,8 @@ Table of Contents
 _________
 - [Request Information](#request-information)
 - [Sample Response](#sample-response)
-- [Supported Countries](#supported-countries)
 - [Versioning](#versioning)
+- [Supported Countries](#supported-countries)
 
 
 
@@ -39,7 +39,14 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
 }
 ```
 
+#Versioning
+-----------
+The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to preform the normalization is also versioned with the current version being 1.0.0, however customers will not have the ability to use older versions of the data set as the updates are done to improve the accuracy of the results rather, and will not impact the response.
+
+Our general versioning strategy is available [here](/Versioning.md).
+
 #Supported Countries
+--------------------
 Supported ISO Country Codes (with full country name)
 
 | Country Code | Full Country Name | 
@@ -225,10 +232,4 @@ Supported ISO Country Codes (with full country name)
 | YE | Yemen                            | 
 | ZM | Zambia                           | 
 | ZW | Zimbabwe                         | 
-
-#Versioning
------------
-The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to preform the normalization is also versioned with the current version being 1.0.0, however customers will not have the ability to use older versions of the data set as the updates are done to improve the accuracy of the results rather, and will not impact the response.
-
-Our general versioning strategy is available [here](/Versioning.md).
 
