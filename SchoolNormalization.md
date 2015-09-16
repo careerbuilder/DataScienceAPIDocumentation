@@ -15,7 +15,7 @@ _________
 
 HTTP method: GET or POST
 Parameters (query/form):
--        query (required) : query The educational instutution data to be queried.
+-        query (required) : The educational instutution information to be queried.
 -        country (optional) : 2 digit ISO country code of eductaionl institution. Accepted country codes are [here](#supported-countries)
  
 Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20tech&country=us
