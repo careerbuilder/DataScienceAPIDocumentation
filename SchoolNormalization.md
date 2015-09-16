@@ -16,7 +16,7 @@ _________
 HTTP method: GET or POST
 Parameters (query/form):
 -        query (required) : query 
--        country (optional) : country. Accepted language codes are [here](#supportedcountries)
+-        country (optional) : country. Accepted language codes are [here](#supported-countries)
  
 Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia tech&country=us
 
