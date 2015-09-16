@@ -226,13 +226,6 @@ Supported ISO Country Codes (with full country name)
 | ZM | Zambia                           | 
 | ZW | Zimbabwe                         | 
 
-
-#Translation Information
-
-We use translation vendors for non-English requests. These vendors are unversioned and update and improve their algorithms at will. These translations are cached but may be refreshed and change over time. Due to this it is possible that non-English job titles may differ over time, though we expect the difference to be minimal.
-
-When "auto" is supplied as the contentLang parameter and our service's built-in language detector identifies the text as non-English, we will rely on our translation vendors to detect the language of the text in addition to translating it.
-
 #Versioning
 -----------
 The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to preform the normalization is also versioned with the current version being 1.0.0, however customers will not have the ability to use older versions of the data set as the updates are done to improve the accuracy of the results rather, and will not impact the response.
