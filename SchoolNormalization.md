@@ -42,9 +42,9 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia tech
 #Supported Countries
 Possible taxonomies (with links to full taxonomy results)
 
-|    |                                  | 
+| Service Input | Full Country Name | 
 |----|----------------------------------| 
-| 13 | Afghanistan                      | 
+| AF | Afghanistan                      | 
 | AL | Albania                          | 
 | DZ | Algeria                          | 
 | AS | American Samoa                   | 
