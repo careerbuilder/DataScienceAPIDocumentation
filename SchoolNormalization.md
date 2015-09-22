@@ -31,12 +31,18 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
                 "normalized_school_name": "Georgia Institute of Technology",
                 "id": "53bff579e4b04710d09fa98d",
                 "country": "US",
-                "confidence": 2
+                "confidence": 2.0
             }
         ]
     }
 }
 ```
+
+
+#Response Information
+
+The response returns a data node which contains a list of normalized schools. These normalized schools are ordered by the confidence score.
+
 
 #Versioning
 -----------
