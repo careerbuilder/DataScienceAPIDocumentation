@@ -41,7 +41,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
 
 #Response Information
 
-The response returns a data node which contains a list of normalized schools. These normalized schools are ordered by the confidence score.
+The response returns a single data node which contains a list of normalized schools. These normalized schools are ordered by the confidence score. Each normalized shool has a normalized school name (string), a unique ID (string), a country (string), and a confidence (double). Confidence scores range from 0.0 to 2.0.
 
 
 #Versioning
