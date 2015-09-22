@@ -15,8 +15,8 @@ _________
 
 HTTP method: GET or POST
 Parameters (query/form):
--        query (required) : The educational instutution information to be queried.
--        country (optional) : 2 digit ISO country code of eductaionl institution. Accepted country codes are [here](#supported-countries)
+-        query (required) : The educational institution information to be queried.
+-        country (optional) : 2 digit ISO country code of educational institution. Accepted country codes are [here](#supported-countries)
  
 Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20tech&country=us
 
@@ -31,7 +31,6 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
                 "normalized_school_name": "Georgia Institute of Technology",
                 "id": "53bff579e4b04710d09fa98d",
                 "country": "US",
-                "surface_form": "georgia tech",
                 "confidence": 2
             }
         ]
@@ -41,7 +40,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
 
 #Versioning
 -----------
-The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to preform the normalization is also versioned with the current version being 1.0.0, however customers will not have the ability to use older versions of the data set as the updates are done to improve the accuracy of the results rather, and will not impact the response.
+The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is also versioned with the current version being 1.0.0, however customers will not have the ability to use older versions of the data set as the updates are done to improve the accuracy of the results rather, and will not impact the response.
 
 Our general versioning strategy is available [here](/Versioning.md).
 
