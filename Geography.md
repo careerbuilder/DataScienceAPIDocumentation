@@ -78,9 +78,11 @@ For successful requests, each element of the returned array will be formatted as
 #Nearby Locations API
 --------------------
 
-Accepts latitude and longitude values representing a geographic point and attempts to return a list of populated places near the point, sorted in descending order of population.
+***THIS API HAS BEEN DECOMMISSIONED AS OF SEPTEMBER 22, 2015. Please contact DataScienceApplicationDevelopment@careerbuilder.com if you are interested in consuming this API.***
 
-Example URL: https://api.careerbuilder.com/core/geography/nearbylocations?lat=33.75&lon=-84.39
+~~Accepts latitude and longitude values representing a geographic point and attempts to return a list of populated places near the point, sorted in descending order of population.~~
+
+~~Example URL: https://api.careerbuilder.com/core/geography/nearbylocations?lat=33.75&lon=-84.39~~
 
 | Parameter | Description |
 |-----------|-------------|
