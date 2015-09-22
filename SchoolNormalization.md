@@ -40,7 +40,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
 
 #Versioning
 -----------
-The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is also versioned with the current version being 1.0.0, however customers will not have the ability to use older versions of the data set as the updates are done to improve the accuracy of the results rather, and will not impact the response.
+The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is also versioned (currently 1.0.0). This data set is upgraded at will in order to improve accuracy of the classifier. Requests made to this service will always use the latest version of the data set.
 
 Our general versioning strategy is available [here](/Versioning.md).
 
