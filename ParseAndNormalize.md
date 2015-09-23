@@ -72,6 +72,16 @@ Response Structure
     ],
     "resume_education_histories": [
       {
+        "school_normalization": {
+                    "school_normalization_v1": [
+                        {
+                            "normalized_school_name": string,
+                            "id": string,
+                            "country": string,
+                            "confidence": double
+                        }
+                    ]
+        },
         "school_name": string,
         "address_type": string,
         "city": string,
