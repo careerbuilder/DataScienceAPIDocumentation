@@ -37,6 +37,7 @@ Response Structure
   "data": {
     "clean_resume_text": string,
     "raw_resume_text": string,
+    "resume_html": string,
     "has_managed_others": boolean,
     "formatted_name": string,
     "first_name": string,
