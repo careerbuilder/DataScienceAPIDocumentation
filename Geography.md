@@ -63,7 +63,7 @@ For successful requests, each element of the returned array will be formatted as
 
 |   |   |
 |---|---|
-| AdminAreas | A JSON array of up to 2 AdminArea objects. Name: The name of the administrative district or subdivision. Level: An integer (1 or 2) indicating the hierarchal level of the administrative area. |
+| AdminAreas | A JSON array of up to 2 AdminArea objects. Name: The name of the administrative district or subdivision. Level: An integer (1 or 2) indicating the hierarchical level of the administrative area. |
 | Latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. |
 | Longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. |
 | Country | The country or region name of an address. |
