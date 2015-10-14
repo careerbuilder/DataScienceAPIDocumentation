@@ -17,7 +17,7 @@ HTTP method: GET
 Parameters (query/form):
 -        No Parameters
  
-Example: https://api.careerbuilder.com/core/taxonomy/([Desired Taxonomy](#available-taxonomies))
+Example: https://api.careerbuilder.com/core/taxonomy/([Desired-Taxonomy](#available-taxonomies))
 
 #Sample Response
 
@@ -28,8 +28,14 @@ Example: https://api.careerbuilder.com/core/taxonomy/([Desired Taxonomy](#availa
         "en": [
             {
                 "id":"0",
-                "title":"Title",
-                "description":"Description",
+                "title":"Title0",
+                "description":"Description0",
+                "type":"type"
+            },
+            {
+                "id":"1",
+                "title":"Title1",
+                "description":"Description1",
                 "type":"type"
             }
         ]
