@@ -16,7 +16,7 @@ _________
 HTTP method: GET
 Parameters: The only parameter accepted by this service is the name of the desired taxonomy, provided as part of the URL path. Taxonomy names are case-sensitive and must be entered in lowercase.
 
-https://api.careerbuilder.com/core/taxonomy/{[Desired Taxonomy](#available-taxonomies)}/
+https://api.careerbuilder.com/core/taxonomy/ {[Desired Taxonomy](#available-taxonomies)} /
  
 Example: https://api.careerbuilder.com/core/taxonomy/carotenev1
 
