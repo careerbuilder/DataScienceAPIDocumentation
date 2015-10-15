@@ -1,4 +1,4 @@
-Taxonomy
+Taxonomy Service
 =============
 
 Table of Contents
@@ -56,6 +56,6 @@ onet15, onet17, carotenev1, carotenev2, carotenev2_2, skillsv2, skillsv3, skills
 
 #Versioning
 -----------
-The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is also versioned (currently 1.0.0). This data set is upgraded at will in order to improve accuracy of the classifier. Requests made to this service will always use the latest version of the data set.
+The response from the Taxonomy Service is versioned with the current version being 1.0. The data sets retrieved are also versioned. These data sets are upgraded at will in order to improve their accuracy. Requests made to this service will always use the latest version of the requested data set.
 
 Our general versioning strategy is available [here](/Versioning.md).
