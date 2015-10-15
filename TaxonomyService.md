@@ -26,6 +26,13 @@ Example: https://api.careerbuilder.com/core/taxonomy/carotenev1
 The response returns a single data node which maps each language code supported by the taxonomy to a list of the taxonomy's elements for that language.
 
 
+|Response Item|Description|
+|----------|-------------|
+| id | The identifier for the taxonomy entry |
+| title |The identifier for the taxonomy entry |
+| description | A breif description for the taxonomy entry |
+| type | Describes the taxonomy entry's type |
+
 
 #Sample Response
 
