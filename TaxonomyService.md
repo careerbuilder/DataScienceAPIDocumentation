@@ -14,11 +14,18 @@ _________
 
 
 HTTP method: GET
-Parameters: The only parameter accepted by this service is the name of the desired taxonomy, provided as part of the URL path.
+Parameters: The only parameter accepted by this service is the name of the desired taxonomy, provided as part of the URL path. Taxonomy names are case-sensitive and must be entered in lowercase.
 
-https://api.careerbuilder.com/core/taxonomy/{taxonomyName}
+https://api.careerbuilder.com/core/taxonomy/ ([Desired Taxonomy](#available-taxonomies))/
  
-Example: https://api.careerbuilder.com/core/taxonomy/ ([Desired Taxonomy](#available-taxonomies))/
+Example: https://api.careerbuilder.com/core/taxonomy/carotenev1
+
+
+#Response Information
+----------
+The response returns a single data node which maps each language code supported by the taxonomy to a list of the taxonomy's elements for that language.
+
+
 
 #Sample Response
 
@@ -43,11 +50,6 @@ Example: https://api.careerbuilder.com/core/taxonomy/ ([Desired Taxonomy](#avail
     }
 }
 ```
-
-
-#Response Information
-----------
-The response returns a single data node which maps each language code supported by the taxonomy to a list of the taxonomy's elements for that language.
 
 
 #Available Taxonomies
