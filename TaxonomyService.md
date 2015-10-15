@@ -4,6 +4,7 @@ Taxonomy Service
 Table of Contents
 _________
 - [Request Information](#request-information)
+- [Response Information](#response-information)
 - [Sample Response](#sample-response)
 - [Available Taxonomies](#available-taxonomies)
 - [Versioning](#versioning)
@@ -22,9 +23,16 @@ Example: https://api.careerbuilder.com/core/taxonomy/carotenev1
 
 
 #Response Information
-----------
+
 The response returns a single data node which maps each language code supported by the taxonomy to a list of the taxonomy's elements for that language.
 
+
+|Response Item|Always Returned|Description|
+|----------|----------|-------------|
+| id | X | The unique identifier of the taxonomy entry |
+| title | X | The title of the taxonomy entry |
+| description | | A brief description for the taxonomy entry |
+| type | | Describes the taxonomy entry's type |
 
 
 #Sample Response
@@ -54,7 +62,7 @@ The response returns a single data node which maps each language code supported 
 
 #Available Taxonomies
 -----------
-onet15, onet17, carotenev1, carotenev2, carotenev2_2, skillsv2, skillsv3, skillsv4.
+onet15, onet17, carotenev1, carotenev2, carotenev2_2, skillsv2, skillsv3, skillsv4, NAICS2007.
 
 
 #Versioning
