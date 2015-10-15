@@ -14,8 +14,9 @@ _________
 
 
 HTTP method: GET
-Parameters (query/form):
--        No Parameters
+Parameters: The only parameter accepted by this service is the name of the desired taxonomy, provided as part of the URL path.
+
+https://api.careerbuilder.com/core/taxonomy/{taxonomyName}
  
 Example: https://api.careerbuilder.com/core/taxonomy/ ([Desired Taxonomy](#available-taxonomies))/
 
@@ -46,7 +47,7 @@ Example: https://api.careerbuilder.com/core/taxonomy/ ([Desired Taxonomy](#avail
 
 #Response Information
 ----------
-The response returns a single data node which contains a list of languages. Each language contains a list of taxonomies within that language.
+The response returns a single data node which maps each language code supported by the taxonomy to a list of the taxonomy's elements for that language.
 
 
 #Available Taxonomies
