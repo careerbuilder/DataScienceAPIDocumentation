@@ -62,7 +62,7 @@ The response returns a single data node which maps each language code supported 
 
 #Available Taxonomies
 -----------
-onet15, onet17, carotenev1, carotenev2, carotenev2_2, skillsv2, skillsv3, skillsv4, naics2007.
+onet15, onet17, carotenev1, carotenev2, carotenev2_2, carotenev3, skillsv2, skillsv3, skillsv4, naics2007.
 
 
 #Versioning
