@@ -33,6 +33,7 @@ The response returns a single data node which maps each language code supported 
 | title | X | The title of the taxonomy entry |
 | description | | A brief description for the taxonomy entry |
 | type | | Describes the taxonomy entry's type |
+| normalized name | | The normalized name for the skill title |
 
 
 #Sample Response
@@ -47,12 +48,14 @@ The response returns a single data node which maps each language code supported 
                 "title":"Title0",
                 "description":"Description0",
                 "type":"type"
+                "normalized_name":"Normalized Name"
             },
             {
                 "id":"1",
                 "title":"Title1",
                 "description":"Description1",
                 "type":"type"
+                "normalized_name":"Normalized Name"
             }
         ]
     }
