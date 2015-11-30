@@ -66,7 +66,7 @@ Each element of the returned **geoData** array will be formatted as follows:
 
 &nbsp;
 
-Each AdminArea object will be formatted as follows:
+Each element of the returned **AdminAreas** array will be formatted as follows:
 
 |   |   |
 |---|---|
