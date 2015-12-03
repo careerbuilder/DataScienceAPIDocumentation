@@ -140,15 +140,19 @@ Languages
 -----------
 The following languages are supported by this API.  The English taxonomy is significantly larger than other languages.
 * bg
-* cz
-* dk
+* cs
+* cz (Deprecated -- use cs instead for Czech)
+* da
 * de
-* gr
+* dk (Deprecated -- use da instead for Danish)
+* ee (Deprecated -- use et instead for Estonian)
+* el
 * en
 * es
-* ee
+* et
 * fi
 * fr
+* gr (Deprecated -- use el instead for Greek)
 * hu
 * it
 * lt
@@ -158,9 +162,10 @@ The following languages are supported by this API.  The English taxonomy is sign
 * pl
 * pt
 * ro
-* sk
+* se (Deprecated -- use sv instead for Swedish)
 * si
-* se
+* sk
+* sv
 
 #Versioning
 -----------
