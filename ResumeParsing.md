@@ -32,7 +32,7 @@ Input Data
 
 Input should be provided in the POST request body, and content type should be either JSON or Form Vars (xml is not accepted)
 
-document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages documents given in a BASE64 encoded string.  Please note that .pages is not accepted by Textkernel; you will need to specify another parser. (Required)
+document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, .pages, and .wps documents given in a BASE64 encoded string.  Please note that .pages is not accepted by Textkernel; you will need to specify another parser. (Required)
 
 language: ISO 639-1 language code (i.e. en, en-gb, es-419), this is used if a service is not specified to determine the parsing service we wish to use. (optional)
 
@@ -80,6 +80,15 @@ Data
    State =String
    City = String
    AddressLine1 = String
+   Nationality = String
+   Civility = String
+   DateOfBirth = String
+   MaritalStatus = String
+   Hobby = String
+   Benefits = String
+   Salary = String
+   Reference = String
+   DriversLicense = Boolean
    IsCurrentlyEmployed = String
    MostRecentEmployer = String
    MostRecentJobTitle = String
@@ -90,6 +99,9 @@ Data
    Languages = Array.new
    ResumeEmployments = Array of Employments
    ResumeEducationHistories = Array of Educations
+   SoftSkill = Array of Soft Skills
+   CompSkill = Array of Computer-specific skills
+
 }
 ```
 
@@ -109,6 +121,9 @@ Employment
    JobType = String
    Duration = Int
    IsCurrentPosition = Boolean
+   IsLastItem = Boolean
+   Experience = String
+   FullText = String
 }
 ```
 
@@ -133,10 +148,12 @@ Education
    MeasureSystemValue = String
    MeasureSystemLowest = String
    MeasureSystemHighest = String
+   Subjects = String
+   FullText = String
 }
 ```
 
-Current Supported Languages		
+Current Supported Languages   
 ==============================
 | Language Code | Language              | Daxtra | Sovren | Textkernel |   |          |
 |----|-----------------------|--------|--------|----|---|------------------|
