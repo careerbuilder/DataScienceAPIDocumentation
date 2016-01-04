@@ -38,7 +38,7 @@ language: ISO 639-1 language code (i.e. en, en-gb, es-419), this is used if a se
 
 service: The title of the resume parsing service you wish to use (currently available are "textkernel", "sovren", & "daxtra") (Optional) (This field is case sensitive)
 
-format: allows you to control the output either json(defult) or xml
+output_type: allows you to control the output either json (default) or xml
 
 
 Sample Return Data
@@ -101,7 +101,6 @@ Data
    ResumeEducationHistories = Array of Educations
    SoftSkill = Array of Soft Skills
    CompSkill = Array of Computer-specific skills
-
 }
 ```
 
@@ -155,35 +154,35 @@ Education
 
 Current Supported Languages   
 ==============================
-| Language Code | Language              | Daxtra | Sovren | Textkernel |   |          |
+| Language Code | Language              | Daxtra | HireAbility | Textkernel |   |          |
 |----|-----------------------|--------|--------|----|---|------------------|
-| en | English               | X      | X      | X  |   |                  |
-| nl | Dutch                 | X      | X      | X  |   | Supported        |
-| fr | French                | X      | X      | X  |   | X                |
-| it | Italian               | X      | I      | X  |   | ContactInfo Only |
+| en | English               | X      | O      | X  |   |                  |
+| nl | Dutch                 | X      | O      | X  |   | Supported        |
+| fr | French                | X      | O      | X  |   | X                |
+| it | Italian               | X      | O      | X  |   | ContactInfo Only |
 | da | Danish                | X      | O      | X  |   | I                |
 | pl | Polish                | X      | O      | X  |   | Not Supported    |
-| ru | Russian               | X      | X      | X  |   | O                |
-| de | German                | X      | X      |  X |   |                  |
+| ru | Russian               | X      | O      | X  |   | O                |
+| de | German                | X      | O      |  X |   |                  |
 | ro | Romanian              | X      | O      |  X |   |                  |
-| cz | Czech                 | X      | X      |  X |   |                  |
-| zh | Chinese (Simplified)  | X      | X      |  X |   |                  |
+| cz | Czech                 | X      | O      |  X |   |                  |
+| zh | Chinese (Simplified)  | X      | O      |  X |   |                  |
 | zh | Chinese (Traditional) | X      | O      |  X |   |                  |
-| es | Spanish               | X      | X      |  X |   |                  |
-| ca | Catalan               | X      | X      |  O |   |                  |
-| gl | Galician              | O      | X      |  O |   |                  |
-| eu | Basque                | O      | X      |  O |   |                  |
-| gr | Greek                 | O      | X      |  O |   |                  |
-| hu | Hungarian             | X      | I      |  X |   |                  |
-| sv | Swedish               | X      | X      |  X |   |                  |
-| no | Norwegian             | X      | X      |  O |   |                  |
-| pt | Portuguese            | O      | X      |  X |   |                  |
+| es | Spanish               | X      | O      |  X |   |                  |
+| ca | Catalan               | X      | O      |  O |   |                  |
+| gl | Galician              | O      | O      |  O |   |                  |
+| eu | Basque                | O      | O      |  O |   |                  |
+| el | Greek                 | O      | X      |  O |   |                  |
+| hu | Hungarian             | X      | O      |  X |   |                  |
+| sv | Swedish               | X      | O      |  X |   |                  |
+| no | Norwegian             | X      | O      |  O |   |                  |
+| pt | Portuguese            | O      | O      |  X |   |                  |
 | sk | Slovak                | X      | O      |  X |   |                  |
 | ja | Japanese              | X      | O      |  O |   |                  |
 
 Current Language Defaults
 ===========================
-| Language Code | Language   | Sovren | Daxtra | Textkernel |
+| Language Code | Language   | HireAbility | Daxtra | Textkernel |
 |----|-----------------------|--------|--------|------------|
 | zh | Chinese (Simplified)  |        | X      |            |
 | zh | Chinese (Traditional) |        | X      |            |
@@ -197,7 +196,8 @@ Current Language Defaults
 | sk | Slovak                |        |        |      X     |
 | ja | Japanese              |        | X      |            |
 | en-gb | English (British)  |        | X      |            |
-|    | Other Languages       |   X    |        |            |
+| el | Greek                 | X      |        |            |
+|    | Other Languages       |        |        |      X     |
 
 
 #Versioning
