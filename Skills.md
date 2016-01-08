@@ -25,9 +25,11 @@ Changes from V2 to V3 are
 * Removed 61 skills.
  
 
-The V2 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV2.csv)
+The V2 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV2.csv) RETIRES 5/4/2015
 
-The V3 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV3.csv)
+The V3 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV3.csv) RETIRES 8/3/2015
+
+The V4 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV3.csv)
 
 The V2 to V3 crosswalk is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV2ToSkillsV3Crosswalk.md)
 
