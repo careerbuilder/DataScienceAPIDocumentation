@@ -29,7 +29,7 @@ The V2 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/
 
 The V3 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV3.csv) RETIRES 8/3/2015
 
-The V4 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV3.csv)
+The V4 taxonomy is [here](https://s3.amazonaws.com/skillsv4/SkillsLibrary_en.csv)
 
 The V2 to V3 crosswalk is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV2ToSkillsV3Crosswalk.md)
 
