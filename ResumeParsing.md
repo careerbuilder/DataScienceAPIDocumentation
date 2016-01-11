@@ -38,7 +38,7 @@ document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, and .wps documents give
 
 language: ISO 639-1 language code (i.e. en, en-gb, es-419), this is used if a service is not specified to determine the parsing service we wish to use. (optional)
 
-service: The title of the resume parsing service you wish to use (currently available are "textkernel", "sovren", & "daxtra") (Optional) (This field is case sensitive)
+service: The title of the resume parsing service you wish to use (currently available are "textkernel", "hireability", & "daxtra") (Optional) (This field is case sensitive)
 
 output_type: allows you to control the output either json (default) or xml
 
