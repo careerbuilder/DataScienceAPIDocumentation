@@ -14,7 +14,7 @@
 ----------------------------
 #Description
 
-Accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. Supports the HTTP/GET method only.
+Accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only.
 
 ----------------------------
 #Request Structure
@@ -46,6 +46,7 @@ At least one of (query, address, locality, postalCode, adminArea, country) must 
 |----------|-------------|
 | errorMsg | Contains information about any error(s) incurred during the request. If the request successfully returns results, this field will be empty. |
 | geoData  | A JSON array of one or more objects containing geography data. If the request returns no results, the array will be empty. |
+| expirationDate | A date string (YYYY-MM-DD) representing the date by which this response must be discarded for clients who implement request-response caching. Per our contract with Google, this is the date when our service received the response from Google plus six months.
 
 &nbsp;
 
@@ -62,7 +63,9 @@ Each element of the returned **geoData** array will be formatted as follows:
 | CountryCode | The two-letter ISO country code. |
 | LocationType | The classification of the geographic entity returned. Possible values are City, PostalCode, AdminArea1, AdminArea2, Country, and Unknown. |
 | StreetAddress | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. |
+| Sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the City field is empty. |
 | Landmark | The full name of the landmark (such as a military base or island) returned by the service. If the returned entity is not a landmark, this field will be empty. |
+| Viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- Northeast and Southwest -- each with lat and lng decimal values, and a SuggestedRadius decimal field that contains the distance in miles from the center of the viewport to a corner.  |
 
 &nbsp;
 
