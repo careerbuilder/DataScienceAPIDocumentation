@@ -36,10 +36,10 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
                 "postal_code": "",
                 "city": "Chicago",
                 "state": "IL",
-                "naics_id": "561311",
+                "naics_code": "561311",
                 "country": "US",
                 "address": "200 N La Salle St # 1100",
-                "naics_desc": ""
+                "naics_description": ""
             }
         ]
     }
