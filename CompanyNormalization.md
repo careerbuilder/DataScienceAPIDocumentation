@@ -39,7 +39,8 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
                 "naics_code": "561311",
                 "country": "US",
                 "address": "200 N La Salle St # 1100",
-                "naics_description": ""
+                "naics_description": "",
+                "data_version": "0.0.2"
             }
         ]
     }
@@ -51,9 +52,11 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
 
 The response returns a single data node which contains a list of normalized companies. These normalized companies are ordered by the confidence score. Each normalized company has a normalized company name (string), a naics ID (string), a naics description (string), a country (string), a state(string), a city(string), a postal code(string), and a confidence (double). Confidence scores range from 0.0 to 1.0.
 
+Additional with each normalized company Company Normaliztion will also return the version of the data used to preform the normalization.
+
 
 #Versioning
 -----------
-The response from the Company Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is unversioned.
+The response from the Company Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is also versioned but we will always use the latest.
 
 Our general versioning strategy is available [here](/Versioning.md).
