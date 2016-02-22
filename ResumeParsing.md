@@ -153,6 +153,16 @@ Education
    FullText = String
 }
 ```
+DegreeType Information
+----------------
+```
+CE3 -> no known education history
+CE31 -> high school or GED equivalent
+CE32 -> associate’s degree
+CE321 -> bachelor’s degree
+CE3210 -> master’s degree
+CE3211 -> doctorate
+```
 
 Current Supported Languages   
 ==============================
