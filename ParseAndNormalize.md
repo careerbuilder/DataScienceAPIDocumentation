@@ -139,45 +139,45 @@ Response Structure
           ]
         },
         "company_normalization": {
-                    "1.0": {
-                        "company_depot": {
-                            "normalized_companies": [
-                                {
-                                    "confidence": double,
-                                    "normalized_name": string,
-                                    "naics_code": string,
-                                    "naics_description": string,
-                                    "duns_number": string,
-                                    "website": string,
-                                    "country": string,
-                                    "state": string,
-                                    "postal_code": string,
-                                    "city": string,
-                                    "address": string
-                                }
-                            ],
-                            "data_version": "string"
-                        },
-                        "data_dot_com": {
-                        "normalized_companies": [
-                                {
-                                    "confidence": double,
-                                    "normalized_name": string,
-                                    "naics_code": string,
-                                    "naics_description": string,
-                                    "duns_number": string,
-                                    "website": string,
-                                    "country": string,
-                                    "state": string,
-                                    "postal_code": string,
-                                    "city": string,
-                                    "address": string
-                                }
-                            ],
-                            "data_version": "string"
-                        }
-                    }
-                },
+          "1.0": {
+            "company_depot": {
+              "normalized_companies": [
+                {
+                  "confidence": double,
+                  "normalized_name": string,
+                  "naics_code": string,
+                  "naics_description": string,
+                  "duns_number": string,
+                  "website": string,
+                  "country": string,
+                  "state": string,
+                  "postal_code": string,
+                  "city": string,
+                  "address": string
+                }
+              ],
+              "data_version": "string"
+            },
+            "data_dot_com": {
+              "normalized_companies": [
+                {
+                  "confidence": double,
+                  "normalized_name": string,
+                  "naics_code": string,
+                  "naics_description": string,
+                  "duns_number": string,
+                  "website": string,
+                  "country": string,
+                  "state": string,
+                  "postal_code": string,
+                  "city": string,
+                  "address": string
+                }
+              ],
+              "data_version": "string"
+            }
+          }
+        },
         "city": string,
         "state": string,
         "country": string,
