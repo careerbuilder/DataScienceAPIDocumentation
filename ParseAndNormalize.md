@@ -12,7 +12,7 @@ _____________
 Summary
 ===========
 
-This service is an enhanced version of our [Resume Parsing API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/ResumeParsing.md) that parses a Base64-encoded resume and further enriches the parsed data by issuing calls to several other classification APIs. Specifically, the service currently makes one call to our [Geography API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Geography.md) to normalize the candidate's location information; one call to the [Skills API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) to parse skills from the complete text of the resume; and one call per work history item to the [Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md), [Job Title](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md), and [Skills](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) APIs to enrich each work history accordingly. As such, the Parse and Normalize API is highly network-intensive and necessarily slower than the Resume Parsing API alone; clients who do not need the additional classifications provided by the Parse and Normalize API are encouraged to use the Resume Parsing API instead.
+This service is an enhanced version of our [Resume Parsing API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/ResumeParsing.md) that parses a Base64-encoded resume and further enriches the parsed data by issuing calls to several other classification APIs. Specifically, the service currently makes one call to our [Geography API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Geography.md) to normalize the candidate's location information; one call to the [Skills API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) to parse skills from the complete text of the resume; and one call per work history item to the [Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md), [Job Title](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md), [Company Normalization] (https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md), and [Skills](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) APIs to enrich each work history accordingly. As such, the Parse and Normalize API is highly network-intensive and necessarily slower than the Resume Parsing API alone; clients who do not need the additional classifications provided by the Parse and Normalize API are encouraged to use the Resume Parsing API instead.
 
 The service is located at https://api.careerbuilder.com/core/parsing/normalizedresume. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
 
@@ -137,6 +137,46 @@ Response Structure
             },
             [... more skillsV3 results]
           ]
+        },
+        "company_normalization": {
+          "1.0": {
+            "company_depot": {
+              "normalized_companies": [
+                {
+                  "confidence": double,
+                  "normalized_name": string,
+                  "naics_code": string,
+                  "naics_description": string,
+                  "duns_number": string,
+                  "website": string,
+                  "country": string,
+                  "state": string,
+                  "postal_code": string,
+                  "city": string,
+                  "address": string
+                }
+              ],
+              "data_version": "string"
+            },
+            "data_dot_com": {
+              "normalized_companies": [
+                {
+                  "confidence": double,
+                  "normalized_name": string,
+                  "naics_code": string,
+                  "naics_description": string,
+                  "duns_number": string,
+                  "website": string,
+                  "country": string,
+                  "state": string,
+                  "postal_code": string,
+                  "city": string,
+                  "address": string
+                }
+              ],
+              "data_version": "string"
+            }
+          }
         },
         "city": string,
         "state": string,
