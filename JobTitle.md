@@ -16,7 +16,7 @@ _________
 
 HTTP method: GET or POST
 Parameters (query/form):
--        taxonomy (required) : classification taxonomy to use; accepted values are onet15, onet17, carotenev1, carotenev2, and carotenev2_2. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly).
+-        taxonomy (required) : classification taxonomy to use; accepted values are onet15, onet17, carotenev1, carotenev2, carotenev2_2, and carotenev3. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly).
 -        title (required if description is empty) : job title
 -        description (required if title is empty) : job description
 -        contentLang : the language of the provided text. You should provide this if it is known, as it will improve the accuracy of our translation system. If this parameter is not specified, the service will attempt to detect the language of the text automatically. Accepted language codes are as follows: ar, bg, ca, zhCHS, zhCHT, cs, da, nl, en, et, tl, fi, fr, de, el, ht, he, hi, hu, id, it, ja, kn, ko, lv, lt, ms, mt, no, fa, pl, pt, ro, ru, sk, sl, es, sv, th, tr, uk, ur, vi, cy.
