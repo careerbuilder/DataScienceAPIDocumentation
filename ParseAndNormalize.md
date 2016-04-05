@@ -27,7 +27,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages documents given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
-* **language** (Optional) -- ISO 639-1 language code. If this parameter is not provided will run language detection on the provided document to get a language code.
+* **language** (Optional) -- ISO 639-1 language code. If this parameter is not provided the service will run language detection on the provided document to get a language code.
 
 
 Response Structure
