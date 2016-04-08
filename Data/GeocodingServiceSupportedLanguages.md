@@ -17,7 +17,6 @@ Note: that cache overrides will not be provided for languages other than English
 |en-GB|English (Great Britain)|
 |es|Spanish|
 |eu|Basque|
-|eu|Basque|
 |fa|Farsi|
 |fi|Finnish|
 |fil|Filipino|
