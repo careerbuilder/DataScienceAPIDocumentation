@@ -27,7 +27,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages documents given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
-* **language** (Optional) -- ISO 639-1 language code. Default is "en". We limit Parse and Normalize requests to language codes that are supported by both our Job Title and Skills services. Currently the following ISO language codes are supported: bg, cs, da, de, el, en, es, et, fi, fr, hu, it, lt, lv, mt, nl, pl, pt, ro, sk, sv. (Please let us know if your application requires support for languages not on this list.)
+* **language** (Optional) -- ISO 639-1 language code. If this parameter is not provided the service will run language detection on the provided document to get a language code.
 
 
 Response Structure
