@@ -2,7 +2,8 @@ Our service uses Google's Geocoding API and thus supports the same set of langua
 
 Note: that cache overrides will not be provided for languages other than English.
 
-|Code|Language|
+|**Code**|**Language**|
+|:-------:|:-----------:|
 |ar|Arabic|
 |bg|Bulgarian|
 |bn|Bengali|
