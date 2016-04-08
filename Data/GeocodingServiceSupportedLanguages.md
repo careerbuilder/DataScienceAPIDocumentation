@@ -1,4 +1,6 @@
-The following is a list of culture codes accepted by our geocoding service. Use the **culture=** query parameter with the appropriate culture code to request geocoding results in any of the languages listed here.
+Our service uses Google's Geocoding API and thus supports the same set of languages. Google's list of accepted languages can be found [here](https://developers.google.com/maps/faq#using-google-maps-apis) and is also provided below for convenience. Use the **culture=** query parameter with the appropriate culture code to request geocoding results in the desired language.
+
+Note: that cache overrides will not be provided for languages other than English.
 
 |**Code**|**Language**|
 |:-------:|:-----------:|
@@ -11,27 +13,35 @@ The following is a list of culture codes accepted by our geocoding service. Use 
 |de|German|
 |el|Greek|
 |en|English|
+|en-AU|English (Australian)|
+|en-GB|English (Great Britain)|
 |es|Spanish|
 |eu|Basque|
 |fa|Farsi|
 |fi|Finnish|
+|fil|Filipino|
 |fr|French|
-|he|Hebrew|
+|gl|Galician|
+|gu|Gujarati|
 |hi|Hindi|
 |hr|Croatian|
 |hu|Hungarian|
 |id|Indonesian|
 |it|Italian|
+|iw|Hebrew|
 |ja|Japanese|
 |kn|Kannada|
 |ko|Korean|
 |lt|Lithuanian|
 |lv|Latvian|
+|ml|Malayalam|
 |mr|Marathi|
 |nl|Dutch|
 |no|Norwegian|
 |pl|Polish|
 |pt|Portuguese|
+|pt-BR|Portuguese (Brazil)|
+|pt-PT|Portuguese (Portugal)|
 |ro|Romanian|
 |ru|Russian|
 |sk|Slovak|
@@ -41,7 +51,9 @@ The following is a list of culture codes accepted by our geocoding service. Use 
 |ta|Tamil|
 |te|Telugu|
 |th|Thai|
+|tl|Tagalog|
 |tr|Turkish|
 |uk|Ukrainian|
 |vi|Vietnamese|
-|zh|Chinese|
+|zh-CN|Chinese (Simplified)|
+|zh-TW|Chinese (Traditional)|
