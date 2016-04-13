@@ -4,7 +4,7 @@ https://api.careerbuilder.com/core/tagging/skills
 
 This API supports the HTTP/GET and HTTP/POST methods.  
 
-This API currently supports 2 versions, 2.0 (default), 3.0, 4.0 and 4.1, passed in the Accept header as the parameter version. 4.1 contains the latest taxonomy and is more accurate and has a few changes of field names and error formats to conform to standards.
+This API currently supports the following versions, 2.0 (default), 3.0, 4.0 and 4.1, passed in the Accept header as the parameter version. 4.1 contains the latest taxonomy and is more accurate and has a few changes of field names and error formats to conform to standards.
 
 | Parameter (4.1) | Parameter (3.0 - 4.0) | Parameter (2.0) | Required | Description |
 |----------------|----------------|-----------------|----------|-------------|
