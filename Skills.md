@@ -52,7 +52,7 @@ JSON
 }
 ```
 
-XML *not avalible in versions 2.0+
+XML *not available in versions 2.0+
 ```
 <response>
     <skill>
