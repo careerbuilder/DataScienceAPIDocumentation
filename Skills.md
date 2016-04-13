@@ -52,20 +52,14 @@ JSON
 }
 ```
 
-XML *not available in versions 2.0+
+XML
 ```
 <response>
     <skill>
+        <skilldid>KS120076FGP5WGWYMP0F</skilldid>
         <normalized_term>SQL Programming</normalized_term>
         <confidence>1.0</confidence>
-    </skill>
-    <skill>
-        <normalized_term>Apache Hadoop (Hadoop)</normalized_term>
-        <confidence>0.0</confidence>
-    </skill>
-    <skill>
-        <normalized_term>Ruby on Rails</normalized_term>
-        <confidence>0.0</confidence>
+        <type>Hard Skill</type>
     </skill>
 </response>
 ```
