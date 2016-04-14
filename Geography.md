@@ -61,11 +61,16 @@ Each element of the returned **geoData** array will be formatted as follows:
 | City | The populated place for the address. This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries. |
 | PostalCode | The post code, postal code, or ZIP code of an address. |
 | CountryCode | The two-letter ISO country code. |
+| FormattedAddress| A string containing the human-readable address of this location. Often this address is equivalent to the "postal address," which sometimes differs from country to country. (Note that some countries, such as the United Kingdom, do not allow distribution of true postal addresses due to licensing restrictions.) |
 | LocationType | The classification of the geographic entity returned. Possible values are City, PostalCode, AdminArea1, AdminArea2, Country, and Unknown. |
+| PostcodeLocalities | A string array denoting all the localities contained in a postal code. This is only present when the result is a postal code that contains multiple localities. |
 | StreetAddress | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. |
 | Sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the City field is empty. |
 | Landmark | The full name of the landmark (such as a military base or island) returned by the service. If the returned entity is not a landmark, this field will be empty. |
 | Viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- Northeast and Southwest -- each with lat and lng decimal values, and a SuggestedRadius decimal field that contains the distance in miles from the center of the viewport to a corner.  |
+| PartialMatch | A boolean value that, when true, indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address.
+
+Partial matches most often occur for street addresses that do not exist within the locality you pass in the request. Partial matches may also be returned when a request matches two or more locations in the same locality. For example, "21 Henr St, Bristol, UK" will return a partial match for both Henry Street and Henrietta Street. Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address. Suggestions triggered in this way will also be marked as a partial match. |
 
 &nbsp;
 
