@@ -7,8 +7,6 @@
 - [Description](#description)
 - [Request Structure](#request-structure)
 - [Response Structure](#response-structure)
-- [Nearby Locations API](#nearby-locations-api)
-- [Nearby Locations Response](#nearby-locations-api-response)
 - [Versioning](#versioning)
 
 ----------------------------
@@ -61,11 +59,14 @@ Each element of the returned **geoData** array will be formatted as follows:
 | City | The populated place for the address. This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries. |
 | PostalCode | The post code, postal code, or ZIP code of an address. |
 | CountryCode | The two-letter ISO country code. |
+| FormattedAddress| A string containing the human-readable address of this location. Often this address is equivalent to the "postal address," which sometimes differs from country to country. (Note that some countries, such as the United Kingdom, do not allow distribution of true postal addresses due to licensing restrictions.) |
 | LocationType | The classification of the geographic entity returned. Possible values are City, PostalCode, AdminArea1, AdminArea2, Country, and Unknown. |
+| PostcodeLocalities | A string array denoting all the localities contained in a postal code. This is only present when the result is a postal code that contains multiple localities. |
 | StreetAddress | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. |
 | Sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the City field is empty. |
 | Landmark | The full name of the landmark (such as a military base or island) returned by the service. If the returned entity is not a landmark, this field will be empty. |
 | Viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- Northeast and Southwest -- each with lat and lng decimal values, and a SuggestedRadius decimal field that contains the distance in miles from the center of the viewport to a corner.  |
+| PartialMatch | A boolean value that, when true, indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address.<br><br>Partial matches most often occur for street addresses that do not exist within the locality you pass in the request. Partial matches may also be returned when a request matches two or more locations in the same locality. For example, "21 Henr St, Bristol, UK" will return a partial match for both Henry Street and Henrietta Street. Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address. Suggestions triggered in this way will also be marked as a partial match. |
 
 &nbsp;
 
@@ -77,48 +78,6 @@ Each element of the returned **AdminAreas** array will be formatted as follows:
 | LongName | The unabbreviated form of the administrative area's name. |
 | Level | An integer specifying the hierarchal level at which this administrative area resides. In the US, states will be returned with a level of 1 and counties with a level of 2. |
 | Name | Deprecated. The administrative area's name, with abbreviation determined at a per-country level. For new code, please use the ShortName or LongName field instead. |
-
-&nbsp;
-
---------------------
-#Nearby Locations API
-
-***THIS API HAS BEEN DECOMMISSIONED AS OF SEPTEMBER 22, 2015. Please contact DataScienceApplicationDevelopment@careerbuilder.com if you are interested in consuming this API.***
-
-~~Accepts latitude and longitude values representing a geographic point and attempts to return a list of populated places near the point, sorted in descending order of population.~~
-
-~~Example URL: https://api.careerbuilder.com/core/geography/nearbylocations?lat=33.75&lon=-84.39~~
-
-| Parameter | Description |
-|-----------|-------------|
-| latitude | Required. The latitude part of the coordinate query. May be shortened to lat. |
-| longitude | Required. The longitude part of the coordinate query. May be shortened to lon. |
-| language | Optional. The preferred ISO 639-1 language code for the response. May be shortened to lang. If this parameter is not specified, the default value of en (English) will be used. |
-| radius | Optional. An integer value (in km) indicating the maximum distance of a returned location from the provided point (up to 300 km). May be shortened to rad. If this parameter is not specified, the default value of 30 km will be used. |
-| maxResults | Optional. Used to specify the maximum number of desired results (up to 100). If this parameter is not specified, the default value of 10 will be used. |
-| sortBy | Optional. Used to specify the value by which to sort results. Accepted values are "population" (default) and "distance". Note that in cases where not all results are returned, the set of results returned for one sorting parameter will often contain different results than those returned for the other sorting parameter. |
-
-&nbsp;
-
------------------------------
-#Nearby Locations API Response
-|   |   |
-|---|---|
-| errorMsg | Contains information about any error(s) incurred during the request. If the request successfully returns results, this field will be empty. |
-| geoData | A JSON array of one or more objects containing geography data. If the request returns no results, the array will be empty. |  
-
-For successful requests, each element of the returned array will be formatted as follows:
-
-|   |   |
-|---|---|
-| countryCode | The two-letter ISO-3166 country code representing the country of the named populated place. |
-| countryName | The country of the named populated place. |
-| latitude | The latitude part of the named populated place's geographic location. |
-| longitude | The longitude part of the named populated place's geographic location. |
-| distance | The distance, in km, of the named populated place from the geographic coordinate supplied in the request. |
-| population |The population of the named populated place. |
-| name | The name of the populated place. |
-| adminArea | The top-level administrative division of the named populated place (typically a state or province). |
 
 &nbsp;
 
