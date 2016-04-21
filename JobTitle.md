@@ -52,7 +52,7 @@ Possible taxonomies (with links to full taxonomy results)
 | [carotenev1](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV1.md) | Original carotene list (RETIRES 5/25/2015)|
 | [carotenev2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.md) | Full update, more accurate and comprehensive (RETIRES 8/24/2015)|
 | [carotenev2.2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.2.md) | Renames duplicated job titles from carotenev2 (RETIRES 8/24/2015)|
-| [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | Full update|
+| [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | 7 removals, 139 updates, and 1,386 new titles.  [v2.2-v3 crosswalk](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)|
 
 #Translation Information
 
