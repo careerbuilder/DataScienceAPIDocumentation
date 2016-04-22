@@ -34,7 +34,7 @@ Input should be provided in the POST request body, and content type should be ei
 
 document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, and .wps documents given in a BASE64 encoded string. Documents may not exceed 17,000 characters in length; those that do will incur an HTTP 413 Request-Entity Too Large error. This character limit includes spaces, but not include tabs or newlines.
 
-*When sending Greek-language resumes to RPS, there is a minimum character count of 65 characters. HireAbility cannot process less text than this.*
+*All documents that contain Greek as their primary language or are sent with the service=hireability parameter must be 65 characters or more. Any document that does not meet this threshold will return a 400 Bad Request exception.*
 
 Note that image files (including scanned resumes) are not supported at this time.
 
