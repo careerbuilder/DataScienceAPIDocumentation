@@ -40,11 +40,13 @@ At least one of (query, address, locality, postalCode, adminArea, country) must 
 ----------------------
 #Response Structure
 
+The following response structure will be returned for all responses with an HTTP status of 200. Non-200 responses will return a JSON object containing a single "Error" string.
+
 | Field    | Description |
 |----------|-------------|
-| errorMsg | Contains information about any error(s) incurred during the request. If the request successfully returns results, this field will be empty. |
+| errorMsg | *Deprecated*. This field always contains an empty string and will be removed in a future version of the API. |
 | geoData  | A JSON array of one or more objects containing geography data. If the request returns no results, the array will be empty. |
-| expirationDate | A date string (YYYY-MM-DD) representing the date by which this response must be discarded for clients who implement request-response caching. Per our contract with Google, this is the date when our service received the response from Google plus six months.
+| expirationDate | A date string in YYYY-MM-DD format representing the date by which this response must be discarded for clients who implement request-response caching. Per our contract with Google, this is the date when our service received the response from Google plus six months.
 
 &nbsp;
 
@@ -52,21 +54,21 @@ Each element of the returned **geoData** array will be formatted as follows:
 
 |   |   |
 |---|---|
-| AdminAreas | A JSON array of up to 2 AdminArea objects. Name: The name of the administrative district or subdivision. Level: An integer (1 or 2) indicating the hierarchical level of the administrative area. |
-| Latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. |
-| Longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. |
-| Country | The country or region name of an address. |
-| City | The populated place for the address. This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries. |
-| PostalCode | The post code, postal code, or ZIP code of an address. |
-| CountryCode | The two-letter ISO country code. |
-| FormattedAddress| A string containing the human-readable address of this location. Often this address is equivalent to the "postal address," which sometimes differs from country to country. (Note that some countries, such as the United Kingdom, do not allow distribution of true postal addresses due to licensing restrictions.) |
-| LocationType | The classification of the geographic entity returned. Possible values are City, PostalCode, AdminArea1, AdminArea2, Country, and Unknown. |
-| PostcodeLocalities | A string array denoting all the localities contained in a postal code. This is only present when the result is a postal code that contains multiple localities. |
-| StreetAddress | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. |
-| Sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the City field is empty. |
-| Landmark | The full name of the landmark (such as a military base or island) returned by the service. If the returned entity is not a landmark, this field will be empty. |
-| Viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- Northeast and Southwest -- each with lat and lng decimal values, and a SuggestedRadius decimal field that contains the distance in miles from the center of the viewport to a corner.  |
-| PartialMatch | A boolean value that, when true, indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address.<br><br>Partial matches most often occur for street addresses that do not exist within the locality you pass in the request. Partial matches may also be returned when a request matches two or more locations in the same locality. For example, "21 Henr St, Bristol, UK" will return a partial match for both Henry Street and Henrietta Street. Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address. Suggestions triggered in this way will also be marked as a partial match. |
+| AdminAreas | A JSON array of up to 2 AdminArea objects. Name: The name of the administrative district or subdivision. Level: An integer (1 or 2) indicating the hierarchical level of the administrative area. **This property is always present,** but may be empty if no admin areas were found. |
+| Latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. **This property is always present.** |
+| Longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. **This property is always present.** |
+| Country | The country or region name of an address. **This property is always present,** but may be empty if the location was not associated with a country. Some locations for which this occurs are "Europe", "Pacific Ocean", and "Gaza Strip" (a contested territory). |
+| City | The populated place for the address. This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries. **This property is always present,** but may be empty. |
+| PostalCode | The post code, postal code, or ZIP code of an address. **This property is always present,** but may be empty. |
+| CountryCode | The two-letter ISO country code. **This property is always present,** but may be empty. See "Country" for examples of when this might occur. |
+| FormattedAddress| A string containing the human-readable address of this location. Often this address is equivalent to the "postal address," which sometimes differs from country to country. (Note that some countries, such as the United Kingdom, do not allow distribution of true postal addresses due to licensing restrictions.) **This property is always present,** but may be empty. |
+| LocationType | The classification of the geographic entity returned. Possible values (in descending order of specificity) are StreetAddress, Sublocality, City, PostalCode, AdminArea2, AdminArea1, Coordinate, Country, and Unknown. Coordinate is used when the location type returned by Google is either "natural_feature", "park", "airport", or "point_of_interest". Otherwise, the returned location type will reflect the most specific field present in the response. If none of these fields are present (such as for the examples for which the Country field is absent), then the returned location type will be Unknown. **This property is always present and non-empty.** |
+| PostcodeLocalities | A string array denoting all the localities contained in a postal code. **This property is only present when the result is a postal code that contains multiple localities,** and will never be empty (nor will it ever contain only one element). |
+| StreetAddress | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. **This property is always present,** but may be empty. |
+| Sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the City field is empty. **This property is always present,** but may be empty. |
+| Landmark | The full name of the landmark (such as a military base or island) returned by the service. **This property is always present,** but may be empty. |
+| Viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- Northeast and Southwest -- each with lat and lng decimal values, and a SuggestedRadius decimal field that contains the distance in miles from the center of the viewport to a corner. **This property and its elements are always present and non-empty.** |
+| PartialMatch | A boolean value that, when true, indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address.<br>Partial matches most often occur for street addresses that do not exist within the locality you pass in the request. Partial matches may also be returned when a request matches two or more locations in the same locality. For example, "21 Henr St, Bristol, UK" will return a partial match for both Henry Street and Henrietta Street. Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address. Suggestions triggered in this way will also be marked as a partial match. **This property is always present.** |
 
 &nbsp;
 
@@ -74,10 +76,10 @@ Each element of the returned **AdminAreas** array will be formatted as follows:
 
 |   |   |
 |---|---|
-| ShortName | The abbreviated form of the administrative area's name. This will vary by country and administrative division level. In the US, states (AdminArea level 1) will use the state abbreviation (e.g. "GA"), and counties (AdminArea level 2) will use the full county name. |
-| LongName | The unabbreviated form of the administrative area's name. |
-| Level | An integer specifying the hierarchal level at which this administrative area resides. In the US, states will be returned with a level of 1 and counties with a level of 2. |
-| Name | Deprecated. The administrative area's name, with abbreviation determined at a per-country level. For new code, please use the ShortName or LongName field instead. |
+| ShortName | The abbreviated form of the administrative area's name. This will vary by country and administrative division level. In the US, states (AdminArea level 1) will use the state abbreviation (e.g. "GA"), and counties (AdminArea level 2) will use the full county name. **This property is always present and non-empty.** |
+| LongName | The unabbreviated form of the administrative area's name. **This property is always present and non-empty.** |
+| Level | An integer specifying the hierarchal level at which this administrative area resides. In the US, states will be returned with a level of 1 and counties with a level of 2. **This property is always present and non-empty.** |
+| Name | *Deprecated*. The administrative area's name, with abbreviation determined at a per-country level. For new code, please use the ShortName or LongName field instead. **This property is always present and non-empty.** |
 
 &nbsp;
 
