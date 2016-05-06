@@ -28,41 +28,41 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
 
 ```
 {
-    "data": {
-        "normalized_companies": [
-            {
-             "confidence": 1,
-             "id": "NC842f69a0-b621-48f6-b53c-9b3301e9aab7",
-             "normalized_name": "Careerbuilder, LLC",
-             "postal_code": "606011014",
-             "city": "Chicago",
-             "state": "IL",
-             "naics_code": "561311",
-             "country": "US",
-             "address": "200 N La Salle St # 1100",
-             "naics_description": "Employment Placement Agencies",
-             "duns_number": "095301110",
-             "company_size": "42868.0",
-             "website": "www.careerbuilder.com"
-            }
-        ],
-        "master_company": {
-            "confidence": 1,
-            "id": "NC842f69a0-b621-48f6-b53c-9b3301e9aab7",
-            "normalized_name": "Careerbuilder, LLC",
-            "postal_code": "606011014",
-            "city": "Chicago",
-            "state": "IL",
-            "naics_code": "561311",
-            "country": "US",
-            "address": "200 N La Salle St # 1100",
-            "naics_description": "Employment Placement Agencies",
-            "duns_number": "095301110",
-            "company_size": "42868.0",
-            "website": "www.careerbuilder.com"
-        },
-        "data_version": "1.0.4"
-    }
+  "data": {
+    "normalized_companies": [
+      {
+        "confidence": 1,
+        "id": "NC842f69a0-b621-48f6-b53c-9b3301e9aab7",
+        "normalized_name": "Careerbuilder, LLC",
+        "postal_code": "606011014",
+        "city": "Chicago",
+        "state": "IL",
+        "naics_code": "561311",
+        "country": "US",
+        "address": "200 N La Salle St # 1100",
+        "naics_description": "Employment Placement Agencies",
+        "duns_number": "095301110",
+        "company_size": "42868.0",
+        "website": "www.careerbuilder.com"
+      }
+    ],
+    "master_company": {
+      "confidence": 1,
+      "id": "NC842f69a0-b621-48f6-b53c-9b3301e9aab7",
+      "normalized_name": "Careerbuilder, LLC",
+      "postal_code": "606011014",
+      "city": "Chicago",
+      "state": "IL",
+      "naics_code": "561311",
+      "country": "US",
+      "address": "200 N La Salle St # 1100",
+      "naics_description": "Employment Placement Agencies",
+      "duns_number": "095301110",
+      "company_size": "42868.0",
+      "website": "www.careerbuilder.com"
+    },
+    "data_version": "1.0.4"
+  }
 }
 ```
 
