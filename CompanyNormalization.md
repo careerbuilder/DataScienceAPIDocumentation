@@ -28,34 +28,55 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
 
 ```
 {
-    "data": {
-        "normalized_companies": [
-            {
-                "confidence": 1,
-                "normalized_name": "Careerbuilder, LLC",
-                "postal_code": "606011014",
-                "city": "Chicago",
-                "state": "IL",
-                "naics_code": "561311",
-                "country": "US",
-                "address": "200 N La Salle St # 1100",
-                "naics_description": "Employment Placement Agencies",
-                "duns_number": "095301110",
-                "website": ""
-            }
-        ],
-        "data_version": "0.0.3"
-    }
+  "data": {
+    "normalized_companies": [
+      {
+        "confidence": 1,
+        "id": "NC842f69a0-b621-48f6-b53c-9b3301e9aab7",
+        "normalized_name": "Careerbuilder, LLC",
+        "postal_code": "606011014",
+        "city": "Chicago",
+        "state": "IL",
+        "naics_code": "561311",
+        "country": "US",
+        "address": "200 N La Salle St # 1100",
+        "naics_description": "Employment Placement Agencies",
+        "duns_number": "095301110",
+        "company_size": "42868.0",
+        "website": "www.careerbuilder.com"
+      }
+    ],
+    "master_company": {
+      "confidence": 1,
+      "id": "NC842f69a0-b621-48f6-b53c-9b3301e9aab7",
+      "normalized_name": "Careerbuilder, LLC",
+      "postal_code": "606011014",
+      "city": "Chicago",
+      "state": "IL",
+      "naics_code": "561311",
+      "country": "US",
+      "address": "200 N La Salle St # 1100",
+      "naics_description": "Employment Placement Agencies",
+      "duns_number": "095301110",
+      "company_size": "42868.0",
+      "website": "www.careerbuilder.com"
+    },
+    "data_version": "1.0.4"
+  }
 }
 ```
 
 
 #Response Information
 
-The response returns a single data node which contains a list of normalized companies. These normalized companies are ordered by the confidence score. Each normalized company has a normalized company name (string), a naics ID (string), a naics description (string), a DUNS number(string), a country (string), a state(string), a city(string), a postal code(string), a website(string), and a confidence (double). Confidence scores range from 0.0 to 1.0.
+The response returns a single data node which contains a list of normalized companies. These normalized companies are ordered by the confidence score. Each normalized company has a normalized company name (string), a naics ID (string), a naics description (string), a DUNS number(string), a country (string), a state(string), a city(string), a postal code(string), a website(string), a company size(int), a Id (string), and a confidence (double). Confidence scores range from 0.0 to 1.0. Additionally when the service requested is CompanyDepot, a single master company will be returned. 
+
+The master company is the highest division of the requested company. For example a request with the company name "coca-cola bottling" returns the master company of "The Coca-Cola Company" instead of "Coca Cola Bottling Co". While the "Coca Cola Bottling Co" will be returned in the normalized companies list it is not the master company.
+
+
 
 Additionally within the data Company Normaliztion will also return the version of the data used to perform the normalization. 
-Current Data Version for Company Depot: "0.0.3"
+Current Data Version for Company Depot: "1.0.4"
 Current Data Version for DataDotCom: "35.0"
 
 
