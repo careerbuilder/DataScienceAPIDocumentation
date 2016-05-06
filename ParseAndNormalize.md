@@ -161,19 +161,36 @@ Response Structure
             "data_dot_com": {
               "normalized_companies": [
                 {
-                  "confidence": double,
-                  "normalized_name": string,
-                  "naics_code": string,
-                  "naics_description": string,
-                  "duns_number": string,
-                  "website": string,
-                  "country": string,
-                  "state": string,
-                  "postal_code": string,
-                  "city": string,
-                  "address": string
+                "confidence": double,
+                "normalized_name": string,
+                "id": string,
+                "naics_code": string,
+                "naics_description": string,
+                "duns_number": string,
+                "website": string,
+                "country": string,
+                "state": string,
+                "postal_code": string,
+                "city": string,
+                "address": string,
+                "company_size": int
                 }
               ],
+              "master_company": {
+                "confidence": double,
+                "normalized_name": string,
+                "id": string,
+                "naics_code": string,
+                "naics_description": string,
+                "duns_number": string,
+                "website": string,
+                "country": string,
+                "state": string,
+                "postal_code": string,
+                "city": string,
+                "address": string,
+                "company_size": int
+              },
               "data_version": "string"
             }
           }
