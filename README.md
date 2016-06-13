@@ -13,7 +13,7 @@ Our general API versioning documentation can be found [here](Versioning.md).
 
 APIs:
 ----
-[Geography](Geography.md): Provides geolocation data.
+[Geocoding](Geocoding.md): Provides geolocation data.
 
 [JobTitle](JobTitle.md): Provides normalized job titles like Carotene and oNet.
 
