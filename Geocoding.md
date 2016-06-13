@@ -53,9 +53,9 @@ Each element of the returned **results** array will be formatted as follows:
 |   |   |
 |---|---|
 | admin_areas | A JSON array of up to 5 admin_area objects. See below for details on the elements of this array. **This property is always present, but may be empty** if no admin areas were found. |
-| Latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. **This property is always present.** |
-| Longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. **This property is always present.** |
-| Country | The country or region name of an address. **This property may be absent** if the location was not associated with a country. Some locations for which this occurs are "Europe", "Pacific Ocean", and "Gaza Strip" (a contested territory). |
+| latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. **This property is always present.** |
+| longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. **This property is always present.** |
+| country | The country or region name of an address. **This property may be absent** if the location was not associated with a country. Some locations for which this occurs are "Europe", "Pacific Ocean", and "Gaza Strip" (a contested territory). |
 | locality | The populated place for the address. This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries. **This property may be absent**. |
 | postal_code | The post code, postal code, or ZIP code of an address. **This property may be absent**. |
 | country_code | The two-letter ISO country code. **This property may be absent**. See "Country" for examples of when this might occur. |
