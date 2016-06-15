@@ -60,7 +60,7 @@ Each element of the returned **strategy_results** array will be formatted as fol
 
 &nbsp;
 
-Properties of the **validation_data** object will be formatted as follows:
+Properties of the **validation_data** object will contain the following properties:
 
 |   |   |
 |---|---|
