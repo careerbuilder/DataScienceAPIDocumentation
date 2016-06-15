@@ -33,7 +33,7 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 | culture    | Optional. The preferred ISO 639-1 language code for the response. If this parameter is omitted, the response will be returned in English. Note that the level of localization will vary for each culture. For example, the name "United States" may not have a localized name for every culture code. The geocoding service currently only supports a subset of the ISO-639-1 standard. Click [here](Data/GeographyServiceSupportedLanguages.md) to view a full list of supported culture codes. |
 | territories_as_states | Optional. When enabled, dependent territories may be requested as administrative areas of their parent nation, and will also be returned as such. This parameter is necessary to validate, for instance, **locality=San Juan&admin_area=PR&country=US**. This functionality will only recognize territories and parent countries by their [two-digit ISO-3166-1 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), so requests such as **admin_area=Puerto Rico&country=USA** would not be remapped according to this parameter. Default value is false. |
 | try_locality_as_admin_area | Optional. When enabled, a request that includes the **locality** parameter and fails to retrieve locality-specific geography data will be reattempted with the locality value sent as an admin_area value instead. (If an admin_area value already exists, the locality value will be prepended and comma-separated, e.g. "locality=Harris%20Township&admin_area=OH" would be resent as "admin_area=Harris Township, OH" if try_locality_as_admin_area is set to true.) Default value is false. |
-| validationStrategies | Required. (FIELDED,FIELDED_NO_ADDRESS,FREETEXT,GEOMOD,POSTAL_CODE_ONLY) Strategies for making the geocoding request  |
+| validationStrategies | Required. (FIELDED,FIELDED_NO_ADDRESS,FREETEXT,GEOMOD,POSTAL_CODE_ONLY) Strategies for making the geocoding request. |
 | acceptedLocationTypes | Required. (ADMIN_AREA1,ADMIN_AREA2,COORDINATE,COUNTRY,LOCALITY,POSTAL_CODE,STREET,STREET_ADDRESS,SUBLOCALITY,UNKNOWN) Location types to validate the geocoding response by. |
 
 &nbsp;
@@ -45,7 +45,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 
 | Field    | Description |
 |----------|-------------|
-| strategy_results  | A JSON array of one or more objects containing geography data. If the request returns no results, the array will be empty. |
+| strategy_results  | A JSON array of one or more objects containing the results of the requested strategies. The strategy_results will be ordered by their order in the validation_strategies comma separated string (ie for the string "FREETEXT,FIELDED" the result of FREETEXT will be the first result in the array) |
 
 &nbsp;
 
