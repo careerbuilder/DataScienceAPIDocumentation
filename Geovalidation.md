@@ -34,7 +34,7 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 | territories_as_states | Optional. When enabled, dependent territories may be requested as administrative areas of their parent nation, and will also be returned as such. This parameter is necessary to validate, for instance, **locality=San Juan&admin_area=PR&country=US**. This functionality will only recognize territories and parent countries by their [two-digit ISO-3166-1 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), so requests such as **admin_area=Puerto Rico&country=USA** would not be remapped according to this parameter. Default value is false. |
 | try_locality_as_admin_area | Optional. When enabled, a request that includes the **locality** parameter and fails to retrieve locality-specific geography data will be reattempted with the locality value sent as an admin_area value instead. (If an admin_area value already exists, the locality value will be prepended and comma-separated, e.g. "locality=Harris%20Township&admin_area=OH" would be resent as "admin_area=Harris Township, OH" if try_locality_as_admin_area is set to true.) Default value is false. |
 | validationStrategies | Required. [Validation Strategies](#Validation Strategies) for making the geocoding request. |
-| acceptedLocationTypes | Required. (ADMIN_AREA1,ADMIN_AREA2,COORDINATE,COUNTRY,LOCALITY,POSTAL_CODE,STREET,STREET_ADDRESS,SUBLOCALITY,UNKNOWN) Location types to validate the geocoding response by. |
+| acceptedLocationTypes | Required. [Location types](#Location types) to validate the geocoding response by. |
 
 &nbsp;
 #Validation Strategies
@@ -45,6 +45,23 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 | FIELDED_NO_ADDRESS | Make a Geocoder call with the provided admin area, country, locality, and postal code |
 | FREETEXT | Makes a Geocoder call with the query parameter equal to the formated string "address, locality, admin area, country, postal code"  |
 | POSTAL_CODE_ONLY |  Makes a Geocoder call with postal code parameter set to the provided postal code |
+&nbsp;
+
+&nbsp;
+#Location Types
+
+| Location Types |
+|----------|
+| ADMIN_AREA1 |
+| ADMIN_AREA2 |
+| COORDINATE |
+| COUNTRY |
+| LOCALITY |
+| POSTAL_CODE |
+| STREET |
+| STREET_ADDRESS |
+| SUBLOCALITY |
+
 &nbsp;
 
 &nbsp;
