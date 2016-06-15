@@ -56,8 +56,26 @@ Each element of the returned **strategy_results** array will be formatted as fol
 | strategy | The name of the strategy. |
 | validation_data | A JSON object containing validation data. See below for properties of this object. **This object is always present regardless of the strategy result** |
 | geography | A JSON object containding the result of the geocoding call that was validated. **This object is only present if that strategy's geocoder call succeded ** |
-| expiration_date | The expiration date of the geography object |
+| expiration_date | A date string in YYYY-MM-DD format representing the last day that this data may be used. Per our contract with Google, any data cached by users of the geocoding service must be discarded by this date. |
 
+&nbsp;
+
+Properties of the **validation_data** object will be formatted as follows:
+
+|   |   |
+|---|---|
+| status | The status of the valdation strategy can be (NOT_RUN, SUCCESS, FAILURE, NO_RESULTS) **This property is always present and non-empty.** |
+| message | The unabbreviated form of the administrative area's name. **This property is not always present.** |
+
+&nbsp;
+
+&nbsp;
+
+Properties of the **geography** object will be formatted as follows:
+
+|   |   |
+|---|---|
+| admin_areas | A JSON array of up to 5 admin_area objects. See below for details on the elements of this array. **This property is always present, but may be empty** if no admin areas were found. |
 | latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. **This property is always present.** |
 | longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. **This property is always present.** |
 | country | The country or region name of an address. **This property may be absent** if the location was not associated with a country. Some locations for which this occurs are "Europe", "Pacific Ocean", and "Gaza Strip" (a contested territory). |
@@ -72,15 +90,6 @@ Each element of the returned **strategy_results** array will be formatted as fol
 | landmark | The full name of the landmark (such as a military base or island) returned by the service. **This property may be absent**. |
 | viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- **northeast** and **southwest** -- each with **lat** and **lng** decimal values. It also contains a **suggested_radius** decimal field that contains the distance in miles from the center of the viewport to a corner. **This property and its elements are always present and non-empty.** |
 | partial_match | A Boolean value that, when true, indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address.<br>Partial matches most often occur for street addresses that do not exist within the locality you pass in the request. Partial matches may also be returned when a request matches two or more locations in the same locality. For example, "21 Henr St, Bristol, UK" will return a partial match for both Henry Street and Henrietta Street. Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address. Suggestions triggered in this way will also be marked as a partial match. **This property is always present.** |
-
-&nbsp;
-
-Properties of the **validation_data** object will be formatted as follows:
-
-|   |   |
-|---|---|
-| status | The status of the valdation strategy can be (NOT_RUN, SUCCESS, FAILURE, NO_RESULTS) **This property is always present and non-empty.** |
-| message | The unabbreviated form of the administrative area's name. **This property is not always present.** |
 
 &nbsp;
 
