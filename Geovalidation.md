@@ -61,6 +61,7 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 | STREET |
 | STREET_ADDRESS |
 | SUBLOCALITY |
+| UNKNOWN |
 
 &nbsp;
 
