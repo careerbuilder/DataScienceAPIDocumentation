@@ -12,20 +12,19 @@
 ----------------------------
 #Description
 
-Accepts structured or unstructured location information and tests the validity of the resulting resolved geographic coordinate based on the strategies requested and the location types accepted. This service supports the HTTP/GET method only.
+Accepts structured location data and attempts to geocode the data using the validation strategies specified in the request. Each successful geocoding call is verified against the list of acceptable location types specified in the request. The outcome of each strategy is described in the response, along with the outputs of the geocoding calls. This service supports the HTTP/GET method only.
 
 ----------------------------
 #Request Structure
 
 Example URL: https://api.careerbuilder.com/core/geography/validation?locality=atlanta&country=US&validation_strategies=FREETEXT&accepted_location_types=locality
 
-At least one of (query, locality, postal_code, admin_area, country) must be provided in the query string, as well as a comma separated strings of valid accepted location types, and validation stratgies.
+At least one of (query, locality, postal_code, admin_area, country) must be provided in the query string, as well as a "validation_strategies" parameter and an "accepted_location_types" parameter, each a comma-separated list of one or more values.
 
 
 | Parameter  | Description |
 |------------|-------------|
-| address      | Optional. A string containing address information, e.g. "5550 Peachtree Pkwy."" Other forms of location data may be passed in this field (such as postal codes or country names), but we recommend using the type-specific parameters when the location type of the data is known. This parameter is handled in the same way as the **query** parameter and the two cannot be used simultaneously. |
-| query      | Optional. A string containing location information in any format, e.g. "5550 Peachtree Pkwy, Norcross, GA 30092."" We recommend using the type-specific parameters when the location type of the data is known. This parameter is handled in the same way as the **address** parameter and the two cannot be used simultaneously. |
+| address      | Optional. A string containing address information, e.g. "5550 Peachtree Pkwy."" Other forms of location data may be passed in this field (such as postal codes or country names), but we recommend using the type-specific parameters when the location type of the data is known. |
 | locality   | Optional. The locality, such as the city or neighborhood, that corresponds to an address. |
 | admin_area  | Optional. The subdivision name in the country or region for an address. This element is typically treated as the first order administrative subdivision, but in some cases it is the second, third, or fourth order subdivision in a country, dependency, or region. |
 | country    | Optional. A country name or two-letter ISO-3166 country code. Used to limit the geographic scope of results to a particular country. Multiple pipe-delimited values may be supplied to limit results to a set of specified countries, e.g. ?query=Rome&country=IT&#124;US. |
@@ -33,18 +32,20 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 | culture    | Optional. The preferred ISO 639-1 language code for the response. If this parameter is omitted, the response will be returned in English. Note that the level of localization will vary for each culture. For example, the name "United States" may not have a localized name for every culture code. The geocoding service currently only supports a subset of the ISO-639-1 standard. Click [here](Data/GeographyServiceSupportedLanguages.md) to view a full list of supported culture codes. |
 | territories_as_states | Optional. When enabled, dependent territories may be requested as administrative areas of their parent nation, and will also be returned as such. This parameter is necessary to validate, for instance, **locality=San Juan&admin_area=PR&country=US**. This functionality will only recognize territories and parent countries by their [two-digit ISO-3166-1 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), so requests such as **admin_area=Puerto Rico&country=USA** would not be remapped according to this parameter. Default value is false. |
 | try_locality_as_admin_area | Optional. When enabled, a request that includes the **locality** parameter and fails to retrieve locality-specific geography data will be reattempted with the locality value sent as an admin_area value instead. (If an admin_area value already exists, the locality value will be prepended and comma-separated, e.g. "locality=Harris%20Township&admin_area=OH" would be resent as "admin_area=Harris Township, OH" if try_locality_as_admin_area is set to true.) Default value is false. |
-| validationStrategies | Required. [Validation Strategies](#Validation Strategies) for making the geocoding request. |
-| acceptedLocationTypes | Required. [Location types](#Location types) to validate the geocoding response by. |
+| validation_strategies | Required. [Validation Strategies](#Validation Strategies) for making the geocoding request. |
+| accepted_location_types | Required. [Location types](#Location types) to validate the geocoding response by. |
 
 &nbsp;
 #Validation Strategies
 
 | Validation Strategy | Description|
 |----------|-------------|
-| FIELDED | Make a Geocoder call with admin area, address, country, locality, and postal code |
-| FIELDED_NO_ADDRESS | Make a Geocoder call with the provided admin area, country, locality, and postal code |
-| FREETEXT | Makes a Geocoder call with the query parameter equal to the formated string "address, locality, admin area, country, postal code"  |
-| POSTAL_CODE_ONLY |  Makes a Geocoder call with postal code parameter set to the provided postal code |
+| FIELDED | Makes a Geocoder call with admin area, address, country, locality, and postal code |
+| FIELDED_NO_ADDRESS | Makes a Geocoder call with the provided admin area, country, locality, and postal code |
+| FREETEXT | Makes a Geocoder call with the query parameter equal to the formatted string "address, locality, admin area, country, postal code"  |
+| POSTAL_CODE_ONLY |  Makes a Geocoder call with postal code and country parameters set to the provided postal code and country parameters |
+
+*Additional strategies can be implemented as needed. Please contact DataScienceApplicationDevelopment if your use case requires a strategy that's not currently available. *
 &nbsp;
 
 &nbsp;
@@ -62,6 +63,8 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 | STREET_ADDRESS |
 | SUBLOCALITY |
 | UNKNOWN |
+
+*For more information on these location types plese refer to the [Geocoding](Geocoding.md#Response) documentation.*
 
 &nbsp;
 
@@ -84,7 +87,7 @@ Each element of the returned **strategy_results** array will be formatted as fol
 |---|---|
 | strategy | The name of the strategy. |
 | validation_data | A JSON object containing validation data. See below for properties of this object. **This object is always present regardless of the strategy result** |
-| geography | A JSON object containding the result of the geocoding call that was validated. **This object is only present if that strategy's geocoder call succeded ** |
+| geography | A JSON object containing the result of the geocoding call that was validated. **This object is only present if that strategy's geocoder call succeeded ** |
 | expiration_date | A date string in YYYY-MM-DD format representing the last day that this data may be used. Per our contract with Google, any data cached by users of the geocoding service must be discarded by this date. |
 
 &nbsp;
@@ -94,7 +97,7 @@ Properties of the **validation_data** object will contain the following properti
 |   |   |
 |---|---|
 | status | The status of the valdation strategy can be (NOT_RUN, SUCCESS, FAILURE, NO_RESULTS) **This property is always present and non-empty.** |
-| message | The unabbreviated form of the administrative area's name. **This property is not always present.** |
+| message | A short message describing a reason for the returned status. **This property is not always present.** |
 
 &nbsp;
 
