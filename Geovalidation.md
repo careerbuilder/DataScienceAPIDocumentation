@@ -97,7 +97,7 @@ Properties of the **validation_data** object will contain the following properti
 |   |   |
 |---|---|
 | status | The status of the valdation strategy can be (NOT_RUN, SUCCESS, FAILURE, NO_RESULTS) **This property is always present and non-empty.** |
-| message | A short message describing a reason for the returned status. **This property is not present when successful.** |
+| message | A short message describing a reason for the returned status. **This property only present when not successful.** |
 
 &nbsp;
 
