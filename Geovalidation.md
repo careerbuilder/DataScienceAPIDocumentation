@@ -64,7 +64,7 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 | SUBLOCALITY |
 | UNKNOWN |
 
-*For more information on these location types plese refer to the [Geocoding](Geocoding.md#Response) documentation.*
+*For more information on these location types plese refer to the [Geocoding](Geocoding.md#response-structure) documentation.*
 
 &nbsp;
 
