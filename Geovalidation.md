@@ -42,7 +42,7 @@ At least one of (query, locality, postal_code, admin_area, country) must be prov
 |----------|-------------|
 | FIELDED | Makes a Geocoder call with admin area, address, country, locality, and postal code |
 | FIELDED_NO_ADDRESS | Makes a Geocoder call with the provided admin area, country, locality, and postal code |
-| FREETEXT | Makes a Geocoder call with the query parameter equal to the formatted string "address, locality, admin area, country, postal code"  |
+| FREETEXT | Makes a Geocoder call with a free-text string formatted as follows: "address, locality, admin area, country, postal code"  |
 | POSTAL_CODE_ONLY |  Makes a Geocoder call with postal code and country parameters set to the provided postal code and country parameters |
 
 *Additional strategies can be implemented as needed. Please contact DataScienceApplicationDevelopment if your use case requires a strategy that's not currently available. *
@@ -97,7 +97,7 @@ Properties of the **validation_data** object will contain the following properti
 |   |   |
 |---|---|
 | status | The status of the valdation strategy can be (NOT_RUN, SUCCESS, FAILURE, NO_RESULTS) **This property is always present and non-empty.** |
-| message | A short message describing a reason for the returned status. **This property is not always present.** |
+| message | A short message describing a reason for the returned status. **This property is not present when successful.** |
 
 &nbsp;
 
