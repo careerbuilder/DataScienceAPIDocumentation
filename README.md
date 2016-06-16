@@ -15,6 +15,8 @@ APIs:
 ----
 [Geocoding](Geocoding.md): Provides geolocation data.
 
+[Geovalidation](Geovalidation.md): Provides validated geolocation data.
+
 [JobTitle](JobTitle.md): Provides normalized job titles like Carotene and oNet.
 
 [Skills](Skills.md): Provides normalized skills.
