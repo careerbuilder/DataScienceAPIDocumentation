@@ -56,6 +56,20 @@ Sample Return Data
 }
 ```
 
+Possible Response Status Codes
+=========================
+
+ALL 4xx status codes should not be retried. ALL 5xx status codes should be retried.
+
+ - 400 Bad Request: this is returned when the request is syntactically incorrect or malformed in some way
+ - 409 Conflict: this is returned when a virus is detected in the document
+ - 413 Entity Too Large: this is returned when the document is longer than the limit of 21,000 characters
+ - 415 Unsupported Media Type: this is returned when our parsers detect that the document may be an image document
+ - 500 Internal Server Error: this is returned when an uncaught exception is thrown somewhere within our code. Please let us know if you see 500's!
+ - 502 Bad Gateway: this is returned when one of our parsers or other downstream services has an unexpected problem
+ - 504 Timeout: this will be returned as a 572 through the routing layer and should be retried after waiting for a minute or two
+
+
 Returned Data Objects
 =============================
 
