@@ -1,4 +1,4 @@
-Our service uses Google's Geocoding API and thus supports the same set of languages. Google's list of accepted languages can be found [here](https://developers.google.com/maps/faq#using-google-maps-apis) and is also provided below for convenience. Use the **culture=** query parameter with the appropriate culture code to request geocoding results in the desired language.
+Our service uses Google's Geocoding API and thus supports the same set of languages. Google's list of accepted languages can be found [here](https://developers.google.com/maps/faq#using-google-maps-apis) and is also provided below for convenience. All codes listed are compliant with the ISO-639-1 standard, except for languages which specify a country or region (such as "English (Australian") and "Portuguese (Brazil)") which have no ISO code, and for Chinese, which is simply referred to as "Chinese" with code "zh" in the ISO standard. Use the **culture=** query parameter with the appropriate culture code to request geocoding results in the desired language.
 
 Note: that cache overrides will not be provided for languages other than English.
 
