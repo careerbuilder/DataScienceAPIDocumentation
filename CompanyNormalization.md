@@ -15,11 +15,11 @@ _________
 HTTP method: GET
 Parameters (query):
 -        company_name (required) : The company name to be normalized.
--        service (required) : The normalizer to be used. Accepted values are DataDotCom, and CompanyDepot
--        country (optional) : 2 digit ISO country code of the company name provided. *note this is required for DataDotCom Service*
--        state (optional) : State of the company name provided.
--        city (optional) : City of the company name provided.
--        max_results (optional) : The maximum results returned by the API. The default value is 3 and max_results must be between 0 and 11.
+-        service (required) : The normalizer to be used. Accepted values are "datadotcom" and "companydepot".
+-        country (optional) : The country component of the provided company's location. Two-digit ISO country codes are supported. *note this is required for DataDotCom Service*
+-        state (optional) : The state component of the provided company's location.
+-        city (optional) : The city component of the provided company's location.
+-        max_results (optional) : The maximum number of results to be returned. The default value is 3 and max_results must be between 1 and 10, inclusive.
  
 Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=careerbuilder&service=companydepot&max_results=1
 
