@@ -42,7 +42,7 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
         "address": "200 N La Salle St # 1100",
         "naics_description": "Employment Placement Agencies",
         "duns_number": "095301110",
-        "company_size": "42868.0",
+        "company_size": "42868",
         "website": "www.careerbuilder.com"
       }
     ],
@@ -58,7 +58,7 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
       "address": "200 N La Salle St # 1100",
       "naics_description": "Employment Placement Agencies",
       "duns_number": "095301110",
-      "company_size": "42868.0",
+      "company_size": "42868",
       "website": "www.careerbuilder.com"
     },
     "data_version": "1.0.4"
@@ -69,7 +69,7 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
 
 #Response Information
 
-The response returns a single data node which contains a list of normalized companies. These normalized companies are ordered by the confidence score. Each normalized company has a normalized company name (string), a naics ID (string), a naics description (string), a DUNS number(string), a country (string), a state(string), a city(string), a postal code(string), a website(string), a company size(int), a Id (string), and a confidence (double). Confidence scores range from 0.0 to 1.0. Additionally when the service requested is CompanyDepot, a single master company will be returned. 
+The response returns a single data node which contains a list of normalized companies. These normalized companies are ordered by the confidence score. Each normalized company has a normalized company name (string), a [NAICS](http://www.census.gov/eos/www/naics/) ID (string), a NAICS description (string), a DUNS number(string), a country (string), a state (string), a city (string), a postal code (string), a website (string), a company size (int), an ID (string), and a confidence (double). Confidence scores range from 0.0 to 1.0. Additionally, when the service requested is CompanyDepot, a single master company will be returned. 
 
 The master company is the highest division of the requested company. For example a request with the company name "coca-cola bottling" returns the master company of "The Coca-Cola Company" instead of "Coca Cola Bottling Co". While the "Coca Cola Bottling Co" will be returned in the normalized companies list it is not the master company.
 
