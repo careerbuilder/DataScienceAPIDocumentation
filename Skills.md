@@ -4,26 +4,19 @@ https://api.careerbuilder.com/core/tagging/skills
 
 This API supports the HTTP/GET and HTTP/POST methods.  
 
-This API currently supports the following versions: 3.0, 4.0, and 4.1 (default), passed in the Accept header as the parameter version (Ex. Accept:application/json;version=4.1). 4.1 contains the latest taxonomy and is more accurate and has a few changes of field names and error formats to conform to standards.
+This API currently supports version 4.1 only. Version is passed in the Accept header as the parameter version (Ex. Accept:application/json;version=4.1). 4.1 contains the latest taxonomy and is more accurate and has a few changes of field names and error formats to conform to standards.
 
-| Parameter (4.1) | Parameter (3.0 - 4.0) | Required | Description |
+| Parameter (4.1) | Required | Description |
 |----------------|----------------|-----------------|----------|-------------|
-| version        | version         | optional | Passed in via the Accept header. Possible values are "3.0", "4.0", and "4.1".  Defaults to 4.1 | 
-| content        | resume_content   | required | A string containing the resume content to be tagged |
-| output_type    |  output_type          | optional | A string specifying the desired output format (JSON or XML). Default value is JSON.|
-| language            | lan             | optional | A string determining the language (total 22 languages supported) in which the input text is written. Default value is en. Note that the input parameter passing to language should be the language id. |
-| threshold      | threshold       | optional | A double value between 0 and 1 controlling minimum relevancy scores for skill recognition. Higher values will more tightly restrict the returned skill tags. Default is 0.5. A threshold of 0 means all seed skill phrases recognized by exact string matching will be returned. Note that this parameter is only supported for inputs in English. |
-| auto_thres     | auto_thres      | optional | A boolean value indicating whether automatic thresholding is desired. If enabled, then when input text contains 150 or fewer words, the threshold parameter will be overwritten to 0 and all confidence values will be overwritten to 1.0&#42;. Default is true.  Note that this parameter is only supported for inputs in en,fr, and de. |
+| version        | optional | Passed in via the Accept header. Possible values are "4.1".  Defaults to 4.1 | 
+| content        | required | A string containing the resume content to be tagged |
+| language            | optional | A string determining the language (total 22 languages supported) in which the input text is written. Default value is en. Note that the input parameter passing to language should be the language id. |
+| threshold      | optional | A double value between 0 and 1 controlling minimum relevancy scores for skill recognition. Higher values will more tightly restrict the returned skill tags. Default is 0.5. A threshold of 0 means all seed skill phrases recognized by exact string matching will be returned. Note that this parameter is only supported for inputs in English. |
+| auto_thres     | optional | A boolean value indicating whether automatic thresholding is desired. If enabled, then when input text contains 150 or fewer words, the threshold parameter will be overwritten to 0 and all confidence values will be overwritten to 1.0&#42;. Default is true.  Note that this parameter is only supported for inputs in en,fr, and de. |
 
 &#42; A more detailed explanation of this functionality: The tagger uses “context” to define semantic relevancy.  If the input is too short (<= 150 words) to constitute a “context,” the tagger by default returns everything by direct matching, resulting in 0.0 confidence scores due to lack of context for relatedness. To avoid confusion, a pseudo score “1” is assigned to indicate “directly matched.” This feature is called “auto thresholding” (auto_thres).
 
-Changes from V4 to V4.1 are 
-* changed resume_content parameter to content
-
-The V3 taxonomy is [here](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/Skill/SkillsV3.csv) RETIRES 8/3/2015
-
 The V4 taxonomy can be found through the TaxonomyAPI [here](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/TaxonomyService.md)
-
 
 Response
 -----------
@@ -46,21 +39,8 @@ JSON
 }
 ```
 
-XML
-```
-<response>
-    <skill>
-        <skilldid>KS120076FGP5WGWYMP0F</skilldid>
-        <normalized_term>SQL Programming</normalized_term>
-        <confidence>1.0</confidence>
-        <type>Hard Skill</type>
-    </skill>
-</response>
-```
 And an error response will look like this:
 
-Version 3.0 and higher:
-JSON
 ```
 {  
   "errors":[  
@@ -68,11 +48,6 @@ JSON
       "type":"args",
       "message":"resume_content must be provided.",
       "code":3
-    },
-    {  
-      "type":"another_error",
-      "message":"So you can see two",
-      "code":42
     }
   ]
 }
