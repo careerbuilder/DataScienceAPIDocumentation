@@ -2,10 +2,20 @@ Semantic Search API
 ===================
 Table of Contents
 _____________
+
 -[Query Description](#query-description)
+
 -[Query Request Information](#query-request-information)
--[Query Sample Response](#query-sample-response)
+
+-[Query Response](#query-response)
+
 -[Document Description](#document-description)
+
+-[Document Request Information](#document-request-information)
+
+-[Document Response](#document-response)
+
+-[Versioning](#versioning)
 
 
 
@@ -22,10 +32,12 @@ Parameters (query/form):
 -        query (required) : query to parse and from which to infer meaning
 -        version (required) : version to use. currently supports only 0.8 
  
-Example: https://api.careerbuilder.com/search/semanticsearch/query?query=registered nurse&version=0.8
+Example: 
+```
+https://api.careerbuilder.com/search/semanticsearch/query?query=registered nurse&version=0.8
+```
 
-
-#Query Sample Response
+#Query Response
 
 
 ```
@@ -200,7 +212,9 @@ Parameters (query/form):
 -        content (required if title not provided) : the content of the document (job or CV/resume) from which to infer meaning 
 -        version (required) : version to use. currently supports only 0.8 
  
-Example: https://api.careerbuilder.com/search/semanticsearch/document?title=java developer&content=
+Example: 
+```
+https://api.careerbuilder.com/search/semanticsearch/document?title=java developer&content=
 Job Description
 Bachelor's degree or equivalent work experience preferred.
 A minimum of 5 years of Information Technology experience.
@@ -225,6 +239,7 @@ Experience with Struts (1 or 2)
 Customer service and results-oriented while maintaining a team focus
 Ability to work in a dynamic environment with cross-functional teams
 Basic working experience with Unix environment and scripts&version=0.8
+```
 
 #Document Response
 
@@ -276,3 +291,9 @@ Basic working experience with Unix environment and scripts&version=0.8
    }
 }
 ```
+
+# Versioning
+
+Each semantic search (query and document) response has a versions section outlining the data version for each taxonomy returned. This versioning information is stable over the life of the contract version. For example, 0.8 will always return job_titles with data version CaroteneV3. New contract versions will sometimes include contract upgrades to taxonomy versions.
+
+Our general versioning strategy is available [here](/Versioning.md).
