@@ -3,19 +3,19 @@ Semantic Search API
 Table of Contents
 _____________
 
--[Query Description](#query-description)
+- [Query Description](#query-description)
 
--[Query Request Information](#query-request-information)
+- [Query Request Information](#query-request-information)
 
--[Query Response](#query-response)
+- [Query Response](#query-response)
 
--[Document Description](#document-description)
+- [Document Description](#document-description)
 
--[Document Request Information](#document-request-information)
+- [Document Request Information](#document-request-information)
 
--[Document Response](#document-response)
+- [Document Response](#document-response)
 
--[Versioning](#versioning)
+- [Versioning](#versioning)
 
 
 
