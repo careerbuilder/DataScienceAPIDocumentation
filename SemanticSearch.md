@@ -201,7 +201,7 @@ https://api.careerbuilder.com/search/semanticsearch/query?query=registered nurse
 
 #Document Description
 
-Used to parse a job or CV/resume into its most important features and to represent these as prioritized list of features that can be used to form a matching query.
+Used to parse a job or CV/resume into its most important features and to represent these as a prioritized list of features that can be used to form a matching query.
 
 #Document Request Information
 
