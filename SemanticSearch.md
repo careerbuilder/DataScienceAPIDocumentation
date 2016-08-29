@@ -1,7 +1,12 @@
 Semantic Search API
 ===================
-Table of Contents
+
+The semantic search API supports two endpoints: /query and /document. The /query endpoint interprets and provides related entities for queries. The /document endpoint uses a document's title and content to extract relevant keywords and find related entities.
+
+# Table of Contents
 _____________
+
+## Query Endpoint
 
 - [Query Description](#query-description)
 
@@ -9,11 +14,15 @@ _____________
 
 - [Query Response](#query-response)
 
+## Document Endpoint
+
 - [Document Description](#document-description)
 
 - [Document Request Information](#document-request-information)
 
 - [Document Response](#document-response)
+
+## General information
 
 - [Versioning](#versioning)
 
