@@ -108,15 +108,22 @@ Response Structure
     "employments": [
       {
         "job_titles": {
-          "onet15": [
+          "onet17": [
             {
               "title": string,
               "id": string,
               "confidence": integer
             },
-            [... more onet15 results]
+            [... more onet17 results]
           ],
-          [... results for other taxonomies]
+          "carotenev3": [
+            {
+              "title": string,
+              "id": string,
+              "confidence": integer
+            },
+            [... more carotenev3 results]
+          ]
         },
         "job_level": {
           "1.0": {
@@ -126,21 +133,14 @@ Response Structure
           }
         },
         "skills": {
-          "2.0": [
+          "4.0": [
             {
               "skilldid": string,
               "normalized_term": string,
-              "confidence": float
+              "confidence": float,
+              "type": string
             },
-            [... more skillsV2 results]
-          ],
-          "3.0": [
-            {
-              "skilldid": string,
-              "normalized_term": string,
-              "confidence": float
-            },
-            [... more skillsV3 results]
+            [... more skillsV4 results]
           ]
         },
         "company_normalization": {
@@ -179,26 +179,6 @@ Response Structure
                 "company_size": int
               },
               "data_version": "string"
-            },
-            "data_dot_com": {
-              "normalized_companies": [
-                {
-                "confidence": double,
-                "normalized_name": string,
-                "id": string,
-                "naics_code": string,
-                "naics_description": string,
-                "duns_number": string,
-                "website": string,
-                "country": string,
-                "state": string,
-                "postal_code": string,
-                "city": string,
-                "address": string,
-                "company_size": int
-                }
-              ],
-              "data_version": "string"
             }
           }
         },
@@ -217,21 +197,14 @@ Response Structure
       }
     ],
     "skills": {
-      "2.0": [
+      "4.0": [
         {
           "skilldid": string,
           "normalized_term": string,
           "confidence": float
+          "type": string
         },
-        [... more skillsV2 results]
-      ],
-      "3.0": [
-        {
-          "skilldid": string,
-          "normalized_term": string,
-          "confidence": float
-        },
-        [... more skillsV3 results]
+        [... more skillsV4 results]
       ]
     },
     "job_level": {
@@ -242,43 +215,66 @@ Response Structure
       }
     },
     "job_titles": {
-      "onet15": [
+      "onet17": [
         {
           "title": string,
           "id": string,
           "confidence": integer
         },
-        [... more onet15 results]
+        [... more onet17 results]
       ],
-      [... results for other taxonomies]
+      "carotenev3": [
+        {
+          "title": string,
+          "id": string,
+          "confidence": integer
+        },
+        [... more carotenev3 results]
+      ]
     },
     "geography": {
-      "1.0": [
+      "2.0": [
         {
           "admin_areas": [
             {
               "long_name": string,
               "short_name": string,
-              "name": string,
               "level": integer
             },
             {
               "long_name": string,
               "short_name": string,
-              "name": string,
               "level": integer
             }
           ],
-          "city": string,
           "country": string,
           "country_code": string,
           "landmark": string,
           "latitude": float,
+          "locality": string,
           "location_type": string,
           "longitude": float,
           "postal_code": string,
           "street_address": string,
-          "sublocality": string
+          "sublocality": string,
+          "metropolitan_statistical_area": {
+            "title": string,
+            "code": integer
+          },
+          "designated_market_areas": [
+            string
+          ],
+          "viewport": {
+            "northeast": {
+              "lat": 50.74228898029149,
+              "lng": 7.118058980291502
+            },
+            "southwest": {
+              "lat": 50.7395910197085,
+              "lng": 7.115361019708498
+            },
+            "suggested_radius_miles": 0.11033198564043084
+          }
         }
       ]
     }
