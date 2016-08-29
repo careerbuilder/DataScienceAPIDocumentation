@@ -39,6 +39,7 @@ https://api.careerbuilder.com/search/semanticsearch/query?query=registered nurse
 
 #Query Response
 
+The query response is divided into three parts. First is the ParsedInput node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword independently of the context of the query, and last is the set of summary relationships (e.g. "job_title," "occupations" ....) which give the related entities of the entire query. 
 
 ```
  {
@@ -242,6 +243,9 @@ Basic working experience with Unix environment and scripts&version=0.8
 ```
 
 #Document Response
+
+
+The document response is divided into two parts. First is the extracted keywords node, which gives the type and weight of each extracted keyword in the document, and last is the set of summary relationships (e.g. "job_title," "occupations" ....) which give the related entities of the entire document. 
 
 
 ```
