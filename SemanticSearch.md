@@ -43,7 +43,7 @@ Parameters (query/form):
  
 Example: 
 ```
-https://api.careerbuilder.com/search/semanticsearch/query?query=registered nurse&version=0.8
+https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&version=0.8
 ```
 
 #Query Response
@@ -224,7 +224,7 @@ Parameters (query/form):
  
 Example: 
 ```
-https://api.careerbuilder.com/search/semanticsearch/document?title=java developer&content=
+https://api.careerbuilder.com/search/semanticsearch/document/?version=0.8&title=java developer&content=
 Job Description
 Bachelor's degree or equivalent work experience preferred.
 A minimum of 5 years of Information Technology experience.
