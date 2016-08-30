@@ -30,7 +30,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 * **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the resume parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service.  
   The value **"none"** may be supplied to skip all post-parsing classifications and simply return the results of the parse. At present, a request that does not include this parameter will receive all classifications; this is temporary behavior for the sake of backwards compatibility. Once all customers have started using the desired_enrichments parameter, its usage will become required, and requests excluding it will result in a 400 Bad Request response code.
 
-* **service** (Optional) -- The resume parsing service you wish to use. Accepted values are "sovren", "textkernel", and "daxtra". If this parameter is not provided, the service will automatically select the preferred parser for the document's language. [Click here for the current list of service defaults by language.](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/ResumeParsing.md#current-language-defaults)
+* **service** (Optional) -- The resume parsing service you wish to use. Accepted values are "textkernel", "hireability", and "daxtra". If this parameter is not provided, the service will automatically select the preferred parser for the document's language. [Click here for the current list of service defaults by language.](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/ResumeParsing.md#current-language-defaults)
 
 * **language** (Optional) -- ISO 639-1 language code. If this parameter is not provided the service will run language detection on the provided document to get a language code.
 
@@ -108,15 +108,22 @@ Response Structure
     "employments": [
       {
         "job_titles": {
-          "onet15": [
+          "onet17": [
             {
               "title": string,
               "id": string,
               "confidence": integer
             },
-            [... more onet15 results]
+            [... more onet17 results]
           ],
-          [... results for other taxonomies]
+          "carotenev3": [
+            {
+              "title": string,
+              "id": string,
+              "confidence": integer
+            },
+            [... more carotenev3 results]
+          ]
         },
         "job_level": {
           "1.0": {
@@ -126,21 +133,14 @@ Response Structure
           }
         },
         "skills": {
-          "2.0": [
+          "4.0": [
             {
               "skilldid": string,
               "normalized_term": string,
-              "confidence": float
+              "confidence": float,
+              "type": string
             },
-            [... more skillsV2 results]
-          ],
-          "3.0": [
-            {
-              "skilldid": string,
-              "normalized_term": string,
-              "confidence": float
-            },
-            [... more skillsV3 results]
+            [... more skillsV4 results]
           ]
         },
         "company_normalization": {
@@ -179,26 +179,6 @@ Response Structure
                 "company_size": int
               },
               "data_version": "string"
-            },
-            "data_dot_com": {
-              "normalized_companies": [
-                {
-                "confidence": double,
-                "normalized_name": string,
-                "id": string,
-                "naics_code": string,
-                "naics_description": string,
-                "duns_number": string,
-                "website": string,
-                "country": string,
-                "state": string,
-                "postal_code": string,
-                "city": string,
-                "address": string,
-                "company_size": int
-                }
-              ],
-              "data_version": "string"
             }
           }
         },
@@ -217,21 +197,14 @@ Response Structure
       }
     ],
     "skills": {
-      "2.0": [
+      "4.0": [
         {
           "skilldid": string,
           "normalized_term": string,
           "confidence": float
+          "type": string
         },
-        [... more skillsV2 results]
-      ],
-      "3.0": [
-        {
-          "skilldid": string,
-          "normalized_term": string,
-          "confidence": float
-        },
-        [... more skillsV3 results]
+        [... more skillsV4 results]
       ]
     },
     "job_level": {
@@ -242,43 +215,66 @@ Response Structure
       }
     },
     "job_titles": {
-      "onet15": [
+      "onet17": [
         {
           "title": string,
           "id": string,
           "confidence": integer
         },
-        [... more onet15 results]
+        [... more onet17 results]
       ],
-      [... results for other taxonomies]
+      "carotenev3": [
+        {
+          "title": string,
+          "id": string,
+          "confidence": integer
+        },
+        [... more carotenev3 results]
+      ]
     },
     "geography": {
-      "1.0": [
+      "2.0": [
         {
           "admin_areas": [
             {
               "long_name": string,
               "short_name": string,
-              "name": string,
               "level": integer
             },
             {
               "long_name": string,
               "short_name": string,
-              "name": string,
               "level": integer
             }
           ],
-          "city": string,
           "country": string,
           "country_code": string,
           "landmark": string,
           "latitude": float,
+          "locality": string,
           "location_type": string,
           "longitude": float,
           "postal_code": string,
           "street_address": string,
-          "sublocality": string
+          "sublocality": string,
+          "metropolitan_statistical_area": {
+            "title": string,
+            "code": integer
+          },
+          "designated_market_areas": [
+            string
+          ],
+          "viewport": {
+            "northeast": {
+              "lat": 50.74228898029149,
+              "lng": 7.118058980291502
+            },
+            "southwest": {
+              "lat": 50.7395910197085,
+              "lng": 7.115361019708498
+            },
+            "suggested_radius_miles": 0.11033198564043084
+          }
         }
       ]
     }
