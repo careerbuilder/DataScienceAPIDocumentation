@@ -33,4 +33,6 @@ APIs:
 
 [ResolvedTitle](ResolvedTitle.md): Attempts to resolve a job title to the closest match from a given list of target titles.
 
+[SemanticSearch](SemanticSearch.md): Parses a query into intended phrases and identifies matching and related normalized entities.
+
 
