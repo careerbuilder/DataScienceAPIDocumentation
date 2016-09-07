@@ -32,7 +32,7 @@ Input Data
 
 Input should be provided in the POST request body, and content type should be either JSON or Form Vars (xml is not accepted)
 
-document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, and .wps documents given in a BASE64 encoded string. Documents may not exceed 17,000 characters in length; those that do will incur an HTTP 413 Request-Entity Too Large error. This character limit includes spaces, but not include tabs or newlines.
+document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, and .wps documents given in a BASE64 encoded string. Documents may not exceed 21,000 characters in length; those that do will incur an HTTP 413 Request-Entity Too Large error. This character limit includes spaces, but not include tabs or newlines.
 
 *All documents that contain Greek as their primary language or are sent with the service=hireability parameter must be 65 characters or more. Any document that does not meet this threshold will return a 400 Bad Request exception.*
 
