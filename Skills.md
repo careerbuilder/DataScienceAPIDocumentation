@@ -8,7 +8,7 @@ This API currently supports versions 4.1 and 4.2. Version is passed in the Accep
 
 | Parameter (4.1/4.2) | Required | Description |
 |----------------|----------------|-----------------|----------|-------------|
-| version        | Yes | Passed in via the Accept header. Possible values are "4.1" or "4.2".  Defaults to 4.1 | 
+| version        | Yes | Passed in via the Accept header. Possible values are "4.1" or "4.2". | 
 | content        | Yes | A string containing the resume content to be tagged |
 | language            | No | A string determining the language (total 22 languages supported) in which the input text is written. Default value is en. Note that the input parameter passing to language should be the language id. |
 | threshold      | No | A double value between 0 and 1 controlling minimum relevancy scores for skill recognition. Higher values will more tightly restrict the returned skill tags. Default is 0.5. A threshold of 0 means all seed skill phrases recognized by exact string matching will be returned. Note that this parameter is only supported for inputs in English. |
