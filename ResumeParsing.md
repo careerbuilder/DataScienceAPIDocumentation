@@ -223,7 +223,7 @@ Current Language Defaults
 | hu | Hungarian             |        |        |      X     |
 | sk | Slovak                |        |        |      X     |
 | ja | Japanese              |        | X      |            |
-| en-gb | English (British)  |        | X      |            |
+| en-gb | English (British)  |        |        |      X     |
 | el | Greek                 | X      |        |            |
 |    | Other Languages       |        |        |      X     |
 
