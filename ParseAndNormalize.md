@@ -49,7 +49,6 @@ Response Structure
     "first_name": string,
     "middle_name": string,
     "last_name": string,
-    "date_of_birth": string,
     "affix": string,
     "email_address": string,
     "home_number": string,
