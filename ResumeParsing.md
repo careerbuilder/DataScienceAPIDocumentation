@@ -44,6 +44,8 @@ service: The title of the resume parsing service you wish to use (currently avai
 
 output_type: allows you to control the output either json (default) or xml
 
+return_date_of_birth: (Optional) If this parameter is provided then the service will return a filled date of birth field when it is included on the document. If not provided then this will return an empty string. Note, this field was made available mainly for our international clients. It can be considered age discriminatory in the US and should only be used in special circumstances.
+
 
 Sample Return Data
 ============
