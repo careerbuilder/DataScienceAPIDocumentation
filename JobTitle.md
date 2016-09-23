@@ -53,7 +53,7 @@ Possible taxonomies (with links to full taxonomy results)
 | [carotenev2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.md) | Full update, more accurate and comprehensive (RETIRES 8/24/2015)|
 | [carotenev2.2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.2.md) | Renames duplicated job titles from carotenev2 (RETIRES 8/24/2015)|
 | [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | 7 removals, 139 updates, and 1,386 new titles.  [v2.2-v3 crosswalk](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)|
-| carotenev3.1 | Identical to v3, but includes minorTitle and minorId fields for hierarchical classification |
+| carotenev3.1 | Adds disambiguation to v3 and includes minorTitle and minorId fields for hierarchical classification |
 
 #Translation Information
 
