@@ -34,7 +34,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **language** (Optional) -- ISO 639-1 language code. If this parameter is not provided the service will run language detection on the provided document to get a language code.
 
-* **date_of_birth** (Optional) -- If this parameter is provided then the service will return a filled date of birth field when it is included on the document. If not provided then this will return an empty string. Note, this field was made available mainly for our international clients. It can be considered age discriminatory in the US and should only be used in special circumstances. 
+* **return_date_of_birth** (Optional) -- If this parameter is provided then the service will return a filled date of birth field when it is included on the document. If not provided then this will return an empty string. Note, this field was made available mainly for our international clients. It can be considered age discriminatory in the US and should only be used in special circumstances. 
 
 Response Structure
 ============
