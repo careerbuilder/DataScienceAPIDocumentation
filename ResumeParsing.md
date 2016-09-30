@@ -17,6 +17,8 @@ _____________
 #Summary
 __________
 
+**This service is deprecated. Please use our Parse & Normalize service instead, located at https://api.careerbuilder.com/core/parsing/normalizedresume and documented [here](/ParseAndNormalize.md). If you do not want any additional enrichments in your response, include the "desired_enrichments=none" parameter with your request.**
+
 The service is located at https://api.careerbuilder.com/core/parsing/resume. As usual, you will need OAuth core credentials to use this service. (*If you do not have these please contact API and Auth to request credentials*)
 
 Here is an example input: https://api.careerbuilder.com/core/parsing/resume?document=BASE64EncodedDocument
@@ -32,7 +34,7 @@ Input Data
 
 Input should be provided in the POST request body, and content type should be either JSON or Form Vars (xml is not accepted)
 
-document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, and .wps documents given in a BASE64 encoded string. Documents may not exceed 21,000 characters in length; those that do will incur an HTTP 413 Request-Entity Too Large error. This character limit includes spaces, but not include tabs or newlines.
+document: We accept .doc, .docx, .pdf, .rtf, .txt, .odt, and .wps documents given in a BASE64 encoded string.
 
 *All documents that contain Greek as their primary language or are sent with the service=hireability parameter must be 65 characters or more. Any document that does not meet this threshold will return a 400 Bad Request exception.*
 
@@ -65,7 +67,6 @@ ALL 4xx status codes should not be retried. ALL 5xx status codes should be retri
 
  - 400 Bad Request: this is returned when the request is syntactically incorrect or malformed in some way
  - 409 Conflict: this is returned when a virus is detected in the document
- - 413 Entity Too Large: this is returned when the document is longer than the limit of 21,000 characters
  - 415 Unsupported Media Type: this is returned when our parsers detect that the document may be an image document
  - 500 Internal Server Error: this is returned when an uncaught exception is thrown somewhere within our code. Please let us know if you see 500's
  - 502 Bad Gateway: this is returned when one of our parsers or other downstream services has an unexpected problem
