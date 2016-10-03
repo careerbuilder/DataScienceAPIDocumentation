@@ -16,7 +16,7 @@ Accepts structured or unstructured location information and attempts to resolve 
 
 #Place Id Requests
 
-The service also accepts Google Place Id's as a means to retrieve goeographic information. Requesting a location using a Google Place Id requires that a request only contains the Place Id and a culture param if language specification is desired. Additional location parameters will result 400 response in this kind of request.
+The service also accepts Google Place Id's as a means to retrieve goeographic information. Requesting a location using a Google Place Id requires that a request only contains the Place Id and a culture param if language specification is desired. Additional location parameters will result in a 400 response in this request.
 
 ----------------------------
 #Request Structure
