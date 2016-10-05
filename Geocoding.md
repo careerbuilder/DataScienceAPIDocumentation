@@ -15,7 +15,7 @@
 ----------------------------
 #Description
 
-Accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only. Lastly, this service makes use of two different requests available via Google: Geocoding Requests and Google Place ID Lookup.
+This service makes use of two different requests: Geocoding Requests and Google Place ID Lookup. It accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only.
 
 ----------------------------
 #Geocoding Request
