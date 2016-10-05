@@ -14,12 +14,16 @@
 
 Accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only.
 
+#Place Id Requests
+
+The service also accepts Google Place Id's as a means to retrieve goeographic information. Requesting a location using a Google Place Id requires that a request only contains the Place Id and a culture param if language specification is desired. Additional location parameters will result in a 400 response in this request.
+
 ----------------------------
 #Request Structure
 
 Example URL: https://api.careerbuilder.com/core/geography/geocoding?address=5550%20Peachtree%20Pkwy&locality=Norcross&admin_area=GA&postal_code=30092&country=US
 
-At least one of (query, address, locality, postal_code, admin_area, country) must be provided in the query string.
+At least one of (query, address, locality, postal_code, admin_area, country, place_id) must be provided in the query string.
 
 
 | Parameter  | Description |
@@ -30,6 +34,7 @@ At least one of (query, address, locality, postal_code, admin_area, country) mus
 | admin_area  | Optional. The subdivision name in the country or region for an address. This element is typically treated as the first order administrative subdivision, but in some cases it is the second, third, or fourth order subdivision in a country, dependency, or region. |
 | country    | Optional. A country name or two-letter ISO-3166 country code. Used to limit the geographic scope of results to a particular country. Multiple pipe-delimited values may be supplied to limit results to a set of specified countries, e.g. ?query=Rome&country=IT&#124;US. |
 | postal_code | Optional. The post code, postal code, or ZIP Code of an address. |
+| place_id | Optional. Id provided by google that uniquely identifies locations based on the Google Places Database and in Google Maps.
 | culture    | Optional. The preferred ISO 639-1 language code for the response. If this parameter is omitted, the response will be returned in English. Note that the level of localization will vary for each culture. For example, the name "United States" may not have a localized name for every culture code. The geocoding service currently only supports a subset of the ISO-639-1 standard. Click [here](Data/GeocodingServiceSupportedLanguages.md) to view a full list of supported culture codes. |
 | territories_as_states | Optional. When enabled, dependent territories may be requested as administrative areas of their parent nation, and will also be returned as such. This parameter is necessary to validate, for instance, **locality=San Juan&admin_area=PR&country=US**. This functionality will only recognize territories and parent countries by their [two-digit ISO-3166-1 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), so requests such as **admin_area=Puerto Rico&country=USA** would not be remapped according to this parameter. Default value is false. |
 | try_locality_as_admin_area | Optional. When enabled, a request that includes the **locality** parameter and fails to retrieve locality-specific geography data will be reattempted with the locality value sent as an admin_area value instead. (If an admin_area value already exists, the locality value will be prepended and comma-separated, e.g. "locality=Harris%20Township&admin_area=OH" would be resent as "admin_area=Harris Township, OH" if try_locality_as_admin_area is set to true.) Default value is false. |
@@ -65,6 +70,7 @@ Each element of the returned **results** array will be formatted as follows:
 | street_address | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. **This property may be absent**. |
 | sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the locality field is empty. **This property may be absent**. |
 | landmark | The full name of the landmark (such as a military base or island) returned by the service. **This property may be absent**. |
+| place_id | Place Id relating to the geolocation requested. 
 | viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- **northeast** and **southwest** -- each with **lat** and **lng** decimal values. It also contains a **suggested_radius** decimal field that contains the distance in miles from the center of the viewport to a corner. **This property and its elements are always present and non-empty.** |
 | metropolitan_statistical_area | The metropolitan statistical area containing the location. An object containing two fields, the title of the area and an integer code for the area. Metropolitan statistical areas are specific to the US. **This property may be absent**. |
 | designated_market_areas | A string array of the designated market areas containing the location. Designated market areas may overlap and thus a location may be in more than one designated market area. Designated market areas are specific to the continental US. **This property may be absent**. |
