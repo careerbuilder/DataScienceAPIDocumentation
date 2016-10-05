@@ -5,25 +5,25 @@
 #Contents
 
 - [Description](#description)
-- [Request Structure](#request-structure)
+- [Geocoding Request](#goecoding-request)
+- [Geocoding Request Structure](#request-structure)
+- [Place ID Lookup Request](#place-id-lookup-request)
+- [Place ID Lookup Request Structure](#place-id-lookup-request-structure)
 - [Response Structure](#response-structure)
 - [Versioning](#versioning)
 
 ----------------------------
 #Description
 
-Accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only.
-
-#Place Id Requests
-
-The service also accepts Google Place Id's as a means to retrieve goeographic information. Requesting a location using a Google Place Id requires that a request only contains the Place Id and a culture param if language specification is desired. Additional location parameters will result in a 400 response in this request.
+Accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only. Lastly, this service makes use of two different requests available via Google: Geocoding Requests and Google Place ID Lookup.
 
 ----------------------------
-#Request Structure
+#Geocoding Request
+A Geocoding request contains at least one of (query, address, locality, postal_code, admin_area, country) that must be provided in the query string.
+
+#Geocoding Request Structure
 
 Example URL: https://api.careerbuilder.com/core/geography/geocoding?address=5550%20Peachtree%20Pkwy&locality=Norcross&admin_area=GA&postal_code=30092&country=US
-
-At least one of (query, address, locality, postal_code, admin_area, country, place_id) must be provided in the query string.
 
 
 | Parameter  | Description |
@@ -33,11 +33,24 @@ At least one of (query, address, locality, postal_code, admin_area, country, pla
 | locality   | Optional. The locality, such as the city or neighborhood, that corresponds to an address. |
 | admin_area  | Optional. The subdivision name in the country or region for an address. This element is typically treated as the first order administrative subdivision, but in some cases it is the second, third, or fourth order subdivision in a country, dependency, or region. |
 | country    | Optional. A country name or two-letter ISO-3166 country code. Used to limit the geographic scope of results to a particular country. Multiple pipe-delimited values may be supplied to limit results to a set of specified countries, e.g. ?query=Rome&country=IT&#124;US. |
-| postal_code | Optional. The post code, postal code, or ZIP Code of an address. |
-| place_id | Optional. Id provided by google that uniquely identifies locations based on the Google Places Database and in Google Maps.
 | culture    | Optional. The preferred ISO 639-1 language code for the response. If this parameter is omitted, the response will be returned in English. Note that the level of localization will vary for each culture. For example, the name "United States" may not have a localized name for every culture code. The geocoding service currently only supports a subset of the ISO-639-1 standard. Click [here](Data/GeocodingServiceSupportedLanguages.md) to view a full list of supported culture codes. |
 | territories_as_states | Optional. When enabled, dependent territories may be requested as administrative areas of their parent nation, and will also be returned as such. This parameter is necessary to validate, for instance, **locality=San Juan&admin_area=PR&country=US**. This functionality will only recognize territories and parent countries by their [two-digit ISO-3166-1 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), so requests such as **admin_area=Puerto Rico&country=USA** would not be remapped according to this parameter. Default value is false. |
 | try_locality_as_admin_area | Optional. When enabled, a request that includes the **locality** parameter and fails to retrieve locality-specific geography data will be reattempted with the locality value sent as an admin_area value instead. (If an admin_area value already exists, the locality value will be prepended and comma-separated, e.g. "locality=Harris%20Township&admin_area=OH" would be resent as "admin_area=Harris Township, OH" if try_locality_as_admin_area is set to true.) Default value is false. |
+
+----------------------
+
+#Place ID Lookup Request
+
+A Google Place ID is a unique identifier used by Google to identify location/places in the Google Places Databases and on Google Maps. The service accepts a valid place ID as a means to retrieve goeographic information back from google via reverse geocoding. Requesting a location using a Google place ID requires that the request contains a place ID and a culture param if a language specification is desired. Additional location parameters will result in a 400 response in this request.
+
+#Place ID Lookup Request Structure
+
+Example URL: https://api.careerbuilder.com/core/geography/geocoding?culture=en&place_id=ChIJd8BlQ2BZwokRAFUEcm_qrcA
+
+| Parameter  | Description |
+|------------|-------------|
+| place_id | Required. Id provided by google that uniquely identifies locations based on the Google Places Database and in Google Maps.
+| culture    | Optional. The preferred ISO 639-1 language code for the response. If this parameter is omitted, the response will be returned in English. Note that the level of localization will vary for each culture. For example, the name "United States" may not have a localized name for every culture code. The geocoding service currently only supports a subset of the ISO-639-1 standard. Click [here](Data/GeocodingServiceSupportedLanguages.md) to view a full list of supported culture codes. |
 
 &nbsp;
 
