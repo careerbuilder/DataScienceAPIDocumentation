@@ -16,7 +16,7 @@ _________
 
 HTTP method: GET or POST
 Parameters (query/form):
--        taxonomy (required) : classification taxonomy to use; accepted values are onet15, onet17, carotenev1, carotenev2, carotenev2_2, and carotenev3. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly).
+-        taxonomy (required) : classification taxonomy to use; accepted values are onet15, onet17, carotenev1, carotenev2, carotenev2_2, carotenev3, and carotenev3_1. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly).
 -        title (required if description is empty) : job title
 -        description (required if title is empty) : job description
 -        contentLang : the language of the provided text. You should provide this if it is known, as it will improve the accuracy of our translation system. If this parameter is not specified, the service will attempt to detect the language of the text automatically. Accepted language codes are as follows: ar, bg, ca, zhCHS, zhCHT, cs, da, nl, en, et, tl, fi, fr, de, el, ht, he, hi, hu, id, it, ja, kn, ko, lv, lt, ms, mt, no, fa, pl, pt, ro, ru, sk, sl, es, sv, th, tr, uk, ur, vi, cy.
@@ -53,6 +53,7 @@ Possible taxonomies (with links to full taxonomy results)
 | [carotenev2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.md) | Full update, more accurate and comprehensive (RETIRES 8/24/2015)|
 | [carotenev2.2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.2.md) | Renames duplicated job titles from carotenev2 (RETIRES 8/24/2015)|
 | [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | 7 removals, 139 updates, and 1,386 new titles.  [v2.2-v3 crosswalk](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)|
+| carotenev3.1 | Adds disambiguation to v3 and includes minorTitle and minorId fields for hierarchical classification |
 
 #Translation Information
 
