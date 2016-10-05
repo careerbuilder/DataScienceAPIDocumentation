@@ -15,7 +15,7 @@
 ----------------------------
 #Description
 
-This service makes use of two different requests: Geocoding Requests and Google Place ID Lookup. It accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only.
+This service makes use of two different requests: Geocoding Requests and Google place ID lookup. The two request types represent two different methods of obtaining geographic information for a query (latitude/longitude, locality, administrative areas, country, etc.) and are explained in more detail below. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports both HTTP GET and POST methods. Requests will be handled the same way regardless of HTTP method; use whichever method you find most convenient.
 
 ----------------------------
 #Geocoding Request
@@ -42,7 +42,7 @@ Example URL: https://api.careerbuilder.com/core/geography/geocoding?address=5550
 
 #Place ID Lookup Request
 
-A Google Place ID is a unique identifier used by Google to identify location/places in the Google Places Databases and on Google Maps. The service accepts a valid place ID as a means to retrieve goeographic information back from google via reverse geocoding. Requesting a location using a Google place ID requires that the request contains a place ID and a culture param if a language specification is desired. Additional location parameters will result in a 400 response.
+A Google place ID is a unique identifier used by Google to identify locations/places in the Google Places Database and on Google Maps. The service accepts a valid place ID as a means to retrieve geographic information from Google via reverse geocoding. Requesting a location using a Google place ID requires that the request contains a place ID and a culture param if a language specification is desired. Additional location parameters will result in an HTTP 400 response.
 
 #Place ID Lookup Request Structure
 
