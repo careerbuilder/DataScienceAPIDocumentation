@@ -42,7 +42,7 @@ Example URL: https://api.careerbuilder.com/core/geography/geocoding?address=5550
 
 #Place ID Lookup Request
 
-A Google Place ID is a unique identifier used by Google to identify location/places in the Google Places Databases and on Google Maps. The service accepts a valid place ID as a means to retrieve goeographic information back from google via reverse geocoding. Requesting a location using a Google place ID requires that the request contains a place ID and a culture param if a language specification is desired. Additional location parameters will result in a 400 response in this request.
+A Google Place ID is a unique identifier used by Google to identify location/places in the Google Places Databases and on Google Maps. The service accepts a valid place ID as a means to retrieve goeographic information back from google via reverse geocoding. Requesting a location using a Google place ID requires that the request contains a place ID and a culture param if a language specification is desired. Additional location parameters will result in a 400 response.
 
 #Place ID Lookup Request Structure
 
