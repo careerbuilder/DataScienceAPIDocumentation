@@ -5,8 +5,8 @@
 #Contents
 
 - [Description](#description)
-- [Geocoding Request](#goecoding-request)
-- [Geocoding Request Structure](#request-structure)
+- [Geocoding Request](#geocoding-request)
+- [Geocoding Request Structure](#geocoding-request-structure)
 - [Place ID Lookup Request](#place-id-lookup-request)
 - [Place ID Lookup Request Structure](#place-id-lookup-request-structure)
 - [Response Structure](#response-structure)
