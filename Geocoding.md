@@ -15,7 +15,7 @@
 ----------------------------
 #Description
 
-This service makes use of two different requests: Geocoding Requests and Google place ID lookup. The two request types represent two different methods of obtaining geographic information for a query (latitude/longitude, locality, administrative areas, country, etc.) and are explained in more detail below. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports both HTTP GET and POST methods. Requests will be handled the same way regardless of HTTP method; use whichever method you find most convenient.
+This service makes use of two different requests: Geocoding Requests and Google place ID lookup. The two request types represent two different methods of obtaining geographic information for a query (latitude/longitude, locality, administrative areas, country, etc.) and are explained in more detail below. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). Requests will be handled the same way regardless of HTTP method; use whichever method you find most convenient.
 
 ----------------------------
 #Geocoding Request
