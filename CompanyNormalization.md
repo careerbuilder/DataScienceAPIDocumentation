@@ -12,13 +12,15 @@ _________
 
 The following parameters may be used in constructing a request to the service:
 
--        company_name (required) : The company name to be normalized.
--        website (required) : The website of the company to be normalized. *(Note: either company_name or website must be provided. It is not necessary to provide both.)*
+-        company_name* (required) : The company name to be normalized.
+-        website* (required) : The website of the company to be normalized. *(Note: either company_name or website must be provided. It is not necessary to provide both.)*
 -        service (required) : The normalizer to be used. Accepted values are "datadotcom" and "companydepot".
 -        country (optional) : The country component of the provided company's location. Two-digit ISO country codes are supported. *(Note: the country parameter is required for requests to the DataDotCom service.)*
 -        state (optional) : The state component of the provided company's location.
 -        city (optional) : The city component of the provided company's location.
 -        max_results (optional) : The maximum number of results to be returned, between 1 and 10 (inclusive). Defaults to 3.
+
+\* *Note that company_name and website are each constrained to a maximum length of 400 characters. Requests that contain a company_name or website value exceeding this limit will fail with an HTTP 400 Bad Request status.*
  
 Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=careerbuilder&service=companydepot&max_results=1
 
