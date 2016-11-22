@@ -20,26 +20,28 @@ Parameters (query/form):
 -        title (required if description is empty) : job title
 -        description (required if title is empty) : job description
 -        contentLang : the language of the provided text. You should provide this if it is known, as it will improve the accuracy of our translation system. If this parameter is not specified, the service will attempt to detect the language of the text automatically. Accepted language codes are as follows: ar, bg, ca, zhCHS, zhCHT, cs, da, nl, en, et, tl, fi, fr, de, el, ht, he, hi, hu, id, it, ja, kn, ko, lv, lt, ms, mt, no, fa, pl, pt, ro, ru, sk, sl, es, sv, th, tr, uk, ur, vi, cy.
--        outputType : response format, defaults to json; allowable values are json, xml
+-        outputType (optional): response format, defaults to json; We used to support xml, but by 11/22/2016, xml is abandoned.
  
-Example: https://api.careerbuilder.com/core/classifier/jobtitle?taxonomy=onet15&title=janitor&contentLang=en&outputType=xml
+Example: https://api.careerbuilder.com/core/classifier/jobtitle?taxonomy=onet17&title=janitor&contentLang=en
 
 #Sample Response
 
 
 ```
-<titleList>
-    <titles>
-        <title>Janitors and Cleaners, Except Maids and Housekeeping Cleaners</title>
-        <id>37-2011.00</id>
-        <confidence>90.0</confidence>
-    </titles>
-    <titles>
-        <title>First-Line Supervisors/Managers of Housekeeping and Janitorial Workers</title>
-        <id>37-1011.00</id>
-        <confidence>56.0</confidence>
-    </titles>
-</titleList>
+{
+    "titles": [
+        {
+            "confidence": 90,
+            "id": "37-2011.00",
+            "title": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners"
+        },
+        {
+            "confidence": 56,
+            "id": "37-1011.00",
+            "title": "First-Line Supervisors of Housekeeping and Janitorial Workers"
+        }
+    ]
+}
 ```
 
 #Taxonomies
