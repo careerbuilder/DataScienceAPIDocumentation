@@ -5,9 +5,7 @@ This repo houses all published Data Science API documentation.
 
 You will need OAuth core credentials to use these services. (*If you do not have these please contact API and Auth to request credentials*)
 
-We provide .net and java wrappers for our APIs, which can be found [here](https://github.com/cbdr/DataScienceServices).  
-
-We monitor our services and publish a very simple page with our current status with documentation [here](MonitorPage.md).
+We provide .net and java wrappers for our APIs, which can be found [here](https://github.com/cbdr/DataScienceServices). (Note: this repository may only be viewed by members of the cbdr GitHub organization.)
 
 Our general API versioning documentation can be found [here](Versioning.md).
 
@@ -20,8 +18,6 @@ APIs:
 [JobTitle](JobTitle.md): Provides normalized job titles like Carotene and oNet.
 
 [Skills](Skills.md): Provides normalized skills.
-
-[ResumeParsing](ResumeParsing.md): Parses resumes and returns contained data through several parsers.
 
 [ParseAndNormalize](ParseAndNormalize.md): Parses resumes and normalizes through most other services offered.
 
