@@ -83,7 +83,7 @@ Possible taxonomies (with links to full taxonomy results)
 |----------|--------------|
 | [onet17](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet17.md) | Updated oNets |
 | [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | 7 removals, 139 updates, and 1,386 new titles.  [v2.2-v3 crosswalk](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)|
-| carotenev3.1 | Adds disambiguation to v3 and includes minorTitle and minorId fields for hierarchical classification |
+| carotenev3.1 | Adds disambiguation to v3 and includes minorTitle and minorId fields (in version 1.0, they are minor_title and minor_id) for hierarchical classification |
 
 #Translation Information
 
