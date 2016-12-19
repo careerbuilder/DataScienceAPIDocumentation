@@ -18,12 +18,43 @@ HTTP method: GET or POST
 Parameters (query/form):
 
 (This API is in transition to match our data science API input/output standard. To provide peaceful transition, we support versions 0.9 and 1.0. Version is passed in the Accept header as the parameter version (Ex. Accept:application/json;version=1.0). 0.9 is the default version if user does not specify explicitly and all our existing users use this version by default. We highly encourage new users to pass version 1.0 in the Accept header. In version 0.9, all input parameters and output json fields are in camel case, while in version 1.0, input parameters and output json fields are in lowercase with underscores.)
--        taxonomy (required) : classification taxonomy to use; accepted values are onet15, onet17, carotenev1, carotenev2, carotenev2_2, carotenev3, and carotenev3_1. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly).
+-        taxonomy (required) : classification taxonomy to use; accepted values are onet17, carotenev3, and carotenev3_1. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly). Note you could supply more than one taxonomy separated by pipe (see example query below).
 -        title (required if description is empty) : job title
 -        description (required if title is empty) : job description
 -        contentLang (use contentLang in version 0.9 and use content_lang in version 1.0) (optional) : the language of the provided text. You should provide this if it is known, as it will improve the accuracy of our translation system. If this parameter is not specified, the service will attempt to detect the language of the text automatically. Accepted language codes are as follows: ar, bg, ca, zhCHS, zhCHT, cs, da, nl, en, et, tl, fi, fr, de, el, ht, he, hi, hu, id, it, ja, kn, ko, lv, lt, ms, mt, no, fa, pl, pt, ro, ru, sk, sl, es, sv, th, tr, uk, ur, vi, cy.
- 
-Example: https://api.careerbuilder.com/core/classifier/jobtitle?taxonomy=onet17&title=janitor&contentLang=en
+
+Version 1.0 Example (Highly encouraged to use version 1.0): https://api.careerbuilder.com/core/classifier/jobtitle?title=Janitor&taxonomy=carotenev3.1|Onet17&contentLang=auto
+#Sample Response
+```
+{
+    "data": {
+        "onet17": [
+            {
+                "title": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+                "id": "37-2011.00",
+                "confidence": 90
+            },
+            {
+                "title": "First-Line Supervisors of Housekeeping and Janitorial Workers",
+                "id": "37-1011.00",
+                "confidence": 56
+            }
+        ],
+        "carotenev3.1": [
+            {
+                "title": "Janitor",
+                "id": "37.1",
+                "confidence": 1,
+                "minor_title": "Building Cleaning and Pest Control Workers",
+                "minor_id": "2000"
+            }
+        ]
+    }
+}
+```
+
+
+Version 0.9 Example: https://api.careerbuilder.com/core/classifier/jobtitle?taxonomy=onet17&title=janitor&contentLang=en
 
 #Sample Response
 
