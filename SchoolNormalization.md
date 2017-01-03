@@ -30,8 +30,12 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
             {
                 "normalized_school_name": "Georgia Institute of Technology",
                 "id": "53bff579e4b04710d09fa98d",
+                "confidence": 2.0,
                 "country": "US",
-                "confidence": 2.0
+                "city": "Atlanta",
+                "state": "GA",
+                "ipeds_id": 139755",
+                "ipeds_name": "Georgia Institute of Technology-Main Campus"
             }
         ]
     }
@@ -41,7 +45,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
 
 #Response Information
 
-The response returns a single data node which contains a list of normalized schools. These normalized schools are ordered by the confidence score. Each normalized shool has a normalized school name (string), a unique ID (string), a country (string), and a confidence (double). Confidence scores range from 0.0 to 2.0.
+The response returns a single data node which contains a list of normalized schools. These normalized schools are ordered by the confidence score. Each normalized shool has a normalized school name (string), a unique ID (string), a confidence (double), a country (string), a city (string), a state (string), an ipeds_id (string), and an ipeds_name (string). Confidence scores range from 0.0 to 2.0.
 
 
 #Versioning
