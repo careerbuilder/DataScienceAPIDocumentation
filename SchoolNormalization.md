@@ -47,6 +47,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
 
 The response returns a single data node which contains a list of normalized schools. These normalized schools are ordered by the confidence score. Each normalized shool has a normalized school name (string), a unique ID (string), a confidence (double), a country (string), a city (string), a state (string), an ipeds_id (string), and an ipeds_name (string). Confidence scores range from 0.0 to 2.0.
 
+Regarding the two fields ipeds_id and ipeds_name; ipeds stands for Integrated Postsecondary Education Data System. The unique Id and Name are assigned to every school registered with the National Center for Education Statistics. 
 
 #Versioning
 -----------
