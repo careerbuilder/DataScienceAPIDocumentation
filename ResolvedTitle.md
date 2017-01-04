@@ -5,7 +5,7 @@
 This endpoint supports the both HTTP/GET and HTTP/POST methods.
 
 **Parameters**
-+(This API is in transition to match CareerBuilder API standards. To provide peaceful transition, we support versions 0.9 and 1.0. Version is passed in the Accept header as the parameter version (Ex. Accept:application/json;version=1.0). 0.9 is the default version if user does not specify explicitly and all our existing users use this version by default. We highly encourage new users to pass version 1.0 in the Accept header. In version 0.9, all input parameters and output json fields are in camel case, while in version 1.0, input parameters and output json fields are in lowercase with underscores. Note that 0.9 is planed to be retired in Q1, 2017.)
++(This API is in transition to match CareerBuilder API standards. To provide peaceful transition, we support versions 0.9 and 1.0. Version is passed in the Accept header as the parameter version (Ex. Accept:application/json;version=1.0). 0.9 is the default version if user does not specify explicitly and all our existing users use this version by default. We highly encourage new users to pass version 1.0 in the Accept header. In version 0.9, all input parameters and output json fields are in camel case, while in version 1.0, input parameters and output json fields are in lowercase with underscores. Version 0.9 is scheduled for retirement by the end of Q1 2017.)
 
 **targetTitles** (required, **target_titles** in version 1.0): A string containing two or more pipe-delimited job titles to test the input against. For example: Software Engineer|Database Administrator|Systems Administrator. A single title may be supplied if the user simply wishes to test whether an input is a good match for a specified title.
 
