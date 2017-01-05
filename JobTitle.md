@@ -16,30 +16,41 @@ _________
 
 HTTP method: GET or POST
 Parameters (query/form):
--        taxonomy (required) : classification taxonomy to use; accepted values are onet15, onet17, carotenev1, carotenev2, carotenev2_2, carotenev3, and carotenev3_1. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly).
+
+(This API is in transition to match CareerBuilder API standards. To provide peaceful transition, we support versions 0.9 and 1.0. Version is passed in the Accept header as the parameter version (Ex. Accept:application/json;version=1.0). 0.9 is the default version if user does not specify explicitly and all our existing users use this version by default. We highly encourage new users to pass version 1.0 in the Accept header. In version 0.9, all input parameters and output json fields are in camel case, while in version 1.0, input parameters and output json fields are in lowercase with underscores. Version 0.9 is scheduled for retirement by the end of Q1 2017.)
+-        taxonomy (required) : classification taxonomy to use; accepted values are onet17, carotenev3, and carotenev3_1. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly). A single title/description may be classified against multiple taxonomies in a single request by providing multiple taxonomies in this parameter, separated by the pipe ("|") character (see example query below).
 -        title (required if description is empty) : job title
 -        description (required if title is empty) : job description
--        contentLang : the language of the provided text. You should provide this if it is known, as it will improve the accuracy of our translation system. If this parameter is not specified, the service will attempt to detect the language of the text automatically. Accepted language codes are as follows: ar, bg, ca, zhCHS, zhCHT, cs, da, nl, en, et, tl, fi, fr, de, el, ht, he, hi, hu, id, it, ja, kn, ko, lv, lt, ms, mt, no, fa, pl, pt, ro, ru, sk, sl, es, sv, th, tr, uk, ur, vi, cy.
--        outputType : response format, defaults to json; allowable values are json, xml
- 
-Example: https://api.careerbuilder.com/core/classifier/jobtitle?taxonomy=onet15&title=janitor&contentLang=en&outputType=xml
+-        contentLang (use contentLang in version 0.9 and use content_lang in version 1.0) (optional) : the language of the provided text. You should provide this if it is known, as it will improve the accuracy of our translation system. If this parameter is not specified, the service will attempt to detect the language of the text automatically. Accepted language codes are as follows: ar, bg, ca, zhCHS, zhCHT, cs, da, nl, en, et, tl, fi, fr, de, el, ht, he, hi, hu, id, it, ja, kn, ko, lv, lt, ms, mt, no, fa, pl, pt, ro, ru, sk, sl, es, sv, th, tr, uk, ur, vi, cy.
 
+Version 1.0 Example: https://api.careerbuilder.com/core/classifier/jobtitle?title=Janitor&taxonomy=carotenev3.1|onet17&content_lang=auto
 #Sample Response
-
-
 ```
-<titleList>
-    <titles>
-        <title>Janitors and Cleaners, Except Maids and Housekeeping Cleaners</title>
-        <id>37-2011.00</id>
-        <confidence>90.0</confidence>
-    </titles>
-    <titles>
-        <title>First-Line Supervisors/Managers of Housekeeping and Janitorial Workers</title>
-        <id>37-1011.00</id>
-        <confidence>56.0</confidence>
-    </titles>
-</titleList>
+{
+    "data": {
+        "onet17": [
+            {
+                "title": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+                "id": "37-2011.00",
+                "confidence": 90
+            },
+            {
+                "title": "First-Line Supervisors of Housekeeping and Janitorial Workers",
+                "id": "37-1011.00",
+                "confidence": 56
+            }
+        ],
+        "carotenev3.1": [
+            {
+                "title": "Janitor",
+                "id": "37.1",
+                "confidence": 1,
+                "minor_title": "Building Cleaning and Pest Control Workers",
+                "minor_id": "2000"
+            }
+        ]
+    }
+}
 ```
 
 #Taxonomies
@@ -47,13 +58,9 @@ Possible taxonomies (with links to full taxonomy results)
 
 | Taxonomy | description |
 |----------|--------------|
-| [onet15](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet15.md) | Original oNets used at CB (RETIRES 5/25/2015)|
 | [onet17](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet17.md) | Updated oNets |
-| [carotenev1](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV1.md) | Original carotene list (RETIRES 5/25/2015)|
-| [carotenev2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.md) | Full update, more accurate and comprehensive (RETIRES 8/24/2015)|
-| [carotenev2.2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2.2.md) | Renames duplicated job titles from carotenev2 (RETIRES 8/24/2015)|
 | [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | 7 removals, 139 updates, and 1,386 new titles.  [v2.2-v3 crosswalk](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)|
-| carotenev3.1 | Adds disambiguation to v3 and includes minorTitle and minorId fields for hierarchical classification |
+| carotenev3.1 | Adds disambiguation to v3 and includes minorTitle and minorId fields (in version 1.0, they are minor_title and minor_id) for hierarchical classification |
 
 #Translation Information
 
