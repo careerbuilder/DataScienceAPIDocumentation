@@ -17,7 +17,7 @@
 ----------------------------
 #Description
 
-This service provides lists of geographic entities of a particular type, such as postal codes or first-level administrative areas. This service uses the same underlying data as our geocoding service does. The list of entities returned as quried should be comprehensive for the populous countries, but we could not guarantee the completeness. We are considering to provide features to add missing entities if there are any and as customers request. Currently, the following requests are supported:
+This service provides lists of geographic entities of a particular type, such as postal codes or first-level administrative areas. This service uses the same underlying data as our geocoding service. The list of entities returned as queried should be comprehensive for the populous countries, but we could not guarantee 100% the completeness. We are considering to provide features to add missing entities if there are any and as customers request. Currently, the following requests are supported:
 - Request all countries in the world.
 - Request all administrative area ones in a specific country.
 - In a specific country (optionally limited to a single first-level administrative area):
@@ -26,8 +26,10 @@ This service provides lists of geographic entities of a particular type, such as
 	- Request all postal codes.
 	- Request all metropolitan statistical areas.
 	
-This service supports both HTTP/GET and POST methods.
-All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a node "entities", which is an list of entities as requested.
+If you require a list of geographic entities of a particular entity type, but the entity list is not complete, please contact <DataScienceApplicationDevelopment@careerbuilder.com>.
+
+This service supports both HTTP/GET method.
+All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a node "entities", which is a list of entities as requested.
 
 &nbsp;
 ----------------------------
@@ -78,7 +80,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
     |----------------|----------------|-----------------|
     | country        | Yes | A country name or two-letter ISO-3166 country code, not casing sensitive            | 
     
-	- Example URL:https://api.careerbuilder.com/core/geography/entities/admin_area_1s?country=us
+	- Example URL: https://api.careerbuilder.com/core/geography/entities/admin_area_1s?country=us
 	
 - Response Sample:
 ```
@@ -93,8 +95,8 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
         "location": {
           "lat": 64.2008413,
           "lng": -149.4936733
-        },
-	"viewport": {
+        },        
+        "viewport": {
           "northeast": {
             "lat": 71.347066,
             "lng": -129.9945563
@@ -139,7 +141,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
           "lat": 30.898276,
           "lng": -81.6035062
         },
-	"viewport": {
+        "viewport": {
           "northeast": {
             "lat": 31.169595,
             "lng": -81.40354649999999
