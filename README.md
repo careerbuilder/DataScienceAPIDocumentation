@@ -11,24 +11,22 @@ Our general API versioning documentation can be found [here](Versioning.md).
 
 APIs:
 ----
-[Geocoding](Geocoding.md): Provides geolocation data.
+[Company Normalization](CompanyNormalization.md): Attempts to normalize a company name and provide standardized data such as location and NAICS classification information.
 
-[Geovalidation](Geovalidation.md): Provides validated geolocation data.
+[Geocoding](Geocoding.md): Attempts to normalize structured or unstructured location information to a known geographic entity and return rich addressing information for that entity.
 
-[JobTitle](JobTitle.md): Provides normalized job titles like Carotene and oNet.
+[Job Title](JobTitle.md): Classifies a job title/description against the specified version(s) of the ONet and/or Carotene taxonomies.
 
-[Skills](Skills.md): Provides normalized skills.
+[Skills](Skills.md): Extracts normalized skill names from text and computes confidence scores for each.
 
-[ParseAndNormalize](ParseAndNormalize.md): Parses resumes and normalizes through most other services offered.
+[Parse & Normalize](ParseAndNormalize.md): Parses resumes and (optionally) normalizes through most other services offered.
 
-[JobLevel](JobLevel.md): Provides a normalized job level for a job title.
+[Job Level](JobLevel.md): Provides a normalized job level (entry-level, mid-level, executive, etc.) for a job title.
 
-[KeywordStuffingDetector](KeywordStuffingDetector.md): Indicates if a job has been keyword stuffed.
+[Keyword Stuffing Detector](KeywordStuffingDetector.md): Indicates if a job has been keyword stuffed (overloaded with spammy/irrelevant keywords in an attempt to get it ranked more highly in search results)
 
-[RelevantSkills](RelevantSkills.md): Provides a list of relevant skills for a given skill.
+[Resolved Title](ResolvedTitle.md): Attempts to resolve a job title to the closest match from a given list of target titles.
 
-[ResolvedTitle](ResolvedTitle.md): Attempts to resolve a job title to the closest match from a given list of target titles.
+[Semantic Search](SemanticSearch.md): Parses a query into intended phrases and identifies matching and related normalized entities.
 
-[SemanticSearch](SemanticSearch.md): Parses a query into intended phrases and identifies matching and related normalized entities.
-
-
+[School Normalization](SchoolNormalization.md): Attempts to normalize a school name and provide standardized data such as location and IPEDs classification information.
