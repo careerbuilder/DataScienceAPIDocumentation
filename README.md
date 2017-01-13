@@ -21,7 +21,7 @@ APIs:
 
 [Parse & Normalize](ParseAndNormalize.md): Parses resumes and (optionally) normalizes through most other services offered.
 
-[Job Level](JobLevel.md): Provides a normalized job level (i.e. the job's  for a job title.
+[Job Level](JobLevel.md): Provides a normalized job level (entry-level, mid-level, executive, etc.) for a job title.
 
 [Keyword Stuffing Detector](KeywordStuffingDetector.md): Indicates if a job has been keyword stuffed (overloaded with spammy/irrelevant keywords in an attempt to get it ranked more highly in search results)
 
