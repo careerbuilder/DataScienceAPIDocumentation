@@ -48,7 +48,7 @@ https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurs
 
 #Query Response
 
-The query response is divided into two parts. First is the ParsedInput node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword.
+The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword.
 
 ```
  {
