@@ -10,6 +10,7 @@
 - [Place ID Lookup Request](#place-id-lookup-request)
 - [Place ID Lookup Request Structure](#place-id-lookup-request-structure)
 - [Response Structure](#response-structure)
+- [Remarks and Recommendations](#remarks-and-recommendations)
 - [Versioning](#versioning)
 
 ----------------------------
@@ -99,6 +100,23 @@ Each element of the returned **admin_areas** array will be formatted as follows:
 | short_name | The abbreviated form of the administrative area's name. This will vary by country and administrative division level. In the US, states (admin_area level 1) will use the state abbreviation (e.g. "GA"), and counties will use the full county name (e.g. "Gwinnett County"). **This property is always present and non-empty.** |
 | long_name | The unabbreviated form of the administrative area's name. **This property is always present and non-empty.** |
 | level | An integer between 1 and 5 inclusive specifying the hierarchal level at which this administrative area resides. In the US, states will be returned with a level of 1 and counties with a level of 2. **This property is always present and non-empty.** |
+
+&nbsp;
+
+-----------
+#Remarks and Recommendations
+
+One common use case of the geocoding API is in normalizing location queries for search purposes. Occasionally, such applications may have the design goal of performing a "contained-in" search for some entities, such as states and countries ("return all results in Texas"), and for other entities, performing a radius search ("return all results within N mi/km of this point). If this describes your use case, the following logic is recommended:
+
+|   |   |
+|---|---|
+| country | **Contained-in search.** |
+| admin_area_1 or admin_area_2 | **Contained-in search.** These entities typically represent larger regions such as states, provinces, or counties. |
+| admin_area_3 and below | **Radius search.** In the United States, third-level administrative areas represent US townships, which are more similar in size and function to towns or cities than to counties or states. In other countries, third-level administrative areas and below typically represent similar location types. |
+| locality or sublocality | **Radius search.** |
+| postal_code | **Radius search.** |
+| street or street_address | **Radius search.** |
+
 
 &nbsp;
 
