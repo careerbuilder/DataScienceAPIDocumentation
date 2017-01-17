@@ -30,7 +30,7 @@ _____________
 
 #Query Description
 
-Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. 
+Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. In conjunction with the Semantic Overrides API, also applies stored user overrides to queries when user parameters are supplied. 
 
 
 #Query Request Information
@@ -40,15 +40,17 @@ HTTP method: GET or POST
 Parameters (query/form):
 -        query (required) : query to parse and from which to infer meaning
 -        version (required) : version to use. currently supports only 0.8 
+-	 language (optional) : two letter language code followed by underscore, followed by two letter country code. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
+-	 user_id (optional) : User id for which to look up personalized overrides. Defaults to null. 
  
 Example: 
 ```
-https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&version=0.8
+https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&version=0.8&language=en_us&user_id=U1234
 ```
 
 #Query Response
 
-The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword.
+The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword. Enrichments can be overridden to be returned with a selected=true flag for a given user_id through the Overrides API.
 
 ```
  {
@@ -70,6 +72,7 @@ The query response is divided into two parts. First is the parsed_input node, wh
           {
             "name": "extracted keyword job title",
             "id": "1",
+	    "selected": true
             "weight": 1.0 
           }
         ],
@@ -101,6 +104,7 @@ The query response is divided into two parts. First is the parsed_input node, wh
         "skills": [
           {
             "name": "extracted keyword skill",
+	    "selected": true
             "weight": 1.0
           }
         ],
