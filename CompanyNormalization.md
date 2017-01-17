@@ -19,7 +19,7 @@ The following parameters may be used in constructing a request to the service:
 -        state (optional) : The state component of the provided company's location.
 -        city (optional) : The city component of the provided company's location.
 -        max_results (optional) : The maximum number of results to be returned, between 1 and 10 (inclusive). Defaults to 3.
--        use_query_classifier (optional) : Filters out results for bad queries. In the case a nonsense query is provided to the service, no results will will be returned in the response. This value is defualted to true, in order to turn it off users must provide the param with a value of false.
+-        use_query_classifier (optional) : Filters out results for bad queries. In the where case a nonsense query is provided to the service, no results will will be returned in the response. This value is defualted to true, in order to turn it off users must provide the param with a value of false.
 -        filter_by_country (optional) : With this set to false the country parameter only biases results. Setting this value to true will filter results based on country.
 
 \* *Note that company_name and website are each constrained to a maximum length of 400 characters. Requests that contain a company_name or website value exceeding this limit will fail with an HTTP 400 Bad Request status.*
