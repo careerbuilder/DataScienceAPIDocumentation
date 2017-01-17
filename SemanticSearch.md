@@ -54,100 +54,78 @@ The query response is divided into two parts. First is the parsed_input node, wh
 
 ```
  {
-  "parsed_input": {
-    "input": "keyword",
-    "parsed": "{extracted keyword}",
-    "raw_parsed_input": "{keyword}",
-    "input_to_extracted_keywords": {
-      "keyword": "extracted keyword"
-    }
-  },
-  "extracted_keywords": [
-    {
-      "name": "extracted keyword",
-      "weight": 100.0,
-      "type": "entity type",
-      "relationships": {
-        "job_titles": [
-          {
-            "name": "extracted keyword job title",
-            "id": "1",
-	    "selected": true
-            "weight": 1.0 
-          }
-        ],
-        "occupations": [
-          {
-            "name": "extracted keyword occupation",
-            "id": "99-9999.99",
-            "weight": 1.0
-          }
-        ],
-        "related_keywords": [
-          {
-            "name": "extracted keyword related keyword",
-            "weight": 1.0
-          }
-        ],
-        "related_keywords_recruiter": [
-          {
-            "name": "extracted keyword related keyword",
-            "weight": 1.0
-          }
-        ],
-        "related_keywords_jobseeker": [
-          {
-            "name": "extracted keyword related keyword",
-            "weight": 1.0
-          }
-        ],
-        "skills": [
-          {
-            "name": "extracted keyword skill",
-	    "selected": true
-            "weight": 1.0
-          }
-        ],
-        "raw_job_titles_recruiter": [
-          {
-            "name": "extracted keyword job title",
-            "weight":  1.0
-          }
-        ],
-        "raw_job_titles_jobseeker": [
-          {
-            "name": "extracted keyword job title",
-            "weight":  1.0
-          }
-        ],
-        "job_level": [
-         {
-            "name": "extracted keyword job level",
-            "weight": 1.0
-         }
-        ],
-        "text_kernel_related_keywords": [
-         {
-            "name": "extracted keyword Text Kernel related keyword"
-            "weight": 1.0
-         }
-       ]
-      }
-    }
-  ],
-  "versions": {
-    "job_titles": "CaroteneV3",
-    "occupations": "ONet17",
-    "skills": "SkillsV4",
-    "interesting_keywords": "InterestingTermsV3",
-    "related_keywords": "RelatedSearchTermsV1",
-    "related_keywords_recruiter": "RelatedSearchTermsRecruiterV1",
-    "related_keywords_jobseeker": "RelatedSearchTermsJobSeekerV1",
-    "raw_job_titles_jobseeker": "RawJobTitlesJobSeekerV1",
-    "raw_job_titles_recruiter": "RawJobTitlesRecruiterV1"
-    "job_level": "JobLevel"
-    "text_kernel_related_keywords": "TextKernelRelatedSearchTerms"
-  }
+	"parsed_input": {
+		"input": "keyword",
+		"parsed": "{extracted keyword}",
+		"raw_parsed_input": "{keyword}",
+		"input_to_extracted_keywords": {
+			"keyword": "extracted keyword"
+		}
+	},
+	"extracted_keywords": [{
+		"name": "extracted keyword",
+		"weight": 100.0,
+		"type": "entity type",
+		"relationships": {
+			"job_titles": [{
+				"name": "extracted keyword job title",
+				"id": "1",
+				"selected": true,
+				"weight": 1.0
+			}],
+			"occupations": [{
+				"name": "extracted keyword occupation",
+				"id": "99-9999.99",
+				"weight": 1.0
+			}],
+			"related_keywords": [{
+				"name": "extracted keyword related keyword",
+				"weight": 1.0
+			}],
+			"related_keywords_recruiter": [{
+				"name": "extracted keyword related keyword",
+				"weight": 1.0
+			}],
+			"related_keywords_jobseeker": [{
+				"name": "extracted keyword related keyword",
+				"weight": 1.0
+			}],
+			"skills": [{
+				"name": "extracted keyword skill",
+				"selected": true,
+				"weight": 1.0
+			}],
+			"raw_job_titles_recruiter": [{
+				"name": "extracted keyword job title",
+				"weight": 1.0
+			}],
+			"raw_job_titles_jobseeker": [{
+				"name": "extracted keyword job title",
+				"weight": 1.0
+			}],
+			"job_level": [{
+				"name": "extracted keyword job level",
+				"weight": 1.0
+			}],
+			"text_kernel_related_keywords": [{
+				"name": "extracted keyword Text Kernel related keyword",
+				"weight": 1.0
+			}]
+		}
+	}],
+	"versions": {
+		"job_titles": "CaroteneV3",
+		"occupations": "ONet17",
+		"skills": "SkillsV4",
+		"interesting_keywords": "InterestingTermsV3",
+		"related_keywords": "RelatedSearchTermsV1",
+		"related_keywords_recruiter": "RelatedSearchTermsRecruiterV1",
+		"related_keywords_jobseeker": "RelatedSearchTermsJobSeekerV1",
+		"raw_job_titles_jobseeker": "RawJobTitlesJobSeekerV1",
+		"raw_job_titles_recruiter": "RawJobTitlesRecruiterV1",
+		"job_level": "JobLevel",
+		"text_kernel_related_keywords": "TextKernelRelatedSearchTerms"
+	}
 }
 ```
 
