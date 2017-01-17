@@ -30,7 +30,7 @@ _____________
 
 #Query Description
 
-Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. In conjunction with the Semantic Overrides API, also applies stored user overrides to queries when user parameters are supplied. 
+Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. Version 1.0 also applies stored user overrides to queries when user parameters are supplied in conjunction with the Semantic Overrides API. 
 
 
 #Query Request Information
@@ -39,9 +39,9 @@ Interprets the meaning of a user's query. Used to parse a query into the intende
 HTTP method: GET or POST
 Parameters (query/form):
 -        query (required) : query to parse and from which to infer meaning
--        version (required) : version to use. currently supports only 0.8 
--	 language (optional) : two letter language code followed by underscore, followed by two letter country code. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
--	 user_id (optional) : User id for which to look up personalized overrides. Defaults to null. 
+-        version (required) : version to use. currently supports 0.8 and 1.0.
+-	 language (optional) : In 1.0, two letter language code followed by underscore, followed by two letter country code. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
+-	 user_id (optional) : In 1.0, user id for which to look up personalized overrides. Defaults to null. 
  
 Example: 
 ```
