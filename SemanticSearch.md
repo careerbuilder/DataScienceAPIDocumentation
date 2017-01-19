@@ -30,7 +30,7 @@ _____________
 
 #Query Description
 
-Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. 
+Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. Version 1.0 also applies stored user overrides to queries when user parameters are supplied in conjunction with the Semantic Overrides API. 
 
 
 #Query Request Information
@@ -39,173 +39,93 @@ Interprets the meaning of a user's query. Used to parse a query into the intende
 HTTP method: GET or POST
 Parameters (query/form):
 -        query (required) : query to parse and from which to infer meaning
--        version (required) : version to use. currently supports only 0.8 
+-        version (required) : version to use. currently supports 0.8 and 1.0.
+-	 language (optional) : In 1.0, two letter language code followed by underscore, followed by two letter country code. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
+-	 user_id (optional) : In 1.0, user id for which to look up personalized overrides. Defaults to null. 
  
 Example: 
 ```
-https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&version=0.8
+https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&version=0.8&language=en_us&user_id=U1234
 ```
 
 #Query Response
 
-The query response is divided into three parts. First is the ParsedInput node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword independently of the context of the query, and last is the set of summary relationships (e.g. "job_title," "occupations" ....) which give the related entities of the entire query. 
+The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword. Enrichments can be overridden to be returned with a selected=true flag for a given user_id through the Overrides API.
 
 ```
  {
-  "parsed_input": {
-    "input": "keyword",
-    "parsed": "{extracted keyword}",
-    "raw_parsed_input": "{keyword}",
-    "input_to_extracted_keywords": {
-      "keyword": "extracted keyword"
-    }
-  },
-  "extracted_keywords": [
-    {
-      "name": "extracted keyword",
-      "weight": 100.0,
-      "type": "entity type",
-      "relationships": {
-        "job_titles": [
-          {
-            "name": "extracted keyword job title",
-            "id": "1",
-            "weight": 1.0 
-          }
-        ],
-        "occupations": [
-          {
-            "name": "extracted keyword occupation",
-            "id": "99-9999.99",
-            "weight": 1.0
-          }
-        ],
-        "related_keywords": [
-          {
-            "name": "extracted keyword related keyword",
-            "weight": 1.0
-          }
-        ],
-        "related_keywords_recruiter": [
-          {
-            "name": "extracted keyword related keyword",
-            "weight": 1.0
-          }
-        ],
-        "related_keywords_jobseeker": [
-          {
-            "name": "extracted keyword related keyword",
-            "weight": 1.0
-          }
-        ],
-        "skills": [
-          {
-            "name": "extracted keyword skill",
-            "weight": 1.0
-          }
-        ],
-        "raw_job_titles_recruiter": [
-          {
-            "name": "extracted keyword job title",
-            "weight":  1.0
-          }
-        ],
-        "raw_job_titles_jobseeker": [
-          {
-            "name": "extracted keyword job title",
-            "weight":  1.0
-          }
-        ],
-        "job_level": [
-         {
-            "name": "extracted keyword job level",
-            "weight": 1.0
-         }
-        ],
-        "text_kernel_related_keywords": [
-         {
-            "name": "extracted keyword Text Kernel related keyword"
-            "weight": 1.0
-         }
-       ]
-      }
-    }
-  ],
-  "job_titles": [
-    {
-      "name": "some title",
-      "id": "1",
-      "weight": 1.0
-    }
-  ],
-  "occupations": [
-    {
-      "name": "some occupation",
-      "id": "99-9999.00",
-      "weight": 1.0
-    }
-  ],
-  "related_keywords": [
-    {
-      "name": "some keyword",
-      "weight": 1.0
-    }
-  ],
-  "related_keywords_recruiter": [
-    {
-      "name": "some keyword",
-      "weight": 1.0
-    }
-  ],
-  "related_keywords_jobseeker": [
-    {
-      "name": "some keyword",
-      "weight": 1.0
-    }
-  ],
-  "skills": [
-    {
-      "name": "some skill",
-      "weight": 1.0
-    }
-  ],
-  "raw_job_titles_recruiter": [
-    {
-      "name": "some title",
-      "weight": 1.0
-    }
-  ],
-  "raw_job_titles_jobseeker": [
-    {
-      "name": "some title",
-      "weight": 1.0
-    }
-  ],
-  "job_level": [
-    {
-      "name": "some job level",
-      "weight": 1.0
-    }
-  ],
-  "text_kernel_related_keywords": [
-    {
-      "name": "some Text Kernel related keyword"
-      "weight": 1.0
-    }
-  ],
-  "versions": {
-    "job_titles": "CaroteneV3",
-    "occupations": "ONet17",
-    "skills": "SkillsV4",
-    "interesting_keywords": "InterestingTermsV3",
-    "related_keywords": "RelatedSearchTermsV1",
-    "related_keywords_recruiter": "RelatedSearchTermsRecruiterV1",
-    "related_keywords_jobseeker": "RelatedSearchTermsJobSeekerV1",
-    "raw_job_titles_jobseeker": "RawJobTitlesJobSeekerV1",
-    "raw_job_titles_recruiter": "RawJobTitlesRecruiterV1"
-    "job_level": "JobLevel"
-    "text_kernel_related_keywords": "TextKernelRelatedSearchTerms"
-  }
+	"parsed_input": {
+		"input": "keyword",
+		"parsed": "{extracted keyword}",
+		"raw_parsed_input": "{keyword}",
+		"input_to_extracted_keywords": {
+			"keyword": "extracted keyword"
+		}
+	},
+	"extracted_keywords": [{
+		"name": "extracted keyword",
+		"weight": 100.0,
+		"type": "entity type",
+		"relationships": {
+			"job_titles": [{
+				"name": "extracted keyword job title",
+				"id": "1",
+				"selected": true,
+				"weight": 1.0
+			}],
+			"occupations": [{
+				"name": "extracted keyword occupation",
+				"id": "99-9999.99",
+				"weight": 1.0
+			}],
+			"related_keywords": [{
+				"name": "extracted keyword related keyword",
+				"weight": 1.0
+			}],
+			"related_keywords_recruiter": [{
+				"name": "extracted keyword related keyword",
+				"weight": 1.0
+			}],
+			"related_keywords_jobseeker": [{
+				"name": "extracted keyword related keyword",
+				"weight": 1.0
+			}],
+			"skills": [{
+				"name": "extracted keyword skill",
+				"selected": true,
+				"weight": 1.0
+			}],
+			"raw_job_titles_recruiter": [{
+				"name": "extracted keyword job title",
+				"weight": 1.0
+			}],
+			"raw_job_titles_jobseeker": [{
+				"name": "extracted keyword job title",
+				"weight": 1.0
+			}],
+			"job_level": [{
+				"name": "extracted keyword job level",
+				"weight": 1.0
+			}],
+			"text_kernel_related_keywords": [{
+				"name": "extracted keyword Text Kernel related keyword",
+				"weight": 1.0
+			}]
+		}
+	}],
+	"versions": {
+		"job_titles": "CaroteneV3",
+		"occupations": "ONet17",
+		"skills": "SkillsV4",
+		"interesting_keywords": "InterestingTermsV3",
+		"related_keywords": "RelatedSearchTermsV1",
+		"related_keywords_recruiter": "RelatedSearchTermsRecruiterV1",
+		"related_keywords_jobseeker": "RelatedSearchTermsJobSeekerV1",
+		"raw_job_titles_jobseeker": "RawJobTitlesJobSeekerV1",
+		"raw_job_titles_recruiter": "RawJobTitlesRecruiterV1",
+		"job_level": "JobLevel",
+		"text_kernel_related_keywords": "TextKernelRelatedSearchTerms"
+	}
 }
 ```
 
@@ -254,54 +174,46 @@ Basic working experience with Unix environment and scripts&version=0.8
 #Document Response
 
 
-The document response is divided into two parts. First is the extracted keywords node, which gives the type and weight of each extracted keyword in the document, and last is the set of summary relationships (e.g. "job_title," "occupations" ....) which give the related entities of the entire document. 
+The document response is divided into two parts. First is the extracted keywords node, which gives the type and weight of each extracted keyword in the document, and last is the summary node (e.g. "job_title," "occupations" ....) which give the related entities of the entire document. 
 
 
 ```
 {
-   "extracted_keywords": [
-      {
-         "name": "java",
-         "weight": 0.95,
-         "type": "keyword",
-         "relationships": {}
-      }   
-	],
-   "job_level": [
-      {
-         "name": "Experienced (non-Manager)",
-         "id": "3",
-         "weight": 1
-      }
-   ],
-   "job_titles": [
-      {
-         "name": "Java Developer",
-         "id": "15.2",
-         "weight": 1
-      }
-   ],
-   "skills": [
-      {
-         "name": "Java (Programming Language)",
-         "id": "KS120076FGP5WGWYMP0F",
-         "weight": 1
-      }
-   ],
-   "occupations": [
-      {
-         "name": "Computer Programmers",
-         "id": "15-1131.00",
-         "weight": 0.98
-      }
-   ],
-   "versions": {
-      "job_titles": "CaroteneV3",
-      "occupations": "ONet17",
-      "skills": "SkillsV4",
-      "job_level": "JobLevel",
-      "extracted_keywords": "InterestingTermsV3"
-   }
+	"extracted_keywords": [{
+		"name": "java",
+		"weight": 0.95,
+		"type": "keyword",
+		"relationships": {}
+	}],
+	"summary": {
+		"job_level": [{
+			"name": "Experienced (non-Manager)",
+			"id": "3",
+			"weight": 1
+		}],
+		"job_titles": [{
+			"name": "Java Developer",
+			"id": "15.2",
+			"weight": 1
+		}],
+		"skills": [{
+			"name": "Java (Programming Language)",
+			"id": "KS120076FGP5WGWYMP0F",
+			"weight": 1
+		}],
+		"occupations": [{
+			"name": "Computer Programmers",
+			"id": "15-1131.00",
+			"weight": 0.98
+		}]
+	},
+	"versions": {
+		"job_titles": "CaroteneV3",
+		"occupations": "ONet17",
+		"skills": "SkillsV4",
+		"job_level": "JobLevel",
+		"extracted_keywords": "InterestingTermsV3"
+	}
 }
 ```
 
