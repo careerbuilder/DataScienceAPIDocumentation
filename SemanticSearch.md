@@ -39,19 +39,28 @@ Interprets the meaning of a user's query. Used to parse a query into the intende
 HTTP method: GET or POST
 Parameters (query/form):
 -        query (required) : query to parse and from which to infer meaning
--        version (required) : version to use. currently supports 0.8 and 1.0.
+-        version (required for 0.8) : version to use. Ignored if using 1.0, which instead reads the version from the Accept header as per CB API standards. 
 -	 language (optional) : In 1.0, two letter language code followed by underscore, followed by two letter country code. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	 user_id (optional) : In 1.0, user id for which to look up personalized overrides. Defaults to null. 
  
-Example: 
+Example 1.0 request: 
 ```
-https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&version=0.8&language=en_us&user_id=U1234
+HTTP GET
+Accept: application/json;version=1.0
+https://api.careerbuilder.com/search/semanticsearch/query/?query=registered%20nurse&language=en_us&user_id=U1234
+```
+
+Example 0.8 request: 
+```
+HTTP GET
+https://api.careerbuilder.com/search/semanticsearch/query/?query=registered%20nurse&version=0.8
 ```
 
 #Query Response
 
 The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword. Enrichments can be overridden to be returned with a selected=true flag for a given user_id through the Overrides API.
 
+1.0 Response
 ```
  {
 	"parsed_input": {
@@ -176,7 +185,7 @@ Basic working experience with Unix environment and scripts&version=0.8
 
 The document response is divided into two parts. First is the extracted keywords node, which gives the type and weight of each extracted keyword in the document, and last is the summary node (e.g. "job_title," "occupations" ....) which give the related entities of the entire document. 
 
-
+1.0 Response
 ```
 {
 	"extracted_keywords": [{
