@@ -39,7 +39,7 @@ Interprets the meaning of a user's query. Used to parse a query into the intende
 HTTP method: GET or POST
 Parameters (query/form):
 -        query (required) : query to parse and from which to infer meaning
--        version (required for 0.8) : version to use. Ignored if using 1.0, which instead reads the version from the Accept header as in CB API standards. 
+-        version (required for 0.8) : version to use. Ignored if using 1.0, which instead reads the version from the Accept header as per CB API standards. 
 -	 language (optional) : In 1.0, two letter language code followed by underscore, followed by two letter country code. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	 user_id (optional) : In 1.0, user id for which to look up personalized overrides. Defaults to null. 
  
@@ -47,13 +47,13 @@ Example 1.0 request:
 ```
 HTTP GET
 Accept: application/json;version=1.0
-https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&language=en_us&user_id=U1234
+https://api.careerbuilder.com/search/semanticsearch/query/?query=registered%20nurse&language=en_us&user_id=U1234
 ```
 
 Example 0.8 request: 
 ```
 HTTP GET
-https://api.careerbuilder.com/search/semanticsearch/query/?query=registered nurse&version=0.8
+https://api.careerbuilder.com/search/semanticsearch/query/?query=registered%20nurse&version=0.8
 ```
 
 #Query Response
