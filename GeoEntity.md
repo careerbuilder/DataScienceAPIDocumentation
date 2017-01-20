@@ -28,7 +28,7 @@ This service provides lists of geographic entities of a particular type, such as
 	
 If you require a list of geographic entities of a particular entity type, but the entity list is not complete, please contact <DataScienceApplicationDevelopment@careerbuilder.com>.
 
-This service supports HTTP/GET method.
+This service supports HTTP/GET method only.
 All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a node "entities", which is a list of entities as requested.
 
 &nbsp;
