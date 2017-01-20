@@ -17,7 +17,7 @@
 ----------------------------
 #Description
 
-This service provides lists of geographic entities of a particular type, such as postal codes or first-level administrative areas. This service uses the same underlying data as our geocoding service. The list of entities returned as queried should be comprehensive for the populous countries, but we could not guarantee 100% the completeness. We are considering to provide features to add missing entities if there are any and as customers request. Currently, the following requests are supported:
+This service provides lists of geographic entities of a particular type, such as postal codes or first-level administrative areas. This service uses the same underlying data as our geocoding service. The list of entities returned as queried should be comprehensive for the populous countries, but we could not guarantee 100% completeness. Currently, the following requests are supported:
 - Request all countries in the world.
 - Request all administrative area ones in a specific country.
 - In a specific country (optionally limited to a single first-level administrative area):
@@ -28,7 +28,7 @@ This service provides lists of geographic entities of a particular type, such as
 	
 If you require a list of geographic entities of a particular entity type, but the entity list is not complete, please contact <DataScienceApplicationDevelopment@careerbuilder.com>.
 
-This service supports both HTTP/GET method.
+This service supports HTTP/GET method.
 All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a node "entities", which is a list of entities as requested.
 
 &nbsp;
