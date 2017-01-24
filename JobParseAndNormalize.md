@@ -1,7 +1,7 @@
 Job Parse and Normalize API
 ====================
 
-Table of Contents
+####Table of Contents
 _______
 
 - [Summary](#summary)
@@ -9,13 +9,11 @@ _______
 - [Response structure](#response-structure)
 - [Versioning](#versioning)
 
-Summary
-===========
+##Summary
 
-The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting and further enriches the parsed data with several normalizations and classifications.  
+The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting and further enriches the parsed data with the following normalizations and classifications.  
 
-Specifically, the following enrichments are provided (enrichments marked as optional must be requested):
- 
+ #####Enrichments:
  - Job Title Classifications
     - [Carotene](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md) <sup>(optional)</sup>
     - [ONET](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md) <sup>(optional)</sup>
@@ -33,12 +31,11 @@ Specifically, the following enrichments are provided (enrichments marked as opti
  - Contract Type
  
 
-Enrichments marked as <sup>__(optional)__</sup> require additional calls to other services and therefore can be enabled or disabled as desired using the `desired_enrichments` parameter; for example, a client who only needs Job Title and Skills classifications could structure a Job Parse and Normalize request that would only retrieve these classifications. This parameter is documented in further detail below.
+Enrichments marked as <sup>__(optional)__</sup> must be requested using the `desired_enrichments` parameter, as they require additional calls to other services. For example, a client who only needs Job Title and Skills classifications could structure a Job Parse and Normalize request that would only retrieve these classifications. This parameter is documented in further detail below.
 
 The service is located at https://api.careerbuilder.com/core/parsing/normalizedjob. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
 
-Request Structure
-==========
+##Request Structure
 
 This service supports the HTTP GET and POST methods. Because Base64-encoded documents can be quite large, POST is encouraged for production use.
 
@@ -46,12 +43,25 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages documents given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
-* **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the job parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service.  
-  The value **"none"** may be supplied to return none of the optional enrichments. At present, a request that does not include this parameter will receive all classifications; this is temporary behavior for the sake of backwards compatibility. Once all customers have started using the desired_enrichments parameter, its usage will become required, and requests excluding it will result in a 400 Bad Request response code.
+* **desired_enrichments** (Required) -- A comma-separated list, without spaces, of the desired normalization calls to perform on the results of the job parsing operation. 
+
+    This list of possible values for **desired_enrichments** and the enrichments the correspond to are as follows:
+    
+    |desired_enrichments | [Enrichment(s)](#Enrichments) |
+    | --- | --- |
+    | `company_norm` | Normalized Company Name |
+    | `geocoding` | Company Geography, Job Geography |
+    | `job_level` | Job Level |
+    | `job_title_carotene` | Carotene Job Title Classifications |
+    | `job_title_onet` | ONET Job Title Classifications |
+    | `skills` | Skills 4.0 |
+
+    For example, a request with a desired_enrichments value equal to `job_level,skills,job_title_onet,company_norm` would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service.
+    
+    The value "none" may be supplied to return none of the optional enrichments. At present, a request that does not include this parameter will receive all classifications; this is temporary behavior for the sake of backwards compatibility. Once all customers have started using the desired_enrichments parameter, its usage will become required, and requests excluding it will result in a 400 Bad Request response code.
 
 
-Response Structure
-============
+##Response Structure
 ```
 {
   "data": {
@@ -336,8 +346,8 @@ Response Structure
 }
 ```
 
-#Versioning
------------
+##Versioning
+
 The data returned is unversioned. The current version is 1.0. We expect that each of our vendors return the same data for repeated calls, however we have not verified this systematically.  We will occasionally update our vendors which may change the output.  If we believe this change is significant we will communicate about it. However, customers will not be able to specify vendor versions.
 
 Our general versioning strategy is available [here](/Versioning.md).
