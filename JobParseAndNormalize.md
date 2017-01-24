@@ -12,7 +12,7 @@ _______
 Summary
 ===========
 
-The Job Parse and Normalize (JPAN) service parses a Base64-encoded resume and further enriches the parsed data with several normalizations and classifications.  
+The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting and further enriches the parsed data with several normalizations and classifications.  
 
 Specifically, the following enrichments are provided (enrichments marked as optional must be requested):
  
@@ -46,7 +46,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages documents given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
-* **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the resume parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service.  
+* **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the job parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service.  
   The value **"none"** may be supplied to return none of the optional enrichments. At present, a request that does not include this parameter will receive all classifications; this is temporary behavior for the sake of backwards compatibility. Once all customers have started using the desired_enrichments parameter, its usage will become required, and requests excluding it will result in a 400 Bad Request response code.
 
 
