@@ -47,7 +47,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
     This list of possible values for **desired_enrichments** and the enrichments the correspond to are as follows:
     
-    |desired_enrichments | [Enrichment(s)](#Enrichments) |
+    |desired_enrichments | [Enrichment(s)](#enrichments) |
     | --- | --- |
     | `company_norm` | Normalized Company Name |
     | `geocoding` | Company Geography, Job Geography |
