@@ -26,7 +26,7 @@ Specifically, the following enrichments are provided (enrichments marked as opti
     - Textkernel Skills
  - Language Skills
  - [Company Geography](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Geography.md) <sup>(optional)</sup>
- - [Job Geography](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Geography.md)
+ - [Job Geography](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Geography.md) <sup>(optional)</sup>
  - [Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md) <sup>(optional)</sup>
  - Education Level
  - Employment Level
