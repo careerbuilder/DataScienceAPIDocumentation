@@ -2,7 +2,7 @@ Job Parse and Normalize API
 ====================
 
 Table of Contents
-_____________
+_______
 
 - [Summary](#summary)
 - [Request structure](#request-structure)
@@ -12,7 +12,7 @@ _____________
 Summary
 ===========
 
-The Job Parse and Normalize (JPAN) service parses a Base64-encoded resume and further enriches the parsed data with several normilizations and classifications.  
+The Job Parse and Normalize (JPAN) service parses a Base64-encoded resume and further enriches the parsed data with several normalizations and classifications.  
 
 Specifically, the following enrichments are provided (enrichments marked as optional must be requested):
  
