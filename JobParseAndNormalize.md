@@ -1,0 +1,343 @@
+Job Parse and Normalize API
+====================
+
+Table of Contents
+_____________
+
+- [Summary](#summary)
+- [Request structure](#request-structure)
+- [Response structure](#response-structure)
+- [Versioning](#versioning)
+
+Summary
+===========
+
+The Job Parse and Normalize (JPAN) service parses a Base64-encoded resume and further enriches the parsed data with several normilizations and classifications.  
+
+Specifically, the following enrichments are provided (enrichments marked as optional must be requested):
+ 
+ - Job Title Classifications
+    - [Carotene](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md) <sup>(optional)</sup>
+    - [ONET](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md) <sup>(optional)</sup>
+    - Textkernel
+ - [Normalized Company Name](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md)  <sup>(optional)</sup>
+ - Skills Extraction
+    - [Skills 4.0](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) <sup>(optional)</sup>
+    - Textkernel Skills
+ - Language Skills
+ - [Company Geography](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Geography.md) <sup>(optional)</sup>
+ - [Job Geography](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Geography.md)
+ - [Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md) <sup>(optional)</sup>
+ - Education Level
+ - Employment Level
+ - Contract Type
+ 
+
+Enrichments marked as <sup>__(optional)__</sup> require additional calls to other services and therefore can be enabled or disabled as desired using the `desired_enrichments` parameter; for example, a client who only needs Job Title and Skills classifications could structure a Job Parse and Normalize request that would only retrieve these classifications. This parameter is documented in further detail below.
+
+The service is located at https://api.careerbuilder.com/core/parsing/normalizedjob. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
+
+Request Structure
+==========
+
+This service supports the HTTP GET and POST methods. Because Base64-encoded documents can be quite large, POST is encouraged for production use.
+
+The following parameters may be supplied in the query string (for HTTP GET) or form body (for HTTP POST):
+
+* **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages documents given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
+
+* **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the resume parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service.  
+  The value **"none"** may be supplied to return none of the optional enrichments. At present, a request that does not include this parameter will receive all classifications; this is temporary behavior for the sake of backwards compatibility. Once all customers have started using the desired_enrichments parameter, its usage will become required, and requests excluding it will result in a 400 Bad Request response code.
+
+
+Response Structure
+============
+```
+{
+  "data": {
+    "parsed": {
+      "job_title": string,
+      "job_location": {
+        "address": string,
+        "region": string,
+        "country": string,
+        "city": string
+      },
+      "salary": {
+        "from": string,
+        "to": string,
+        "time_scale": string
+      },
+      "experience_level": {
+        "min_years": integer,
+        "max_years": integer,
+        "level": string
+      },
+      "job_posting_date": string,
+      "application_deadline": string,
+      "contact_person": string,
+      "company": {
+        "location": {
+          "address": string,
+          "region": string,
+          "country": string,
+          "city": string
+        },
+        "name": string,
+        "phone_numbers": [
+          string,
+          ...
+        ],
+        "fax_numbers": [
+          string,
+          ...
+        ],
+        "email_addresses": [
+          string,
+          ...
+        ],
+        "websites": [
+          string,
+          ...
+        ]
+      },
+      "extracted_skills": [
+        {
+          "name": string,
+          "desirability": string,
+          "required": boolean
+        }
+      ],
+      "extracted_text": {
+        "job": {
+          "confidence": double,
+          "text": string
+        },
+        "employer": {
+          "confidence": double,
+          "text": string
+        },
+        "candidate": {
+          "confidence": double,
+          "text": string
+        },
+        "conditions": {
+          "confidence": double,
+          "text": string
+        },
+        "application": {
+          "confidence": double,
+          "text": string
+        },
+        "summary": {
+          "text": string
+        }
+      },
+      "full_text": string
+    },
+    "normalized": {
+      "job_classifications": {
+        "carotene_v3": [
+          {
+            "title": string,
+            "id": string,
+            "confidence": double
+          },
+          ...
+        ],
+        "carotene_v3.1": [
+          {
+            "title": string,
+            "id": string,
+            "confidence": double,
+            "minor_title": string,
+            "minor_id": string
+          },
+          ...
+        ],
+        "onet17": [
+          {
+            "title": string,
+            "id": string,
+            "confidence": integer
+          },
+          ...
+        ],
+        "textkernel": [
+          {
+            "classification": string,
+            "code": integer,
+            "group": integer,
+            "profession_class": integer,
+            "confidence": double
+          },
+          ...
+        ]
+      },
+      "normalized_company": {
+        "normalized_companies": [
+          {
+            "confidence": double,
+            "normalized_name": string,
+            "id": string,
+            "naics_code": string,
+            "naics_description": string,
+            "duns_number": string,
+            "website": string,
+            "country": string,
+            "state": string,
+            "postal_code": string,
+            "city": string,
+            "address": string,
+            "company_size": int
+          }
+        ],
+        "master_company": {
+          "confidence": double,
+          "normalized_name": string,
+          "id": string,
+          "naics_code": string,
+          "naics_description": string,
+          "duns_number": string,
+          "website": string,
+          "country": string,
+          "state": string,
+          "postal_code": string,
+          "city": string,
+          "address": string,
+          "company_size": int
+        },
+        "data_version": string
+      },
+      "skills": {
+        "textkernel": [
+          {
+            "name": string,
+            "skill_code": integer,
+            "required": boolean,
+            "skill_group": string
+          },
+          ...
+        ],
+        "4.0": [
+          {
+            "skilldid": string,
+            "normalized_term": string,
+            "confidence": string,
+            "type": string
+          },
+          ...
+        ]
+      },
+      "language_skills": [
+        {
+          "iso_code": string,
+          "language": string,
+          "skill_code": integer
+        },
+        ...
+      ],
+      "company_geographies": {
+        "2.0": [
+          {
+            "admin_areas": [
+              {
+                "long_name": string,
+                "short_name": string,
+                "level": integer
+              }
+            ],
+            "country": string,
+            "country_code": string,
+            "formatted_address": string,
+            "latitude": double,
+            "locality": string,
+            "location_type": string,
+            "longitude": double,
+            "partial_match": true,
+            "place_id": string,
+            "metropolitan_statistical_area": {
+              "title": string,
+              "code": integer
+            },
+            "designated_market_areas": [
+              string
+            ],
+            "viewport": {
+              "northeast": {
+                "lat": double,
+                "lng": double
+              },
+              "southwest": {
+                "lat": double,
+                "lng": double
+              },
+              "suggested_radius_miles": double
+            }
+          }
+        ]
+      },
+      "job_geographies": {
+        "2.0": [
+          {
+            "admin_areas": [
+              {
+                "long_name": string,
+                "short_name": string,
+                "level": integer
+              }
+            ],
+            "country": string,
+            "country_code": string,
+            "formatted_address": string,
+            "landmark": string,
+            "latitude": double,
+            "location_type": string,
+            "longitude": double,
+            "partial_match": false,
+            "place_id": string,
+            "designated_market_areas": [
+              string
+            ],
+            "viewport": {
+              "northeast": {
+                "lat": double,
+                "lng": double
+              },
+              "southwest": {
+                "lat": double,
+                "lng": double
+              },
+              "suggested_radius_miles": double
+            }
+          }
+        ]
+      },
+      "job_level": {
+        "level": integer,
+        "description": string
+      },
+      "education_level": {
+        "level": integer,
+        "description": string
+      },
+      "employment_level": {
+        "level": integer,
+        "description": string
+      },
+      "contract_type": {
+        "type": integer,
+        "description": string
+      },
+      "posted_by_intermediary": boolean,
+      "document_language": string
+    }
+  }
+}
+```
+
+#Versioning
+-----------
+The data returned is unversioned. The current version is 1.0. We expect that each of our vendors return the same data for repeated calls, however we have not verified this systematically.  We will occasionally update our vendors which may change the output.  If we believe this change is significant we will communicate about it. However, customers will not be able to specify vendor versions.
+
+Our general versioning strategy is available [here](/Versioning.md).
