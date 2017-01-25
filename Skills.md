@@ -56,7 +56,7 @@ If the return_relevant_skills request parameter is set to true, the reponse will
           "confidence": 0.830889,
           "type": "Hard Skill"
         }, 
-	(...)
+           (...)
       ]
     }
   ]
