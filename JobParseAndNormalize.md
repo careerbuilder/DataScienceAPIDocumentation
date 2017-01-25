@@ -13,21 +13,21 @@ _______
 
 The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting and further enriches the parsed data with the following normalizations and classifications.  
 
- #####Enrichments:
- - Job Title Classifications
-    - [Carotene](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md) <sup>(optional)</sup>
-    - [ONET](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md) <sup>(optional)</sup>
-    - Textkernel
- - [Normalized Company Name](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md)  <sup>(optional)</sup>
- - Skills Extraction
-    - [Skills 4.0](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) <sup>(optional)</sup>
-    - Textkernel Skills
- - Language Skills
- - [Geocoding](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md) <sup>(optional; for both company and job locations)</sup>
- - [Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md) <sup>(optional)</sup>
- - Education Level
- - Employment Level
- - Contract Type
+ ####Available Enrichments:
+ - __Job Title Classifications__
+    - __[Carotene](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md)__ <sup>(optional)</sup>
+    - __[ONET](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md)__ <sup>(optional)</sup>
+    - __Textkernel__
+ - __[Normalized Company](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md)__  <sup>(optional)</sup> - Normalized company data including name, website, etc.
+ - __Skills Extraction__
+    - __Textkernel Skills Extraction__ - Normalized skills using extracted using Textkernel's extraction engine and skills taxonomy. These skills are returned by default as part of the response (regardless of desired_enrichments) and are unversioned.
+    - __[CareerBuilder Skills Extraction](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md)__ <sup>(optional)</sup> - When `skills` is requested as a `desired_enrichment`, the service will enrich the parsed job data using the CareerBuilder Skills API.
+ - __Language Skills__ 
+ - __[Geocoding](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md)__ <sup>(optional)</sup> - Location normalization for both company and job locations
+ - __[Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md)__ <sup>(optional)</sup> - Experience, or seniority level of the job posting
+ - __Education Level__ - Minimum education level required by the job posting
+ - __Employment Level__ - Whether the job is full-time, part-time, etc.
+ - __Contract Type__ - Whether the contract is permanent, temporary, internship, etc.
  
 
 Enrichments marked as <sup>__(optional)__</sup> must be requested using the `desired_enrichments` parameter, as they require additional calls to other services. For example, a client who only needs Job Title and Skills classifications could structure a Job Parse and Normalize request that would only retrieve these classifications. This parameter is documented in further detail below.
@@ -40,7 +40,7 @@ This service supports the HTTP GET and POST methods. Because Base64-encoded docu
 
 The following parameters may be supplied in the query string (for HTTP GET) or form body (for HTTP POST):
 
-* **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages document given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
+* **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, or .wps document given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
 * **desired_enrichments** (Required) -- A comma-separated list, without spaces, of the desired normalization calls to perform on the results of the job parsing operation. 
 
@@ -53,9 +53,9 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
     | `job_level` | Job Level |
     | `job_title_carotene` | Carotene Job Title Classifications |
     | `job_title_onet` | ONET Job Title Classifications |
-    | `skills` | Skills 4.0 |
+    | `skills` | Careerbuilder Skills Extraction |
 
-    For example, a request with a desired_enrichments value equal to `job_level,skills,job_title_onet,company_norm` would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service. The value "none" may be supplied to return none of the optional enrichments. 
+    For example, a request with a desired_enrichments value equal to `job_level,skills,job_title_onet,company_norm` would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service. The value `none` must be supplied to return none of the optional enrichments. 
 
 ##Response Structure
 ```

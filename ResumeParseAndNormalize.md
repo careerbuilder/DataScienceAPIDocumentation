@@ -23,7 +23,7 @@ This service supports the HTTP GET and POST methods. Because Base64-encoded docu
 
 The following parameters may be supplied in the query string (for HTTP GET) or form body (for HTTP POST):
 
-* **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, .wps, and .pages document given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
+* **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, or .wps document given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
 * **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the resume parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service. If no additional enrichments are needed, the value **"none"** may be supplied to skip all post-parsing classifications and simply return the parsed resume data.
 
