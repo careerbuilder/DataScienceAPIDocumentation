@@ -43,18 +43,23 @@ If the return_relevant_skills request parameter is set to true, the reponse will
 
 ```
 {
-	"response": [{
-		"skilldid": "KS120076FGP5WGWYMP0F",
-		"normalized_term": "Apache Hadoop (Hadoop)",
-		"confidence": 1.0,
-		"type": "Hard Skill",
-		"relevant_skills": [{
-			"skilldid": "KS124KT6K427LFSF9NQC",
-			"normalized_term": "MapReduce",
-			"confidence": 0.830889,
-			"type": "Hard Skill"
-		}]
-	}]
+  "response": [
+    {
+      "skilldid": "KS120076FGP5WGWYMP0F",
+      "normalized_term": "Apache Hadoop (Hadoop)",
+      "confidence": 1,
+      "type": "Hard Skill",
+      "relevant_skills": [
+        {
+          "skilldid": "KS124KT6K427LFSF9NQC",
+          "normalized_term": "MapReduce",
+          "confidence": 0.830889,
+          "type": "Hard Skill"
+        }, 
+	(...)
+      ]
+    }
+  ]
 }
 ```
 
