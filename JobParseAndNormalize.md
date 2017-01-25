@@ -20,7 +20,7 @@ The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting a
     - __Textkernel__
  - __[Normalized Company](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md)__  <sup>(optional)</sup> - Normalized company data including name, website, etc.
  - __Skills Extraction__
-    - __Textkernel Skills Extraction__ - Normalized skills using extracted using Textkernel's extraction engine and skills taxonomy. These skills are returned by default as part of the response (regardless of desired_enrichments) and are unversioned.
+    - __Textkernel Skills Extraction__ - Normalized skills extracted using Textkernel's extraction engine and skills taxonomy. These skills are returned by default as part of the response (regardless of desired_enrichments) and are unversioned.
     - __[CareerBuilder Skills Extraction](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md)__ <sup>(optional)</sup> - When `skills` is requested as a `desired_enrichment`, the service will enrich the parsed job data using the CareerBuilder Skills API.
  - __Language Skills__ 
  - __[Geocoding](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md)__ <sup>(optional)</sup> - Location normalization for both company and job locations
