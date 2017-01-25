@@ -19,7 +19,9 @@ APIs:
 
 [Skills](Skills.md): Extracts normalized skill names from text and computes confidence scores for each.
 
-[Parse & Normalize](ParseAndNormalize.md): Parses resumes and (optionally) normalizes through most other services offered.
+[Job Parse & Normalize](JobParseAndNormalize.md): Parses job postings and (optionally) normalizes through most other services offered.
+
+[Resume Parse & Normalize](ResumeParseAndNormalize.md): Parses resumes and (optionally) normalizes through most other services offered.
 
 [Job Level](JobLevel.md): Provides a normalized job level (entry-level, mid-level, executive, etc.) for a job title.
 
