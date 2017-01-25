@@ -5,21 +5,26 @@
 #Contents
 
 - [Description](#description)
-- [Request Structure](#request-structure)
+- [Geocoding Request](#geocoding-request)
+- [Geocoding Request Structure](#geocoding-request-structure)
+- [Place ID Lookup Request](#place-id-lookup-request)
+- [Place ID Lookup Request Structure](#place-id-lookup-request-structure)
 - [Response Structure](#response-structure)
+- [Remarks and Recommendations](#remarks-and-recommendations)
 - [Versioning](#versioning)
 
 ----------------------------
 #Description
 
-Accepts structured or unstructured location information and attempts to resolve the input to a geographic coordinate. If successful, the response will contain one (or more, if requested) locations with latitude and longitude information as well as any available administrative location information, such as country and state. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). This service supports the HTTP/GET method only.
+This service makes use of two different requests: Geocoding Requests and Google place ID lookup. The two request types represent two different methods of obtaining geographic information for a query (latitude/longitude, locality, administrative areas, country, etc.) and are explained in more detail below. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). Requests will be handled the same way regardless of HTTP method; use whichever method you find most convenient.
 
 ----------------------------
-#Request Structure
+#Geocoding Request
+A Geocoding request contains at least one of (query, address, locality, postal_code, admin_area, country) that must be provided in the query string.
+
+#Geocoding Request Structure
 
 Example URL: https://api.careerbuilder.com/core/geography/geocoding?address=5550%20Peachtree%20Pkwy&locality=Norcross&admin_area=GA&postal_code=30092&country=US
-
-At least one of (query, address, locality, postal_code, admin_area, country) must be provided in the query string.
 
 
 | Parameter  | Description |
@@ -33,6 +38,21 @@ At least one of (query, address, locality, postal_code, admin_area, country) mus
 | culture    | Optional. The preferred ISO 639-1 language code for the response. If this parameter is omitted, the response will be returned in English. Note that the level of localization will vary for each culture. For example, the name "United States" may not have a localized name for every culture code. The geocoding service currently only supports a subset of the ISO-639-1 standard. Click [here](Data/GeocodingServiceSupportedLanguages.md) to view a full list of supported culture codes. |
 | territories_as_states | Optional. When enabled, dependent territories may be requested as administrative areas of their parent nation, and will also be returned as such. This parameter is necessary to validate, for instance, **locality=San Juan&admin_area=PR&country=US**. This functionality will only recognize territories and parent countries by their [two-digit ISO-3166-1 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), so requests such as **admin_area=Puerto Rico&country=USA** would not be remapped according to this parameter. Default value is false. |
 | try_locality_as_admin_area | Optional. When enabled, a request that includes the **locality** parameter and fails to retrieve locality-specific geography data will be reattempted with the locality value sent as an admin_area value instead. (If an admin_area value already exists, the locality value will be prepended and comma-separated, e.g. "locality=Harris%20Township&admin_area=OH" would be resent as "admin_area=Harris Township, OH" if try_locality_as_admin_area is set to true.) Default value is false. |
+
+----------------------
+
+#Place ID Lookup Request
+
+A Google place ID is a unique identifier used by Google to identify locations/places in the Google Places Database and on Google Maps. The service accepts a valid place ID as a means to retrieve geographic information from Google via reverse geocoding. Requesting a location using a Google place ID requires that the request contains a place ID and a culture param if a language specification is desired. Additional location parameters will result in an HTTP 400 response.
+
+#Place ID Lookup Request Structure
+
+Example URL: https://api.careerbuilder.com/core/geography/geocoding?culture=en&place_id=ChIJd8BlQ2BZwokRAFUEcm_qrcA
+
+| Parameter  | Description |
+|------------|-------------|
+| place_id | Required. Id provided by google that uniquely identifies locations based on the Google Places Database and in Google Maps.
+| culture    | Optional. The preferred ISO 639-1 language code for the response. If this parameter is omitted, the response will be returned in English. Note that the level of localization will vary for each culture. For example, the name "United States" may not have a localized name for every culture code. The geocoding service currently only supports a subset of the ISO-639-1 standard. Click [here](Data/GeocodingServiceSupportedLanguages.md) to view a full list of supported culture codes. |
 
 &nbsp;
 
@@ -65,6 +85,7 @@ Each element of the returned **results** array will be formatted as follows:
 | street_address | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. **This property may be absent**. |
 | sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the locality field is empty. **This property may be absent**. |
 | landmark | The full name of the landmark (such as a military base or island) returned by the service. **This property may be absent**. |
+| place_id | Place Id relating to the geolocation requested. 
 | viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- **northeast** and **southwest** -- each with **lat** and **lng** decimal values. It also contains a **suggested_radius** decimal field that contains the distance in miles from the center of the viewport to a corner. **This property and its elements are always present and non-empty.** |
 | metropolitan_statistical_area | The metropolitan statistical area containing the location. An object containing two fields, the title of the area and an integer code for the area. Metropolitan statistical areas are specific to the US. **This property may be absent**. |
 | designated_market_areas | A string array of the designated market areas containing the location. Designated market areas may overlap and thus a location may be in more than one designated market area. Designated market areas are specific to the continental US. **This property may be absent**. |
@@ -79,6 +100,23 @@ Each element of the returned **admin_areas** array will be formatted as follows:
 | short_name | The abbreviated form of the administrative area's name. This will vary by country and administrative division level. In the US, states (admin_area level 1) will use the state abbreviation (e.g. "GA"), and counties will use the full county name (e.g. "Gwinnett County"). **This property is always present and non-empty.** |
 | long_name | The unabbreviated form of the administrative area's name. **This property is always present and non-empty.** |
 | level | An integer between 1 and 5 inclusive specifying the hierarchal level at which this administrative area resides. In the US, states will be returned with a level of 1 and counties with a level of 2. **This property is always present and non-empty.** |
+
+&nbsp;
+
+-----------
+#Remarks and Recommendations
+
+One common use case of the geocoding API is in normalizing location queries for search purposes. Occasionally, such applications may have the design goal of performing a "contained-in" search for some entities, such as states and countries ("return all results in Texas"), and for other entities, performing a radius search ("return all results within N mi/km of this point). If this describes your use case, the following logic is recommended:
+
+|   |   |
+|---|---|
+| country | **Contained-in search.** |
+| admin_area_1 or admin_area_2 | **Contained-in search.** These entities typically represent larger regions such as states, provinces, or counties. |
+| admin_area_3 and below | **Radius search.** In the United States, third-level administrative areas represent US townships, which are more similar in size and function to towns or cities than to counties or states. In other countries, third-level administrative areas and below typically represent similar location types. |
+| locality or sublocality | **Radius search.** |
+| postal_code | **Radius search.** |
+| street or street_address | **Radius search.** |
+
 
 &nbsp;
 
