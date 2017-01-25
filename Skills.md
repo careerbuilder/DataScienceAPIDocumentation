@@ -13,7 +13,7 @@ This API currently supports versions 4.1 and 4.2. Version is passed in the Accep
 | language            | No | A string determining the language (total 22 languages supported) in which the input text is written. Default value is en. Note that the input parameter passing to language should be the language id. |
 | threshold      | No | A double value between 0 and 1 controlling minimum relevancy scores for skill recognition. Higher values will more tightly restrict the returned skill tags. Default is 0.5. A threshold of 0 means all seed skill phrases recognized by exact string matching will be returned. Note that this parameter is only supported for inputs in English. |
 | auto_thres     | No | A boolean value indicating whether automatic thresholding is desired. If enabled, then when input text contains 150 or fewer words, the threshold parameter will be overwritten to 0 and all confidence values will be overwritten to 1.0&#42;. Default is true.  Note that this parameter is only supported for inputs in en, fr, and de. |
-| return_relevant_skills | No | A boolean value indicating whether to return relevant skills for each extracted skill. Defaults to false. Relevant skills contain the same fields as extracted skills, with confidence scores indicating their relevance to the extracted skill. |
+| return_related_skills | No | A boolean value indicating whether to return related skills for each extracted skill. Defaults to false. Related skills contain the same fields as extracted skills, with confidence scores indicating their relevance to the extracted skill. |
 
 &#42; A more detailed explanation of this functionality: The tagger uses “context” to define semantic relevancy.  If the input is too short (<= 150 words) to constitute a “context,” the tagger by default returns everything by direct matching, resulting in 0.0 confidence scores due to lack of context for relatedness. To avoid confusion, a pseudo score “1” is assigned to indicate “directly matched.” This feature is called “auto thresholding” (auto_thres).
 
@@ -39,7 +39,7 @@ JSON
   ]
 }
 ```
-If the return_relevant_skills request parameter is set to true, the reponse will look like this:
+If the return_related_skills request parameter is set to true, the reponse will look like this:
 
 ```
 {
@@ -49,7 +49,7 @@ If the return_relevant_skills request parameter is set to true, the reponse will
       "normalized_term": "Apache Hadoop (Hadoop)",
       "confidence": 1,
       "type": "Hard Skill",
-      "relevant_skills": [
+      "related_skills": [
         {
           "skilldid": "KS124KT6K427LFSF9NQC",
           "normalized_term": "MapReduce",
