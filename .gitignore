@@ -1,0 +1,9 @@
+target
+.classpath
+.project
+.settings
+cids.csv
+downloads/
+*.iml
+.DS_Store
+.idea/
