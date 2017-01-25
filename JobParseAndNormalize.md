@@ -13,7 +13,7 @@ _______
 
 The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting and further enriches the parsed data with the following normalizations and classifications.  
 
- ####Available Enrichments:
+####Available Enrichments:
  - __Job Title Classifications__
     - __[Carotene](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md)__ <sup>(optional)</sup>
     - __[ONET](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md)__ <sup>(optional)</sup>
