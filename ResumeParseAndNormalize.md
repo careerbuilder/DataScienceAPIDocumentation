@@ -31,7 +31,6 @@ The resume parsing portion of this service is backed by Textkernel's CV parsing 
 | ro | Romanian             |
 | cz | Czech                |
 | zh | Chinese (Simplified) |
-| zh | Chinese (Traditional)|
 | es | Spanish              |
 | el | Greek                |
 | hu | Hungarian            |
