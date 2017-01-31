@@ -5,6 +5,7 @@ Table of Contents
 _____________
 
 - [Summary](#summary)
+- [Languages](#languages)
 - [Request structure](#request-structure)
 - [Response structure](#response-structure)
 - [Versioning](#versioning)
@@ -15,6 +16,9 @@ Summary
 This service parses a Base64-encoded resume, then (optionally) further enriches the parsed data by issuing calls to several other classification APIs. Specifically, the service currently makes one call to our [Geocoding API](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md) to normalize the candidate's location information; one call to the [Skills API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) to parse skills from the complete text of the resume; and one call per work history item to the [Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md), [Job Title](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md), [Company Normalization](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md), and [Skills](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) APIs to enrich each work history accordingly. These additional enrichment calls can be enabled or disabled as desired using the **desired_enrichments** parameter; for example, a client who only needs Job Title and Skills classifications could use this parameter to construct a Parse and Normalize request that would only retrieve these classifications. This parameter is documented in further detail below.
 
 The service is located at https://api.careerbuilder.com/core/parsing/normalizedresume. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
+
+Languages
+============
 
 The resume parsing portion of this service is backed by Textkernel's CV parsing software, which supports the following languages: 
 
