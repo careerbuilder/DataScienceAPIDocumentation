@@ -5,6 +5,7 @@ Table of Contents
 _____________
 
 - [Summary](#summary)
+- [Languages](#languages)
 - [Request structure](#request-structure)
 - [Response structure](#response-structure)
 - [Versioning](#versioning)
