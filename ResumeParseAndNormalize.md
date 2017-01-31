@@ -1,4 +1,4 @@
-Parse and Normalize API
+Resume Parse and Normalize API
 ====================
 
 Table of Contents
