@@ -6,6 +6,7 @@ _________
 - [Request Information](#request-information)
 - [Sample Response](#sample-response)
 - [Available Taxonomies](#taxonomies)
+- [Languages](#languages)
 - [Translation Information](#translation-information)
 - [Versioning](#versioning)
 
