@@ -16,6 +16,9 @@ This service parses a Base64-encoded resume, then (optionally) further enriches 
 
 The service is located at https://api.careerbuilder.com/core/parsing/normalizedresume. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
 
+Languages
+============
+
 The resume parsing portion of this service is backed by Textkernel's CV parsing software, which supports the following languages: 
 
 | Language Code | Language |
