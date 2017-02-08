@@ -67,7 +67,6 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
         "address": string,
         "region": string,
         "country": string,
-        "city": string
       },
       "salary": {
         "from": string,
