@@ -71,7 +71,7 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
 
 The response returns a single data node which contains a list of normalized companies. These normalized companies are ordered by the confidence score. Each normalized company has a normalized company name (string), a [NAICS](http://www.census.gov/eos/www/naics/) ID (string), a NAICS description (string), a DUNS number(string), a country (string), a state (string), a city (string), a postal code (string), a website (string), a company size (int), an ID (string), and a confidence (double). Confidence scores range from 0.0 to 1.0. A single master company will be returned.
 
-The master company is the highest division of the requested company. For example a request with the company name "coca-cola bottling" returns "Coca Cola Bottling Co" in its normalized_companies list, with a master company of "The Coca-Cola Company."
+The master company is the highest division of the requested company. For example a request with the company name "amazon web services" returns "Amazon Web Services LLC" in its normalized_companies list, with a master company of "Amazon.com, Inc."
 
 The top-level data node will also include a data_version field that specifies the current classifier (CompanyDepot or DataDotCom) version as a string.
 
