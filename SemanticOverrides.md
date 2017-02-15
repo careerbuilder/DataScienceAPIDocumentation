@@ -24,6 +24,8 @@ Adds or updates an override for the specified user_id, term, language, taxonomy,
 Since this endpoint modifies override state, it is restricted to certain OAuth client ids. For questions about access, send an email to 
 DataScienceApplicationDevelopment@careerbuilder.com
 
+Path parameter structure: https://api.careerbuilder.com/core/SemanticOverrides/user/{user_id}/{term}/{language}/{taxonomy}/{enrichment}
+
 Parameters (URL-encoded path parameters):
 -        user_id (required): A globally unique id to associate with the override request. 
 Note that if your id collides with an existing id, the the existing id will be modified - we recommend using globally unique identifiers. 
@@ -66,6 +68,8 @@ The response will include no data unless an error occurred, in which case the re
 Removes and override for the specified user_id, term, language, taxonomy, and enrichment combination. The Semantic Search API will return its default behavior for this user_id/language before this override was added. 
 Since this endpoint modifies override state, it is restricted to certain OAuth client ids. For questions about access, send an email to 
 DataScienceApplicationDevelopment@careerbuilder.com
+
+Path parameter structure: https://api.careerbuilder.com/core/SemanticOverrides/user/{user_id}/{term}/{language}/{taxonomy}/{enrichment}
 
 Parameters:
 
