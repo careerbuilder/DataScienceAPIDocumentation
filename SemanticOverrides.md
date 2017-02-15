@@ -51,7 +51,7 @@ as outlined below. Enrichment ids are validated against the CB Taxonomy, while n
 
 Parameters (Body parameters):
 -         returned (required): boolean, defaults to false. Whether to return this enrichment, under this taxonomy, in queries containing this term and for this language and user_id.
--         selected (required): boolean, defaults to null. Sets state of the "selected" flag in the Semantic Search response for this enrichment, under this taxonomy, in queries containing this term and for this language and user_id.
+-         selected (required): nullable boolean, defaults to null. Sets state of the "selected" flag in the Semantic Search response for this enrichment, under this taxonomy, in queries containing this term and for this language and user_id.
 
 Example Request
 ```
