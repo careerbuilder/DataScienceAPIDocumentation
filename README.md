@@ -15,6 +15,8 @@ APIs:
 
 [Geocoding](Geocoding.md): Attempts to normalize structured or unstructured location information to a known geographic entity and return rich addressing information for that entity.
 
+[GeoEntity](GeoEntity.md): Provides lists of geographic entities of a particular type, such as postal codes or first-level administrative areas. 
+
 [Job Title](JobTitle.md): Classifies a job title/description against the specified version(s) of the ONet and/or Carotene taxonomies.
 
 [Skills](Skills.md): Extracts normalized skill names from text and computes confidence scores for each.
