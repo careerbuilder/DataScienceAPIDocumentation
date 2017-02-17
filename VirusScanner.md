@@ -15,12 +15,12 @@
 
 This service runs advanced antivirus scans on any file type. The virus definitions that the service is based on are updated every five minutes to ensure that the service is as up to date as possible.
 
+The libraries that these virus scans are based on are being constantly updated by Avira. We recommend regular reflows of data to ensure that your data security is as up to date as possible. All files that return **is_safe = false** should be immediately quarantined and the source of the data should be investigated.
+
 ----------------------------
 #Request
 
 A Virus Scanner request is simply the base64 string representation of a file to be scanned.
-
-The libraries that these virus scans are based on are being constantly updated by Avira. We recommend regular reflows of data to ensure that your data security is as up to date as possible. All files that return **is_safe = false** should be immediately quarantined and the source of the data should be investigated.
 
 #Request Structure
 
