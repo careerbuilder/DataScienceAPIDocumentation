@@ -80,6 +80,7 @@ Example Request
 HTTP DELETE
 https://api.careerbuilder.com/core/SemanticOverrides/user/U123456789/java+developer/en_us/CaroteneV3/15.2/
 ```
+The response will include no data unless an error occurred, in which case the response will be in CB API standard format. 
 
 # Versioning information
 
