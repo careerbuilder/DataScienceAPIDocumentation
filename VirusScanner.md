@@ -6,21 +6,21 @@
 
 - [Description](#description)
 - [Request](#request)
-- [Request Structure](#geocoding-request-structure)
+- [Request Structure](#request-structure)
 - [Response Structure](#response-structure)
 - [Versioning](#versioning)
 
 ----------------------------
 #Description
 
-This service runs advanced antivirus scans on any file type. The virus definitions that the service is based on are updated every five minutes to ensure that the service is as up to date as possible.
+This service runs advanced antivirus scans on any file type. We poll Avira's update server every five minutes to ensure that the service is as up to date as possible.
 
-The libraries that these virus scans are based on are being constantly updated by Avira. We recommend regular reflows of data to ensure that your data security is as up to date as possible. All files that return **is_safe = false** should be immediately quarantined and the source of the data should be investigated.
+The libraries that these virus scans are based on are regularly updated by Avira - sometimes as many as 20 or 30 times a day. We recommend regular reflows of data to ensure that your data security is as up to date as possible. All files that return **is_safe = false** should be immediately quarantined and the source of the data should be investigated.
 
 ----------------------------
 #Request
 
-A Virus Scanner request is simply the base64 string representation of a file to be scanned.
+A Virus Scanner request is simply the base64 string representation of a file to be scanned. The VS API accepts GET and POST requests, however we recommend using POSTs to avoid the request size limitations inherent to GET requests.
 
 #Request Structure
 
