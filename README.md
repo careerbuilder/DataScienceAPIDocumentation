@@ -36,3 +36,5 @@ APIs:
 [School Normalization](SchoolNormalization.md): Attempts to normalize a school name and provide standardized data such as location and IPEDs classification information.
 
 [Taxonomy Service](TaxonomyService.md): Returns full lists of classification taxonomies such as Carotene and Skills.
+
+[Virus Scanner](VirusScanner.md): Scans a file for viruses and returns the virus definition if applicable.
