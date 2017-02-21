@@ -65,7 +65,7 @@ The response will include no data unless an error occurred, in which case the re
 
 ###HTTP Method DELETE
 
-Removes and override for the specified user_id, term, language, taxonomy, and enrichment combination. The Semantic Search API will return its default behavior for this user_id/language before this override was added. 
+Removes an override for the specified user_id, term, language, taxonomy, and enrichment combination. The Semantic Search API will return its default behavior for this user_id/language before this override was added. 
 Since this endpoint modifies override state, it is restricted to certain OAuth client ids. For questions about access, send an email to 
 DataScienceApplicationDevelopment@careerbuilder.com
 
