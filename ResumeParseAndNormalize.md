@@ -22,25 +22,26 @@ Languages
 
 The resume parsing portion of this service is backed by Textkernel's CV parsing software, which supports the following languages: 
 
-| Language Code | Language |
-|---------------|----------|
-| en | English              |
-| nl | Dutch                |
-| fr | French               |
-| it | Italian              |
-| da | Danish               |
-| pl | Polish               |
-| ru | Russian              |
-| de | German               |
-| ro | Romanian             |
-| cz | Czech                |
-| zh | Chinese (Simplified) |
-| es | Spanish              |
-| el | Greek                |
-| hu | Hungarian            |
-| sv | Swedish              |
-| pt | Portuguese           |
-| sk | Slovak               |
+| Language |
+|----------|
+| English              |
+| Dutch                |
+| French (France)      |
+| French (Canada)      |
+| Italian              |
+| Danish               |
+| Polish               |
+| Russian              |
+| German               |
+| Romanian             |
+| Czech                |
+| Chinese (Simplified) |
+| Spanish              |
+| Greek                |
+| Hungarian            |
+| Swedish              |
+| Portuguese           |
+| Slovak               |
 
 Note that language detection is a built-in feature of the CV parsing software. There is no need to supply information about the document's language.
 
