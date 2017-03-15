@@ -9,7 +9,7 @@ This API currently supports versions 4.1 and 4.2. Version is passed in the Accep
 **This API is also available as a locally-runnable JAR. Clients with JVM-based applications may find this useful to avoid the overhead of repeated network calls. More information can be found [here](https://github.com/cbdr/SkillsExtractor).**
 
 | Parameter (4.1/4.2) | Required | Description |
-|----------------|----------------|-----------------|----------|-------------|
+|----------------|----------------|-----------------|
 | version        | Yes | Passed in via the Accept header. Possible values are "4.1" or "4.2". | 
 | content        | Yes | A string containing the resume content to be tagged |
 | language            | No | A string determining the language (total 22 languages supported) in which the input text is written. Default value is en. Note that the input parameter passing to language should be the language id. |
