@@ -7,6 +7,7 @@
 - [Description](#description)
 - [Request](#request)
 - [Request Structure](#request-structure)
+- [Sample Request](#sample-request)
 - [Response Structure](#response-structure)
 - [Versioning](#versioning)
 
@@ -27,6 +28,12 @@ A Virus Scanner request is simply the base64 string representation of a file to 
 | Parameter  | Description |
 |------------|-------------|
 | document     | Required. The base64 string representation of a file to be scanned. |
+
+&nbsp;
+
+#Sample Request
+
+A sample request on the API tester page can be found [here](https://apimanagement.cbplatform.link/#routes/tester?preURL=https%3A%2F%2Fwwwtest.api.careerbuilder.com%2F&postURL=core%2Fvirusscanner&method=post&contentType=application%2Fx-www-form-urlencoded&acceptType=application%2Fjson&version=default&region=staging&flow=client_credentials&userDid=&accountDid=&headers=&body=document%3DSGVsbG8gV29ybGQ%3D)
 
 &nbsp;
 
