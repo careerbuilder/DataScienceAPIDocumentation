@@ -11,7 +11,7 @@ This API currently supports versions 4.1 and 4.2. Version is passed in the Accep
 | Parameter (4.1/4.2) | Required | Description |
 |----------------|----------------|-----------------|
 | version        | Yes | Passed in via the Accept header. Possible values are "4.1" or "4.2". | 
-| content        | Yes | A string containing the resume content to be tagged |
+| content        | Yes | A string containing the content to be tagged |
 | language            | No | A string determining the language (total 22 languages supported) in which the input text is written. Default value is en. Note that the input parameter passing to language should be the language id. |
 | threshold      | No | A double value between 0 and 1 controlling minimum relevancy scores for skill recognition. Higher values will more tightly restrict the returned skill tags. Default is 0.5. A threshold of 0 means all seed skill phrases recognized by exact string matching will be returned. Note that this parameter is only supported for inputs in English. |
 | auto_thres     | No | A boolean value indicating whether automatic thresholding is desired. If enabled, then when input text contains 150 or fewer words, the threshold parameter will be overwritten to 0 and all confidence values will be overwritten to 1.0&#42;. Default is true.  Note that this parameter is only supported for inputs in en, fr, and de. |
@@ -72,7 +72,7 @@ And an error response will look like this:
   "errors":[  
     {  
       "type":"args",
-      "message":"resume_content must be provided.",
+      "message":"content must be provided.",
       "code":3
     }
   ]
