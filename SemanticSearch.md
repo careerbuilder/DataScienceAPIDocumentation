@@ -53,7 +53,7 @@ https://api.careerbuilder.com/core/semanticsearch/query?query=registered%20nurse
 Example 0.8 request: 
 ```
 HTTP GET
-https://api.careerbuilder.com/core/semanticsearch/query?query=registered%20nurse&version=0.8
+https://api.careerbuilder.com/core/semanticsearch/query/?query=registered%20nurse&version=0.8
 ```
 
 #Query Response
