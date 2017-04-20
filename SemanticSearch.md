@@ -47,13 +47,13 @@ Example 1.0 request:
 ```
 HTTP GET
 Accept: application/json;version=1.0
-https://api.careerbuilder.com/core/SemanticSearch/query/?query=registered%20nurse&language=en_us&user_id=U1234
+https://api.careerbuilder.com/core/semanticsearch/query?query=registered%20nurse&language=en_us&user_id=U1234
 ```
 
 Example 0.8 request: 
 ```
 HTTP GET
-https://api.careerbuilder.com/core/SemanticSearch/query/?query=registered%20nurse&version=0.8
+https://api.careerbuilder.com/core/semanticsearch/query?query=registered%20nurse&version=0.8
 ```
 
 #Query Response
