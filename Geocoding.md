@@ -1,8 +1,8 @@
-#Geocoding API
+# Geocoding API
 
 &nbsp;
 
-#Contents
+# Contents
 
 - [Description](#description)
 - [Geocoding Request](#geocoding-request)
@@ -14,12 +14,12 @@
 - [Versioning](#versioning)
 
 ----------------------------
-#Description
+# Description
 
 This service makes use of two different requests: Geocoding Requests and Google place ID lookup. The two request types represent two different methods of obtaining geographic information for a query (latitude/longitude, locality, administrative areas, country, etc.) and are explained in more detail below. This service relies on Google's Geocoding API as its data vendor; Google's service is documented [here](https://developers.google.com/maps/documentation/geocoding/intro). Requests will be handled the same way regardless of HTTP method; use whichever method you find most convenient.
 
 ----------------------------
-#Geocoding Request
+# Geocoding Request
 A Geocoding request contains at least one of (query, address, locality, postal_code, admin_area, country) that must be provided in the query string.
 
 #Geocoding Request Structure
@@ -41,11 +41,11 @@ Example URL: https://api.careerbuilder.com/core/geography/geocoding?address=5550
 
 ----------------------
 
-#Place ID Lookup Request
+# Place ID Lookup Request
 
 A Google place ID is a unique identifier used by Google to identify locations/places in the Google Places Database and on Google Maps. The service accepts a valid place ID as a means to retrieve geographic information from Google via reverse geocoding. Requesting a location using a Google place ID requires that the request contains a place ID and a culture param if a language specification is desired. Additional location parameters will result in an HTTP 400 response.
 
-#Place ID Lookup Request Structure
+# Place ID Lookup Request Structure
 
 Example URL: https://api.careerbuilder.com/core/geography/geocoding?culture=en&place_id=ChIJd8BlQ2BZwokRAFUEcm_qrcA
 
@@ -57,7 +57,7 @@ Example URL: https://api.careerbuilder.com/core/geography/geocoding?culture=en&p
 &nbsp;
 
 ----------------------
-#Response Structure
+# Response Structure
 
 All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing the following elements:
 
@@ -104,7 +104,7 @@ Each element of the returned **admin_areas** array will be formatted as follows:
 &nbsp;
 
 -----------
-#Remarks and Recommendations
+# Remarks and Recommendations
 
 One common use case of the geocoding API is in normalizing location queries for search purposes. Occasionally, such applications may have the design goal of performing a "contained-in" search for some entities, such as states and countries ("return all results in Texas"), and for other entities, performing a radius search ("return all results within N mi/km of this point). If this describes your use case, the following logic is recommended:
 
@@ -121,7 +121,7 @@ One common use case of the geocoding API is in normalizing location queries for 
 &nbsp;
 
 -----------
-#Versioning
+# Versioning
 The current API version is 1.0. The data returned from the service is unversioned.  
 
 Geography is constantly changing as postal codes, cities, states, and countries are created and destroyed.  Google, our vendor, doesn't publish an update policy and changes things as they see fit.
