@@ -72,7 +72,7 @@ Each element of the returned **results** array will be formatted as follows:
 
 |   |   |
 |---|---|
-| admin_areas | A JSON array of up to 5 admin_area objects. See below for details on the elements of this array. **This property is always present, but may be empty** if no admin areas were found. |
+| admin_areas | A JSON array of up to 5 admin_area objects. See below for details on the structure of these objects. **This property is always present, but may be empty** if no admin areas were found. |
 | latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. **This property is always present.** |
 | longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. **This property is always present.** |
 | country | The country or region name of an address. **This property may be absent** if the location was not associated with a country. Some locations for which this occurs are "Europe", "Pacific Ocean", and "Gaza Strip" (a contested territory). |
@@ -88,7 +88,7 @@ Each element of the returned **results** array will be formatted as follows:
 | place_id | Place Id relating to the geolocation requested. 
 | viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- **northeast** and **southwest** -- each with **lat** and **lng** decimal values. It also contains a **suggested_radius** decimal field that contains the distance in miles from the center of the viewport to a corner. **This property and its elements are always present and non-empty.** |
 | metropolitan_statistical_area | The metropolitan statistical area containing the location. An object containing two fields, the title of the area and an integer code for the area. Metropolitan statistical areas are specific to the US. **This property may be absent**. |
-| designated_market_areas | A string array of the designated market areas containing the location. Designated market areas may overlap and thus a location may be in more than one designated market area. Designated market areas are specific to the continental US. **This property may be absent**. |
+| designated_market_areas | An object array of the designated market areas containing the location. Designated market areas may overlap and thus a location may be in more than one designated market area. Designated market areas are specific to the continental US. See below for details on the structure of these objects. **This property may be absent and the array may be empty**. |
 | partial_match | A Boolean value that, when true, indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address.<br>Partial matches most often occur for street addresses that do not exist within the locality you pass in the request. Partial matches may also be returned when a request matches two or more locations in the same locality. For example, "21 Henr St, Bristol, UK" will return a partial match for both Henry Street and Henrietta Street. Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address. Suggestions triggered in this way will also be marked as a partial match. **This property is always present.** |
 
 &nbsp;
@@ -100,6 +100,15 @@ Each element of the returned **admin_areas** array will be formatted as follows:
 | short_name | The abbreviated form of the administrative area's name. This will vary by country and administrative division level. In the US, states (admin_area level 1) will use the state abbreviation (e.g. "GA"), and counties will use the full county name (e.g. "Gwinnett County"). **This property is always present and non-empty.** |
 | long_name | The unabbreviated form of the administrative area's name. **This property is always present and non-empty.** |
 | level | An integer between 1 and 5 inclusive specifying the hierarchal level at which this administrative area resides. In the US, states will be returned with a level of 1 and counties with a level of 2. **This property is always present and non-empty.** |
+
+&nbsp;
+
+Each element of the returned **designated_market_areas** array will be formatted as follows:
+
+|   |   |
+|---|---|
+| name | The name of the DMA, e.g. "Atlanta, GA." **This property is always present and non-empty.** |
+| id | The integer ID of the DMA. E.g. for the Atlanta, GA DMA, the ID is 524. **This property is always present and non-empty.** |
 
 &nbsp;
 
@@ -122,7 +131,7 @@ One common use case of the geocoding API is in normalizing location queries for 
 
 -----------
 # Versioning
-The current API version is 1.0. The data returned from the service is unversioned.  
+The current API version is 1.1. The data returned from the service is unversioned.  
 
 Geography is constantly changing as postal codes, cities, states, and countries are created and destroyed.  Google, our vendor, doesn't publish an update policy and changes things as they see fit.
 
