@@ -1,7 +1,9 @@
 Semantic Search API
 ===================
 
-The semantic search API supports two endpoints: /query and /document. The /query endpoint interprets and provides related entities for queries. The /document endpoint uses a document's title and content to extract relevant keywords and find related entities.
+The semantic search API supports two endpoints: /query and /document.
+The /query endpoint interprets and provides related entities for queries.
+The /document endpoint parses a document, either a job or resume, and returns the most relevant semantic entities.
 
 # Table of Contents
 _____________
@@ -22,45 +24,42 @@ _____________
 
 - [Document Response](#document-response)
 
-## General information
+## General Information
 
 - [Versioning](#versioning)
 
+- [Error Handling](#error-handling)
+
+- [Upgrade Information](#upgrade-information)
+
+# Query Description
+
+Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. This service also applies stored user overrides to queries when user parameters are supplied in conjunction with the Semantic Overrides API. 
 
 
-#Query Description
-
-Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. Version 1.0 also applies stored user overrides to queries when user parameters are supplied in conjunction with the Semantic Overrides API. 
-
-
-#Query Request Information
+# Query Request Information
 
 
 HTTP method: GET or POST
 Parameters (query/form):
--        query (required) : query to parse and from which to infer meaning
--        version (required for 0.8) : version to use. Ignored if using 1.0, which instead reads the version from the Accept header as per CB API standards. 
--	 language (optional) : In 1.0, two letter language code followed by underscore, followed by two letter country code. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
--	 user_id (optional) : In 1.0, user id for which to look up personalized overrides. Defaults to null. 
+-   query (required) : query to parse and from which to infer meaning
+-	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
+-	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
+-	relationships_threshold : the mimimum weight of a relationship entity to be added as enrichments. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
  
-Example 1.0 request: 
+Example 2.0 request: 
 ```
 HTTP GET
-Accept: application/json;version=1.0
+Accept: application/json;version=2.0
 https://api.careerbuilder.com/core/semanticsearch/query?query=registered%20nurse&language=en_us&user_id=U1234
 ```
 
-Example 0.8 request: 
-```
-HTTP GET
-https://api.careerbuilder.com/core/semanticsearch/query/?query=registered%20nurse&version=0.8
-```
+# Query Response
 
-#Query Response
+The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response).
+Second is the extracted_keywords node, which gives the type and related entities of each extracted keyword. Enrichments can be overridden to be returned with a selected=true flag for a given user_id through the Overrides API.
 
-The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword. Enrichments can be overridden to be returned with a selected=true flag for a given user_id through the Overrides API.
-
-1.0 Response
+2.0 response:
 ```
  {
 	"data": {
@@ -141,91 +140,158 @@ The query response is divided into two parts. First is the parsed_input node, wh
 }
 ```
 
-#Document Description
+# Document Description
 
-Used to parse a job or CV/resume into its most important features and to represent these as a prioritized list of features that can be used to form a matching query.
+Used to parse a job or resume into its most important features and to represent these as a prioritized list of features that can be used to form a matching query.
 
-#Document Request Information
-
+# Document Request Information
 
 HTTP method: GET or POST
 Parameters (query/form):
--        title (required if content not provided) : the title of the document from which to infer meaning
--        content (required if title not provided) : the content of the document (job or CV/resume) from which to infer meaning 
--        version (required) : version to use. currently supports only 0.8 
- 
-Example: 
-```
-https://api.careerbuilder.com/search/semanticsearch/document/?version=0.8&title=java developer&content=
-Job Description
-Bachelor's degree or equivalent work experience preferred.
-A minimum of 5 years of Information Technology experience.
-Excellent communication and problem-solving skills
-A minimum of 5 years of Java/J2EE development experience as a developer with extensive experience 
-in Object Oriented Design and Development
-A minimum of 5 years working with and writing SQL to query a database
-A minimum of 1 year of experience with Spring
-A minimum of 1 year of experience with Hibernate (annotations-based configuration)
-Experience with parsing XML data into Java objects (e.g. JAXB, JAXP, SAX, DOM)
+-	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
+-	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
+-	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
+-	document : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
+-	type : the type of document either "JOB" or "RESUME".
 
-Preferred Qualifications
-Java certifications a plus
-Experience with the following: JSP, Servlets, JDBC, JavaScript
-Experience with Ant and JUnit
-Experience with Adobe Flex and ActionScript
-Strong hands-on knowledge of WSDL development, including defining messages, operations, services, and 
-fault handling.
-Experience with XML and XSLT
-Experience with RESTful web services
-Experience with Struts (1 or 2)
-Customer service and results-oriented while maintaining a team focus
-Ability to work in a dynamic environment with cross-functional teams
-Basic working experience with Unix environment and scripts&version=0.8
+Example 2.0 request:
+```
+HTTP GET
+Accept: application/json;version=2.0
+https://api.careerbuilder.com/core/semanticsearch/document
+{
+	"type": "JOB",
+	"document": "SmF2YSBkZXZlbG9wZXIKCkNvbXBhbnk6IENhcmVlckJ1aWxkZXIKTG9jYXRpb246IEF0bGFudGEsIEdlb3JnaWEKCgpBcHBseSBub3chIFRoYW5rIHlvdSBmb3IgYXBwbHlpbmcuCg==",
+	"relationships_threshold": "0.9"
+}
 ```
 
-#Document Response
+# Document Response
+
+The document response is divided into two parts. First is the parsed_input node which contains information on all extracted keywords and phrases. Next is the extracted_keywords node, which gives the name, type and relationships of all extracted phrases:
+
+- data
+	- parsed_input
+		- input (comma-separated list of extracted keywords and phrases)
+		- parsed_fragments (input as list of strings)
+		- input_to_extracted_keywords (map of extracted strings to canonical strings)
+	- extracted_keywords (list)
+		- name (canonical string)
+		- weight (float)
+		- type (string: skill, job_title, keyword, company, school, location, company_geography)
+		- entity_node (object of type-specific attributes for type: location and company_geography)
+		- relationships (map of canonical string to list of relationship objects)
+			- occupations (for type: job_title, skill, company, keyword)
+			- related_keywords (for type: job_title, skill, company, keyword)
+			- textkernel_related_keywords (for type: job_title, skill, company, keyword)
+			- skills (for type: job_title, skill, company, keyword)
+			- job_titles (for type: job_title, skill, company, keyword)
+			- job_level (for type: job_title, skill, company, keyword)
+			- education_level (for type:school)
+	- versions (map of relationship string to version string)
 
 
-The document response is divided into two parts. First is the extracted keywords node, which gives the type and weight of each extracted keyword in the document, and last is the summary node (e.g. "job_title," "occupations" ....) which give the related entities of the entire document. 
-
-1.0 Response
+2.0 response:
 ```
 {
-	"data": {
-		"extracted_keywords": [{
-			"name": "java",
-			"weight": 0.95,
-			"type": "keyword",
-			"relationships": {}
-		}],
-		"summary": {
-			"job_level": [{
-				"name": "Experienced (non-Manager)",
-				"id": "3",
-				"weight": 1
-			}],
-			"job_titles": [{
-				"name": "Java Developer",
-				"id": "15.2",
-				"weight": 1
-			}],
-			"skills": [{
-				"name": "Java (Programming Language)",
-				"id": "KS120076FGP5WGWYMP0F",
-				"weight": 1
-			}],
-			"occupations": [{
-				"name": "Computer Programmers",
-				"id": "15-1131.00",
-				"weight": 0.98
-			}]
+	"data" : {
+		"parsed_input" : {
+			"input" : "Java developer,Careerbuilder",
+			"parsed_fragments" : [
+				"java developer",
+				"careerbuilder"
+			],
+			"input_to_extracted_keywords" : {
+				"Careerbuilder" : "careerbuilder",
+				"Java developer" : "java developer"
+			}
 		},
-		"versions": {
-			"job_titles": "CaroteneV3",
-			"occupations": "ONet17",
-			"skills": "SkillsV4",
-			"job_level": "JobLevel",
-			"extracted_keywords": "InterestingTermsV3"
+		"extracted_keywords" : [
+			{
+				"name" : "java developer",
+				"relationships" : {
+					"skills" : [
+						{
+							"weight" : 1,
+							"name" : "Java (Programming Language)",
+							"id" : "KS120076FGP5WGWYMP0F"
+						},
+						{
+							"name" : "Hibernate (Java)",
+							"id" : "KS124PR62MV42B5C9S9F",
+							"weight" : 0.93154
+						},
+						{
+							"id" : "KS123KG6DL8N3D5ZW036",
+							"name" : "Java Platform Enterprise Edition (J2EE)",
+							"weight" : 0.92962
+						}
+					],
+					"job_titles" : [
+						{
+							"id" : "15.2",
+							"name" : "Java Developer",
+							"weight" : 1
+						}
+					],
+					"job_level" : [
+						{
+							"name" : "Experienced (non-Manager)",
+							"id" : "3",
+							"weight" : 1
+						}
+					],
+					"text_kernel_related_keywords" : [
+						{
+							"name" : "Java Architect",
+							"weight" : 1
+						},
+						{
+							"name" : "J2EE",
+							"weight" : 1
+						},
+						{
+							"weight" : 1,
+							"name" : "Java Programmer"
+						}
+					],
+					"occupations" : [],
+					"related_keywords" : []
+				},
+				"type" : "job_title",
+				"weight" : 100
+			},
+			{
+				"name" : "careerbuilder",
+				"type" : "company",
+				"weight" : 100
+				"relationships" : {},
+			},
+			{
+				"type" : "job_level",
+				"name" : "EXPERIENCED_NON_MANAGER"
+			},
+			{
+				"type" : "location",
+				"entity_node" : {
+					"address" : "Atlanta, Georgia",
+					"region" : "Georgia"
+				}
+			},
+			{
+				"name" : "Java developer",
+				"type" : "job_title"
+			}
+		],
+		"versions" : {
+			"job_titles" : "CaroteneV3",
+			"text_kernel_related_keywords" : "TextKernelRelatedSearchTerms",
+			"job_level" : "JobLevel",
+			"occupations" : "ONet17",
+			"related_keywords" : "RelatedSearchTermsV1",
+			"extracted_keywords" : "ExtractedKeywords",
+			"skills" : "SkillsV4",
+			"custom_keywords" : "CustomKeywords"
 		}
 	}
 }
@@ -236,3 +302,54 @@ The document response is divided into two parts. First is the extracted keywords
 Each semantic search (query and document) response has a versions section outlining the data version for each taxonomy returned. This versioning information is stable over the life of the contract version. For example, 0.8 will always return job_titles with data version CaroteneV3. New contract versions will sometimes include contract upgrades to taxonomy versions.
 
 Our general versioning strategy is available [here](/Versioning.md).
+
+# Error Handling
+
+On invalid input the service returns an error message with HTTP status code 400.
+
+Error Type | Error Message | Error Code | Cause
+---------- | ------------- | ---------- | -----
+Missing parameters | the document parameter cannot be null or empty | 0 | (only for /document endpoint) document parameter not specified by user or is empty.
+Missing parameters | The type parameter cannot be null or empty, valid types are JOB, RESUME | 0 | Invalid or no type parameters specified by user.
+EmptyRequest | Query parameter must be non-empty | 0 | (only for /query endpoint) query parameter not specified by the user or is empty.
+Bad request | "Language '<lang>' is not supported. Supported languages are: EN_GB, EN_US, FR_FR, DE_DE, NL_NL. | 0 | Language specified by user is not supported.
+Bad request | Invalid language '<lang>'. Valid languages are: EN_GB, EN_US, FR_FR, DE_DE, NL_NL. | 0 | Value for parameter language is invalid.
+Bad request | The parameter 'relationships_threshold' must be between 0.0 and 1.0 (default: 0.5). | 0 | Value for parameter relationships_threshold is invalid.
+
+Example error response:
+```
+{
+  "errors": [
+    {
+      "type": "Missing parameters",
+      "message": "The type parameter cannot be null or empty, valid types are [JOB, RESUME]",
+      "code": 0
+    }
+  ],
+  "status": "BAD_REQUEST"
+}
+```
+
+# Upgrade Information
+
+
+## API changes from 1.0 to 2.0
+
+- General
+	- Changed the semantics of the 'language' request parameter to mean the language of enrichments to be used. In version 1.0 the 'language' parameter was only used to look up the personal overrides.
+	- Added request parameter 'relationships_threshold'.
+	- Added [Error Messages](#error-handling).
+- Document Endpoint
+	- Removed the 'title' request parameter.
+	- Removed the 'content' request parameter.
+	- Added the 'document' request parameter (base64 encoded binary file).
+	- Added the 'type' request parameter ("JOB" or "RESUME").
+	- Removed the 'summary' field from the response.
+	- Removed the sub field 'id' from the 'extracted_keywords' response field.
+	- Added the 'parsed_input' field to the response.
+	- Added relationships to the extracted_keywords.
+
+## API changes from 0.8 to 1.0
+
+- General
+	- Replaced 'version' GET/POST request parameter with 'version' HTTP Accept header.
