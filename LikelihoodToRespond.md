@@ -18,13 +18,17 @@ The LTR service is hosted in the CareerBuilder API routing layer's Staging, US P
 
 The service responds to three types of requests, described in detail in this section. Requests can be provided as HTTP GETs or HTTP POSTs. POST requests may be sent as either `application/json` or `application/x-www-form-urlencoded` content types.
 
-**Email lookups**<br />The service may be queried with an `email_address` parameter to retrieve LTR records for a particular job seeker. No validation is performed on the provided email string. If no matching record exists, an empty list will be returned.
+**Email lookups**<br />The service may be queried with an `email_address` parameter to retrieve the LTR record for a particular job seeker. No validation is performed on the provided email string. If no matching record exists, an empty list will be returned.
 
-**Generic threshold queries**<br />The service may be queried with an `ltr_threshold` decimal parameter to retrieve records for job seekers whose generic LTR score matches or exceeds the provided threshold. The `ltr_threshold` parameter must be between 0.0 and 1.0, inclusive. The `skip_results` integer parameter may optionally be provided to enable "stepping through" a large result set. If no records meet or exceed the provided threshold, an empty list will be returned.
+**Generic threshold queries**<br />The service may be queried with an `ltr_threshold` decimal parameter to retrieve records for job seekers whose generic LTR score matches or exceeds the provided threshold. The `ltr_threshold` parameter must be between 0.0 and 1.0, inclusive.
 
-**Carotene-specific threshold queries**<br />The service may be queried with an `ltr_threshold` parameter accompanied by a `carotene_id` parameter. The `carotene_id` parameter should be a valid and complete CaroteneV3 ID. (A full list of CaroteneV3 IDs can be obtained via the [Taxonomy Service](/TaxonomyService.md).) No validation is performed on the provided Carotene ID. The `skip_results` integer parameter may optionally be provided to enable "stepping through" a large result set. If the Carotene ID does not match any records, or none of the matched records meet or exceed the provided threshold, an empty list will be returned.
+The `skip_results` integer parameter may optionally be provided to enable "stepping through" a large result set. If no records meet or exceed the provided threshold, an empty list will be returned.
 
-Invalid requests (such as requests specifying both `email_address` and `ltr_threshold`, or with an `ltr_threshold` value that is not a decimal in the specified range) will incur an HTTP 400 Bad Request error.
+**Carotene-specific threshold queries**<br />The service may be queried with an `ltr_threshold` parameter accompanied by a `carotene_id` parameter. The `carotene_id` parameter should be a valid and complete CaroteneV3 ID. (A full list of CaroteneV3 IDs can be obtained via the [Taxonomy Service](/TaxonomyService.md).) No validation is performed on the provided Carotene ID.
+
+The `skip_results` integer parameter may optionally be provided to enable "stepping through" a large result set. If the Carotene ID does not match any records, or none of the matched records meet or exceed the provided threshold, an empty list will be returned.
+
+Invalid requests (such as those specifying both `email_address` and `ltr_threshold`, or specifying an `ltr_threshold` value that is not a decimal in the specified range) will receive an HTTP 400 Bad Request error.
 
 # Response Information
 
