@@ -1,12 +1,11 @@
 Likelihood To Respond Service
 =============
 
-Table of Contents
-_________
+Contents
+
 - [Overview](#overview)
 - [Request Information](#request-information)
 - [Response Information](#response-information)
-- [Sample Request](#sample-request)
 
 # Overview
 
@@ -18,13 +17,22 @@ The LTR service is hosted in the CareerBuilder API routing layer's Staging, US P
 
 The service responds to three types of requests, described in detail in this section. Requests can be provided as HTTP GETs or HTTP POSTs. POST requests may be sent as either `application/json` or `application/x-www-form-urlencoded` content types.
 
-**Email lookups**<br />The service may be queried with an `email_address` parameter to retrieve the LTR record for a particular job seeker. No validation is performed on the provided email string. If no matching record exists, an empty list will be returned.
+**Email lookups**<br />
+*e.g. ?email_address=example@demo.com*
 
-**Generic threshold queries**<br />The service may be queried with an `ltr_threshold` decimal parameter to retrieve records for job seekers whose generic LTR score matches or exceeds the provided threshold. The `ltr_threshold` parameter must be between 0.0 and 1.0, inclusive.
+The service may be queried with an `email_address` parameter to retrieve the LTR record for a particular job seeker. No validation is performed on the provided email string. If no matching record exists, an empty list will be returned.
+
+**Generic threshold queries**<br />
+*e.g. ?ltr_threshold=0.05*
+
+The service may be queried with an `ltr_threshold` decimal parameter to retrieve records for job seekers whose generic LTR score matches or exceeds the provided threshold. The `ltr_threshold` parameter must be between 0.0 and 1.0, inclusive.
 
 The `skip_results` integer parameter may optionally be provided to enable "stepping through" a large result set. If no records meet or exceed the provided threshold, an empty list will be returned.
 
-**Carotene-specific threshold queries**<br />The service may be queried with an `ltr_threshold` parameter accompanied by a `carotene_id` parameter. The `carotene_id` parameter should be a valid and complete CaroteneV3 ID. (A full list of CaroteneV3 IDs can be obtained via the [Taxonomy Service](/TaxonomyService.md).) No validation is performed on the provided Carotene ID.
+**Carotene-specific threshold queries**<br />
+*e.g. ?ltr_threshold=0.05&carotene_id=15.1*
+
+The service may be queried with an `ltr_threshold` parameter accompanied by a `carotene_id` parameter. The `carotene_id` parameter should be a valid and complete CaroteneV3 ID. (A full list of CaroteneV3 IDs can be obtained via the [Taxonomy Service](/TaxonomyService.md).) No validation is performed on the provided Carotene ID.
 
 The `skip_results` integer parameter may optionally be provided to enable "stepping through" a large result set. If the Carotene ID does not match any records, or none of the matched records meet or exceed the provided threshold, an empty list will be returned.
 
