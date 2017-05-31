@@ -7,8 +7,8 @@ The /document endpoint parses a document, either a job or resume, and returns th
 
 # Versions
 
--	[Version 2](SemanticSearch2)
--	[Version 1](SemanticSearch1)
+-	[Version 2](SemanticSearch2.md)
+-	[Version 1](SemanticSearch1.md)
 
 ## Versioning
 
