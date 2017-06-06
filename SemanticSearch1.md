@@ -28,12 +28,12 @@ _____________
 
 
 
-#Query Description
+### Query Description
 
 Interprets the meaning of a user's query. Used to parse a query into the intended phrases, to identify the type of entities being searched for (job title, skill, company, location, etc.), and to identify the most related other phrases/entities that help better represent the intended query. Version 1.0 also applies stored user overrides to queries when user parameters are supplied in conjunction with the Semantic Overrides API. 
 
 
-#Query Request Information
+### Query Request Information
 
 
 HTTP method: GET or POST
@@ -56,7 +56,7 @@ HTTP GET
 https://api.careerbuilder.com/core/semanticsearch/query/?query=registered%20nurse&version=0.8
 ```
 
-#Query Response
+### Query Response
 
 The query response is divided into two parts. First is the parsed_input node, which gives information about parsing of extracted keywords in the query (this node is missing in the document response). Second is the extracted keywords node, which gives the type and related entities of each extracted keyword. Enrichments can be overridden to be returned with a selected=true flag for a given user_id through the Overrides API.
 
@@ -141,22 +141,21 @@ The query response is divided into two parts. First is the parsed_input node, wh
 }
 ```
 
-#Document Description
+### Document Description
 
 Used to parse a job or CV/resume into its most important features and to represent these as a prioritized list of features that can be used to form a matching query.
 
-#Document Request Information
-
+### Document Request Information
 
 HTTP method: GET or POST
 Parameters (query/form):
 -        title (required if content not provided) : the title of the document from which to infer meaning
 -        content (required if title not provided) : the content of the document (job or CV/resume) from which to infer meaning 
--        version (required) : version to use. currently supports only 0.8 
+-        version (required) : version to use. currently supports 0.8 and 1.0.
  
 Example: 
 ```
-https://api.careerbuilder.com/search/semanticsearch/document/?version=0.8&title=java developer&content=
+https://api.careerbuilder.com/core/semanticsearch/document/?version=0.8&title=java developer&content=
 Job Description
 Bachelor's degree or equivalent work experience preferred.
 A minimum of 5 years of Information Technology experience.
@@ -180,15 +179,72 @@ Experience with RESTful web services
 Experience with Struts (1 or 2)
 Customer service and results-oriented while maintaining a team focus
 Ability to work in a dynamic environment with cross-functional teams
-Basic working experience with Unix environment and scripts&version=0.8
+Basic working experience with Unix environment and scripts
 ```
 
-#Document Response
+### Document Response
 
+0.8 Response
+
+The response contains several lists of entities. The lists are extracted_keywrods, job_leve, job_titles, skills, occupations.
+```
+{
+  "extracted_keywords": [
+    {
+      "name": "java developer",
+      "weight": 0.98,
+      "type": "keyword",
+      "relationships": {
+      }
+    },
+    ...
+  ],
+  "job_level": [
+    {
+      "name": "Experienced (non-Manager)",
+      "id": "3",
+      "weight": 1.0
+    }
+  ],
+  "job_titles": [
+    {
+      "name": "Java Developer",
+      "id": "15.2",
+      "weight": 1.0
+    },
+    ...
+  ],
+  "occupations": [
+    {
+      "name": "Computer Programmers",
+      "id": "15-1131.00",
+      "weight": 0.9
+    },
+    ...
+  ],
+  "skills": [
+    {
+      "name": "Java (Programming Language)",
+      "id": "KS120076FGP5WGWYMP0F",
+      "weight": 1.0
+    },
+    ...
+  ],
+  "versions": {
+    "job_titles": "CaroteneV3",
+    "occupations": "ONet17",
+    "skills": "SkillsV4",
+    "job_level": "JobLevel",
+    "extracted_keywords": "InterestingTermsV3"
+  }
+}
+```
+
+
+1.0 Response
 
 The document response is divided into two parts. First is the extracted keywords node, which gives the type and weight of each extracted keyword in the document, and last is the summary node (e.g. "job_title," "occupations" ....) which give the related entities of the entire document. 
 
-1.0 Response
 ```
 {
 	"data": {
