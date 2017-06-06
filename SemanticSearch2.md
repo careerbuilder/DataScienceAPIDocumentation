@@ -293,7 +293,7 @@ The document response is divided into two parts. First is the parsed_input node 
 ```
 # Error Handling
 
-On invalid input the service returns an error message with HTTP status code 400.
+On invalid input, the service returns an error message with HTTP status code 400.
 
 Error Type | Error Message | Error Code | Cause
 ---------- | ------------- | ---------- | -----
