@@ -42,7 +42,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, or .wps document given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
-* **url** (Optional) -- For html documents, the url of the document. For certain domains, the Job Parser has custom parsing rules that can improve the quality of the parse. See [below](#domains-with-custom-parsing-rules) for a list of domains with custom parsing rules.
+* **url** (Optional) -- For html documents, the url of the document. For [certain domains](#domains-with-custom-parsing-rules), the Job Parser has custom parsing rules that can improve the quality of the parse.
 
 * **desired_enrichments** (Required) -- A comma-separated list, without spaces, of the desired normalization calls to perform on the results of the job parsing operation. 
 
