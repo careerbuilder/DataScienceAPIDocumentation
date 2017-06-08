@@ -63,6 +63,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
   "data": {
     "parsed": {
       "job_title": string,
+      "job_title_clean": string,
       "job_location": {
         "address": string,
         "region": string,
