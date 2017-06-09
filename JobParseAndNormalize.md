@@ -42,6 +42,8 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, or .wps document given in a BASE64 encoded string.  Please note that the .pages format is not accepted by Textkernel; you will need to specify another parser.
 
+* **url** (Optional) -- When parsing html, the Job Parser has custom parsing rules for [certain domains](#domains-with-custom-parsing-rules) that can improve the quality of the parse. This field allows users who are sending html to specify the url of the document and thereby improve parsing quality for domains which have custom parsing rules. Users including this field should use the full url of the document.
+
 * **desired_enrichments** (Required) -- A comma-separated list, without spaces, of the desired normalization calls to perform on the results of the job parsing operation. 
 
     This list of possible values for **desired_enrichments** and the enrichments they correspond to are as follows:
@@ -63,6 +65,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
   "data": {
     "parsed": {
       "job_title": string,
+      "job_title_clean": string,
       "job_location": {
         "address": string,
         "region": string,
@@ -340,6 +343,32 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
   }
 }
 ```
+
+## Domains With Custom Parsing Rules
+
+Domains for which there are custom parsing rules include, but are not limited to:
+
+- indeed.com
+- truckdrivingjobs.com
+- glassdoor.com
+- care.com
+- snagajob.com
+- careerarc.com
+- monster.com
+- careerboard.com
+- jobserve.com
+- careersingear.com
+- dice.com
+- allnurses.com
+- resume-library.com
+- pure-jobs.com
+- thejobnetwork.com
+- mitalent.org
+- findatruckerjob.com
+- k12jobspot.com
+- disabledperson.com
+- jobing.com
+
 
 ## Versioning
 
