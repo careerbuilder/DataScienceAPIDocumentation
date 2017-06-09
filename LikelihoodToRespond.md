@@ -34,7 +34,7 @@ The service may be queried with an `ltr_threshold` parameter accompanied by a `c
 
 **Pagination**<br />
 
-Generic and Carotene-specific threshold queries will occasionally yield large numbers of results. A single service response will contain a maximum of 1000 results. Pagination controls are available to traversal of large result sets. (Note that result sets are always sorted in descending order of the appropriate LTR score for the request type, and the result set for a specific query will remain consistent within a given upload day.)
+Generic and Carotene-specific threshold queries will occasionally yield large numbers of results. A single service response will contain a maximum of 1000 results. Pagination controls are available to enable traversal of large result sets. (Note that result sets are always sorted in descending order of the appropriate LTR score for the request type, and the result set for a specific query will remain consistent within a given upload day.)
 
 A single page is defined as 1000 results. The first page of results returned for a query is page 0; re-issuing the request with `page=1` will return results 1001 through 2000, and so on. The response will contain fields for `page` (indicating the current page), `total` (indicating the total size of the result set), and `page_size` (indicating the maximum number of results to be included in one page).
 
