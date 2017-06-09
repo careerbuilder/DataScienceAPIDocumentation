@@ -346,7 +346,29 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 ## Domains With Custom Parsing Rules
 
-...
+Domains for which there are custom parsing rules include, but are not limited to:
+
+- indeed.com
+- truckdrivingjobs.com
+- glassdoor.com
+- care.com
+- snagajob.com
+- careerarc.com
+- monster.com
+- careerboard.com
+- jobserve.com
+- careersingear.com
+- dice.com
+- allnurses.com
+- resume-library.com
+- pure-jobs.com
+- thejobnetwork.com
+- mitalent.org
+- findatruckerjob.com
+- k12jobspot.com
+- disabledperson.com
+- jobing.com
+
 
 ## Versioning
 
