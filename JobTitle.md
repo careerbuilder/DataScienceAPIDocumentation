@@ -12,7 +12,7 @@ _________
 
 
 
-#Request Information
+# Request Information
 
 
 HTTP method: GET or POST
@@ -25,7 +25,7 @@ Parameters (query/form):
 -        contentLang (use contentLang in version 0.9 and use content_lang in version 1.0) (optional) : the language of the provided text. You should provide this if it is known, as it will improve the accuracy of our translation system. If this parameter is not specified, the service will attempt to detect the language of the text automatically. Accepted language codes are listed below.
 
 Version 1.0 Example: https://api.careerbuilder.com/core/classifier/jobtitle?title=Janitor&taxonomy=carotenev3.1|onet17&content_lang=auto
-#Sample Response
+# Sample Response
 ```
 {
     "data": {
