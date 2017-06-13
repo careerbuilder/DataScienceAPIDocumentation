@@ -54,7 +54,7 @@ Version 1.0 Example: https://api.careerbuilder.com/core/classifier/jobtitle?titl
 }
 ```
 
-#Taxonomies
+# Taxonomies
 Possible taxonomies (with links to full taxonomy results)
 
 | Taxonomy | description |
@@ -63,8 +63,8 @@ Possible taxonomies (with links to full taxonomy results)
 | [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | 7 removals, 139 updates, and 1,386 new titles.  <br> [CaroteneV2_2ToV3CrossWalk.md](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)<br> [Carotenev2.2 to v3 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev2.2%20to%20v3%20Crosswalk.xlsx)|
 | [carotenev3.1](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.1.csv) | 4 additions, 78 updates, and 28 removals. Adds disambiguation to v3 and includes minorTitle and minorId fields (in version 1.0, they are minor_title and minor_id) for hierarchical classification. <br>[Carotenev3 to v3.1 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev3%20to%20v3.1%20Crosswalk.xlsx) |
 
-#Languages
-Languages accepted are 
+# Languages
+Languages accepted are: 
 * ar
 * bg
 * ca
@@ -110,13 +110,13 @@ Languages accepted are
 * zhCHS
 * zhCHT
 
-#Translation Information
+# Translation Information
 
 We use translation vendors for non-English requests. These vendors are unversioned and update and improve their algorithms at will. These translations are cached but may be refreshed and change over time. Due to this it is possible that non-English job titles may differ over time, though we expect the difference to be minimal.
 
 When "auto" is supplied as the contentLang parameter and our service's built-in language detector identifies the text as non-English, we will rely on our translation vendors to detect the language of the text in addition to translating it.
 
-#Versioning
+# Versioning
 -----------
 JobTitle versions the API contract and taxonomies separately.  The API version controls the format of the API call and response.  The taxonomy version controls what data is returned for the call.  The current API version is 1.0.
 
