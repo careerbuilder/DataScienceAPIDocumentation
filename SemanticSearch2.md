@@ -169,17 +169,17 @@ The document response is divided into two parts. First is the parsed_input node 
 
 - data
 	- parsed_input
-		- input (comma-separated list of extracted keywords and phrases)
-		- parsed_fragments (input as list of strings)
-		- input_to_extracted_keywords (map of extracted strings to canonical strings)
+		- input (list): comma-separated list of extracted keywords and phrases
+		- parsed_fragments (list): input as list of strings
+		- input_to_extracted_keywords (map): mapping extracted strings to canonical strings
 	- extracted_keywords (list)
-		- name (canonical string)
-		- weight (float)
-		- type (string: skill, job_title, keyword, company, school, location, company_geography)
-		- entity_node (object of type-specific attributes for type: location and experience_level):
-		    - location: address, city, country, region, state, zip
-		    - experience_level: level, minYears, maxYears 
-		- relationships (map of canonical string to list of relationship objects)
+		- name (string): canonical name
+		- weight (float): estimated weight (0-100)
+		- type (string): skill, job_title, keyword, company, school, location, company_geography
+		- entity_node (map of strings) (occurs only in the following types):
+		    - location; possible fields: address, city, country, region, state, zip
+		    - experience_level; possbiel fields: level, minYears, maxYears 
+		- relationships (map of strings):
 			- occupations (for type: job_title, skill, company, keyword)
 			- related_keywords (for type: job_title, skill, company, keyword)
 			- textkernel_related_keywords (for type: job_title, skill, company, keyword)
@@ -187,7 +187,7 @@ The document response is divided into two parts. First is the parsed_input node 
 			- job_titles (for type: job_title, skill, company, keyword)
 			- job_level (for type: job_title, skill, company, keyword)
 			- education_level (for type:school)
-	- versions (map of relationship string to version string)
+	- versions (map): relationship strings mapped to version strings
 
 
 2.0 response:
