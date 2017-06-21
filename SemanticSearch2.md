@@ -169,15 +169,17 @@ The document response is divided into two parts. First is the parsed_input node 
 
 - data
 	- parsed_input
-		- input (comma-separated list of extracted keywords and phrases)
-		- parsed_fragments (input as list of strings)
-		- input_to_extracted_keywords (map of extracted strings to canonical strings)
+		- input (list): comma-separated list of extracted keywords and phrases
+		- parsed_fragments (list): input as list of strings
+		- input_to_extracted_keywords (map): mapping extracted strings to canonical strings
 	- extracted_keywords (list)
-		- name (canonical string)
-		- weight (float)
-		- type (string: skill, job_title, keyword, company, school, location, company_geography)
-		- entity_node (object of type-specific attributes for type: location and company_geography)
-		- relationships (map of canonical string to list of relationship objects)
+		- name (string): canonical name
+		- weight (float): estimated weight (0-100)
+		- type (string): skill, job_title, keyword, company, school, location, company_geography
+		- entity_node (map of strings) (occurs only in the following types):
+		    - location; possible fields: address, city, country, region, state, zip
+		    - experience_level; possbiel fields: level, minYears, maxYears 
+		- relationships (map of strings):
 			- occupations (for type: job_title, skill, company, keyword)
 			- related_keywords (for type: job_title, skill, company, keyword)
 			- textkernel_related_keywords (for type: job_title, skill, company, keyword)
@@ -185,7 +187,7 @@ The document response is divided into two parts. First is the parsed_input node 
 			- job_titles (for type: job_title, skill, company, keyword)
 			- job_level (for type: job_title, skill, company, keyword)
 			- education_level (for type:school)
-	- versions (map of relationship string to version string)
+	- versions (map): relationship strings mapped to version strings
 
 
 2.0 response:
@@ -291,30 +293,3 @@ The document response is divided into two parts. First is the parsed_input node 
 	}
 }
 ```
-# Error Handling
-
-On invalid input, the service returns an error message with HTTP status code 400.
-
-Error Type | Error Message | Error Code | Cause
----------- | ------------- | ---------- | -----
-Missing parameters | the document parameter cannot be null or empty | 0 | (only for /document endpoint) document parameter not specified by user or is empty.
-Missing parameters | The type parameter cannot be null or empty, valid types are JOB, RESUME | 0 | Invalid or no type parameters specified by user.
-EmptyRequest | Query parameter must be non-empty | 0 | (only for /query endpoint) query parameter not specified by the user or is empty.
-Bad request | "Language '<lang>' is not supported. Supported languages are: EN_GB, EN_US, FR_FR, DE_DE, NL_NL. | 0 | Language specified by user is not supported.
-Bad request | Invalid language '<lang>'. Valid languages are: EN_GB, EN_US, FR_FR, DE_DE, NL_NL. | 0 | Value for parameter language is invalid.
-Bad request | The parameter 'relationships_threshold' must be between 0.0 and 1.0 (default: 0.5). | 0 | Value for parameter relationships_threshold is invalid.
-
-Example error response:
-```
-{
-  "errors": [
-    {
-      "type": "Missing parameters",
-      "message": "The type parameter cannot be null or empty, valid types are [JOB, RESUME]",
-      "code": 0
-    }
-  ],
-  "status": "BAD_REQUEST"
-}
-```
-
