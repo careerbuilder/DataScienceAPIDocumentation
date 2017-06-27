@@ -1,4 +1,4 @@
-Semantic Search API V2
+Semantic Search API V2 (Under Revision)
 =====================
 
 The semantic search API supports two endpoints: /query and /document.
