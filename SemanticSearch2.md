@@ -151,7 +151,8 @@ Parameters (query/form):
 -	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
 -	document : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
 -	type : the type of document either "JOB" or "RESUME".
--   fields (optional) : a Json map that can pre-define a job title and/or a location overriding the parser output, for instance: `{"job_title":"Java Developer", "location":"New York"}`
+-   job_title : pre-define a job title to override the one extracted from a job 
+-   location : pre-define a location to override the one extracted from a job
 
 Example 2.0 request:
 ```
@@ -161,7 +162,9 @@ https://api.careerbuilder.com/core/semanticsearch/document
 {
 	"type": "JOB",
 	"document": "SmF2YSBkZXZlbG9wZXIKCkNvbXBhbnk6IENhcmVlckJ1aWxkZXIKTG9jYXRpb246IEF0bGFudGEsIEdlb3JnaWEKCgpBcHBseSBub3chIFRoYW5rIHlvdSBmb3IgYXBwbHlpbmcuCg==",
-	"relationships_threshold": "0.9"
+	"relationships_threshold": "0.9",
+	"job_title": "Java Developer",
+	"location": "New York"
 }
 ```
 
