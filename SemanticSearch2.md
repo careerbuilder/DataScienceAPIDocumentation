@@ -1,5 +1,5 @@
-Semantic Search API V2 (Under Revision)
-=====================
+Semantic Search API V2.0
+========================
 
 The semantic search API supports two endpoints: /query and /document.
 The /query endpoint interprets and provides related entities for queries.
@@ -41,8 +41,7 @@ Parameters (query/form):
 -	query (required) : query to parse and from which to infer meaning.
 -	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
--	relationships_threshold : the mimimum weight of a relationship entity to be added as enrichments. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
--   fields (optional) : a Json map that can pre-define a job title and/or a location overriding the parser output, for instance: `{"job_title":"Java Developer", "location":"New York"}`
+-	relationships_threshold (optional) : the mimimum weight of a relationship entity to be added as enrichments. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
  
 Example 2.0 request: 
 ```
@@ -148,11 +147,11 @@ HTTP method: GET or POST
 Parameters (query/form):
 -	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
--	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
--	document : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
--	type : the type of document either "JOB" or "RESUME".
--   job_title : pre-define a job title to override the one extracted from a job 
--   location : pre-define a location to override the one extracted from a job
+-	relationships_threshold (optional) : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
+-	document (optional) : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
+-	type (required) : the type of document either "JOB" or "RESUME".
+-   job_title (optional) : pre-define a job title to override the one extracted from a job 
+-   location (optional) : pre-define a location to override the one extracted from a job
 
 Example 2.0 request:
 ```
