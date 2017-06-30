@@ -44,7 +44,7 @@ This endpoint supports the both HTTP/GET and HTTP/POST methods.
 
 ### Version Parameter:
 
-*Resolved Title Service* is currently on version 1.0.  Version **must be** specified the Accept header (Ex. `Accept:application/json;version=1.0`).
+*Resolved Title Service* is currently on version 1.0.  Version **MUST BE** specified the Accept header (Ex. `Accept:application/json;version=1.0`).
 
 ## Response
 
