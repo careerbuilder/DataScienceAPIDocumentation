@@ -44,7 +44,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **url** (Optional) -- When parsing html, the Job Parser has custom parsing rules for [certain domains](#domains-with-custom-parsing-rules) that can improve the quality of the parse. This field allows users who are sending html to specify the url of the document and thereby improve parsing quality for domains which have custom parsing rules. Users including this field should use the full url of the document.
 
-* **job_title** (Optional) -- The job title for the docuemnt, if supplied, overrides the job_title field in the response. The job_title_clean field in the response will be cleaned based on this supplied value as well instead of using the job title parsed from the document.
+* **job_title** (Optional) -- The job title for the document. Overrides the job_title field in the response if supplied. The job_title_clean field in the response will be cleaned based on this supplied value as well, instead of using the job title parsed from the document.
 
 * **location** (Optional) -- A location supplied by the user, which will be used to override job_location field in the response.
 
