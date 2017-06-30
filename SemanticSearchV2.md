@@ -146,7 +146,7 @@ Parameters (query/form):
 -	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
 -	document : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
 -	type : the type of document is either "JOB" or "RESUME".
--	job_title (optional, only valid when type is JOB) : a pre-define job title to override the one extracted from a job document. Notice that the job title may also be cleaned internally in order to get enrichments.
+-	job_title (optional, only valid when type is JOB) : a pre-defined job title which overrides the job title extracted from a job document. Notice that the job title may also be cleaned in order to get enrichments.
 -	location (optional, , only valid when type is JOB): a pre-defined location to override the one extracted from a job document.
 
 Example 2.0 request:
