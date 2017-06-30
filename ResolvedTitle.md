@@ -48,7 +48,7 @@ This endpoint supports the both HTTP/GET and HTTP/POST methods.
 
 ## Response
 
-#### 1.0 Sample Response:
+#### Sample Response:
 ```json
 {
     "data": {
