@@ -147,7 +147,7 @@ Parameters (query/form):
 -	document : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
 -	type : the type of document is either "JOB" or "RESUME".
 -	job_title (optional, only valid when type is JOB) : a pre-defined job title which overrides the job title extracted from a job document. Notice that the job title may also be cleaned in order to get enrichments.
--	location (optional, , only valid when type is JOB): a pre-defined location to override the one extracted from a job document.
+-	location (optional, only valid when type is JOB): a pre-defined location which overrides the location extracted from a job document.
 
 Example 2.0 request:
 ```
