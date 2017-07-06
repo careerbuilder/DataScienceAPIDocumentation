@@ -48,7 +48,6 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **location** (Optional) -- A location supplied by the user, which will be used to override job_location field in the response.
 
-
 * **desired_enrichments** (Required) -- A comma-separated list, without spaces, of the desired normalization calls to perform on the results of the job parsing operation. 
 
 
