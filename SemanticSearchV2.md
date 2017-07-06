@@ -144,9 +144,9 @@ Parameters (query/form):
 -	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
 -	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
--	document : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
--	type : the type of document is either "JOB" or "RESUME".
--	job_title (optional, only valid when type is JOB) : a pre-defined job title which overrides the job title extracted from a job document. Notice that the job title may also be cleaned in order to get enrichments.
+-	document (required) : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
+-	type (required) : the type of the document. Acceptable values are "JOB" and "RESUME".
+-	job_title (optional, only valid when type is JOB) : a pre-defined job title which overrides the job_title field extracted from a job document. Note that the job_title field will also be cleaned.
 -	location (optional, only valid when type is JOB): a pre-defined location which overrides the location extracted from a job document.
 
 Example 2.0 request:
