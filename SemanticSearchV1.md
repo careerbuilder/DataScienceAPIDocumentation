@@ -1,6 +1,8 @@
 Semantic Search API V1
 ======================
 
+**Notice: The semantic search API's current version is [v2.0](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). Customers are encouraged to begin using v2.0 since v1.0 will be deprecated in the near future.**
+
 The semantic search API supports two endpoints: /query and /document. The /query endpoint interprets and provides related entities for queries. The /document endpoint uses a document's title and content to extract relevant keywords and find related entities.
 
 # Table of Contents
