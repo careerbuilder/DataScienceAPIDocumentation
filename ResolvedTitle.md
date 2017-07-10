@@ -28,7 +28,7 @@ This endpoint supports the both HTTP/GET and HTTP/POST methods.
     <tr>
         <td><pre>target_titles</pre></td>
         <td>true</td>
-        <td>A pipe delimeted list of possible titles to resolve to.  A single title may be supplied if the user simply wishes to test whether an input is a good match for a specified title.</td>
+        <td>A pipe delimited list of possible titles to resolve to.  A single title may be supplied if the user simply wishes to test whether an input is a good match for a specified title.</td>
     </tr>
     <tr>
         <td><pre>raw_title</pre></td>
@@ -44,7 +44,7 @@ This endpoint supports the both HTTP/GET and HTTP/POST methods.
 
 ### Version Parameter:
 
-*Resolved Title Service* is currently on version 1.0.  Version **MUST BE** specified the Accept header (Ex. `Accept:application/json;version=1.0`).
+*Resolved Title Service* is currently on version 1.0.  Version **MUST BE** specified in the Accept header (Ex. `Accept:application/json;version=1.0`).
 
 ## Response
 
