@@ -42,6 +42,6 @@ The response returns a single data node which contains a list of normalized majo
 
 #Versioning
 -----------
-The response from the School Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is unversioned.
+The response from the Major Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is unversioned.
 
 Our general versioning strategy is available [here](/Versioning.md).
