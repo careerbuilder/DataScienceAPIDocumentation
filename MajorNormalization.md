@@ -14,7 +14,7 @@ Request Information
 
 HTTP method: GET or POST
 Parameters (query/form):
--       major_name (required) : The major name to be normalized
+      major_name (required) : The major name to be normalized
  
 Example: https://api.careerbuilder.com/core/normalizedmajor?major_name=electrical engineering
 
