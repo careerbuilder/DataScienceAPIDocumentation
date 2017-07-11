@@ -9,8 +9,8 @@ _________
 
 
 
-#Request Information
-
+Request Information
+-----
 
 HTTP method: GET or POST
 Parameters (query/form):
@@ -18,8 +18,8 @@ Parameters (query/form):
  
 Example: https://api.careerbuilder.com/core/normalizedmajor?major_name=electrical engineering
 
-#Sample Response
-
+Sample Response
+-----
 
 ```
 {
@@ -36,11 +36,12 @@ Example: https://api.careerbuilder.com/core/normalizedmajor?major_name=electrica
 ```
 
 
-#Response Information
+Response Information
+-----
 
 The response returns a single data node which contains a list of normalized majors. These normalized majors are ordered by the confidence score. Confidence scores range from 0.0 to 1.0. 
 
-#Versioning
+Versioning
 -----------
 The response from the Major Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is unversioned.
 
