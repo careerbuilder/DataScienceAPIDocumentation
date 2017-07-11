@@ -16,7 +16,21 @@ HTTP method: GET or POST
 Parameters (query/form):
 
 
-```major_name (required): (String) The major name to be normalized```
+<table>
+    <tr>
+    <td colspan="4"><b>Request Fields</b></td>
+    </tr>
+    <tr>
+        <td><b>Name</b></td>
+        <td><b>Required</b></td>
+        <td><b>Comment</b></td>
+    </tr>
+    <tr>
+        <td><pre>major_name</pre></td>
+        <td>true</td>
+        <td>A string containing the major name to be normalized</td>
+    </tr>
+</table>
  
 Example: https://api.careerbuilder.com/core/normalizedmajor?major_name=electrical%20engineering
 
