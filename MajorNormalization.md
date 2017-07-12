@@ -13,6 +13,7 @@ Request Information
 -----
 
 HTTP method: GET or POST
+
 Parameters (query/form):
 
 
@@ -44,9 +45,10 @@ Sample Response
             {
                 "normalized_name": "Electrical Engineering",
                 "cip_code": 15.001,
-                "confidence": 1.0,
+                "confidence": 4.13334
             }
-        ]
+        ],
+        "data_version":"1.0.0"
     }
 }
 ```
@@ -55,10 +57,10 @@ Sample Response
 Response Information
 -----
 
-The response returns a single data node which contains a list of normalized majors. These normalized majors are ordered by the confidence score. Confidence scores range from 0.0 to 1.0. 
+The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. _At this point, Confidence scores are not normalized, and should not be taken literally. An update will release soon that will normalize confidence scores.
 
 Versioning
 -----------
-The response from the Major Normalization Service is versioned with the current version being 1.0. The data set used to perform the normalization is unversioned.
+The data that backs the Major Normalization Service is versioned. The data version is returned at the "data" node level.
 
 Our general versioning strategy is available [here](/Versioning.md).
