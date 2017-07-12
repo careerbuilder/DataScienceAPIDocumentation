@@ -57,7 +57,7 @@ Sample Response
 Response Information
 -----
 
-The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. 
+The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. Confidence scores range from [0, 1].
 
 Versioning
 -----------
