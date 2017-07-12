@@ -57,7 +57,7 @@ Sample Response
 Response Information
 -----
 
-The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. _At this point, Confidence scores are not normalized, and should not be taken literally. An update will release soon that will normalize confidence scores.
+The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. At this point, Confidence scores are not normalized, and should not be taken literally. An update will release soon that will normalize confidence scores.
 
 Versioning
 -----------
