@@ -45,7 +45,7 @@ Sample Response
             {
                 "normalized_name": "Electrical Engineering",
                 "cip_code": 15.001,
-                "confidence": 4.13334
+                "confidence": 0.8885
             }
         ],
         "data_version":"1.0.0"
@@ -57,7 +57,7 @@ Sample Response
 Response Information
 -----
 
-The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. At this point, Confidence scores are not normalized, and should not be taken literally. An update will release soon that will normalize confidence scores.
+The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. 
 
 Versioning
 -----------
