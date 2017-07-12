@@ -48,7 +48,7 @@ Sample Response
                 "confidence": 0.8885
             }
         ],
-        "data_version":"1.0.0"
+        "data_version": "1.0.0"
     }
 }
 ```
@@ -61,6 +61,6 @@ The response returns a single data node which contains a list of normalized majo
 
 Versioning
 -----------
-The data that backs the Major Normalization Service is versioned. The data version is returned at the "data" node level.
+The data that backs the Major Normalization Service is versioned. There is a "data version" field in the response that contains the current version.
 
 Our general versioning strategy is available [here](/Versioning.md).
