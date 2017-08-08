@@ -13,6 +13,8 @@ The Likelihood To Respond (LTR) service provides data to describe the likelihood
 
 The LTR service is hosted in the CareerBuilder API routing layer's Staging, US Production, and EU Production environments. The relative path for the service is `/core/classifier/likelihoodtorespond`.
 
+LTR is available for authorized users only. For questions about gaining access, please send an email to DataScienceApplicationDevelopment@careerbuilder.com.
+
 # Request Information
 
 The service responds to three types of requests, described in detail in this section. Requests can be provided as HTTP GETs or HTTP POSTs. POST requests may be sent as either `application/json` or `application/x-www-form-urlencoded` content types.
