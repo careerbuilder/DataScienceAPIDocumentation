@@ -31,9 +31,9 @@ APIs:
 
 [Resolved Title](ResolvedTitle.md): Attempts to resolve a job title to the closest match from a given list of target titles.
 
-[Semantic Search](SemanticSearch.md): Parses a query into intended phrases and identifies matching and related normalized entities.
+[Semantic Search](SemanticSearchV2.md): Parses a query into intended phrases and identifies matching and related normalized entities.
 
-[Semantic Overrides](SemanticOverrides.md): Allows users and curators to add enrichments, remove enrichments, and make enrichments selected or unselected for Semantic Search 1.0
+[Semantic Overrides](SemanticOverrides.md): Allows users and curators to add enrichments, remove enrichments, and make enrichments selected or unselected for Semantic Search v1.0 and above
 
 [School Normalization](SchoolNormalization.md): Attempts to normalize a school name and provide standardized data such as location and IPEDs classification information.
 
