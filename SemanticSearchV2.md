@@ -163,19 +163,19 @@ https://api.careerbuilder.com/core/semanticsearch/document
 
 # Document Response
 
-The document response is divided into two parts. First is the parsed_input node which contains information on all extracted keywords and phrases. Next is the extracted_keywords node, which gives the name, type and relationships of all extracted phrases:
+The document response includes the following parts. First is the `parsed_input` node which contains information on all extracted keywords and phrases. Next is the `semantic_keywords` node, which gives the name, type and relationships of all extracted phrases. Also, `job_titles`, `location`, `candidate_experience`, `experience_level`, `geography` json objects may also be present. These objects are derived from parsing the job or resume document, and may not appear when the supplied document lacks corresponding information. 
 
 - data
 	- parsed_input
 		- input (list): comma-separated list of extracted keywords and phrases
 		- parsed_fragments (list): input as list of strings
 		- input_to_extracted_keywords (map): mapping extracted strings to canonical strings
-	- extracted_keywords (list)
+	- semantic_keywords (list)
 		- name (string): canonical name
 		- weight (float): estimated weight (0-100)
 		- type (string): skill, job_title, keyword, company, school, location, company_geography
 		- entity_node (map of strings) (occurs only in the following types):
-		    - location; possible fields: address, city, country, region, state, zip
+		   
 		    - experience_level; possible fields: level, minYears, maxYears 
 		- relationships (map of strings):
 			- occupations (for type: job_title, skill, company, keyword)
@@ -185,9 +185,12 @@ The document response is divided into two parts. First is the parsed_input node 
 			- job_titles (for type: job_title, skill, company, keyword)
 			- job_level (for type: job_title, skill, company, keyword)
 			- education_level (for type:school)
-	- versions (map): relationship strings mapped to version strings
-
-
+	- job_titles (list): each object contains name, source, confidence, id. 
+	- location: possible fields contain address, city, country, region, state, zip.
+	- candidate_experience: possible fields contain name, experience_months, experience_months_by_job_category (list) 
+	- experience_level: possible fields contain name, level, min_years, max_years.
+	- geography: contain name and a list of geography objects.
+	
 2.0 response:
 ```
 {
@@ -264,30 +267,27 @@ The document response is divided into two parts. First is the parsed_input node 
 				"weight" : 100
 				"relationships" : {},
 			},
-			{
-				"type" : "job_level",
-				"name" : "EXPERIENCED_NON_MANAGER"
-			},
-			{
-				"type" : "location",
-				"entity_node" : {
-					"address" : "Atlanta, Georgia",
-					"region" : "Georgia"
-				}
-			},
-			{
-				"name" : "Java developer",
-				"type" : "job_title"
-			}
+			...
 		],
-		"versions": {
-			"extracted_keywords": "ExtractedKeywords",
-			"job_titles": "CaroteneV3",
-			"skills": "SkillsV4",
-			"related_keywords": "RelatedSearchTermsV1",
-			"text_kernel_related_keywords": "TextKernelRelatedSearchTerms",
-			"custom_keywords": "CustomKeywords"
-		}
+		
+		"job_titles":[  
+		   {  
+		      "name":"Client Services Manager",
+		      "source":"carotenev3.1",
+		      "confidence":1,
+		      "id":"11.114"
+		   },
+		   .....
+		],
+		"location":{  
+		   "address":"Pleasanton, California, Norcross, Georgia",
+		   "region":"California"
+		},
+		"experience_level":{  
+		   "min_years":10,
+		   "max_years":0
+		}  
+		...
 	}
 }
 ```
