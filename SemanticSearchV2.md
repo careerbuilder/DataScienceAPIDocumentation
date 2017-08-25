@@ -173,10 +173,7 @@ The document response includes the following parts. First is the `parsed_input` 
 	- semantic_keywords (list)
 		- name (string): canonical name
 		- weight (float): estimated weight (0-100)
-		- type (string): skill, job_title, keyword, company, school, location, company_geography
-		- entity_node (map of strings) (occurs only in the following types):
-		   
-		    - experience_level; possible fields: level, minYears, maxYears 
+		- type (string): skill, job_title, keyword, company, school, location, company_geography		   
 		- relationships (map of strings):
 			- occupations (for type: job_title, skill, company, keyword)
 			- related_keywords (for type: job_title, skill, company, keyword)
@@ -189,7 +186,14 @@ The document response includes the following parts. First is the `parsed_input` 
 	- location: possible fields contain address, city, country, region, state, zip.
 	- candidate_experience: possible fields contain name, experience_months, experience_months_by_job_category (list) 
 	- experience_level: possible fields contain name, level, min_years, max_years.
-	- geography: contain name and a list of geography objects.
+	- geography (list): contains geography objects.
+	- company_geography (list): contains geography objects.
+	- job_level (string)
+	- education_level (string)
+	- highest_education_level (string)
+	- employment_type (string)
+	- contract_type (string)
+	- language_skills (list): contains a list of language skills, each language is a string type.
 	
 2.0 response:
 ```
