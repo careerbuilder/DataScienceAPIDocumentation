@@ -296,11 +296,11 @@ The document response includes the following parts. First is the `parsed_input` 
 		   },
 		   ...
 		],
-		"experience_level": {  
+		"experience_level" : {  
 		   "min_years" : 10,
 		   "max_years" : 0
 		},
-		"company_geography" : [
+		"company_geographies" : [
 		   {
 			"admin_areas" : [
 			  {
@@ -344,10 +344,10 @@ The document response includes the following parts. First is the `parsed_input` 
 		   }
 		],
 		"education_level" : "BACHELORS_DEGREE",
-        	"employment_type" : "FULL_TIME",
+        	"employment_level" : "FULL_TIME",
         	"contract_type" : "PERMANENT",
 		"job_level" : "Internship",
-        	"language_skills" : [EN, ...],
+        	"language_skills" : ["EN", ...],
 		"candidate_experience" : {
             	    "experience_months" : 8,
             	    "experience_months_by_job_category" : [
@@ -359,9 +359,9 @@ The document response includes the following parts. First is the `parsed_input` 
 			...
 	    	    ]
 		},
-		"geography" : [...],
+		"geography" : [ *(same as company_geographies)*],
 		"highest_education_level" : "Master's Degree",
-		"job_type" : "fulltime"
+		"most_recent_employment_type" : "fulltime"
 	}
 }
 ```
