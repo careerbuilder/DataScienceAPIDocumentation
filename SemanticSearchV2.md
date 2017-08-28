@@ -361,7 +361,7 @@ The document response includes the following parts. First is the `parsed_input` 
 		},
 		"geographies" : [*(same as company_geographies)*],
 		"highest_education_level" : "Master's Degree",
-		"most_recent_employment_level" : "fulltime"
+		"most_recent_employment_level" : "FULL_TIME"
 	}
 }
 ```
