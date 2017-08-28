@@ -164,7 +164,7 @@ https://api.careerbuilder.com/core/semanticsearch/document
 
 # Document Response
 
-The document response includes the following parts. First is the `parsed_input` node which contains information on all extracted keywords and phrases. Next is the `semantic_keywords` node, which gives the name, type and relationships of all extracted phrases. Also, `job_titles`, `location`, `geography` and etc json objects may also be present. These objects are derived from parsing the job or resume document, and may not appear when the supplied document lacks corresponding information. 
+The document response includes the following parts. First is the `parsed_input` node which contains information on all extracted keywords and phrases. Next is the `semantic_keywords` node, which gives the name, type and relationships of all extracted phrases. Also, the response may also include additional objects such as `job_titles`, `location`, `geographies`. These objects are derived from parsing the job or resume document, and may not appear when the supplied document lacks corresponding information. 
 
 - data
 	- parsed_input
@@ -174,7 +174,7 @@ The document response includes the following parts. First is the `parsed_input` 
 	- semantic_keywords (list)
 		- name (string): canonical name
 		- weight (float): estimated weight (0-100)
-		- type (string): skill, job_title, keyword, company, school, location, company_geography		   
+		- type (string): skill, job_title, keyword, company, school, location		   
 		- relationships (map of strings):
 			- occupations (for type: job_title, skill, company, keyword)
 			- related_keywords (for type: job_title, skill, company, keyword)
@@ -186,10 +186,10 @@ The document response includes the following parts. First is the `parsed_input` 
 	- location: possible fields are address, city, country, region, state, zip.
 	
 	 *(The following fields are only available when requesting a job document.)*
-	- company_geography (list): contains geography objects.
+	- company_geographies (list): contains geography objects.
 	- contract_type (string): whether the contract is permanent, temporary, internship, etc.
-	- education_level (string): minimum education level required by the job posting
-	- employment_type (string): whether the job is full-time, part-time, etc.
+	- education_level (string): minimum education level required by the job posting.
+	- employment_level (string): whether the job is full-time, part-time, etc.
 	- experience_level: possible fields are name, level, min_years, max_years.
 	- job_titles (list): each object contains name, source, confidence, id. 
 	- job_level (string): experience, or seniority level of the job posting.
@@ -197,9 +197,9 @@ The document response includes the following parts. First is the `parsed_input` 
 	
 	*(The following fields are only available when requesting a resume document.)*
 	- candidate_experience: possible fields are name, experience_months, experience_months_by_job_category (list) 
-	- geography (list): contains geography objects.
+	- geographies (list): contains geography objects.
 	- highest_education_level (string): the highest education achieved.
-	- job_type (string): whether the latest job is fulltime, parttime, etc.
+	- most_recent_employment_level (string): whether the latest job is fulltime, parttime, etc.
 	
 2.0 response:
 ```
@@ -344,24 +344,24 @@ The document response includes the following parts. First is the `parsed_input` 
 		   }
 		],
 		"education_level" : "BACHELORS_DEGREE",
-        	"employment_level" : "FULL_TIME",
-        	"contract_type" : "PERMANENT",
+		"employment_level" : "FULL_TIME",
+		"contract_type" : "PERMANENT",
 		"job_level" : "Internship",
-        	"language_skills" : ["EN", ...],
+		"language_skills" : ["EN", ...],
 		"candidate_experience" : {
-            	    "experience_months" : 8,
-            	    "experience_months_by_job_category" : [
-			{
-			    "job_category_code" : "27",
-			    "job_category_description" : "Arts, Design, Entertainment, Sports, and Media Occupations",
-			    "months" : 8
-			},
-			...
-	    	    ]
+            	   "experience_months" : 8,
+            	   "experience_months_by_job_category" : [
+		      {
+		         "job_category_code" : "27",
+			 "job_category_description" : "Arts, Design, Entertainment, Sports, and Media Occupations",
+			 "months" : 8
+		      },
+			 ...
+	    	   ]
 		},
-		"geography" : [ *(same as company_geographies)*],
+		"geographies" : [*(same as company_geographies)*],
 		"highest_education_level" : "Master's Degree",
-		"most_recent_employment_type" : "fulltime"
+		"most_recent_employment_level" : "fulltime"
 	}
 }
 ```
