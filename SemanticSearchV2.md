@@ -139,8 +139,9 @@ Used to parse a job or resume into its most important features and to represent 
 
 # Document Request Information
 
-HTTP method: GET or POST
-Parameters (query/form):
+HTTP method: POST.
+
+Parameters:
 -	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
 -	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
@@ -151,7 +152,7 @@ Parameters (query/form):
 
 Example 2.0 request:
 ```
-HTTP GET
+HTTP POST
 Accept: application/json;version=2.0
 https://api.careerbuilder.com/core/semanticsearch/document
 {
@@ -182,32 +183,39 @@ The document response includes the following parts. First is the `parsed_input` 
 			- job_titles (for type: job_title, skill, company, keyword)
 			- job_level (for type: job_title, skill, company, keyword)
 			- education_level (for type:school)
-	- job_titles (list): each object contains name, source, confidence, id. 
 	- location: possible fields contain address, city, country, region, state, zip.
-	- candidate_experience: possible fields contain name, experience_months, experience_months_by_job_category (list) 
-	- experience_level: possible fields contain name, level, min_years, max_years.
-	- geography (list): contains geography objects.
+	
+	 *(The following fields are only available when requesting with a job document.)*
 	- company_geography (list): contains geography objects.
-	- job_level (string)
-	- education_level (string)
-	- highest_education_level (string)
-	- employment_type (string)
-	- contract_type (string)
+	- contract_type (string), whether the contract is permanent, temporary, internship, etc.
+	- education_level (string), minimum education level required by the job posting
+	- employment_type (string), whether the job is full-time, part-time, etc.
+	- experience_level: possible fields contain name, level, min_years, max_years.
+	- job_titles (list): each object contains name, source, confidence, id. 
+	- job_level (string), experience, or seniority level of the job posting.
 	- language_skills (list): contains a list of language skills, each language is a string type.
+	
+	*(The following fields are only available when requesting with a resume document.)*
+	- candidate_experience: possible fields contain name, experience_months, experience_months_by_job_category (list) 
+	- geography (list): contains geography objects.
+	- highest_education_level (string), the highest education achieved.
+	- job_type (string), whether the latest job is a fulltime, parttime, etc.
 	
 2.0 response:
 ```
 {
 	"data" : {
 		"parsed_input" : {
-			"input" : "Java developer,Careerbuilder",
+			"input" : "Java developer,Careerbuilder, ...",
 			"parsed_fragments" : [
 				"java developer",
-				"careerbuilder"
+				"careerbuilder",
+				...
 			],
 			"input_to_extracted_keywords" : {
 				"Careerbuilder" : "careerbuilder",
-				"Java developer" : "java developer"
+				"Java developer" : "java developer",
+				...
 			}
 		},
 		"extracted_keywords" : [
@@ -273,7 +281,12 @@ The document response includes the following parts. First is the `parsed_input` 
 			},
 			...
 		],
+		"location":{  
+		   "address":"Pleasanton, California, Norcross, Georgia",
+		   "region":"California"
+		},
 		
+		*(only in the response for resume request)*
 		"job_titles":[  
 		   {  
 		      "name":"Client Services Manager",
@@ -283,15 +296,32 @@ The document response includes the following parts. First is the `parsed_input` 
 		   },
 		   .....
 		],
-		"location":{  
-		   "address":"Pleasanton, California, Norcross, Georgia",
-		   "region":"California"
-		},
 		"experience_level":{  
 		   "min_years":10,
 		   "max_years":0
-		}  
-		...
+		},
+		"company_geography": [...],
+		"education_level": "BACHELORS_DEGREE",
+        	"employment_type": "FULL_TIME",
+        	"contract_type": "PERMANENT",
+		"job_level": "Internship",
+        	"language_skills": [],
+		
+		*(only in the response for resume request)*
+		"candidate_experience": {
+            		"experience_months": 8,
+            		"experience_months_by_job_category": [
+				{
+				    "job_category_code": "27",
+				    "job_category_description": "Arts, Design, Entertainment, Sports, and Media Occupations",
+				    "months": 8
+				},
+				...
+	    		]
+		},
+		"geography": [...],
+		"highest_education_level": "Unknown",
+		"job_type": "fulltime"
 	}
 }
 ```
