@@ -346,7 +346,7 @@ The document response includes the following parts. First is the `parsed_input` 
 		"education_level" : "BACHELORS_DEGREE",
 		"employment_level" : "FULL_TIME",
 		"contract_type" : "PERMANENT",
-		"job_level" : "Internship",
+		"job_level" : "ENTRY_LEVEL",
 		"language_skills" : ["EN", ...],
 		"candidate_experience" : {
             	   "experience_months" : 8,
