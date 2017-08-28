@@ -164,7 +164,7 @@ https://api.careerbuilder.com/core/semanticsearch/document
 
 # Document Response
 
-The document response includes the following parts. First is the `parsed_input` node which contains information on all extracted keywords and phrases. Next is the `semantic_keywords` node, which gives the name, type and relationships of all extracted phrases. Also, `job_titles`, `location`, `candidate_experience`, `experience_level`, `geography` json objects may also be present. These objects are derived from parsing the job or resume document, and may not appear when the supplied document lacks corresponding information. 
+The document response includes the following parts. First is the `parsed_input` node which contains information on all extracted keywords and phrases. Next is the `semantic_keywords` node, which gives the name, type and relationships of all extracted phrases. Also, `job_titles`, `location`, `geography` and etc json objects may also be present. These objects are derived from parsing the job or resume document, and may not appear when the supplied document lacks corresponding information. 
 
 - data
 	- parsed_input
