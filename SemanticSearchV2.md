@@ -145,7 +145,7 @@ Parameters:
 -	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
 -	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
--	document (required) : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
+-	document (required) : base64 encoded string of the document to be parsed.
 -	type (required) : the type of the document. Acceptable values are "JOB" and "RESUME".
 -	job_title (optional, only valid when type is JOB) : a pre-defined job title which overrides the job_title field extracted from a job document. Note that the job_title field will also be cleaned.
 -	location (optional, only valid when type is JOB): a pre-defined location which overrides the location extracted from a job document.
@@ -183,23 +183,23 @@ The document response includes the following parts. First is the `parsed_input` 
 			- job_titles (for type: job_title, skill, company, keyword)
 			- job_level (for type: job_title, skill, company, keyword)
 			- education_level (for type:school)
-	- location: possible fields contain address, city, country, region, state, zip.
+	- location: possible fields are address, city, country, region, state, zip.
 	
-	 *(The following fields are only available when requesting with a job document.)*
+	 *(The following fields are only available when requesting a job document.)*
 	- company_geography (list): contains geography objects.
-	- contract_type (string), whether the contract is permanent, temporary, internship, etc.
-	- education_level (string), minimum education level required by the job posting
-	- employment_type (string), whether the job is full-time, part-time, etc.
-	- experience_level: possible fields contain name, level, min_years, max_years.
+	- contract_type (string): whether the contract is permanent, temporary, internship, etc.
+	- education_level (string): minimum education level required by the job posting
+	- employment_type (string): whether the job is full-time, part-time, etc.
+	- experience_level: possible fields are name, level, min_years, max_years.
 	- job_titles (list): each object contains name, source, confidence, id. 
-	- job_level (string), experience, or seniority level of the job posting.
+	- job_level (string): experience, or seniority level of the job posting.
 	- language_skills (list): contains a list of language skills, each language is a string type.
 	
-	*(The following fields are only available when requesting with a resume document.)*
-	- candidate_experience: possible fields contain name, experience_months, experience_months_by_job_category (list) 
+	*(The following fields are only available when requesting a resume document.)*
+	- candidate_experience: possible fields are name, experience_months, experience_months_by_job_category (list) 
 	- geography (list): contains geography objects.
-	- highest_education_level (string), the highest education achieved.
-	- job_type (string), whether the latest job is a fulltime, parttime, etc.
+	- highest_education_level (string): the highest education achieved.
+	- job_type (string): whether the latest job is fulltime, parttime, etc.
 	
 2.0 response:
 ```
@@ -282,46 +282,86 @@ The document response includes the following parts. First is the `parsed_input` 
 			...
 		],
 		"location":{  
-		   "address":"Pleasanton, California, Norcross, Georgia",
-		   "region":"California"
+		   "address" : "Peachtree pkwy, Norcross, Georgia, United States",
+		   "city" : "Norcross",
+		   "region" : "Georgia",
+		   "country" : "United States"
 		},
-		
-		*(only in the response for resume request)*
-		"job_titles":[  
+		"job_titles" : [  
 		   {  
-		      "name":"Client Services Manager",
-		      "source":"carotenev3.1",
-		      "confidence":1,
-		      "id":"11.114"
+		      "name" : "Client Services Manager",
+		      "source" : "carotenev3.1",
+		      "confidence" : 1,
+		      "id" : "11.114"
 		   },
-		   .....
+		   ...
 		],
-		"experience_level":{  
-		   "min_years":10,
-		   "max_years":0
+		"experience_level": {  
+		   "min_years" : 10,
+		   "max_years" : 0
 		},
-		"company_geography": [...],
-		"education_level": "BACHELORS_DEGREE",
-        	"employment_type": "FULL_TIME",
-        	"contract_type": "PERMANENT",
-		"job_level": "Internship",
-        	"language_skills": [],
-		
-		*(only in the response for resume request)*
-		"candidate_experience": {
-            		"experience_months": 8,
-            		"experience_months_by_job_category": [
-				{
-				    "job_category_code": "27",
-				    "job_category_description": "Arts, Design, Entertainment, Sports, and Media Occupations",
-				    "months": 8
-				},
-				...
-	    		]
+		"company_geography" : [
+		   {
+			"admin_areas" : [
+			  {
+			    "long_name" : "Georgia",
+			    "short_name" : "GA",
+			    "level" : 1
+			  },
+			  {
+			    "long_name" : "Gwinnett County",
+			    "short_name" : "Gwinnett County",
+			    "level": 2
+			  }
+			],
+			"country" : "United States",
+			"country_code" : "US",
+			"formatted_address" : "Norcross, GA, USA",
+			"latitude" : 33.9412127,
+			"longitude" : -84.2135309,
+			"locality" : "Norcross",
+			"location_type" : "LOCALITY",
+			"place_id" : "ChIJqTKlbTih9YgRVjJ2xmfcfJQ",
+			"viewport" : {
+			  "northeast" : {
+			    "lat" : 33.9685209,
+			    "lng" : -84.173478
+			  },
+			  "southwest" : {
+			    "lat" : 33.920772,
+			    "lng" : -84.23084109999999
+			  },
+			  "suggested_radius_miles" : 2.3295469101154485
+			},
+			"metropolitan_statistical_area" : {
+			  "title" : "Atlanta-Sandy Springs-Roswell, GA",
+			  "code" : 12060
+			},
+			"designated_market_areas" : [
+			  "Atlanta, GA"
+			],
+			"partial_match" : false
+		   }
+		],
+		"education_level" : "BACHELORS_DEGREE",
+        	"employment_type" : "FULL_TIME",
+        	"contract_type" : "PERMANENT",
+		"job_level" : "Internship",
+        	"language_skills" : [EN, ...],
+		"candidate_experience" : {
+            	    "experience_months" : 8,
+            	    "experience_months_by_job_category" : [
+			{
+			    "job_category_code" : "27",
+			    "job_category_description" : "Arts, Design, Entertainment, Sports, and Media Occupations",
+			    "months" : 8
+			},
+			...
+	    	    ]
 		},
-		"geography": [...],
-		"highest_education_level": "Unknown",
-		"job_type": "fulltime"
+		"geography" : [...],
+		"highest_education_level" : "Master's Degree",
+		"job_type" : "fulltime"
 	}
 }
 ```
