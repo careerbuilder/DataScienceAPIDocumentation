@@ -190,7 +190,7 @@ The document response includes the following parts. First is the `parsed_input` 
 	- contract_type (string): whether the contract is permanent, temporary, internship, etc.
 	- education_level (string): minimum education level required by the job posting.
 	- employment_level (string): whether the job is full-time, part-time, etc.
-	- experience_level: possible fields are name, level, min_years, max_years.
+	- experience_level: possible fields are level, min_years, max_years.
 	- job_titles (list): each object contains name, source, confidence, id. 
 	- job_level (string): experience, or seniority level of the job posting.
 	- language_skills (list): contains a list of language skills, each language is a string type.
