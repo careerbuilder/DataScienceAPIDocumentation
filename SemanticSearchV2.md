@@ -196,7 +196,7 @@ The document response includes the following parts. First is the `parsed_input` 
 	- language_skills (list): contains a list of language skills, each language is a string type.
 	
 	*(The following fields are only available when requesting a resume document.)*
-	- candidate_experience: possible fields are name, experience_months, experience_months_by_job_category (list) 
+	- candidate_experience: possible fields are experience_months, experience_months_by_job_category (list) 
 	- geographies (list): contains geography objects.
 	- highest_education_level (string): the highest education achieved.
 	- most_recent_employment_level (string): whether the latest job is fulltime, parttime, etc.
