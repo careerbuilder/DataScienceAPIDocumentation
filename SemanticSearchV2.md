@@ -139,19 +139,20 @@ Used to parse a job or resume into its most important features and to represent 
 
 # Document Request Information
 
-HTTP method: GET or POST
-Parameters (query/form):
+HTTP method: POST.
+
+Parameters:
 -	language (optional) : two letter language code followed by underscore, followed by two letter country code. Determines the language in which enrichments are returned. Required to use personalized overrides. Defaults to en_us. Currently, allowed values are en_us, en_gb, fr_fr, de_de, and nl_nl.
 -	user_id (optional) : user id for which to look up personalized overrides. Defaults to null. 
 -	relationships_threshold : the mimimum weight for a relationship entry to be added as enrichment. Can be used to prune the result size. Defaults to 0.5. Allowed values are any number between 0 and 1.
--	document (required) : the binary document to parse as base64 encoded string (according to RFC 3548/4648).
+-	document (required) : base64 encoded string of the document to be parsed.
 -	type (required) : the type of the document. Acceptable values are "JOB" and "RESUME".
 -	job_title (optional, only valid when type is JOB) : a pre-defined job title which overrides the job_title field extracted from a job document. Note that the job_title field will also be cleaned.
 -	location (optional, only valid when type is JOB): a pre-defined location which overrides the location extracted from a job document.
 
 Example 2.0 request:
 ```
-HTTP GET
+HTTP POST
 Accept: application/json;version=2.0
 https://api.careerbuilder.com/core/semanticsearch/document
 {
@@ -163,20 +164,17 @@ https://api.careerbuilder.com/core/semanticsearch/document
 
 # Document Response
 
-The document response is divided into two parts. First is the parsed_input node which contains information on all extracted keywords and phrases. Next is the extracted_keywords node, which gives the name, type and relationships of all extracted phrases:
+The document response includes the following parts. First is the `parsed_input` node which contains information on all extracted keywords and phrases. Next is the `semantic_keywords` node, which gives the name, type and relationships of all extracted phrases. The response may also include additional objects such as `job_titles`, `location`, `geographies`. These objects are derived from parsing the job or resume document, and may not appear when the supplied document lacks corresponding information. 
 
 - data
 	- parsed_input
 		- input (list): comma-separated list of extracted keywords and phrases
 		- parsed_fragments (list): input as list of strings
 		- input_to_extracted_keywords (map): mapping extracted strings to canonical strings
-	- extracted_keywords (list)
+	- semantic_keywords (list)
 		- name (string): canonical name
 		- weight (float): estimated weight (0-100)
-		- type (string): skill, job_title, keyword, company, school, location, company_geography
-		- entity_node (map of strings) (occurs only in the following types):
-		    - location; possible fields: address, city, country, region, state, zip
-		    - experience_level; possible fields: level, minYears, maxYears 
+		- type (string): skill, job_title, keyword, company, school, location		   
 		- relationships (map of strings):
 			- occupations (for type: job_title, skill, company, keyword)
 			- related_keywords (for type: job_title, skill, company, keyword)
@@ -185,22 +183,39 @@ The document response is divided into two parts. First is the parsed_input node 
 			- job_titles (for type: job_title, skill, company, keyword)
 			- job_level (for type: job_title, skill, company, keyword)
 			- education_level (for type:school)
-	- versions (map): relationship strings mapped to version strings
-
-
+	- location: possible fields are address, city, country, region, state, zip.
+	
+	 *(The following fields are only available when requesting a job document.)*
+	- company_geographies (list): contains geography objects.
+	- contract_type (string): whether the contract is permanent, temporary, internship, etc.
+	- education_level (string): minimum education level required by the job posting.
+	- employment_level (string): whether the job is full-time, part-time, etc.
+	- experience_level: possible fields are level, min_years, max_years.
+	- job_titles (list): each object contains name, source, confidence, id. 
+	- job_level (string): experience, or seniority level of the job posting.
+	- language_skills (list): contains a list of language skills, each language is a string type.
+	
+	*(The following fields are only available when requesting a resume document.)*
+	- candidate_experience: possible fields are experience_months, experience_months_by_job_category (list) 
+	- geographies (list): contains geography objects.
+	- highest_education_level (string): the highest education achieved.
+	- most_recent_employment_level (string): whether the latest job is fulltime, parttime, etc.
+	
 2.0 response:
 ```
 {
 	"data" : {
 		"parsed_input" : {
-			"input" : "Java developer,Careerbuilder",
+			"input" : "Java developer,Careerbuilder, ...",
 			"parsed_fragments" : [
 				"java developer",
-				"careerbuilder"
+				"careerbuilder",
+				...
 			],
 			"input_to_extracted_keywords" : {
 				"Careerbuilder" : "careerbuilder",
-				"Java developer" : "java developer"
+				"Java developer" : "java developer",
+				...
 			}
 		},
 		"extracted_keywords" : [
@@ -264,30 +279,89 @@ The document response is divided into two parts. First is the parsed_input node 
 				"weight" : 100
 				"relationships" : {},
 			},
-			{
-				"type" : "job_level",
-				"name" : "EXPERIENCED_NON_MANAGER"
-			},
-			{
-				"type" : "location",
-				"entity_node" : {
-					"address" : "Atlanta, Georgia",
-					"region" : "Georgia"
-				}
-			},
-			{
-				"name" : "Java developer",
-				"type" : "job_title"
-			}
+			...
 		],
-		"versions": {
-			"extracted_keywords": "ExtractedKeywords",
-			"job_titles": "CaroteneV3",
-			"skills": "SkillsV4",
-			"related_keywords": "RelatedSearchTermsV1",
-			"text_kernel_related_keywords": "TextKernelRelatedSearchTerms",
-			"custom_keywords": "CustomKeywords"
-		}
+		"location":{  
+		   "address" : "Peachtree pkwy, Norcross, Georgia, United States",
+		   "city" : "Norcross",
+		   "region" : "Georgia",
+		   "country" : "United States"
+		},
+		"job_titles" : [  
+		   {  
+		      "name" : "Client Services Manager",
+		      "source" : "carotenev3.1",
+		      "confidence" : 1,
+		      "id" : "11.114"
+		   },
+		   ...
+		],
+		"experience_level" : {  
+		   "min_years" : 10,
+		   "max_years" : 0
+		},
+		"company_geographies" : [
+		   {
+			"admin_areas" : [
+			  {
+			    "long_name" : "Georgia",
+			    "short_name" : "GA",
+			    "level" : 1
+			  },
+			  {
+			    "long_name" : "Gwinnett County",
+			    "short_name" : "Gwinnett County",
+			    "level": 2
+			  }
+			],
+			"country" : "United States",
+			"country_code" : "US",
+			"formatted_address" : "Norcross, GA, USA",
+			"latitude" : 33.9412127,
+			"longitude" : -84.2135309,
+			"locality" : "Norcross",
+			"location_type" : "LOCALITY",
+			"place_id" : "ChIJqTKlbTih9YgRVjJ2xmfcfJQ",
+			"viewport" : {
+			  "northeast" : {
+			    "lat" : 33.9685209,
+			    "lng" : -84.173478
+			  },
+			  "southwest" : {
+			    "lat" : 33.920772,
+			    "lng" : -84.23084109999999
+			  },
+			  "suggested_radius_miles" : 2.3295469101154485
+			},
+			"metropolitan_statistical_area" : {
+			  "title" : "Atlanta-Sandy Springs-Roswell, GA",
+			  "code" : 12060
+			},
+			"designated_market_areas" : [
+			  "Atlanta, GA"
+			],
+			"partial_match" : false
+		   }
+		],
+		"education_level" : "BACHELORS_DEGREE",
+		"employment_level" : "FULL_TIME",
+		"contract_type" : "PERMANENT",
+		"job_level" : "ENTRY_LEVEL",
+		"language_skills" : ["EN", ...],
+		"candidate_experience" : {
+            	   "experience_months" : 8,
+            	   "experience_months_by_job_category" : [
+		      {
+		         "job_category_code" : "27",
+			 "job_category_description" : "Arts, Design, Entertainment, Sports, and Media Occupations",
+			 "months" : 8
+		      },
+			 ...
+	    	   ]
+		},
+		"geographies" : [*(same as company_geographies)*],
+		"highest_education_level" : "Master's Degree",
+		"most_recent_employment_level" : "FULL_TIME"
 	}
 }
 ```
