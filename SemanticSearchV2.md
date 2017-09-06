@@ -64,7 +64,7 @@ Second is the extracted_keywords node, which gives the type and related entities
 			},
 			"parsed_fragments": ["extracted keyword"]
 		},
-		"extracted_keywords": [{
+		"semantic_keywords": [{
 			"name": "extracted keyword",
 			"weight": 100.0,
 			"type": "entity type",
