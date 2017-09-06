@@ -64,7 +64,7 @@ Second is the extracted_keywords node, which gives the type and related entities
 			},
 			"parsed_fragments": ["extracted keyword"]
 		},
-		"semantic_keywords": [{
+		"extracted_keywords": [{
 			"name": "extracted keyword",
 			"weight": 100.0,
 			"type": "entity type",
@@ -218,7 +218,7 @@ The document response includes the following parts. First is the `parsed_input` 
 				...
 			}
 		},
-		"extracted_keywords" : [
+		"semantic_keywords" : [
 			{
 				"name" : "java developer",
 				"relationships" : {
