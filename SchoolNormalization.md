@@ -34,7 +34,7 @@ Example: https://api.careerbuilder.com/core/normalizedschools?query=georgia%20te
                 "country": "US",
                 "city": "Atlanta",
                 "state": "GA",
-                "ipeds_id": 139755",
+                "ipeds_id": "139755",
                 "ipeds_name": "Georgia Institute of Technology-Main Campus"
             }
         ]
