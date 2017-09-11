@@ -8,26 +8,28 @@ _________
 - [Versioning](#versioning)
 
 
-#Request Information
+## Request Information
 
 The following parameters may be used in constructing a request to the service:
 
--        company_name* (required) : The company name to be normalized.
--        website* (required) : The website of the company to be normalized. *(Note: either company_name or website must be provided. It is not necessary to provide both.)*
--        country (optional) : The country component of the provided company's location. Two-digit ISO country codes are supported. *(Note: the country parameter is required for requests to the DataDotCom service.)*
--        state (optional) : The state component of the provided company's location.
--        city (optional) : The city component of the provided company's location.
--        max_results (optional) : The maximum number of results to be returned, between 1 and 10 (inclusive). Defaults to 3.
--        use_query_classifier (optional) : Specifies whether to detect specific queries (irrelevant queries or agency queries) and return empty results for such queries. This value is defaulted to true, in order to turn it off users must provide the param with a value of false.
--        filter_by_country (optional) : With this set to false, the country parameter only biases results and this is traditionally how the service has worked. Setting this value to true will filter results based on country. This param is defaulted to false.
+ Field                      | Required | Description  
+ -------------------------- |----------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ```company_name```         | true     | The company name to be normalized. 
+ ```website```              | true     | The website of the company to be normalized. *(Note: either company_name or website must be provided. It is not necessary to provide both.)* 
+ ```country```              | false    | The country component of the provided company's location. Two-digit ISO country codes are supported. *(Note: the country parameter is required for requests to the DataDotCom service.)* 
+ ```state```                | false    | The state component of the provided company's location.
+ ```city```                 | false    | The city component of the provided company's location.
+ ```max_results```          | false    | The maximum number of results to be returned, between 1 and 10 (inclusive). Defaults to 3.
+ ```use_query_classifier``` | false    | Specifies whether to detect specific queries (irrelevant queries or agency queries) and return empty results for such queries. This value is defaulted to true, in order to turn it off users must provide the param with a value of false.
+ ```filter_by_country```    | false    | With this set to false, the country parameter only biases results and this is traditionally how the service has worked. Setting this value to true will filter results based on country. This param is defaulted to false.
 
 \* *Note that company_name and website are each constrained to a maximum length of 400 characters. Requests that contain a company_name or website value exceeding this limit will fail with an HTTP 400 Bad Request status.*
  
 Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=careerbuilder&max_results=1
 
-#Sample Response
+## Sample Response
 
-```
+```json
 {
   "data": {
     "normalized_companies": [
@@ -67,7 +69,7 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
 }
 ```
 
-#Response Information
+## Response Information
 
 The response returns a single data node which contains a list of normalized companies. These normalized companies are ordered by the confidence score. Each normalized company has a normalized company name (string), a [NAICS](http://www.census.gov/eos/www/naics/) ID (string), a NAICS description (string), a DUNS number(string), a country (string), a state (string), a city (string), a postal code (string), a website (string), a company size (int), an ID (string), and a confidence (double). Confidence scores range from 0.0 to 1.0. A single master company will be returned.
 
@@ -75,8 +77,7 @@ The master company is the highest division of the requested company. For example
 
 The top-level data node will also include a data_version field that specifies the current classifier (CompanyDepot or DataDotCom) version as a string.
 
-#Versioning
------------
+## Versioning
 The response from the Company Normalization Service is versioned with the current version being 1.0. The CompanyDepot data is also versioned, and we will always use the latest.
 
 Our general versioning strategy is available [here](/Versioning.md).
