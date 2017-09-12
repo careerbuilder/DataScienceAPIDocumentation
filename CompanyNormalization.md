@@ -15,8 +15,8 @@ The following parameters may be used in constructing a request to the service:
  Field                      | Required | Description  
  -------------------------- |----------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  ```company_name```         | true     | The company name to be normalized. 
- ```website```              | true     | The website of the company to be normalized. *(Note: either company_name or website must be provided. It is not necessary to provide both.)* 
- ```country```              | false    | The country component of the provided company's location. Two-digit ISO country codes are supported. *(Note: the country parameter is required for requests to the DataDotCom service.)* 
+ ```website```              | true     | The website of the company to be normalized. *(Note: either* ```company_name``` *or* ```website``` *must be provided. It is not necessary to provide both.)* 
+ ```country```              | false    | The country component of the provided company's location. Two-digit ISO country codes are supported. *(Note: required for requests to the DataDotCom service.)* 
  ```state```                | false    | The state component of the provided company's location.
  ```city```                 | false    | The city component of the provided company's location.
  ```max_results```          | false    | The maximum number of results to be returned, between 1 and 10 (inclusive). Defaults to 3.
