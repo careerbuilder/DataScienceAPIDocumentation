@@ -39,7 +39,7 @@ Example: https://api.careerbuilder.com/core/normalizedmajor?major_name=electrica
 Response
 -----
 
-The response contains contains "normalized_majors" and "data_version" nodes under "data" node. "normalized_majors" is an array of normalized major json objects and each object may contain the following fields.
+The response contains "normalized_majors" and "data_version" nodes under "data" node. "normalized_majors" is an array of normalized major json objects and each object may contain the following fields.
 
 
 | Name           | Always present | Type   |
