@@ -4,7 +4,7 @@ Major Normalization Service
 Table of Contents
 _________
 - [Request Information](#request-information)
-- [Sample Response](#sample-response)
+- [Response](#response)
 - [Versioning](#versioning)
 
 
@@ -35,8 +35,22 @@ Parameters (query/form):
  
 Example: https://api.careerbuilder.com/core/normalizedmajor?major_name=electrical%20engineering
 
-Sample Response
+
+Response
 -----
+
+The response contains `normalized_majors` and `data_version` nodes under the `data` node. `normalized_majors` is an array of normalized major json objects and each object may contain the following fields.
+
+
+| Name           | Always present | Type   |
+|----------------|----------------|--------|
+| normalized_name| Yes            | string | 
+| cip_code       | No             | string |
+| confidence     | Yes            | number |
+
+These normalized majors are ordered by the confidence score. Confidence scores range from [0, 1].
+
+Sample Response
 
 ```
 {
@@ -44,20 +58,19 @@ Sample Response
         "normalized_majors": [
             {
                 "normalized_name": "Electrical Engineering",
-                "cip_code": 15.001,
+                "cip_code": "15.001",
                 "confidence": 0.8885
-            }
+            },
+            {
+                "normalized_name": "Double Major",
+                "confidence": 0.05077937173529645
+            },
         ],
         "data_version": "1.0.0"
     }
 }
 ```
 
-
-Response Information
------
-
-The response returns a single data node which contains a list of normalized majors and the current data version. These normalized majors are ordered by the confidence score. Confidence scores range from [0, 1].
 
 Versioning
 -----------
