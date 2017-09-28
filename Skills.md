@@ -34,6 +34,7 @@ JSON
   "response":[  
     {  
       "skilldid": "KS120076FGP5WGWYMP0F",
+      "skill_id": "KSH9TO",
       "normalized_term":"Apache Hadoop (Hadoop)",
       "confidence":1.0
       "type": "Hard Skill"
@@ -48,6 +49,7 @@ If the return_related_skills request parameter is set to true, the reponse will 
   "response": [
     {
       "skilldid": "KS120076FGP5WGWYMP0F",
+      "skill_id": "KSH9TO",
       "normalized_term": "Apache Hadoop (Hadoop)",
       "confidence": 1,
       "type": "Hard Skill",
@@ -78,6 +80,8 @@ And an error response will look like this:
   ]
 }
 ```
+
+A note on `skilldid` vs. `skill_id`: These two fields both serve the same purpose of acting as a unique identifier for a skill. The latter was introduced more recently and is more compact as compared to `skilldid`. New applications should prefer usage of the `skill_id` field. The `skilldid` field may be deprecated in a future version of the service.
 
 Languages
 -----------
