@@ -56,6 +56,7 @@ If the return_related_skills request parameter is set to true, the reponse will 
       "related_skills": [
         {
           "skilldid": "KS124KT6K427LFSF9NQC",
+          "skill_id": "KSYFG5",
           "normalized_term": "MapReduce",
           "confidence": 0.830889,
           "type": "Hard Skill"
@@ -71,11 +72,11 @@ And an error response will look like this:
 
 ```
 {  
-  "errors":[  
+  "errors": [  
     {  
-      "type":"args",
-      "message":"content must be provided.",
-      "code":3
+      "type": "empty content",
+      "message": "content must be provided.",
+      "code": 0
     }
   ]
 }
