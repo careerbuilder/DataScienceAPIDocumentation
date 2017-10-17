@@ -13,7 +13,6 @@ _______________
 
 
 #Summary
-test
  
 This service will attempt to determine the level (i.e. seniority, expected experience) of a job based on its title. It will return a value from 1 to 5, along with a brief description.
  
