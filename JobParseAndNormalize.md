@@ -86,6 +86,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
         "max_years": integer,
         "level": string
       },
+      "working_hours": string,
       "job_posting_date": string,
       "application_deadline": string,
       "contact_person": string,
@@ -338,6 +339,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
         "level": integer,
         "description": string
       },
+      "nonstandard_working_hours": boolean
       "contract_type": {
         "type": integer,
         "description": string
@@ -348,6 +350,8 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
   }
 }
 ```
+
+Note that the field ```data.normalized.nonstandard_working_hours``` will only be present if true.
 
 ## Domains With Custom Parsing Rules
 
