@@ -351,7 +351,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 }
 ```
 
-Note that the field ```data.normalized.posted_by_intermediary``` will only be present if true.
+Note that the field ```data.normalized.nonstandard_working_hours``` will only be present if true.
 
 ## Domains With Custom Parsing Rules
 
