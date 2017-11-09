@@ -24,10 +24,6 @@ The service is located at https://api.careerbuilder.com/core/tagging/joblevel. A
 HTTP method: GET or POST Parameters (query/form): 
 * title: (required) the job title.
  
-## Version:
-There are currently two API versions, 0.9 and 1.0. Default version is 0.9 and will be retired soon. Customers are encouraged to update the version to 1.0.
-The difference between 1.0 and 0.9 is that 1.0 returns a `data` node in the json response and removes `text` field.
-
 Here is an example input:
 
 ```
@@ -37,7 +33,6 @@ https://api.careerbuilder.com/core/tagging/joblevel?title=software engineer
 ```
 
 # Sample Response
-For version 1.0
 ```
 {
   "data": {
@@ -47,17 +42,7 @@ For version 1.0
 }
 ```
 
-For version 0.9
-```
-{
-  "text": "software engineer",
-  "description": "Experienced (non-Manager)",
-  "level": "3"
-}
-```
-
 # Response Information
-
 
 The output will always contain the following three fields for a valid input:
  
