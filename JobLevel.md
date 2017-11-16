@@ -12,30 +12,37 @@ _______________
 - [Versioning](#versioning)
 
 
-#Summary
+# Summary
  
 This service will attempt to determine the level (i.e. seniority, expected experience) of a job based on its title. It will return a value from 1 to 5, along with a brief description.
  
 The service is located at https://api.careerbuilder.com/core/tagging/joblevel. As usual, you will need OAuth credentials to use this service.
 
 
-#Input Requirements
+# Input Requirements
 
+HTTP method: GET or POST Parameters (query/form): 
+* title: (required) the job title.
  
 Here is an example input:
-api.careerbuilder.com/core/tagging/joblevel?title=software engineer
- 
-Input should be provided using the title= query parameter. 
-
-
-#Sample Response
 
 ```
-{"text":"software engineer", "level":"3", "description":"Experienced (non-Manager)"}
+HTTP GET
+Accept: application/json;version=1.0
+https://api.careerbuilder.com/core/tagging/joblevel?title=software engineer
 ```
 
-#Response Information
+# Sample Response
+```
+{
+  "data": {
+    "level": 3,
+    "description": "Experienced (non-Manager)"
+  }
+}
+```
 
+# Response Information
 
 The output will always contain the following three fields for a valid input:
  
@@ -55,10 +62,8 @@ Following are all of the possible level + description pairs:
 | 4     | Manager (Manager, Supervisor of Staff)               |
 | 5     | Executive (VP, SVP, Department Head, President, etc) |
 
-#Versioning
+# Versioning
 -----------
-The current API version is 1.0.  The data returned is versioned.
-
 Our general versioning strategy is available [here](/Versioning.md).
  
 Please email DataScienceApplicationDevelopment@careerbuilder.com if you have any questions or concerns.
