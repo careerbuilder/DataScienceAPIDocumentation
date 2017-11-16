@@ -1,8 +1,8 @@
-#GeoEntity API
+# GeoEntity API
 
 &nbsp;
 
-#Contents
+# Contents
 
 - [Description](#description)
 - [All Countries Request](#all-countries-request)
@@ -15,7 +15,7 @@
 
 &nbsp;
 ----------------------------
-#Description
+# Description
 
 This service provides lists of geographic entities of a particular type, such as postal codes or first-level administrative areas. This service uses the same underlying data as our geocoding service. The list of entities returned as queried should be comprehensive for the populous countries, but we could not guarantee 100% completeness. Currently, the following requests are supported:
 - Request all countries in the world.
@@ -33,7 +33,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 
 &nbsp;
 ----------------------------
-#All Countries Request
+# All Countries Request
 - Request Structure:
 	- Target: https://api.careerbuilder.com/core/geography/entities/countries 
 	- URL parameter: none
@@ -71,7 +71,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 ```
 &nbsp;
 ----------------------------
-#All First-level Administrative Areas Request
+# All First-level Administrative Areas Request
 - Request Structure:
 	- Target: https://api.careerbuilder.com/core/geography/entities/admin_area_1s
 	- URL parameter: 
@@ -115,7 +115,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 ```
 &nbsp;
 ----------------------------
-#All Second-level Administrative Areas Request
+# All Second-level Administrative Areas Request
 - Request Structure:
 	- Target: https://api.careerbuilder.com/core/geography/entities/admin_area_2s
 	- URL parameter: 
@@ -160,7 +160,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 ```
 &nbsp;
 ----------------------------
-#All Localities Request
+# All Localities Request
 - Request Structure:
 	- Target: https://api.careerbuilder.com/core/geography/entities/localities
 	- URL parameter: 
@@ -203,7 +203,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 ```
 &nbsp;
 ----------------------------
-#All Postal Codes Request
+# All Postal Codes Request
 - Request Structure:
 	- Target: https://api.careerbuilder.com/core/geography/entities/postal_codes
 	- URL parameter: 
@@ -246,7 +246,7 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 ```
 &nbsp;
 ----------------------------
-#All Metropolitan Statistical Areas Request
+# All Metropolitan Statistical Areas Request
 - Request Structure:
 	- Target: https://api.careerbuilder.com/core/geography/entities/msas
 	- URL parameter: 
@@ -278,6 +278,6 @@ All responses with an HTTP status of 200 will consist of a JSON object with a to
 ```
 &nbsp;
 -----------
-#Versioning
+# Versioning
 The current API version is 1.0. The data returned from the service is unversioned.  
 Our general versioning strategy is available [here](/Versioning.md).
