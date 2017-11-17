@@ -3,22 +3,22 @@ Semantic Overrides API
 Allows users and curators to add enrichments, remove enrichments, and make enrichments selected or unselected in real time for 
 any canonical term and any taxonomy supported by Semantic 1.0
 
-#Global Overrides
+# Global Overrides
 Global overrides are administrated by authorized curators via the Overrides UI tool. The tool is located at 
 http://www.careerbuilder.com/nlUtils/SemanticOverridesTool/SemanticOverride.html?g=true
 The tool will only work for those on an approved list. For questions about gaining access, send an email to 
 DataScienceApplicationDevelopment@careerbuilder.com
 
-#User Overrides
+# User Overrides
 User overrides are only applied to Semantic Search requests with a corresponding user_id, 
 allowing personalization of Semantic Search results. User overrides have priority over global overrides, and are applied to
 any extracted keyword for which an override exists. 
 
-##User Overrides Request
+## User Overrides Request
 
 User overrides are added and deleted using a RESTful interface.
 
-###HTTP method PUT
+### HTTP method PUT
 
 Adds or updates an override for the specified user_id, term, language, taxonomy, and enrichment combination. 
 Since this endpoint modifies override state, it is restricted to certain OAuth client ids. For questions about access, send an email to 
@@ -63,7 +63,7 @@ returned=true&selected=true
 
 The response will include no data unless an error occurred, in which case the response will be in CB API standard format. 
 
-###HTTP Method DELETE
+### HTTP Method DELETE
 
 Removes an override for the specified user_id, term, language, taxonomy, and enrichment combination. The Semantic Search API will return its default behavior for this user_id/language before this override was added. 
 Since this endpoint modifies override state, it is restricted to certain OAuth client ids. For questions about access, send an email to 
