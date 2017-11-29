@@ -11,7 +11,7 @@ _________
 
 
 
-#Request Information
+# Request Information
 
 
 HTTP method: GET
@@ -22,7 +22,7 @@ https://api.careerbuilder.com/core/taxonomy/ {[Desired Taxonomy](#available-taxo
 Example: https://api.careerbuilder.com/core/taxonomy/carotenev1
 
 
-#Response Information
+# Response Information
 
 The response returns a single data node which maps each language code supported by the taxonomy to a list of the taxonomy's elements for that language.
 
@@ -36,7 +36,7 @@ The response returns a single data node which maps each language code supported 
 | normalized name | | The normalized name for the skill title |
 
 
-#Sample Response
+# Sample Response
 
 
 ```
@@ -63,12 +63,12 @@ The response returns a single data node which maps each language code supported 
 ```
 
 
-#Available Taxonomies
+# Available Taxonomies
 -----------
 onet15, onet17, carotenev1, carotenev2, carotenev2_2, carotenev3, skillsv2, skillsv3, skillsv4, naics2007.
 
 
-#Versioning
+# Versioning
 -----------
 The response from the Taxonomy Service is versioned with the current version being 1.0. The data sets retrieved are also versioned. These data sets are upgraded at will in order to improve their accuracy. Requests made to this service will always use the latest version of the requested data set.
 
