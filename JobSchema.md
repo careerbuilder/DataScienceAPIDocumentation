@@ -208,3 +208,10 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
     }
 }
 ```
+
+## Versioning
+The current version is 1.0. 
+
+Version must be specified in the Accept header. E.g. ```application/json;version=1.0```. 
+
+Our general versioning strategy is available [here](/Versioning.md).
