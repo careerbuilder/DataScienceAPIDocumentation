@@ -11,7 +11,7 @@ _______
 
 ## Summary
 
-Job Schema Service (JSS) takes a request containing data for a job posting and returns a response conforming to the [schema.org](﻿http://schema.org/) [JobPosting schema](﻿http://schema.org/JobPosting).
+Job Schema Service (JSS) takes a request containing data for a job posting and returns a response conforming to the [schema.org JobPosting schema](﻿http://schema.org/JobPosting).
 
 ## Request Structure
 ```
