@@ -207,6 +207,9 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
         }
     }
 }
+
+Note:
+- ```datePosted``` and ```validThrough``` are UTC time in [ISO 8601](﻿https://en.wikipedia.org/wiki/ISO_8601) format.
 ```
 
 ## Versioning
