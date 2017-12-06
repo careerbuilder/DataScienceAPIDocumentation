@@ -119,7 +119,7 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
 ```
 
 ### Additional constraints:
-- ```job_data.start_date``` and ```job_data.end_date``` must be in [ISO 8601](﻿https://en.wikipedia.org/wiki/ISO_8601) format with UTC offset.
+- ```job_data.start_date``` and ```job_data.end_date``` must be in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format with UTC offset.
     - e.g. ```2017-10-30T15:05:36.8+05:00```
 - Valid values for ```job_data.employee_type``` are:
     - ```JTFT```
