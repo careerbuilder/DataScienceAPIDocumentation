@@ -129,6 +129,7 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
     - ```JTSE```
     - ```JTIN```
     - ```JTPD```
+- ```job_data``` is required.
 
 ## Response Structure
 ```
