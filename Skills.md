@@ -115,7 +115,7 @@ The following languages are supported by this API.  The English taxonomy is sign
 * sk
 * sv
 
-#Versioning
+Versioning
 -----------
 The data returned is versioned.  The current version is 5.0. A version must be supplied to this service; if no version is supplied, a 400 Bad Request error will be returned.
 
