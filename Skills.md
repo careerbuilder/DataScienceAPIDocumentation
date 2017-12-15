@@ -19,7 +19,7 @@ This API currently supports versions 4.1, 4.2, and 5.0. Version is passed in the
 
 &#42; A more detailed explanation of this functionality: The tagger uses “context” to define semantic relevancy.  If the input is too short (<= 150 words) to constitute a “context,” the tagger by default returns everything by direct matching, resulting in 0.0 confidence scores due to lack of context for relatedness. To avoid confusion, a pseudo score “1” is assigned to indicate “directly matched.” This feature is called “auto thresholding” (auto_thres).
 
-The taxonomy can be found through the TaxonomyAPI [here](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/TaxonomyService.md)
+Taxonomies can be found through the TaxonomyAPI [here](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/TaxonomyService.md)
 
 Response
 -----------
@@ -117,7 +117,7 @@ The following languages are supported by this API.  The English taxonomy is sign
 
 #Versioning
 -----------
-The data returned is versioned.  The current version is 4.1. A version must be supplied to this service; if no version is supplied, a 400 Bad Request error will be returned.
+The data returned is versioned.  The current version is 5.0. A version must be supplied to this service; if no version is supplied, a 400 Bad Request error will be returned.
 
 Our general versioning strategy is available [here](/Versioning.md).
 
