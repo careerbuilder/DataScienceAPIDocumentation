@@ -271,7 +271,7 @@ Response Structure
           "type": string
         },
         [... more skillsV5 results]
-      ],
+      ]
     },
     "job_level": {
       "1.0": {
