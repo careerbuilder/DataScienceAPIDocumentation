@@ -6,7 +6,6 @@
 
 - [Description](#description)
 - [Geocoding Request](#geocoding-request)
-- [Geocoding Request Structure](#geocoding-request-structure)
 - [Place ID Lookup Request](#place-id-lookup-request)
 - [Place ID Lookup Request Structure](#place-id-lookup-request-structure)
 - [Response Structure](#response-structure)
@@ -22,7 +21,15 @@ This service makes use of two different requests: Geocoding Requests and Google 
 # Geocoding Request
 A Geocoding request contains at least one of (query, address, locality, postal_code, admin_area, country) that must be provided in the query string.
 
-#Geocoding Request Structure
+### Headers and Version
+
+Version must be specified in the ```Accept``` header.
+
+E.g.: ```Accept: application/json;version=1.1```
+
+See the [Versioning](#versioning) section for more information on Geocoding versioning.
+
+### Request Structure
 
 Example URL: https://api.careerbuilder.com/core/geography/geocoding?address=5550%20Peachtree%20Pkwy&locality=Norcross&admin_area=GA&postal_code=30092&country=US
 
