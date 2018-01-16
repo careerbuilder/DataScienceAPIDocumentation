@@ -86,6 +86,11 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
         {
           "normalized_term": string
         },
+      ],
+      "5.0": [
+        {
+          "normalized_term": string
+        },
       ]
     }
   },
