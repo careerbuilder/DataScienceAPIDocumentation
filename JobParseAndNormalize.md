@@ -60,8 +60,8 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
     | `job_level` | Job Level |
     | `job_title_carotene` | Carotene Job Title Classifications |
     | `job_title_onet` | ONET Job Title Classifications |
-    | `skillsv4`| Careerbuilder Skills V4 Extraction |
-    | `skillsv5`|  Careerbuilder Skills V5 Extraction |
+    | `skillsv4` | Careerbuilder Skills V4 Extraction |
+    | `skillsv5` |  Careerbuilder Skills V5 Extraction |
 
     For example, a request with a desired_enrichments value equal to `job_level,skillsv5,job_title_onet,company_norm` would receive job level classifications, skills V5 extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service. The value `none` must be supplied to return none of the optional enrichments. 
 
