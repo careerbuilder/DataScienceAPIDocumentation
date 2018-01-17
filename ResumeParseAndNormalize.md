@@ -54,7 +54,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, or .wps document given in a BASE64 encoded string. Newlines are required in .txt and .rtf documents
 
-* **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the resume parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills, related_skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. **related_skills** and **skills** differ in that requesting **skills** returns only extracted skills, while requesting **related_skills** returns related skills alongside extracted skills in the document skills node. The **related_skills** enrichment includes the **skills** enrichment; there is no need to also request **skills** when requesting **related_skills**.The API does not currently allow callers to request only certain versions of a classification service. If no additional enrichments are needed, the value **"none"** may be supplied to skip all post-parsing classifications and simply return the parsed resume data.
+* **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the resume parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skillsv4, related_skillsv4, skillsv5, related_skillsv5**. For example, a request with a desired_enrichments value equal to **job_level,skillsv5,job_title_onet,company_norm** would receive job level classifications, skills extractions for version 5.0, ONet job title classifications, and company normalizations. **related_skillsv5** and **skillsv5** differ in that requesting **skillsv5** returns only extracted skills, while requesting **related_skillsv5** returns related skills alongside extracted skills in the document skills node. The **related_skillsv5** enrichment includes the **skillsv5** enrichment; there is no need to also request **skillsv5** when requesting **related_skillsv5**. The same applies to ***skillsv4*** and ***related_skillsv4***. If no additional enrichments are needed, the value **"none"** may be supplied to skip all post-parsing classifications and simply return the parsed resume data.
 
 Note that the **experience_months_by_job_category** field relies on job title classifications, and will only appear in the response if either the **job_title_onet** or **job_title_carotene** enrichment is requested. (This field will be computed using the most recent version of Carotene that is available, or the most recent version of ONet if no Carotene versions are available)
 
@@ -180,6 +180,15 @@ Response Structure
               "type": string
             },
             [... more skillsV4 results]
+          ],
+          "5.0": [
+            {
+              "skilldid": string,
+              "normalized_term": string,
+              "confidence": float,
+              "type": string
+            },
+            [... more skillsV5 results]
           ]
         },
         "company_normalization": {
@@ -253,6 +262,15 @@ Response Structure
           "type": string
         },
         [... more skillsV4 results]
+      ],
+      "5.0": [
+        {
+          "skilldid": string,
+          "normalized_term": string,
+          "confidence": float
+          "type": string
+        },
+        [... more skillsV5 results]
       ]
     },
     "job_level": {
