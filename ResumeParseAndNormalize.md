@@ -17,7 +17,7 @@ This service parses a Base64-encoded resume, then (optionally) further enriches 
 
 The service is located at https://api.careerbuilder.com/core/parsing/normalizedresume. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
 
-Additionally, the service makes a best attempt at scrubbing Personally Identifiable Information i.e. Social Security Numbers and Driver's License Numbers, from the raw and clean resume fields. Anything found to resemble a SSN or Driver's License Number in the resume text will be replaced with either: "***Social Security Number Removed***" or "***Driver's License Number Removed***". False positives do occur but the parsing software is formidable enough to parse out the fields that may be scrubbed post processing.
+Additionally, the service makes a best attempt at scrubbing Personally Identifiable Information i.e. Social Security Numbers and Driver's License Numbers, from the raw and clean resume fields. Anything found to resemble a SSN or Driver's License Number in the resume text will be replaced with either: "***Social Security Number Removed***" or "***Driver's License Number Removed***". False positives do occur but the scrubbing occurs post parsing and the fields that may be scrubbed are still extracted and returned in their respective fields.
 
 Languages
 ============
