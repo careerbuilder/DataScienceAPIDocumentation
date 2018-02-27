@@ -6,8 +6,8 @@ The Company Normalization Service accepts HTTP GET or POST requests that specify
 The service handles two types of requests: search requests and lookup requests. Search requests attempt to resolve an unnormalized query to an entity from the CompanyDepot knowledge base. Lookup requests return the normalized entity corresponding to the provided ID.
 _________
 - [Search Requests](#search-requests)
-- [Lookup Requests](#lookup-requests)
 - [Search Responses](#search-responses)
+- [Lookup Requests](#lookup-requests)
 - [Lookup Responses](#lookup-responses)
 - [Versioning](#versioning)
 
@@ -29,10 +29,6 @@ The following parameters may be used in constructing a request to the service:
 \* *Note that company_name and website are each constrained to a maximum length of 400 characters. Requests that contain a company_name or website value exceeding this limit will fail with an HTTP 400 Bad Request status.*
  
 Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=careerbuilder&max_results=1
-
-## Lookup Requests
-
-Lookup requests specify an `id` value. This corresponds to the `id` field associated with normalized companies returned by the service. The `max_results` parameter and the two parameters controlling classifier behavior (`use_query_classifier` and `filter_by_country`) may be included, but all of these will have no effect. Other parameters from the [Search Requests](#search-requests) section may not be supplied with the `id` parameter; requests constructed in this way will result in an HTTP 400 Bad Request error.
 
 ## Search Responses
 
@@ -83,6 +79,10 @@ Following is an example JSON response body:
   }
 }
 ```
+
+## Lookup Requests
+
+Lookup requests specify an `id` value. This corresponds to the `id` field associated with normalized companies returned by the service. The `max_results` parameter and the two parameters controlling classifier behavior (`use_query_classifier` and `filter_by_country`) may be included, but all of these will have no effect. Other parameters from the [Search Requests](#search-requests) section may not be supplied with the `id` parameter; requests constructed in this way will result in an HTTP 400 Bad Request error.
 
 ## Lookup Responses
 
