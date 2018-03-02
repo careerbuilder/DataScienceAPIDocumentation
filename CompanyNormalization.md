@@ -82,7 +82,7 @@ Following is an example JSON response body:
 
 ## Lookup Requests
 
-Lookup requests specify an `id` value. This corresponds to the `id` field associated with normalized companies returned by the service. The `max_results` parameter and the two parameters controlling classifier behavior (`use_query_classifier` and `filter_by_country`) may be included, but all of these will have no effect. Other parameters from the [Search Requests](#search-requests) section may not be supplied with the `id` parameter; requests constructed in this way will result in an HTTP 400 Bad Request error.
+Lookup requests specify an `id` value. This corresponds to the `id` field associated with normalized companies returned by the service. Other parameters from the [Search Requests](#search-requests) section should not be included in these requests; requests constructed with the ˋidˋ parameter alongside other parameters will result in an HTTP 400 Bad Request error.
 
 ## Lookup Responses
 
