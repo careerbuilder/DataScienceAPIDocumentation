@@ -8,6 +8,7 @@ _____________
 - [Languages](#languages)
 - [Request structure](#request-structure)
 - [Response structure](#response-structure)
+- [PII Scrubbing](#pii-scrubbing)
 - [Versioning](#versioning)
 
 Summary
@@ -347,6 +348,12 @@ Response Structure
   }
 }
 ```
+
+PII Scrubbing
+-----------
+The service makes a best attempt at scrubbing Personally Identifiable Information (i.e. Social Security Numbers and Driver's License Numbers). PII scrubbing logic is applied to the `raw_resume_text` and `resume_html` fields only. Anything found to resemble a SSN or Driver's License Number in these fields will be replaced with either: "\*\*\*Social Security Number Removed\*\*\*" or "\*\*\*Driver's License Number Removed\*\*\*". Parsed data fields (such as the phone number fields) will therefore be unaffected by false-positive PII removals.
+
+In addition, the service attempts to scrub Date Of Birth from the same set of fields. Text resembling a date of birth will be replaced with "\*\*\*Date of Birth Removed\*\*\*". To see how to disable this feature please review the `return_date_of_birth` field in the [Request structure](#request-structure) section.
 
 Versioning
 -----------
