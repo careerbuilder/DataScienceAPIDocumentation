@@ -12,7 +12,7 @@ _______
 
 ## Summary
 
-Company Address Service (CAS) takes a request containing a company name, latitude and longitude and returns a geocoded response.
+The Company Address Service takes a request containing a company name, latitude and longitude and returns a response describing a normalized geographic location.
 
 ## Request Structure
 ```json
@@ -41,21 +41,21 @@ Each element of the returned **results** array will be formatted as follows:
 | admin_areas | A JSON array of up to 5 admin_area objects. See below for details on the structure of these objects. **This property is always present, but may be empty** if no admin areas were found. |
 | latitude | A double value specifying the location's latitude (in degrees) within the range [-90, +90]. **This property is always present.** |
 | longitude | A double value specifying the location's longitude (in degrees) within the range [-180, +180]. **This property is always present.** |
-| country | The country or region name of an address. **This property may be absent** if the location was not associated with a country. Some locations for which this occurs are "Europe", "Pacific Ocean", and "Gaza Strip" (a contested territory). |
+| country | The country or region name of an address. **This property may be absent** |
 | locality | The populated place for the address. This typically refers to a city, but may refer to a suburb or a neighborhood in certain countries. **This property may be absent**. |
 | postal_code | The post code, postal code, or ZIP code of an address. **This property may be absent**. |
-| country_code | The two-letter ISO country code. **This property may be absent**. See "Country" for examples of when this might occur. |
+| country_code | The two-letter ISO country code. **This property may be absent**. |
 | formatted_address| A string containing the human-readable address of this location. Often this address is equivalent to the "postal address," which sometimes differs from country to country. (Note that some countries, such as the United Kingdom, do not allow distribution of true postal addresses due to licensing restrictions.) **This property may be absent**. |
-| location_type | The classification of the geographic entity returned. Possible values (in descending order of specificity) are STREET_ADDRESS, SUBLOCALITY, POSTAL_CODE, LOCALITY, ADMIN_AREA_2, ADMIN_AREA_1, STREET, COUNTRY, and UNKNOWN. The returned location type will reflect the most specific field present, based on the previously described order. If none of these fields are present (such as for the examples for which the Country field is absent), then the returned location type will be Unknown. **This property is always present and non-empty.** |
+| location_type | The classification of the geographic entity returned. For Company Address searches this will always be STREET_ADDRESS. |
 | postcode_localities | A string array denoting all the localities contained in a postal code. **This property is only present when the result is a postal code that contains multiple localities,** and will never be empty (nor will it ever contain only one element). |
-| street_address | The official street line of an address relative to the area, as specified by the Locality, or PostalCode, properties. **This property may be absent**. |
+| street_address | The official street line of an address relative to the area, as specified by the `locality` or `postal_code` properties. **This property may be absent**. |
 | sublocality | The neighborhood, borough, township, etc. for the address. Sublocalities are typically more specific than cities and may be returned even if the locality field is empty. **This property may be absent**. |
 | landmark | The full name of the landmark (such as a military base or island) returned by the service. **This property may be absent**. |
-| place_id | Place Id relating to the geolocation requested. 
+| place_id | Google's unique identifier string corresponding to the returned location. |
 | viewport | A bounding box describing a rectangle that encloses the location. The viewport field contains two coordinate objects -- **northeast** and **southwest** -- each with **lat** and **lng** decimal values. It also contains a **suggested_radius** decimal field that contains the distance in miles from the center of the viewport to a corner. **This property and its elements are always present and non-empty.** |
 | metropolitan_statistical_area | The metropolitan statistical area containing the location. An object containing two fields, the title of the area and an integer code for the area. Metropolitan statistical areas are specific to the US. **This property may be absent**. |
 | designated_market_areas | An object array of the designated market areas containing the location. Designated market areas may overlap and thus a location may be in more than one designated market area. Designated market areas are specific to the continental US. See below for details on the structure of these objects. **This property may be absent and the array may be empty**. |
-| partial_match | A Boolean value that, when true, indicates that the geocoder did not return an exact match for the original request, though it was able to match part of the requested address. You may wish to examine the original request for misspellings and/or an incomplete address.<br>Partial matches most often occur for street addresses that do not exist within the locality you pass in the request. Partial matches may also be returned when a request matches two or more locations in the same locality. For example, "21 Henr St, Bristol, UK" will return a partial match for both Henry Street and Henrietta Street. Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address. Suggestions triggered in this way will also be marked as a partial match. **This property is always present.** |
+| partial_match | A boolean value indicating that the geocoder did not return an exact match. **This property will always be false for Company Address searches**.|
 
 &nbsp;
 
