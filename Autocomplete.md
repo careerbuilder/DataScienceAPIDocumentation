@@ -7,7 +7,7 @@ _______
 - [Summary](#summary)
 - [Request structure](#request-structure)
 - [Response structure](#response-structure)
-- [Sample response](#sample-response)
+- [Examples](#examples)
 - [Versioning](#versioning)
 
 ## Summary
