@@ -147,7 +147,7 @@ Following are several request-response examples that demonstrate usage of the se
 
 **Request**
 
-`https://www.api.careerbuilder.com/core/autocomplete/company_norm?query=west&school_level=postsecondary&limit=10`
+`https://www.api.careerbuilder.com/core/autocomplete/school_norm?query=west&school_level=postsecondary&limit=10`
 
 ## Sample Response
 
