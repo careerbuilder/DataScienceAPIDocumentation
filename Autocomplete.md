@@ -120,11 +120,11 @@ Following are several request-response examples that demonstrate usage of the se
 
 &nbsp;
 
-**Normalized Company autocompletion for "careerb" [link](https://apimanagement.cbplatform.link/#routes/tester?preURL=https%3A%2F%2Fapi.careerbuilder.com%2F&postURL=core%2Fautocomplete%2Fcompany_norm%3Fquery%3Dcareerb&method=get&contentType=application%2Fjson&acceptType=application%2Fjson&version=1.0&region=productionus&flow=client_credentials&userDid=&accountDid=&headers=&body=)**
+**Normalized Company autocompletion for "careerb" [link](https://apimanagement.cbplatform.link/#routes/tester?preURL=https%3A%2F%2Fapi.careerbuilder.com%2F&postURL=core%2Fautocomplete%2Fnormalizedcompanies%3Fquery%3Dcareerb&method=get&contentType=application%2Fjson&acceptType=application%2Fjson&version=1.0&region=productionus&flow=client_credentials&userDid=&accountDid=&headers=&body=)**
 
 **Request**
 
-`https://www.api.careerbuilder.com/core/autocomplete/company_norm?query=careerb`
+`https://www.api.careerbuilder.com/core/autocomplete/normalizedcompanies?query=careerb`
 
 **Response**
 ```json
@@ -143,11 +143,11 @@ Following are several request-response examples that demonstrate usage of the se
 
 &nbsp;
 
-**Normalized School autocompletion for "west", limited to postsecondary schools and maximum 10 results [link](https://apimanagement.cbplatform.link/#routes/tester?preURL=https%3A%2F%2Fapi.careerbuilder.com%2F&postURL=core%2Fautocomplete%2Fschool_norm%3Fquery%3Dwest%26school_level%3Dpostsecondary%26limit%3D10&method=get&contentType=application%2Fjson&acceptType=application%2Fjson&version=1.0&region=productionus&flow=client_credentials&userDid=&accountDid=&headers=&body=)**
+**Normalized School autocompletion for "west", limited to postsecondary schools and maximum 10 results [link](https://apimanagement.cbplatform.link/#routes/tester?preURL=https%3A%2F%2Fapi.careerbuilder.com%2F&postURL=core%2Fautocomplete%2Fnormalizedschools%3Fquery%3Dwest%26school_level%3Dpostsecondary%26limit%3D10&method=get&contentType=application%2Fjson&acceptType=application%2Fjson&version=1.0&region=productionus&flow=client_credentials&userDid=&accountDid=&headers=&body=)**
 
 **Request**
 
-`https://www.api.careerbuilder.com/core/autocomplete/school_norm?query=west&school_level=postsecondary&limit=10`
+`https://www.api.careerbuilder.com/core/autocomplete/normalizedschools?query=west&school_level=postsecondary&limit=10`
 
 ## Sample Response
 
