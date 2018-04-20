@@ -12,21 +12,23 @@ _______
 
 ## Summary
 
-DSAD's Autocomplete Service is an HTTP REST webservice for autocompleting queries on one of several possible taxonomies. Currently supported taxonomies are as follows:
+DSAD's Autocomplete Service is an HTTP REST webservice for autocompleting queries on one of several possible taxonomies. Currently supported taxonomies and their relative API routes are as follows:
 
-* Carotene V1
-* Carotene V2
-* Carotene V2.2
-* Carotene V3
-* Carotene V3.1
-* NAICS 2007
-* Normalized Companies
-* Normalized Majors
-* Normalized Schools
-* ONet15
-* ONet17
-* Skills V4
-* Skills V5
+| Taxonomy    | Relative API Route |
+|----------|-------------|
+| Carotene V1 | `/core/autocomplete/carotenev1` |
+| Carotene V2 | `/core/autocomplete/carotenev2` |
+| Carotene V2.2 | `/core/autocomplete/carotenev2_2` |
+| Carotene V3 | `/core/autocomplete/carotenev3` |
+| Carotene V3.1 | `/core/autocomplete/carotenev3_1` |
+| NAICS 2007 | `/core/autocomplete/naics2007` |
+| Normalized Companies | `/core/autocomplete/normalizedcompanies` |
+| Normalized Majors | `/core/autocomplete/normalizedmajors` |
+| Normalized Schools | `/core/autocomplete/normalizedschools` |
+| ONet15 | `/core/autocomplete/onet15` |
+| ONet17 | `/core/autocomplete/onet17` |
+| Skills V4 | `/core/autocomplete/skillsv4` |
+| Skills V5 | `/core/autocomplete/skillsv5` |
 
 ## Request Structure
 
