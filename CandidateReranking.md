@@ -7,14 +7,14 @@ _______
 - [Summary](#summary)
 - [Request structure](#request-structure)
     - [Top Level Request](#top-level)
-    - [Query and Object Parts](#query-object-parts)
+    - [Query and Object Parts](#query-and-object-parts)
         - [Query](#query)
         - [ParsedInput](#parsed-input)
         - [ParsedEntity](#parsedentity)
         - [Keyword](#keyword)
         - [Entity](#entity)
         - [Filter](#filter)
-    - [Profile and Object Parts](#profile-object-parts)
+    - [Profile and Object Parts](#profile-and-object-parts)
         - [Profile](#profile)
         - [RecentJob](#recentjob)
         - [Skill](#skill)
@@ -43,7 +43,7 @@ A request is composed of 4 main parts:
 ### Query and Object Parts
 
 ----------
-Query Object parts are expected to be taken from the response of the [SemanticSearchAPI](#https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). All the following objects mirror that response.
+Query Object parts are expected to be taken from the response of the [SemanticSearchAPI](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). All the following objects mirror that response.
 
 #### Query
 | Param    | Type | Description
