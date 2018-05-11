@@ -355,17 +355,3 @@ The **Response Structure** as opposed to the **Request Structure**, is of a simp
 ### Versioning
 ---------
 The current API version is 1.0. API version must be specified in the Accept header, e.g. application/json;version=1.0.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
