@@ -22,7 +22,7 @@ _______
 - [Versioning](#versioning)
 
 ### Summary
-The Candidate Reranking Service is an HTTP Rest service which performs machine learned ranking on a list of candidate profiles. The service makes use of a versioned reranking-library jar maintained by Texkkernel which applies a machine learning model trained on Talent Discovery Platform query data.
+The Candidate Reranking Service is an HTTP Rest service which performs machine learned ranking on a list of candidate profiles. The service makes use of a versioned reranking-library jar maintained by Textkernel which applies a model trained on Talent Discovery Platform search data.
 
 ### Request Structure
 The service supports POST requests to:
@@ -75,16 +75,16 @@ Entites returned from the SemanticSearchAPI.
 | Param    | Type | Description
 |----------|------|--------|
 | name | String | **Required**: Name of the keyword, e.g. "Java".
-| type | Stirng | **Required**: Type of the keyword, e.g. "skill"
+| type | String | **Required**: Type of the keyword, e.g. "skill".
 | weight | Integer | **Required**: Weight of the keyword as an int.
-| relationships | Map<String, Array of Entities> | **Optional**: Map of Strings(Semantic Enrichment Type) to a list of of entities. Valid list of Map key values are: `job_titles`, `occupations`, `skills`, `job_level`, `text_kernel_related_keywords`, `interesting_keywords`, `related_keywords`, `related_keywords_recruiter`, `related_keywords_jobseeker`, `raw_job_titles_jobseeker`, `raw_job_titles_recruiter`, `extracted_kewords`, `custom_keywords`, `related_search_terms`, and `job_titles_recruiter`.
+| relationships | Map<String, Entities[]> | **Optional**: Map of Strings(Semantic Enrichment Type) to a list of of entities. Valid list of Map key values are: `job_titles`, `occupations`, `skills`, `job_level`, `text_kernel_related_keywords`, `interesting_keywords`, `related_keywords`, `related_keywords_recruiter`, `related_keywords_jobseeker`, `raw_job_titles_jobseeker`, `raw_job_titles_recruiter`, `extracted_kewords`, `custom_keywords`, `related_search_terms`, and `job_titles_recruiter`.
 
 #### Entity
 | Param    | Type | Description
 |----------|------|--------|
 | name | String | **Required**: Name of enrichment **Entity**.
 | weight | double | **Reqired**: Weight of enriched term according to the SemanticSearchAPI.
-| selected | Boolean | **Optional**: Specific for the `related_search_terms` Semantic Enrichment. If selected the value is sent to the Reranker as a feature to be extracted for reranking else it is left out of reranking.
+| selected | boolean | **Optional**: Specific for the `related_search_terms` Semantic Enrichment. If selected the value is sent to the Reranker as a feature to be extracted for reranking else it is left out of reranking. All entites default to true.
 
 #### Filter
 | Param    | Type | Description
@@ -104,8 +104,8 @@ The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified
 | Param    | Type | Description
 |----------|------|--------|
 | document_id | String | **Required**: Unique CB identifier string for the candidate.
-| recent_jobs | [RecentJobs[]](#recentjob) | **Required**: Array of **RecentJob** objects. Recent s jobs held by the candidate.
-| skills | [Skill[]](#skill) | **Required**: Array of **Skill** object. Skills associated with the candidate.
+| recent_jobs | [RecentJobs[]](#recentjob) | **Required**: Array of **RecentJob** objects. Recent s jobs held by the candidate. Reranker requires at least one RecentJob object.
+| skills | [Skill[]](#skill) | **Required**: Array of **Skill** objects. Skills associated with the candidate.
 | years_of_experience | Double | **Required**: Total years of experience the candidate has as a double.
 | normalized_education_level | String[] | **Optional**: Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc..
 | unnormalized_education_level | String[] | **Optional**: Unnormalized Educations associated with the candidate. i.e., masters degree, Master of Science, Masters etc..
@@ -116,6 +116,8 @@ The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified
 | longitude | Double | **Optional**: Location of **Longitude** associated with the candidates location.
 
 #### RecentJob
+**IMPORTANT: The Reranker requires that at least one RecentJob be included on the request.**
+
 | Param    | Type | Description
 |----------|------|--------|
 | company_name | String | **Optional**: Company name where job was held for the candidate.
@@ -133,7 +135,7 @@ Each Job Title object only has a single title field associated as follows:
 #### Skill
 | Param    | Type | Description
 |----------|------|--------|
-| name | String | **Required** Name of the skill associated with the candidate.
+| name | String | **Required**: Name of the skill associated with the candidate.
 
 #### Full Request Example:
 
@@ -296,7 +298,7 @@ Each Job Title object only has a single title field associated as follows:
           "name": "Java Database Connectivity"
         }
       ],
-      "years_of_exerperience": 4,
+      "years_of_exerperience": 4.0,
       "normalized_education_level": [
         "Master's Degree"
       ],
@@ -316,14 +318,14 @@ Each Job Title object only has a single title field associated as follows:
 ### Response Structure
 ----------
 
-The **Response Structure** as opposed to the **Request Structure**, is of a simpler design. A **Response** is composed of a array of `ranked_profiles`. Each profile has the original `document_id` and a newly aquired `ranker_score` from the **Reranker**. `ranked_profiles` will be listed in descending order according to their new scores.
+A **Response** is composed of a array of `ranked_profiles`. Each profile has the original `document_id` and a newly aquired `ranker_score` from the **Reranker**. `ranked_profiles` will be listed in descending order according to their new scores.
 
 #### RerankedProfile
 
 | Param    | Type | Description
 |----------|------|--------|
 | document_id | String | Document Id associated with a candidate profile.
-| score | Float | Score as float value as returned from the **Reranker**.
+| score | Double | Score as double value as returned from the **Reranker**.
 
 #### Full Response Example
 
