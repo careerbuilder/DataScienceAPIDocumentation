@@ -12,7 +12,9 @@ _______
 ## Summary
 
 The Company Work Activities service provides a list of work activities associated with a 
-`company_id` and `carotene_id` pair or `onet_id`. Company Work Activities is available at 
+`company_id` and `carotene_id` pair or `onet_id`. If both `carotene_id` and `onet_id` are supplied,
+then the service first attempts to return work activities for the `carotene_id`. If none are 
+found then it falls back to using the `onet_id`. Company Work Activities is available at 
 `/core/company/workactivities`.
 
 ## Request Structure
