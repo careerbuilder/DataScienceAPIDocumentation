@@ -11,9 +11,9 @@ _______
 
 ## Summary
 
-The company Job Titles service provides a list of job titles (along with their ONet17 and Carotene 
-v3 classifications) that are personalized for a given company. Company Job Titles is 
-available at `/core/company/jobtitles`.
+The company Job Titles service provides a list of job titles (along with their ONet and Carotene 
+classifications) that are personalized for a given company. Company Job Titles is available at 
+`/core/company/jobtitles`.
 
 
 ## Request Structure
@@ -21,14 +21,18 @@ Requests consist of a `company_id` string:
 
 ```json
 {
-	"company_id": "NC6623058c-2e0b-4998-ac4a-72e478e91337"
+	"company_id": "NC6623058c-2e0b-4998-ac4a-72e478e91337",
+	"carotene_version": "carotenev3",
+	"onet_version": "onet17"
 }
 ```
+
+Available taxonomies are `onet17` for `onet_version` and `carotenev3` for `carotene_version`.
 
 
 ## Response Structure
 Response consist of a list of `job_titles` where each item contains a `job_title` string and 
-its associated ONet17 and Carotene v3 classification code.
+its associated ONet and Carotene classification code.
 
 ```json
 {
@@ -51,7 +55,9 @@ its associated ONet17 and Carotene v3 classification code.
 
 
 ## Versioning
-The current version is 1.0. 
+The current version of the service is 1.0. 
+
+Currently ONet17 and Carotene v3 classifications are available.
 
 Version must be specified in the Accept header. E.g. `application/json;version=1.0`. 
 

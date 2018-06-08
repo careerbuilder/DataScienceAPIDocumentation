@@ -12,42 +12,65 @@ _______
 ## Summary
 
 The Company Work Activities service provides a list of work activities associated with a 
-`company_id` and `carotene_id` pair or `onet_id`. If both `carotene_id` and `onet_id` are supplied,
-then the service first attempts to return work activities for the `carotene_id`. If none are 
-found then it falls back to using the `onet_id`. Company Work Activities is available at 
+`company_id` and `carotene_id` or `onet_id`. Company Work Activities is available at 
 `/core/company/workactivities`.
 
 ## Request Structure
 
-Requests consist of a `company_id` string as well as at least one of `carotene_id` string or 
-`onet_id` string.
+Requests consist of a `company_id` string, at least one of `carotene_id` string or 
+`onet_id` string, and a `carotene_version` string (required if `carotene_id` is present) and 
+`onet_version` string (required if `onet_id` is present).
 
 ```json 
 {
   "company_id": "NCf01eccfd-78f5-43e5-98a1-9d6415ea4e7a",
-  "carotene_id": "13.308829999999999",
-  "onet_id": "53-6041.00"
+  "carotene_id": "51.31",
+  "carotene_version": "carotenev3",
+  "onet_id": "53-6041.00",
+  "onet_version": "onet17"
 }
+
 ```
+
+Available taxonomies are `onet17` for `onet_version` and `carotenev3` for `carotene_version`.
 
 ## Response Structure
 
 The response contains a list of work activities associated with the requested `company_id` and 
-`carotene_id` pair or `onet_id`.
+one or both of `carotene_id` and `onet_id`.
 
 ```json
 {
     "data": {
-        "work_activities": [
-            "Assist with the administration of various employee benefits programs, including medical, dental, vision benefits",
-            "Facilitate weekly new-hire benefit orientations",
-            "Reconcile invoices from benefits vendors and providers"
+        "onet_work_activities": [
+            {
+                "activity": "Review work orders or schedules to determine operations or procedures."
+            },
+            {
+                "activity": "Develop program goals or plans."
+            },
+            {
+                "activity": "Monitor surroundings to detect potential hazards."
+            }
+        ],
+        "carotene_work_activities": [
+            {
+                "activity": "Specialize in skilled trades"
+            },
+            {
+                "activity": "Staff through aerotek commercial staffing, a division of aerotek"
+            },
+            {
+                "activity": "Recruit and screens professionals in areas cnc machining"
+            }
         ]
     }
 }
 ```
 ## Versioning
-The current version is 1.0. 
+The current version of the service is 1.0. 
+
+Currently ONet17 and Carotene v3 classifications are available.
 
 Version must be specified in the Accept header. E.g. ```application/json;version=1.0```. 
 
