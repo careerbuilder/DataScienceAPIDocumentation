@@ -11,7 +11,7 @@ _______
 
 ## Summary
 
-The company Job Titles service provides a list of job titles (along with their ONet and Carotene 
+The Company Job Titles service provides a list of job titles (along with their ONet and Carotene 
 classifications) that are personalized for a given company. Company Job Titles is available at 
 `/core/company/jobtitles`.
 
