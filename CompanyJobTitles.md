@@ -27,7 +27,9 @@ Requests consist of a `company_id` string:
 }
 ```
 
-Available taxonomies are `onet17` for `onet_version` and `carotenev3` for `carotene_version`.
+The ONet and Carotene versions currently supported are listed in the [Versioning](#versioning) 
+section of this document and are subject to change over time. Any removal of support for a taxonomy 
+version will be implemented as a versioned change to the API itself.
 
 
 ## Response Structure
