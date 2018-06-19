@@ -11,6 +11,7 @@ _______
         - [ParsedInput](#parsed-input)
         - [ParsedEntity](#parsedentity)
         - [Keyword](#keyword)
+        - [Relationship](#relationship)
         - [Entity](#entity)
         - [Filter](#filter)
     - [Profile](#profile)
@@ -98,7 +99,7 @@ An `entity` is composed of a `name`, `weight`, and `selected` boolean. An `entit
 |----------|------|--------|
 | id | String | **Optional**: Unique identfier for the **Filter**.
 | name | String | **Optional**: Name of the **Filter**.
-| type | String | **Optional**: Accepted values are *facet* or *range*. Type of **Filter** applied. Defaults to *facet*.
+| type | String | **Optional**: Type of **Filter** applied. Accepted values are *facet* or *range*. Service defaults to *facet*.
 | values | String[] | **Optional**: Values chosen to filter on from the original search request **Filter**.
 
 ### Profile
