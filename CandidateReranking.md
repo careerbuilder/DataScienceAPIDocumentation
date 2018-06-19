@@ -6,15 +6,14 @@ _______
 
 - [Summary](#summary)
 - [Request structure](#request-structure)
-    - [Top Level Request](#top-level)
-    - [Query and Object Parts](#query-and-object-parts)
+    - [Query](#query)
         - [Query](#query)
         - [ParsedInput](#parsed-input)
         - [ParsedEntity](#parsedentity)
         - [Keyword](#keyword)
         - [Entity](#entity)
         - [Filter](#filter)
-    - [Profile and Object Parts](#profile-and-object-parts)
+    - [Profile](#profile)
         - [Profile](#profile)
         - [RecentJob](#recentjob)
         - [Skill](#skill)
@@ -32,13 +31,12 @@ OAUTH credentials are **required**.
 A request is composed of 4 main parts:
 `reranker_config`, `source`, `query`, and `profiles`.
 
-#### Top Level Schema
 | Param    | Type | Description
 |----------|------|--------|
 | reranker_config | String | **Required**: Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call "RERANKER_V1".
 | source | String | **Required**: Accepted Values: **EDGE** or **MY_SUPPLY**. The source identifies where profile data was attained. A model can be learned based on the source providing more accurate results per each data format.
-| query | [Query](#query-object-parts) | **Required**: The original fully enriched query sent to SOLR for the list of Candidate Profiles.
-| profiles | [Profile[]](#profile-and-objec-parts) | **Required**: Array of profiles to be reranked.
+| query | [Query](#query) | **Required**: The original fully enriched query sent to SOLR for the list of Candidate Profiles.
+| profiles | [Profile[]](#profile) | **Required**: Array of profiles to be reranked.
 
 ### Query
 
@@ -109,6 +107,7 @@ The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified
 | years_of_experience | Double | **Optional**: Total years of experience the candidate has as a double.
 | normalized_education_level | String[] | **Optional**: Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc..
 | unnormalized_education_level | String[] | **Optional**: Unnormalized Educations associated with the candidate. i.e., masters degree, Master of Science, Masters etc..
+| major | String | **Optional**: The major or field of study the candidate's degree pertains to.
 | city | String | **Optional**: City that the candidate is located in.
 | state | String | **Optional**: State that the candidate lives in.
 | country | String | **Optional**: Country of the candidate.
@@ -305,6 +304,7 @@ Each Job Title object only has a single title field associated as follows:
       "unnormalized_education_level": [
         "master's of science"
       ],
+      "major": "Computer Science",
       "city": "Atlanta",
       "state": "GA",
       "country": "US",
@@ -325,7 +325,7 @@ A **Response** is composed of a array of `ranked_profiles`. Each profile has the
 | Param    | Type | Description
 |----------|------|--------|
 | document_id | String | Document Id associated with a candidate profile.
-| score | Double | Score as double value as returned from the **Reranker**.
+| score | double | Score as double value as returned from the **Reranker**.
 
 #### Full Response Example
 
