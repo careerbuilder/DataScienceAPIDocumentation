@@ -35,13 +35,13 @@ A request is composed of 4 main parts:
 |----------|------|--------|
 | reranker_config | String | **Required**: Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call "RERANKER_V1".
 | source | String | **Required**: Accepted Values: **EDGE** or **MY_SUPPLY**. The source identifies where profile data was attained. A model can be learned based on the source providing more accurate results per each data format.
-| query | [Query](#query) | **Required**: The original fully enriched query sent to SOLR for the list of Candidate Profiles.
+| query | [Query](#query) | **Required**: The original, fully enriched query sent to SOLR for the list of candidate profiles.
 | profiles | [Profile[]](#profile) | **Required**: Array of profiles to be reranked.
 
 ### Query
 
 ----------
-The Query and it's child objects are expected to be taken from the response of the [SemanticSearchAPI](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). All the following objects mirror that response.
+The query and its child objects are expected to be taken from the response of the [SemanticSearchAPI](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). All the following objects mirror that response.
 
 #### Query
 | Param    | Type | Description
@@ -74,14 +74,23 @@ Entites returned from the SemanticSearchAPI.
 |----------|------|--------|
 | name | String | **Optional**: Name of the keyword, e.g. "Java".
 | type | String | **Optional**: Type of the keyword, e.g. "skill".
-| weight | Integer | **Optional**: Weight of the keyword as an int.
-| relationships | Map<String, Entities[]> | **Optional**: Map of Strings(Semantic Enrichment Type) to a list of of entities. Valid list of Map key values are: `job_titles`, `occupations`, `skills`, `job_level`, `text_kernel_related_keywords`, `interesting_keywords`, `related_keywords`, `related_keywords_recruiter`, `related_keywords_jobseeker`, `raw_job_titles_jobseeker`, `raw_job_titles_recruiter`, `extracted_kewords`, `custom_keywords`, `related_search_terms`, and `job_titles_recruiter`.
+| weight | Integer | **Optional**: Weight of the keyword as an int. \[0-100\]
+| relationships | [Relationship](#relationship) | **Optional**: Array of relationship objects which enrich the keyword with additional entities.
 
-#### Entity
+#### Relationship
+A `relationship` is composed of a **\<semantic enrichment type\>** and the associated set of entities which can be classified under that **\<semantic enrichment type\>**. Accepted values for the **\<semantic enrichment type\>** include: `job_titles`, `occupations`, `skills`, `job_level`, `text_kernel_related_keywords`, `interesting_keywords`, `related_keywords`, `related_keywords_recruiter`, `related_keywords_jobseeker`, `raw_job_titles_jobseeker`, `raw_job_titles_recruiter`, `extracted_kewords`, `custom_keywords`, `related_search_terms`, and `job_titles_recruiter`.
+
 | Param    | Type | Description
 |----------|------|--------|
-| name | String | **Optional**: Name of enrichment **Entity**.
-| weight | double | **Optional**: Weight of enriched term according to the SemanticSearchAPI.
+| **\<semantic enrichment type\>** | [Entity[]](#entity) | **Optional**: Relationship to the keyword `name` value.
+
+#### Entity
+An `entity` is composed of a `name`, `weight`, and `selected` boolean. An `entity` enriches the original keyword with terms or phrases which share a close association. For example, if you were to have a `keyword` java, an enrichment entity might be java or programming.
+
+| Param    | Type | Description
+|----------|------|--------|
+| name | String | **Optional**: Name of enrichment `entity`. Ex., javascript, java, programming or software engineer.
+| weight | double | **Optional**: Weight of enriched term according to the Semantic Search API.
 | selected | boolean | **Optional**: Specific for the `related_search_terms` Semantic Enrichment. If selected the value is sent to the Reranker as a feature to be extracted for reranking else it is left out of reranking. All entites default to true.
 
 #### Filter
@@ -89,7 +98,7 @@ Entites returned from the SemanticSearchAPI.
 |----------|------|--------|
 | id | String | **Optional**: Unique identfier for the **Filter**.
 | name | String | **Optional**: Name of the **Filter**.
-| type | String | **Optional**: Accepted values: facet or range. Type of **Filter** applied. Defaults to facet.
+| type | String | **Optional**: Accepted values are *facet* or *range*. Type of **Filter** applied. Defaults to *facet*.
 | values | String[] | **Optional**: Values chosen to filter on from the original search request **Filter**.
 
 ### Profile
@@ -102,7 +111,7 @@ The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified
 | Param    | Type | Description
 |----------|------|--------|
 | document_id | String | **Optional**: Unique CB identifier string for the candidate.
-| recent_jobs | [RecentJobs[]](#recentjob) | **Optional**: Array of **RecentJob** objects. Recent s jobs held by the candidate. Reranker requires at least one RecentJob object.
+| recent_jobs | [RecentJobs[]](#recentjob) | **Optional**: Recent jobs held by the candidate.
 | skills | [Skill[]](#skill) | **Optional**: Array of **Skill** objects. Skills associated with the candidate.
 | years_of_experience | Double | **Optional**: Total years of experience the candidate has as a double.
 | normalized_education_level | String[] | **Optional**: Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc..
