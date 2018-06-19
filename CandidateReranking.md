@@ -115,7 +115,6 @@ The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified
 | longitude | Double | **Optional**: Location of **Longitude** associated with the candidates location.
 
 #### RecentJob
-**IMPORTANT: The Reranker requires that at least one RecentJob be included on the request.**
 
 | Param    | Type | Description
 |----------|------|--------|
