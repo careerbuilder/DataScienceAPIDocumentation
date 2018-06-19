@@ -32,7 +32,7 @@ OAUTH credentials are **required**.
 A request is composed of 4 main parts:
 `reranker_config`, `source`, `query`, and `profiles`.
 
-#### Top Level
+#### Top Level Schema
 | Param    | Type | Description
 |----------|------|--------|
 | reranker_config | String | **Required**: Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call "RERANKER_V1".
@@ -40,15 +40,15 @@ A request is composed of 4 main parts:
 | query | [Query](#query-object-parts) | **Required**: The original fully enriched query sent to SOLR for the list of Candidate Profiles.
 | profiles | [Profile[]](#profile-and-objec-parts) | **Required**: Array of profiles to be reranked.
 
-### Query and Object Parts
+### Query
 
 ----------
-Query Object parts are expected to be taken from the response of the [SemanticSearchAPI](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). All the following objects mirror that response.
+The Query and it's child objects are expected to be taken from the response of the [SemanticSearchAPI](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). All the following objects mirror that response.
 
 #### Query
 | Param    | Type | Description
 |----------|------|--------|
-| search_keywords | String | **Required**: Raw query string applied in original search.
+| search_keywords | String | **Optional**: Raw query string applied in original search.
 | location | String | **Optional**: Location requested in search.
 | should_use_radius | boolean | **Optional**: Flag on the original search to determine use of radius.
 | radius | Integer | **Optional**: Radius used in original search.
@@ -74,27 +74,27 @@ Entites returned from the SemanticSearchAPI.
 
 | Param    | Type | Description
 |----------|------|--------|
-| name | String | **Required**: Name of the keyword, e.g. "Java".
-| type | String | **Required**: Type of the keyword, e.g. "skill".
-| weight | Integer | **Required**: Weight of the keyword as an int.
+| name | String | **Optional**: Name of the keyword, e.g. "Java".
+| type | String | **Optional**: Type of the keyword, e.g. "skill".
+| weight | Integer | **Optional**: Weight of the keyword as an int.
 | relationships | Map<String, Entities[]> | **Optional**: Map of Strings(Semantic Enrichment Type) to a list of of entities. Valid list of Map key values are: `job_titles`, `occupations`, `skills`, `job_level`, `text_kernel_related_keywords`, `interesting_keywords`, `related_keywords`, `related_keywords_recruiter`, `related_keywords_jobseeker`, `raw_job_titles_jobseeker`, `raw_job_titles_recruiter`, `extracted_kewords`, `custom_keywords`, `related_search_terms`, and `job_titles_recruiter`.
 
 #### Entity
 | Param    | Type | Description
 |----------|------|--------|
-| name | String | **Required**: Name of enrichment **Entity**.
-| weight | double | **Reqired**: Weight of enriched term according to the SemanticSearchAPI.
+| name | String | **Optional**: Name of enrichment **Entity**.
+| weight | double | **Optional**: Weight of enriched term according to the SemanticSearchAPI.
 | selected | boolean | **Optional**: Specific for the `related_search_terms` Semantic Enrichment. If selected the value is sent to the Reranker as a feature to be extracted for reranking else it is left out of reranking. All entites default to true.
 
 #### Filter
 | Param    | Type | Description
 |----------|------|--------|
 | id | String | **Optional**: Unique identfier for the **Filter**.
-| name | String | **Required**: Name of the **Filter**.
+| name | String | **Optional**: Name of the **Filter**.
 | type | String | **Optional**: Accepted values: facet or range. Type of **Filter** applied. Defaults to facet.
 | values | String[] | **Optional**: Values chosen to filter on from the original search request **Filter**.
 
-### Profile and Object Parts
+### Profile
 ----------
 The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified in the `source` param). Using data from each profile the service builds a RerankRequest Document which is sent along with features extracted from the query to the **Reranker**. The **Reranker** then returns the list of profiles in a new ordering which should be of more relevance to the query.
 
@@ -103,10 +103,10 @@ The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified
 #### Profile
 | Param    | Type | Description
 |----------|------|--------|
-| document_id | String | **Required**: Unique CB identifier string for the candidate.
-| recent_jobs | [RecentJobs[]](#recentjob) | **Required**: Array of **RecentJob** objects. Recent s jobs held by the candidate. Reranker requires at least one RecentJob object.
-| skills | [Skill[]](#skill) | **Required**: Array of **Skill** objects. Skills associated with the candidate.
-| years_of_experience | Double | **Required**: Total years of experience the candidate has as a double.
+| document_id | String | **Optional**: Unique CB identifier string for the candidate.
+| recent_jobs | [RecentJobs[]](#recentjob) | **Optional**: Array of **RecentJob** objects. Recent s jobs held by the candidate. Reranker requires at least one RecentJob object.
+| skills | [Skill[]](#skill) | **Optional**: Array of **Skill** objects. Skills associated with the candidate.
+| years_of_experience | Double | **Optional**: Total years of experience the candidate has as a double.
 | normalized_education_level | String[] | **Optional**: Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc..
 | unnormalized_education_level | String[] | **Optional**: Unnormalized Educations associated with the candidate. i.e., masters degree, Master of Science, Masters etc..
 | city | String | **Optional**: City that the candidate is located in.
@@ -130,12 +130,12 @@ Each Job Title object only has a single title field associated as follows:
 
 | Param    | Type | Description
 |----------|------|--------|
-| title | String | **Required**: Title associated with classification.
+| title | String | **Optional**: Title associated with classification.
 
 #### Skill
 | Param    | Type | Description
 |----------|------|--------|
-| name | String | **Required**: Name of the skill associated with the candidate.
+| name | String | **Optional**: Name of the skill associated with the candidate.
 
 #### Full Request Example:
 
