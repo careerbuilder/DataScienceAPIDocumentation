@@ -32,12 +32,12 @@ OAUTH credentials are **required**.
 A request is composed of 4 main parts:
 `reranker_config`, `source`, `query`, and `profiles`.
 
-| Param    | Type | Description
-|----------|------|--------|
-| reranker_config | String | **Required**: Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call "RERANKER_V1".
-| source | String | **Required**: Accepted Values: **EDGE** or **MY_SUPPLY**. The source identifies where profile data was attained. A model can be learned based on the source providing more accurate results per each data format.
-| query | [Query](#query) | **Required**: The original, fully enriched query sent to SOLR for the list of candidate profiles.
-| profiles | [Profile[]](#profile) | **Required**: Array of profiles to be reranked.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| reranker_config | String | **TRUE** | Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call "RERANKER_V1".
+| source | String | **TRUE** | Accepted Values: **EDGE** or **MY_SUPPLY**. The source identifies where profile data was attained. A model can be learned based on the source providing more accurate results per each data format.
+| query | [Query](#query) | **TRUE** | The original, fully enriched query sent to SOLR for the list of candidate profiles.
+| profiles | [Profile[]](#profile) | **TRUE** | Array of profiles to be reranked.
 
 ### Query
 
@@ -45,105 +45,105 @@ A request is composed of 4 main parts:
 The query and its child objects are expected to be taken from the response of the [SemanticSearchAPI](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/SemanticSearchV2.md). All the following objects mirror that response.
 
 #### Query
-| Param    | Type | Description
-|----------|------|--------|
-| search_keywords | String | **Optional**: Raw query string applied in original search.
-| location | String | **Optional**: Location requested in search.
-| should_use_radius | boolean | **Optional**: Flag on the original search to determine use of radius.
-| radius | Integer | **Optional**: Radius used in original search.
-| extracted_keywords | [Keyword[]](#keyword) | **Optional**: Array of **Keyword** enrichments to the query string or `search_keywords` returned from SemanticSearchAPI.
-| parsed_input | ParsedInput | **Optional**: **ParsedInput** Object comprised of a Map<String,String> as `input_to_extracted_keywords` and a list of [ParsedEntities](#ParsedInput)
-| filters | [Filters[]](#Filter) | **Optional**: Array of filters used in the original query to search.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| search_keywords | String | **FALSE** | Raw query string applied in original search.
+| location | String | **FALSE** | Location requested in search.
+| should_use_radius | boolean | **FALSE** | Flag on the original search to determine use of radius.
+| radius | Integer | **FALSE** | Radius used in original search.
+| extracted_keywords | [Keyword[]](#keyword) | **FALSE** | Array of **Keyword** enrichments to the query string or `search_keywords` returned from SemanticSearchAPI.
+| parsed_input | ParsedInput | **FALSE** | **ParsedInput** Object comprised of a Map<String,String> as `input_to_extracted_keywords` and a list of [ParsedEntities](#ParsedInput)
+| filters | [Filters[]](#Filter) | **FALSE** | Array of filters used in the original query to search.
 
 #### ParsedInput
-| Param    | Type | Description
-|----------|------|--------|
-| input_to_extracted_keywords | Map<String, String> | **Optional**: Words extracted from `search_keywords` as the **Key** and their relavtive keywords identified by SemanticSearchAPI as the **Value**.
-| parsed_entities | ParsedEntity | **Optional**: Entities parsed from `search_keywords`.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| input_to_extracted_keywords | Map<String, String> | **FALSE** | Words extracted from `search_keywords` as the **Key** and their relavtive keywords identified by SemanticSearchAPI as the **Value**.
+| parsed_entities | ParsedEntity | **FALSE** | Entities parsed from `search_keywords`.
 
 #### ParsedEntity
-| Param    | Type | Description
-|----------|------|--------|
-| entity_name | String | **Optional**: Name of the entity.
-| is_phrase | Boolean | **Optional**: Flags the entity as a phrase or not.
-| is_selected | Boolean | **Optional**: Flags the entity as sleceted or not.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| entity_name | String | **FALSE** | Name of the entity.
+| is_phrase | Boolean | **FALSE** | Flags the entity as a phrase or not.
+| is_selected | Boolean | **FALSE** | Flags the entity as sleceted or not.
 
 #### Keyword
 Entites returned from the SemanticSearchAPI.
 
-| Param    | Type | Description
-|----------|------|--------|
-| name | String | **Optional**: Name of the keyword, e.g. "Java".
-| type | String | **Optional**: Type of the keyword, e.g. "skill".
-| weight | Integer | **Optional**: Weight of the keyword as an int. \[0-100\]
-| relationships | [Relationship](#relationship) | **Optional**: Array of relationship objects which enrich the keyword with additional entities.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| name | String | **FALSE** | Name of the keyword, e.g. "Java".
+| type | String | **FALSE** | Type of the keyword, e.g. "skill".
+| weight | Integer | **FALSE** | Weight of the keyword as an int. \[0-100\]
+| relationships | [Relationship](#relationship) | **FALSE** | Array of relationship objects which enrich the keyword with additional entities.
 
 #### Relationship
-A `relationship` is composed of a **\<semantic enrichment type\>** and the associated set of entities which can be classified under that **\<semantic enrichment type\>**. Accepted values for the **\<semantic enrichment type\>** include: `job_titles`, `occupations`, `skills`, `job_level`, `text_kernel_related_keywords`, `interesting_keywords`, `related_keywords`, `related_keywords_recruiter`, `related_keywords_jobseeker`, `raw_job_titles_jobseeker`, `raw_job_titles_recruiter`, `extracted_kewords`, `custom_keywords`, `related_search_terms`, and `job_titles_recruiter`.
+A `relationship` is composed of a **\<semantic enrichment type\>** and the associated set of entities which can be classified under that **\<semantic enrichment type\>**. Accepted values for the **\<semantic enrichment type\>** are: `job_titles`, `occupations`, `skills`, `job_level`, `text_kernel_related_keywords`, `interesting_keywords`, `related_keywords`, `related_keywords_recruiter`, `related_keywords_jobseeker`, `raw_job_titles_jobseeker`, `raw_job_titles_recruiter`, `extracted_kewords`, `custom_keywords`, `related_search_terms`, and `job_titles_recruiter`.
 
-| Param    | Type | Description
-|----------|------|--------|
-| **\<semantic enrichment type\>** | [Entity[]](#entity) | **Optional**: Relationship to the keyword `name` value.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| **\<semantic enrichment type\>** | [Entity[]](#entity) | **FALSE** | Relationship to the keyword `name` value.
 
 #### Entity
 An `entity` is composed of a `name`, `weight`, and `selected` boolean. An `entity` enriches the original keyword with terms or phrases which share a close association. For example, if you were to have a `keyword` java, an enrichment entity might be java or programming.
 
-| Param    | Type | Description
-|----------|------|--------|
-| name | String | **Optional**: Name of enrichment `entity`. Ex., javascript, java, programming or software engineer.
-| weight | double | **Optional**: Weight of enriched term according to the Semantic Search API.
-| selected | boolean | **Optional**: Specific for the `related_search_terms` Semantic Enrichment. If selected the value is sent to the Reranker as a feature to be extracted for reranking else it is left out of reranking. All entites default to true.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| name | String | **FALSE** | Name of enrichment `entity`. e.g., javascript, java, programming or software engineer.
+| weight | double | **FALSE** | Range: \[0.0 - 1.0\]. Weight of enriched term according to the Semantic Search API.
+| selected | boolean | **FALSE** | Specific for the `related_search_terms` Semantic Enrichment. If selected the value is sent to the Reranker as a feature to be extracted for reranking else it is left out of reranking. All entites default to true.
 
 #### Filter
-| Param    | Type | Description
-|----------|------|--------|
-| id | String | **Optional**: Unique identfier for the **Filter**.
-| name | String | **Optional**: Name of the **Filter**.
-| type | String | **Optional**: Type of **Filter** applied. Accepted values are *facet* or *range*. Service defaults to *facet*.
-| values | String[] | **Optional**: Values chosen to filter on from the original search request **Filter**.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| id | String | **FALSE** | Unique identfier for the **Filter**.
+| name | String | **FALSE** | Name of the **Filter**.
+| type | String | **FALSE** | Type of **Filter** applied. Accepted values are `facet` or `range`. Service defaults to `facet`.
+| values | String[] | **FALSE** | Values chosen to filter on from the original search request **Filter**.
 
 ### Profile
 ----------
 The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified in the `source` param). Using data from each profile the service builds a RerankRequest Document which is sent along with features extracted from the query to the **Reranker**. The **Reranker** then returns the list of profiles in a new ordering which should be of more relevance to the query.
 
-**IMPORTANT: Though many fields on the profile are optional its encouraged to fill out the profile as fully as possible in order to get the best results from the Reranker**.
+**IMPORTANT: Though many fields on the profile are optional it is encouraged to fill out the profile as fully as possible in order to get the best results from the Reranker**.
 
 #### Profile
-| Param    | Type | Description
-|----------|------|--------|
-| document_id | String | **Optional**: Unique CB identifier string for the candidate.
-| recent_jobs | [RecentJobs[]](#recentjob) | **Optional**: Recent jobs held by the candidate.
-| skills | [Skill[]](#skill) | **Optional**: Array of **Skill** objects. Skills associated with the candidate.
-| years_of_experience | Double | **Optional**: Total years of experience the candidate has as a double.
-| normalized_education_level | String[] | **Optional**: Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc..
-| unnormalized_education_level | String[] | **Optional**: Unnormalized Educations associated with the candidate. i.e., masters degree, Master of Science, Masters etc..
-| major | String | **Optional**: The major or field of study the candidate's degree pertains to.
-| city | String | **Optional**: City that the candidate is located in.
-| state | String | **Optional**: State that the candidate lives in.
-| country | String | **Optional**: Country of the candidate.
-| latitude | Double | **Optional**: Location of **Latitude** associated with the canddiates location.
-| longitude | Double | **Optional**: Location of **Longitude** associated with the candidates location.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| document_id | String | **FALSE** | Unique CB identifier string for the candidate.
+| recent_jobs | [RecentJobs[]](#recentjob) | **FALSE** | Recent jobs held by the candidate.
+| skills | [Skill[]](#skill) | **FALSE** | Array of **Skill** objects. Skills associated with the candidate.
+| years_of_experience | Double | **FALSE** | Total years of experience the candidate has.
+| normalized_education_level | String[] | **FALSE** | Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc.
+| unnormalized_education_level | String[] | **FALSE** | Unnormalized Educations associated with the candidate. i.e., masters degree, Master of Science, Masters etc.
+| major | String | **FALSE** | The major or field of study the candidate's degree pertains to.
+| city | String | **FALSE** | City that the candidate is located in.
+| state | String | **FALSE** | State that the candidate is located in.
+| country | String | **FALSE** | Country that the candidate is located in.
+| latitude | Double | **FALSE** | **Latitude** of the canddiates location.
+| longitude | Double | **FALSE** | **Longitude** of the candidates location.
 
 #### RecentJob
 
-| Param    | Type | Description
-|----------|------|--------|
-| company_name | String | **Optional**: Company name where job was held for the candidate.
-| onet | Onet | **Optional**: ONet title associated with job.
-| carotene | Carotene | **Optional**: Carotene title associated with the job.
-| unclassified | Unclassified | **Optional**: Unclassified job title if the job does not have an ONet or Carotene title.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| company_name | String | **FALSE** | Company name where job was held for the candidate.
+| onet | Onet | **FALSE** | ONet title associated with job.
+| carotene | Carotene | **FALSE** | Carotene title associated with the job.
+| unclassified | Unclassified | **FALSE** | If the job has no associated onet or carotene the service exceptes an unclassfied job title sent under the unclassifed object.
 
 #### ONet, Carotene, Unclassified
 Each Job Title object only has a single title field associated as follows:
 
-| Param    | Type | Description
-|----------|------|--------|
-| title | String | **Optional**: Title associated with classification.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| title | String | **FALSE** | Title associated with classification.
 
 #### Skill
-| Param    | Type | Description
-|----------|------|--------|
-| name | String | **Optional**: Name of the skill associated with the candidate.
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| name | String | **FALSE** | Name of the skill associated with the candidate.
 
 #### Full Request Example:
 
