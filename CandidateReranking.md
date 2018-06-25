@@ -26,7 +26,8 @@ The Candidate Reranking Service is an HTTP Rest service which performs machine l
 
 ### Request Structure
 The service supports POST requests to:
-https://api.careerbuilder.com/core/search/candidatereranker
+https://api.careerbuilder.com/core/search/candidatereranker.
+
 OAUTH credentials are **required**.
 
 A request is composed of 4 main parts:
@@ -34,7 +35,7 @@ A request is composed of 4 main parts:
 
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
-| reranker_config | String | **TRUE** | Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call "RERANKER_V1".
+| reranker_config | String | **TRUE** | Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call, "RERANKER_V1".
 | source | String | **TRUE** | Accepted Values: **EDGE** or **MY_SUPPLY**. The source identifies where profile data was attained. A model can be learned based on the source providing more accurate results per each data format.
 | query | [Query](#query) | **TRUE** | The original, fully enriched query sent to SOLR for the list of candidate profiles.
 | profiles | [Profile[]](#profile) | **TRUE** | Array of profiles to be reranked.
@@ -91,7 +92,7 @@ An `entity` is composed of a `name`, `weight`, and `selected` boolean. An `entit
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | name | String | **FALSE** | Name of enrichment `entity`. e.g., javascript, java, programming or software engineer.
-| weight | double | **FALSE** | Range: \[0.0 - 1.0\]. Weight of enriched term according to the Semantic Search API.
+| weight | double | **FALSE** | Weight of enriched term according to the Semantic Search API. \[0.0 - 1.0\]
 | selected | boolean | **FALSE** | Specific for the `related_search_terms` Semantic Enrichment. If selected the value is sent to the Reranker as a feature to be extracted for reranking else it is left out of reranking. All entites default to true.
 
 #### Filter
@@ -104,7 +105,7 @@ An `entity` is composed of a `name`, `weight`, and `selected` boolean. An `entit
 
 ### Profile
 ----------
-The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified in the `source` param). Using data from each profile the service builds a RerankRequest Document which is sent along with features extracted from the query to the **Reranker**. The **Reranker** then returns the list of profiles in a new ordering which should be of more relevance to the query.
+The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified in the `source` param). Using data from each profile, the service builds a RerankRequest Document, which is sent along with features extracted from the query to the **Reranker**. The **Reranker** then returns the list of profiles in a new ordering, which should be of more relevance to the query.
 
 **IMPORTANT: Though many fields on the profile are optional it is encouraged to fill out the profile as fully as possible in order to get the best results from the Reranker**.
 
@@ -131,7 +132,7 @@ The profile is built with data from either **MY_SUPPLY** or **EDGE** (identified
 | company_name | String | **FALSE** | Company name where job was held for the candidate.
 | onet | Onet | **FALSE** | ONet title associated with job.
 | carotene | Carotene | **FALSE** | Carotene title associated with the job.
-| unclassified | Unclassified | **FALSE** | If the job has no associated onet or carotene the service exceptes an unclassfied job title sent under the unclassifed object.
+| unclassified | Unclassified | **FALSE** | If the job has no associated onet or carotene the service accepts an unclassfied job title sent under the unclassifed object.
 
 #### ONet, Carotene, Unclassified
 Each Job Title object only has a single title field associated as follows:
