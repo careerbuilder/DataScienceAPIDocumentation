@@ -147,6 +147,7 @@ Each Job Title object only has a single title field associated as follows:
 | name | String | **FALSE** | Name of the skill associated with the candidate.
 
 #### Full Request Example:
+-----------
 
 ```
 {
@@ -337,7 +338,8 @@ A **Response** is composed of an array of `ranked_profiles`. Each profile has th
 | document_id | String | Document ID associated with a candidate profile.
 | score | double | Score as double value as returned from the **Reranker**.
 
-#### Full Response Example
+### Full Response Example
+------------
 
 ```
 {
