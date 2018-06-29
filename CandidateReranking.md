@@ -254,7 +254,7 @@ Each Job Title object only has a single title field associated as follows:
         "name": "Freshness",
         "type": "Range",
         "unit_of_measurement": "days",
-        "values": [0,-1]
+        "values": [-1, 0]
       }
     ]
   },
