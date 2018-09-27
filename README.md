@@ -6,11 +6,19 @@ Below, you will find general information pertaining to all DSAD APIs. **Please r
 
 ### Contact Information
 
-The Data Science Application Development team is the primary point of contact for API-related questions and concerns, and can be reached at ![](/assets/dsad.png). Email inquiries will typically be handled within 1-2 business days, though it may occasionally take longer. For internal users who are part of the CareerBuilder HipChat organization, the team can also be reached via the DataSciAppDevPublic chat room (use @here or @all to ping team members).
+The Data Science Application Development team is the primary point of contact for API-related questions and concerns. The team can be reached at the following email:
 
-For after-hours emergencies concerning production systems, contact ![](/assets/dsam.png).
+![](/assets/dsad.png)
 
-For questions concerning the CB API routing layer, including the OAuth flow described in the [Access](#Access) section, contact ![](/assets/authz.png).
+Email inquiries will typically be handled within 1-2 business days, though it may occasionally take longer. For internal users who are part of the CareerBuilder HipChat organization, the team can also be reached via the DataSciAppDevPublic chat room (use @here or @all to ping team members).
+
+For after-hours emergencies concerning production systems, contact the following email. Note that this will trigger our team pager and possibly wake up an engineer -- as such, this email is only to be used for user-impacting production issues that cannot wait until business hours.
+
+![](/assets/dsam.png)
+
+For questions concerning the CB API routing layer, including the OAuth flow described in the [Access](#Access) section, contact the Authorization team at the following email:
+
+![](/assets/authz.png)
 
 ### Environments
 
