@@ -4,6 +4,14 @@ This repository houses documentation for the APIs published by CareerBuilder's D
 
 Below, you will find general information pertaining to all DSAD APIs. **Please review this documentation, along with the relevant service-specific documentation, in full before starting to work with any DSAD APIs. By integrating with any of the APIs documented here, you indicate that you have reviewed the relevant documentation and agree to any obligations defined for our API clients.**
 
+### Contact Information
+
+The Data Science Application Development team is the primary point of contact for API-related questions and concerns, and can be reached at ![](/assets/dsad.png). Email inquiries will typically be handled within 1-2 business days, though it may occasionally take longer. For internal users who are part of the CareerBuilder HipChat organization, the team can also be reached via the DataSciAppDevPublic chat room (use @here or @all to ping team members).
+
+For after-hours emergencies concerning production systems, contact ![](/assets/dsam.png).
+
+For questions concerning the CB API routing layer, including the OAuth flow described in the [Access](#Access) section, contact ![](/assets/authz.png).
+
 ### Environments
 
 Unless documented otherwise, all DSAD APIs are available in three environments:
