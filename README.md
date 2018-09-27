@@ -9,10 +9,10 @@ Below, you will find general information pertaining to all DSAD APIs. **Please r
 Unless documented otherwise, all DSAD APIs are available in three environments:
 
 * **Staging** - All new APIs, endpoints, and features -- and changes to existing ones -- are deployed to staging before being deployed to production. The amount of wait time between staging and production deployments varies; typically several days to a week for large or high-risk changes; less for low-risk changes.
-
-Clients of DSAD's APIs are **required** to maintain staging integrations which mirror their production integrations and are sufficiently monitored by the client. DSAD regularly uses data from its staging environment to inform production decisions; for example, a new feature may first be released into staging, and if no issues are caught, then it may proceed into production. Clients who opt out of staging integrations therefore put their applications at risk of unexpected breakages.
-
-Note that the staging environment is currently maintained on a best-effort basis. Service outages occurring in Staging are not considered "on-call" events, and will be addressed as fast as reasonably possible during business hours. Production outages will always take precedence over staging outages. The DSAD team monitors staging in the same ways as production, but with slightly more relaxed thresholds. Clients are discouraged from tying critical paths to DSAD's staging environments, e.g. a client's CI/CD pipeline should not be dependent on DSAD staging environment availability.
+ 
+  Clients of DSAD's APIs are **required** to maintain staging integrations which mirror their production integrations and are sufficiently monitored by the client. DSAD regularly uses data from its staging environment to inform production decisions; for example, a new feature may first be released into staging, and if no issues are caught, then it may proceed into production. Clients who opt out of staging integrations therefore put their applications at risk of unexpected breakages.
+ 
+  Note that the staging environment is currently maintained on a best-effort basis. Service outages occurring in Staging are not considered "on-call" events, and will be addressed as fast as reasonably possible during business hours. Production outages will always take precedence over staging outages. The DSAD team monitors staging in the same ways as production, but with slightly more relaxed thresholds. Clients are discouraged from tying critical paths to DSAD's staging environments, e.g. a client's CI/CD pipeline should not be dependent on DSAD staging environment availability.
 
 * **US Production** - The primary production environment for applications based in the Americas. Most CareerBuilder production systems will use this environment most of the time.
 
