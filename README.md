@@ -16,7 +16,7 @@ For after-hours emergencies concerning production systems, contact the following
 
 ![](/assets/dsam.png)
 
-For questions concerning the CB API routing layer, including the OAuth flow described in the [Access](#Access) section, contact the Authorization team at the following email:
+For questions concerning the CB API routing layer, including the OAuth flow described in the [Access](#access) section, contact the Authorization team at the following email:
 
 ![](/assets/authz.png)
 
