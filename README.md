@@ -80,10 +80,12 @@ Note that the CareerBuilder API routing layer or OAuth token endpoint may also o
 * **405 (Method Not Allowed)** : The API request specified an HTTP method that is not supported by the targeted API route and version.
 * **429 (Too Many Requests)** : The client_id associated with this request has sent too many requests to this API recently, and the API's performance is beginning to degrade as a result. Please wait a few minutes before resuming API calls.
 * **500 (Internal Server Error)** : The API request was accepted, but failed to complete successfully due to an internal error within the API. This error should not occur under normal circumstances; if you encounter this, please contact the DSAD team.
-* **502 (Bad Gateway)** : The API request was accepted, but failed to complete successfully due to an error which occurred with a downstream provider called during request processing. This error should not occur under normal circumstances; if you encounter this, please contact the DSAD team.
+* **502 (Bad Gateway)** : The API request was accepted, but failed to complete successfully due to an error which occurred with an upstream provider called during request processing. This error should not occur under normal circumstances; if you encounter this, please contact the DSAD team.
 * **503 (Service Unavailable)** : The API was unable to accept your request. This typically happens when our internal infrastructure becomes overwhelmed or unhealthy, either due to excessive request volume or due to other issues which cause our servers to degrade. This error should not occur under normal circumstances; if you encounter this, please contact the DSAD team.
-* **502 (Bad Gateway)** : The API request was accepted, but failed to complete successfully due to a downstream provider called during request processing failing to respond within the required time threshold. This error should not occur under normal circumstances; if you encounter this, please contact the DSAD team.
+* **504 (Gateway Timeout)** : The API request was accepted, but failed to complete successfully due to an upstream provider called during request processing failing to respond within the required time threshold. This error should not occur under normal circumstances; if you encounter this, please contact the DSAD team.
 
 ### Client Libraries
 
-To accelerate the development of new API integrations, DSAD publishes client libraries targeting Java and .NET runtime environments. These libraries are versioned and published into the CareerBuilder Artifactory repository. (TODO: add more info here)
+To accelerate the development of new API integrations, DSAD publishes client libraries targeting Java and .NET runtime environments. These libraries are versioned and published into the CareerBuilder Artifactory repository.
+
+CareerBuilder's Artifactory repository is managed by the CloudOps team. Please reach out to this team for assistance  with consuming libraries hosted in Artifactory.
