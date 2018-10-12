@@ -129,7 +129,7 @@ A profile represents a candidate and is composed of data which, in relation to t
 | years_of_experience | Double | **FALSE** | Total years of experience the candidate has.
 | normalized_education_level | String[] | **FALSE** | Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc.
 | unnormalized_education_level | String[] | **FALSE** | Unnormalized Educations associated with the candidate. i.e., masters degree, Master of Science, Masters etc.
-| majors | String[] | **FALSE** | The list of majors or fields of study the candidate's degree pertains to.
+| majors | String[] | **FALSE** | The array of majors or fields of study the candidate's degree pertains to.
 | city | String | **FALSE** | City that the candidate is located in.
 | state | String | **FALSE** | State that the candidate is located in.
 | country | String | **FALSE** | Country that the candidate is located in.
