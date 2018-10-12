@@ -329,7 +329,7 @@ Each Job Title object only has a single title field associated as follows:
       "unnormalized_education_level": [
         "master's of science"
       ],
-      "major": ["Computer Science"],
+      "majors": ["Computer Science"],
       "city": "Atlanta",
       "state": "GA",
       "country": "US",
@@ -359,10 +359,22 @@ A **Response** is composed of an array of `ranked_profiles`. Each profile has th
 {
 	"data" : {
 		"ranked_profiles" : [
-      {
-        "document_id": "CR3C63B5WX54M7DGSGSX",
-        "ranker_score": 0.4582832455635071
-      }
+			{
+				"document_id" : "CR3C63B5WX54M7DGSGSX",
+				"ranker_score" : 0.79
+			},
+			{
+				"document_id" : "CR371056LNDNDZMPWHR2",
+				"ranker_score" : 0.75
+			},
+			{
+				"document_id" : "CRJS7RB6Y4GDQ0400XMY",
+				"ranker_score" : 0.66
+			},
+			{
+				"document_id" : "CRZN2N8679L058Q0B5X6",
+				"ranker_score" : 0.62
+			}
 		]
 	}
 }
