@@ -79,10 +79,14 @@ Response consist of a list of `job_descriptions` where each item contains a `id`
 ```
 
 
-##Caching
-Company Job Description uses 2 types of caching. 
-1) Memory    : Primary Caching
-2) DynamoDB  : Secondary Caching
+## Caching
+Company Job Description uses 2 types of caching
+  1) Memory    : Primary Caching
+  2) DynamoDB  : Secondary Caching
+
+
+
+
 
 
 ## Versioning
