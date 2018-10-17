@@ -30,17 +30,22 @@ Requests consist of:
 | `state`            | string |
 | `country`          | string |
 
-Example request body:
+Example cURL request: 
 
-```json
-{  
-   "company_id":"NC0542a8a1-7810-4c6e-80db-d748f41ec521",
-   "carotene_id":"51.18",
-   "carotene_version":"caroteneV3",
-   "city":"New Iberia",
-   "state":"LA",
-   "country":"US"
-}
+```
+curl -X POST \
+  https://api.careerbuilder.com/core/company/jobdescriptions \
+  -H 'Accept: application/json;version=1.0' \
+  -H 'Authorization: <BEARER_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"company_id": "NC0542a8a1-7810-4c6e-80db-d748f41ec521",
+	"carotene_id":"51.18",
+	"carotene_version": "carotenev3",
+	"city":"New Iberia",
+	"state":"LA",
+	"country":"US"
+      }'
 ```
 
 Note that currently only Carotene v3 is supported. See the documentation for [Job Title service](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md)

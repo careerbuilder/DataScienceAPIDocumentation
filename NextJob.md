@@ -28,13 +28,18 @@ Requests consist of:
 |`carotene_id`      | string |
 |`carotene_version` | string |
                      
-Example request body:
+Example cURL request:
 
-```json
-{
-  "carotene_id": "53.3",
-  "carotene_version": "carotenev3"
-}
+```
+curl -X POST \
+  https://api.careerbuilder.com/core/careerpath/nextjob \
+  -H 'Accept: application/json;version=1.0' \
+  -H 'Authorization: <BEARER_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"carotene_id": "11.0",
+	"carotene_version": "carotenev3"
+      }'
 ```
 
 Note that currently only Carotene v3 is supported. See the documentation for [Job Title service](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md)
