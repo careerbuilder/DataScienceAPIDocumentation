@@ -9,6 +9,7 @@ _______
 - [Response structure](#response-structure)
 - [Versioning](#versioning)
 
+
 ## Summary
 
 The Next Job service returns common next jobs for a given carotene ID. For example, Administrative 
