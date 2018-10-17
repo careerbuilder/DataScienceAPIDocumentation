@@ -53,8 +53,8 @@ for more information about carotene classification and carotene IDs.
 
 
 ## Response Structure
-The response consists of a list of `job_descriptions` where each item contains a description`id` 
-string and a job `description` string.
+The response consists of a list of `job_descriptions` where each item contains a description `id` 
+
 
 Example response body:
 
