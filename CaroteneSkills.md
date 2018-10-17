@@ -11,14 +11,19 @@ _______
 
 ## Summary
 
-The CaroteneSkills provides skills for a particular carotene id. CaroteneSkills is available at 
+The Carotene Skills service provides skills for a given carotene id. CaroteneSkills is available at 
 `/core/caroteneskills`.
 
 
 ## Request Structure
-Requests consist of  `carotene_id` string:
-                     `carotene_version` string:
-                     
+Requests consist of:
+
+|                   |        |
+|-------------------|--------|
+|`carotene_id`      | string | 
+|`carotene_version` | string |
+
+Example request:
 
 ```json
 {
@@ -27,10 +32,10 @@ Requests consist of  `carotene_id` string:
 }
 ```
 
-
+Currently only Carotene v3 is supported.
 
 ## Response Structure
-Response consist of a list of `skills` where each item contains a `skill` string .
+The response consist of a list of `skills` where each item contains a `term` string .
 
 ```json
 {

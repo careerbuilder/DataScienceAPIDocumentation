@@ -7,23 +7,30 @@ _______
 - [Summary](#summary)
 - [Request structure](#request-structure)
 - [Response structure](#response-structure)
-- [Caching](#Caching)
 - [Versioning](#versioning)
 
 ## Summary
 
-The Company Job Description provides the list of jobs and the job details a company is offering.
+The Company Job Description service provides a list of job details for jobs that a company has 
+previously posted. 
+
 Company Job Description is available at `/core/company/jobdescriptions`.
 
 
 ## Request Structure
-Requests consist of  `company_id` string:
-                     `carotene_id` string:
-                     `carotene_version` string:
-                     `city` string:
-                     `state` string:
-                     `country` string:
-                     
+
+Requests consist of:
+
+|                    |        |
+|--------------------|--------|
+| `company_id`       | string |
+| `carotene_id`      | string |
+| `carotene_version` | string |
+| `city`             | string |
+| `state`            | string |
+| `country`          | string |
+
+Example request body:
 
 ```json
 {  
@@ -36,10 +43,14 @@ Requests consist of  `company_id` string:
 }
 ```
 
+Note that currently only Carotene v3.1 is supported.
 
 
 ## Response Structure
-Response consist of a list of `job_descriptions` where each item contains a `id` string which is job id and `description` string which is description for that particular job.
+The response consists of a list of `job_descriptions` where each item contains a description`id` 
+string and a job `description` string.
+
+Example response body:
 
 ```json
 {
@@ -77,18 +88,7 @@ Response consist of a list of `job_descriptions` where each item contains a `id`
   }
 }
 ```
-
-
-## Caching
-Company Job Description uses 2 types of caching
-  1) Memory    : Primary Caching
-  2) DynamoDB  : Secondary Caching
-
-
-
-
-
-
+ 
 ## Versioning
 The current version of the service is 1.0. 
 

@@ -11,14 +11,23 @@ _______
 
 ## Summary
 
-The Next Job provides skills related to a particular job and what are next level jobs available and the common skills between the present Job and the next level Jobs.It also tells us what are the missing skills a person should acquire to pursue the next level job. The Next Job is available at 
-`/core/careerpath/nextjob`.
+The Next Job service returns common next jobs for a given carotene ID. For example, Administrative 
+Assistant and Office Manager are common next jobs for Receptionists. Additionally it returns the 
+set of skills associated with the requested carotene ID, as well as the skills the carotene ID has
+in common with its next jobs and the missing skills a person should acquire to pursue the next job. 
 
+The Next Job service is available at `/core/careerpath/nextjob`.
 
 ## Request Structure
-Requests consist of  `carotene_id` string:
-                     `carotene_version` string:
+
+Requests consist of:
+
+|                   |        |
+|-------------------|--------|
+|`carotene_id`      | string |
+|`carotene_version` | string |
                      
+Example request body:
 
 ```json
 {
@@ -27,11 +36,14 @@ Requests consist of  `carotene_id` string:
 }
 ```
 
-
+Note that currently only Carotene v3 is supported.
 
 ## Response Structure
-Response consist of a `carotene_id`,`carotene_title`,list of `skills` of present job where each item contains a `skill` string and a list of `next_jobs` where each item consists of
-`carotene_id` string,`carotene_title` string,list of `common_skills` and list of `missing_skills`.
+
+Response consist of a the `carotene_id`, `carotene_title`, and list of `skills` for the requested 
+`carotene_id`. Each item in the `skills` list contains a `skill` string. The `next_jobs` sections is 
+a list consisting of objects containing a `carotene_id` and `carotene_title` string for the next job
+as well as a list of `common_skills` and list of `missing_skills`.
 
 ```json
 {
@@ -115,7 +127,6 @@ Response consist of a `carotene_id`,`carotene_title`,list of `skills` of present
   }
 }
 ```
-
 
 ## Versioning
 The current version of the service is 1.0. 
