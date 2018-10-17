@@ -32,7 +32,8 @@ Example request:
 }
 ```
 
-Currently only Carotene v3 is supported.
+Currently only Carotene v3 is supported. See the documentation for [Job Title service](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md)
+for more information about carotene classification and carotene IDs.
 
 ## Response Structure
 The response consist of a list of `skills` where each item contains a `term` string .

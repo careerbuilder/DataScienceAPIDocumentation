@@ -36,14 +36,15 @@ Example request body:
 {  
    "company_id":"NC0542a8a1-7810-4c6e-80db-d748f41ec521",
    "carotene_id":"51.18",
-   "carotene_version":"caroteneV3_1",
+   "carotene_version":"caroteneV3",
    "city":"New Iberia",
    "state":"LA",
    "country":"US"
 }
 ```
 
-Note that currently only Carotene v3.1 is supported.
+Note that currently only Carotene v3 is supported. See the documentation for [Job Title service](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md)
+for more information about carotene classification and carotene IDs.
 
 
 ## Response Structure
