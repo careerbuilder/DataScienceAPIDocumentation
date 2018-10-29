@@ -30,7 +30,7 @@ DSAD's Autocomplete Service is an HTTP REST webservice for autocompleting querie
 | Skills V4 | `/core/autocomplete/skillsv4` |
 | Skills V5 | `/core/autocomplete/skillsv5` |
 
-## Request Structure
+### Request Structure
 
 Most supported taxonomies follow the same simple request format that consists of the following fields:
 

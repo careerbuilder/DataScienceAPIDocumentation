@@ -8,6 +8,7 @@ _______
 - [Request structure](#request-structure)
     - [Query](#query)
         - [Query](#query)
+        - [Location](#location)
         - [ParsedInput](#parsed-input)
         - [ParsedEntity](#parsedentity)
         - [Keyword](#keyword)
@@ -49,12 +50,22 @@ The query and its child objects are expected to be taken from the response of th
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | search_keywords | String | **FALSE** | Raw query string applied in original search.
-| location | String | **FALSE** | Location requested in search.
+| location | [Location](#Location) | **FALSE** | Location Object comprised of location related information, including `city`, `state`, `country`, `latitude` and `longitude`.
 | should_use_radius | boolean | **FALSE** | Flag on the original search to determine use of radius.
 | radius | Integer | **FALSE** | Radius used in original search.
 | extracted_keywords | [Keyword[]](#keyword) | **FALSE** | Array of **Keyword** enrichments to the query string or `search_keywords` returned from SemanticSearchAPI.
 | parsed_input | ParsedInput | **FALSE** | **ParsedInput** Object comprised of a Map<String,String> as `input_to_extracted_keywords` and a list of [ParsedEntities](#ParsedInput)
 | filters | [Filters[]](#Filter) | **FALSE** | Array of filters used in the original query to search.
+
+#### Location
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| city | String | **FALSE** | City name for the query.
+| state | String | **FALSE** | State name for the query.
+| country | String | **FALSE** | Country name for the query.
+| latitude | String | **FALSE**<sup>1<sup> | Latitude for the location.
+| longitude | String | **FALSE**<sup>1<sup> | Longitude for the location.
+1: Latitude and longitude can be omitted all together, but if one of them is provided, the other is needed too.
 
 #### ParsedInput
 | Param    | Type | Required | Description |
@@ -70,7 +81,7 @@ The query and its child objects are expected to be taken from the response of th
 | is_selected | Boolean | **FALSE** | Flags the entity as sleceted or not.
 
 #### Keyword
-Entites returned from the SemanticSearchAPI.
+Entities returned from the SemanticSearchAPI.
 
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
@@ -118,7 +129,7 @@ A profile represents a candidate and is composed of data which, in relation to t
 | years_of_experience | Double | **FALSE** | Total years of experience the candidate has.
 | normalized_education_level | String[] | **FALSE** | Normalized Educations associated with the candidate i.e., Master's Degree, Bachelor's Degree etc.
 | unnormalized_education_level | String[] | **FALSE** | Unnormalized Educations associated with the candidate. i.e., masters degree, Master of Science, Masters etc.
-| major | String | **FALSE** | The major or field of study the candidate's degree pertains to.
+| majors | String[] | **FALSE** | The array of majors or fields of study the candidate's degree pertains to.
 | city | String | **FALSE** | City that the candidate is located in.
 | state | String | **FALSE** | State that the candidate is located in.
 | country | String | **FALSE** | Country that the candidate is located in.
@@ -155,7 +166,10 @@ Each Job Title object only has a single title field associated as follows:
   "source": "EDGE",
   "query": {
     "search_keywords": "java",
-    "location": "",
+    "location": {
+      "city": "Atlanta",
+      "state": "GA"
+      },
     "should_use_radius": false,
     "Radius": 30,
     "extracted_keywords": [
@@ -267,7 +281,7 @@ Each Job Title object only has a single title field associated as follows:
           "company_name": "SOLIEL / DISA",
           "unclassified" :
             {
-              "Programmer"
+              "title": "Programmer"
             },
           "onet":
           	{
@@ -308,14 +322,14 @@ Each Job Title object only has a single title field associated as follows:
           "name": "Java Database Connectivity"
         }
       ],
-      "years_of_exerperience": 4.0,
+      "years_of_experience": 4.0,
       "normalized_education_level": [
         "Master's Degree"
       ],
       "unnormalized_education_level": [
         "master's of science"
       ],
-      "major": "Computer Science",
+      "majors": ["Computer Science"],
       "city": "Atlanta",
       "state": "GA",
       "country": "US",
@@ -329,7 +343,7 @@ Each Job Title object only has a single title field associated as follows:
 ### Response Structure
 ----------
 
-A **Response** is composed of an array of `ranked_profiles`. Each profile has the original `document_id` and a newly aquired `ranker_score` from the **Reranker**. `ranked_profiles` will be listed in descending order according to their new scores.
+A **Response** is composed of an array of `ranked_profiles`. Each profile has the original `document_id` and a newly acquired `ranker_score` from the **Reranker**. `ranked_profiles` will be listed in descending order according to their new scores.
 
 #### RerankedProfile
 
