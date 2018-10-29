@@ -11,11 +11,14 @@ Semantic Autocomplete V2
 
 
 ## Summary
-The autocomplete service wraps the [Solr Suggester](#https://lucene.apache.org/solr/guide/6_6/suggester.html) which is configured in DSAD's Semantic Search Solr boxes. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel which are updated sparodically throughout the year. With the exception of some removed feilds from the response, this version of the service functions exactly like V1.
+The autocomplete service wraps the [Solr Suggester](https://lucene.apache.org/solr/guide/6_6/suggester.html) which is configured in DSAD's Semantic Search Solr boxes. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel which are updated sparodically throughout the year. With the exception of some removed feilds from the response, this version of the service functions exactly like V1.
 
 
 ## Request
-As per all DSAD services, this service accepts requests sent as either HTTP GET or HTTP POST and responds to both with the same response. Access to semantic autocomplete is made available at https://www.api.careerbuilder.com/core/semanticsearch/autocomplete and requires Oauth 2.0 client credentials.
+As per all DSAD services, this service accepts requests sent as either HTTP GET or HTTP POST. Access to semantic autocomplete is made available at:
+ https://www.api.careerbuilder.com/core/semanticsearch/autocompleterequires
+
+ This service requires Careerbuilder Oauth 2.0 client credentials. For more information please see our ReadMe [here](/Readme.md/Access).
 
 #### Parameters:
 | Parameter | Require/Optional | Type | Description |
@@ -47,7 +50,7 @@ The response data is broken up into two parts: the original `query` and the list
 
 
 ### Value
-A value object represents the surface forms associated with the type(cannonical) suggested for autocomplete. E.g., provided "e" as a query, under the job_title `type` you would see results like engineer, executive, sales executive, etc.
+A value object represents the surface forms associated with the type(cannonical) suggested for autocomplete. E.g., provided "e" as a query, under the `type` *job_title* you would see `names` like engineer, executive, sales executive, etc.
 
 | Field | Type | Description |
 |-------|------|-------------|
