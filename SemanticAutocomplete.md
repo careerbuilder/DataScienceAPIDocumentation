@@ -18,7 +18,7 @@ The autocomplete service wraps the [Solr Suggester](https://lucene.apache.org/so
 As per all DSAD services, this service accepts requests sent as either HTTP GET or HTTP POST. Access to semantic autocomplete is made available at:
  https://www.api.careerbuilder.com/core/semanticsearch/autocompleterequires
 
- This service requires Careerbuilder Oauth 2.0 client credentials. For more information please see our ReadMe [here](/Readme.md/Access).
+ This service requires Careerbuilder Oauth 2.0 client credentials. For more information please see our ReadMe [here](/Readme.md#access).
 
 #### Parameters:
 | Parameter | Require/Optional | Type | Description |
