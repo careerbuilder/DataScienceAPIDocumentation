@@ -11,11 +11,12 @@ Semantic Autocomplete V2
 
 
 ## Summary
-The autocomplete service wraps the [Solr Suggester](https://lucene.apache.org/solr/guide/6_6/suggester.html) which is configured in DSAD's Semantic Search Solr boxes. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel which are updated sparodically throughout the year. With the exception of some removed feilds from the response, this version of the service functions exactly like V1.
+The Semantic Autocomplete service wraps the [Solr Suggester](https://lucene.apache.org/solr/guide/6_6/suggester.html) which is configured in DSAD's Semantic Search Solr boxes. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel which are updated with improvements throughout the year. With the exception of some removed feilds from the response, this version of the service functions exactly like V1.
 
+For ease of use DSAD autogenerates and publishes Java and C# SDKs for all of our services using swagger. For more information on usage please see our SDK repo [here](https://github.com/cbdr/dsad-sdks).
 
 ## Request
-As per all DSAD services, this service accepts requests sent as either HTTP GET or HTTP POST. Access to semantic autocomplete is made available at:
+As with all DSAD services, Semantic Autocomplete accepts requests sent as either HTTP GET or HTTP POST. Access to semantic autocomplete is made available at:
  https://www.api.careerbuilder.com/core/semanticsearch/autocompleterequires
 
  This service requires Careerbuilder Oauth 2.0 client credentials. For more information please see our ReadMe [here](/Readme.md#access).
@@ -38,14 +39,14 @@ The response data is broken up into two parts: the original `query` and the list
 ### Data
 | Field | Type | Description |
 |-------|------|-------------|
-| query | String | Original query sent to Solr
+| query | String | Original query sent to Solr.
 | suggests | Suggestion[] | A json array of Suggestions broken up by type.
 
 ### Suggestion
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | String | The type or cannonical form of the suggestion. Accepted values include: *keyword, job_title, job_level, occupation, skill, school, company, location, freetext*
+| type | String | The type or cannonical form of the suggestion. Returned values include: *keyword, job_title, job_level, occupation, skill, school, company, location, freetext*
 | values | value[] | A json array of values associated with the type.
 
 
