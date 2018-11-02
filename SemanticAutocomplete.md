@@ -11,9 +11,9 @@ Semantic Autocomplete V2
 
 
 ## Summary
-The Semantic Autocomplete service wraps the [Solr Suggester](https://lucene.apache.org/solr/guide/6_6/suggester.html) which is configured in DSAD's Semantic Search Solr boxes. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel which are updated with improvements throughout the year. With the exception of some removed feilds from the response, this version of the service functions exactly like V1.
+Semantic Autocomplete is a service which provides textual autocomplete for search terms relating to DSAD's Semantic Search API. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel. Textkernel refines FSTs throughout the year and updates happen every few months. With the exception of some removed feilds from the response, this version of the service functions exactly like V1.
 
-For ease of use DSAD autogenerates and publishes Java and C# SDKs for all of our services using swagger. For more information on usage please see our SDK repo [here](https://github.com/cbdr/dsad-sdks).
+For ease of use DSAD autogenerates and publishes Java and C# SDKs for all of our services using swagger. For documentation on usage please see our SDK repo [here](https://github.com/cbdr/dsad-sdks). All sdks are published to [cbdatascience jfrog artifactory](https://cbdatascience.jfrog.io/cbdatascience/webapp/#/home) and located in *ext-release-local/com/careerbuilder/datascience/sdk/*. Jfrog is managed by the CloudOps team, for permissions accessesing artifacts please reach out to CloudOpsSupport@careerbuilder.com.
 
 ## Request
 As with all DSAD services, Semantic Autocomplete accepts requests sent as either HTTP GET or HTTP POST. Access to semantic autocomplete is made available at:
@@ -46,7 +46,7 @@ The response data is broken up into two parts: the original `query` and the list
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | String | The type or cannonical form of the suggestion. Returned values include: *keyword, job_title, job_level, occupation, skill, school, company, location, freetext*
+| type | String | The type or cannonical form of the suggestion. Possible returned values include: *keyword, job_title, job_level, occupation, skill, school, company, location, freetext*
 | values | value[] | A json array of values associated with the type.
 
 
@@ -56,10 +56,10 @@ A value object represents the surface forms associated with the type(cannonical)
 | Field | Type | Description |
 |-------|------|-------------|
 | name | String | A name associated with the type classification.
-| popularity | Integer | An integer value representing the score of popularity indicating how often the value is used.
+| popularity | Integer | An integer value indicating how often the term appears in resumes or job postings.
 
-#### Notable missing fields
-The older service maintained a timing object as part of the data field. This is no longer returned.
+#### Notable Changes in V2
+Version 1 of the service maintained a timing object as part of the data field. This is no longer returned in version 2.
 ```
 {
     "data" : {
@@ -125,4 +125,4 @@ Provided the Request: https://www.api.careerbuilder.com/core/semanticsearch/auto
 ```
 
 ## Versioning
-The current version for this service is 2.0. Following the adoption of this version Semantic Autocomplete 1.0 will be shutdown and no longer in use. For more information on our general versioning strategy please visit our guide to versioning [here](/Versioning.md).
+The current version for this service is 2.0. Following the adoption of this version Semantic Autocomplete 1.0 will be retired. For more information on our general versioning strategy please visit our guide to versioning [here](/Versioning.md).
