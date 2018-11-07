@@ -46,7 +46,7 @@ The response data is broken up into two parts: the original `query` and the list
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | String | The type or cannonical form of the suggestion. Possible returned values include: *keyword, job_title, job_level, occupation, skill, school, company, location, freetext*
+| type | String | The type or cannonical form of the suggestion. Possible returned values are: *keyword, job_title, job_level, occupation, skill, school, company, location, freetext*
 | values | value[] | A json array of values associated with the type.
 
 
