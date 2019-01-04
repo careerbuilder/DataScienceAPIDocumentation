@@ -57,8 +57,8 @@ Possible taxonomies (with links to full taxonomy results)
 | [onet17](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet17.md) | Updated ONets |
 | [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | Changes from Carotene v2.2 include 7 removals, 139 updates, and 1,386 new titles.  <br> [CaroteneV2_2ToV3CrossWalk.md](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)<br> [Carotenev2.2 to v3 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev2.2%20to%20v3%20Crosswalk.xlsx)|
 | [carotenev3.1](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.1.csv) | Changes from Carotene v3 include 4 additions, 78 updates, and 28 removals. Adds disambiguation to v3 and includes minor_title and minor_id fields for hierarchical classification. <br>[Carotenev3 to v3.1 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev3%20to%20v3.1%20Crosswalk.xlsx)
-| [carotenev3.3_us](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.3_us.csv) | Changes from Carotene v3.1 include ?? moves, ?? renames, and ?? merges. Also ... . <br>[Carotenev3.1 to v3.3_us Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev3.1%20to%20v3.3_us%20Crosswalk.xlsx)
-| [carotenev3.3_uk](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.3_uk.csv) | Changes from Carotene v3.1 include ?? moves, ?? renames, and ?? merges. Also ... . <br>[Carotenev3.1 to v3.3_uk Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev3.1%20to%20v3.3_uk%20Crosswalk.xlsx)
+| carotenev3.3_us | Taxonomy based on a deep-learning approach (v3.1 is hierarchal) for improved prediction of SOC major. This taxonomy was trained with U.S.-specific data.
+| carotenev3.3_uk | Same as _carotenev3.3_us_, but trained with data specific to U.K.
 
 # Versioning
 -----------
