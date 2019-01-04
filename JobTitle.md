@@ -57,6 +57,7 @@ Possible taxonomies (with links to full taxonomy results)
 | [onet17](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet17.md) | Updated ONets |
 | [carotenev3](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.md) | Changes from Carotene v2.2 include 7 removals, 139 updates, and 1,386 new titles.  <br> [CaroteneV2_2ToV3CrossWalk.md](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV2_2ToV3CrossWalk.md)<br> [Carotenev2.2 to v3 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev2.2%20to%20v3%20Crosswalk.xlsx)|
 | [carotenev3.1](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.1.csv) | Changes from Carotene v3 include 4 additions, 78 updates, and 28 removals. Adds disambiguation to v3 and includes minor_title and minor_id fields for hierarchical classification. <br>[Carotenev3 to v3.1 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev3%20to%20v3.1%20Crosswalk.xlsx)
+| [carotenev3.2](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.2.csv) | Changes from Carotene v3.1 include ? additions, ?? updates, and ?? removals. Also ... . <br>[Carotenev3.1 to v3.2 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev3.1%20to%20v3.2%20Crosswalk.xlsx)
 
 # Versioning
 -----------
