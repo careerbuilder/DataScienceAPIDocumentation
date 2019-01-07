@@ -5,8 +5,10 @@ SMB Position Analytics Service
 _______
 
 - [Summary](#summary)
-- [Request structure](#request-structure)
-- [Response structure](#response-structure)
+- [Carotene With Location Request](#carotene-with-location-request)
+- [Carotene Response Structure](#carotene-response-structure)
+- [Job Request](#job-request)
+- [Job Response Structure](#job-response)
 - [Versioning](#versioning)
 
 ## Summary
@@ -14,6 +16,7 @@ _______
 The Small Medium Business(SMB) Position Analytics service provides hiring data pertaining to job titles and currently open positions available on CareeBuilder job boards. The service has two endpoints:
 
 https://api.careerbuilder.com/core/positionanalytics/carotene
+
 https://api.careerbuilder.com/core/positionanalytics/job
 
 Requests can be sent in the form of HTTP GET or POST (form or JSON)
