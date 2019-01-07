@@ -64,10 +64,10 @@ for more information about carotene classification and carotene IDs.
 {
     "data": {
         "num_of_applies": {
-            "current": 2
+            "current": 2,
             "delta": -1.39393
-        }
-        "avg_time_to_fill": 23
+        },
+        "avg_time_to_fill": 23,
         "timestamp": 20181221113605
     }
 }
