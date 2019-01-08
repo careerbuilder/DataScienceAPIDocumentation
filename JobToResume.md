@@ -22,7 +22,7 @@ Requests consist of:
 |-------------------|---------------|
 |`carotene_id`      | string        | 
 |`carotene_version` | string        |
-|`skills`           | List(Skill)   |
+|`skills`           | Array(Skill)  |
 |`location`         | Location      |
 
 Example cURL request:
