@@ -11,7 +11,7 @@ _______
 
 ## Summary
 
-The Company Job Description service provides a list of job details for jobs that a company has 
+The Company Job Description service provides a list of job descriptions and education details for jobs that a company has 
 previously posted. 
 
 Company Job Description is available at `/core/company/jobdescriptions`.
@@ -39,12 +39,12 @@ curl -X POST \
   -H 'Authorization: <BEARER_TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-	"company_id": "NC0542a8a1-7810-4c6e-80db-d748f41ec521",
-	"carotene_id":"51.18",
-	"carotene_version": "carotenev3",
-	"city":"New Iberia",
-	"state":"LA",
-	"country":"US"
+        "company_id": "NC5aea2e1d-383f-4659-82d5-bceaf48918c8",
+        "carotene_id": "15.5",
+        "carotene_version": "caroteneV3",
+        "city": "Quantico",
+        "state": "VA",
+        "country": "US"
       }'
 ```
 
@@ -53,8 +53,9 @@ for more information about carotene classification and carotene IDs.
 
 
 ## Response Structure
-The response consists of a list of `job_descriptions` where each item contains a description `id` 
-
+The response consists of a list of `job_descriptions` where each item contains a `description` and 
+`id` and a `education` object containing a `degree` and a list of `majors`, which have a `major` and
+a `confidence`.
 
 Example response body:
 
@@ -63,34 +64,27 @@ Example response body:
   "data": {
     "job_descriptions": [
       {
-        "id": "JD700fe7a9-ef66-3800-9f4b-212d831976c8",
-        "description": "Inspect and maintain electric welding equipment, including checking leads"
+        "id": "617aa090-6d42-3729-9df4-0b803567fd52",
+        "description": "Maintain backup/disaster recovery solutions"
       },
       {
-        "id": "JD4f29e519-bfa7-37dc-a02f-aec49b5bb6d2",
-        "description": "Checking for porosity, slag traps, and undercut, checking and adjusting component alignment, and monitoring and adjusting welding machine temperature and polarity"
-      },
-      {
-        "id": "JD0c729f1f-93b0-35fd-a1c4-20e88c47923b",
-        "description": "Remove, replace, and connect oxygen and acetylene bottles"
-      },
-      {
-        "id": "JD1d014c76-4de1-3006-86aa-623e7c0fa4e6",
-        "description": "Assemble and weld pipe components into pipe spools or completed pipe assemblies"
-      },
-      {
-        "id": "JD3b3feda5-89c5-379f-b7d6-16b7d0782921",
-        "description": "Checking scaffolding, welding tent, and availability of a fire watch and fire extinguishing equipment"
-      },
-      {
-        "id": "JD465e88c7-6d72-3fa3-a43b-23a027409deb",
-        "description": "Using GTAW (TIG) and SMAW (Stick Rod) welding procedures"
-      },
-      {
-        "id": "JDe84dae36-0b7e-3a7e-8416-5d89ef3cbe76",
-        "description": "Inspect and maintain gas equipment, including changing gauges, repairing hoses"
+        "id": "a255879d-21f9-33e9-b2e4-d7cfc9a40787",
+        "description": "Provide user support and guidance"
       }
-    ]
+    ],
+    "education": {
+      "degree": "Bachelor's Degree",
+      "majors": [
+        {
+          "major": "Computer Science",
+          "confidence": 0.41
+        },
+        {
+          "major": "Business Administration",
+          "confidence": 0.199
+        }
+      ]
+    }
   }
 }
 ```
