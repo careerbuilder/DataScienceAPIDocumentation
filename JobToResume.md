@@ -11,7 +11,7 @@ _______
 
 ## Summary
 
-JobToResume Recommend resumes based on job data. JobToResume is available at 
+Job To Resume Service recommends resumes based on job data. Job To Resume Service is available at 
 `/core/jobtoresume`.
 
 
@@ -45,7 +45,7 @@ Currently only Carotene v3 is supported. See the documentation for [Job Title se
 for more information about carotene classification and carotene IDs.
 
 ## Response Structure
-The response consist of a list of `resumes` where each item contains a `id` string which is resumedid and `score` double which is cosine similarity score of resumedids which is a measure of relevancy of resumdids to the job data in request.
+The response consist of a list of `resumes` where each item contains an `id` string which is a resumedid and `score` double which represents how well a given resume matches the job data in the request.
 
 ```json
 {
