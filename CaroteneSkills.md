@@ -43,7 +43,7 @@ for more information about carotene classification and carotene IDs.
 ## Response Structure
 Response consist of a `carotene_id`, `carotene_title`, and list of `skills` for the requested 
 `carotene_id`. Each item in the `skills` list contains `term`, `id`, and `description` 
-strings as well as a list of links to relevant videos.
+strings, as well as a list of links to relevant videos.
 
 ```json
 {
