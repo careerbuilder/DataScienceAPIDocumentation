@@ -18,12 +18,12 @@ Job To Resume Service recommends resumes based on job data. Job To Resume Servic
 ## Request Structure
 Requests consist of:
 
-|                   |               |
-|-------------------|---------------|
-|`carotene_id`      | string        | 
-|`carotene_version` | string        |
-|`skills`           | Array(Skill)  |
-|`location`         | Location      |
+|  Parameter        |     Type      |  Description        |
+|-------------------|---------------|---------------------|
+|`carotene_id`      | string        | Required. The caroteneID for which resumes should be recommended.
+|`carotene_version` | string        | Required. 
+|`skills`           | Array(Skill)  | Optional. The skills we are looking for in the resumes for a particular caroteneID.
+|`location`         | Location      | Optional. Resume Location.
 
 Example cURL request:
 
@@ -43,6 +43,7 @@ curl -X POST \
 
 Currently only Carotene v3 is supported. See the documentation for [Job Title service](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md)
 for more information about carotene classification and carotene IDs.
+
 
 ## Response Structure
 The response consist of a list of `resumes` where each item contains an `id` string which is a resumedid and `score` double which represents how well a given resume matches the job data in the request.
