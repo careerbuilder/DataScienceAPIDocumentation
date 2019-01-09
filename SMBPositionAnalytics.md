@@ -21,12 +21,10 @@ https://api.careerbuilder.com/core/positionanalytics/job
 
 Requests can be sent in the form of HTTP GET or POST (form or JSON)
 
-The data returned will contain an object or group of objects representing actions taken on a carotene title or job respectively. Each action will have associated `current` and `delta` values. The `current` value will account the total number an action was performed over the last day; the `delta` will identify the change in percentage of the `current` value from the day before. Positive values in the `delta` identify an increase day over day and negative values identify a decrease.
-
 ## Carotene With Location Request
 A request to the carotene endpoint provides data on how a specified job title performs in a given location.
 
-E.g. I'm a recruiter and I'm about to post a Software Engineer job in Atlanta. How many applies have their been to Software Engineer titles in this city in the last day? What is the change from the day before? On average how long does it take to fill a Software Engineer role in this location? This endpoint serves to answer these questions.
+E.g. I'm a recruiter and I'm about to post a Software Engineer job in Atlanta. How many applies have there been to Software Engineer titles in this city in the last day? What is the change from the day before? On average how long does it take to fill a Software Engineer role in this location? This endpoint serves to answer these questions.
 
 Requests consist of:
 
@@ -54,13 +52,19 @@ curl -X POST \
 Currently only Carotene v3.1 is supported. See the documentation for [Job Title service](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md)
 for more information about carotene classification and carotene IDs.
 
-## Carotene Response Structure
+## Responses
+The data returned will contain an object or group of objects representing actions taken on a carotene title or job respectively. Each action will have associated `current` and `delta` values. The `current` value will account the total number an action was performed over the last day; the `delta` will identify the change in percentage of the `current` value from the day before. Positive values in the `delta` identify an increase day over day and negative values identify a decrease.
+
+ Each response will return a trailing`timestamp` string. This is the date time in which the data was last refreshed. The `timestamp` string is returned in ISO 8601 format with UTC offset(yyyy-MM-dd'T'HH:mm:ss-XXX). Clients can expect that data will be refreshed daily to account for the delta change in actions performed.
+
+#### If No Results found:
+**When no data is found for the request the service will return an empty data object.**
+
+### Carotene Response Structure
 
  `num_of_applies` holds the `current` number of applies within the last day period and `delta` percent change in applies from the previous day.
 
  `avg_time_to_fill` is the time period in days on average to fill a position identified by the `carotene_id`.
-
- `timestamp` is the time in which the data was last refreshed.
 
 
 ```json
@@ -71,12 +75,12 @@ for more information about carotene classification and carotene IDs.
             "delta": -1.39393
         },
         "avg_time_to_fill": 23,
-        "timestamp": 20181221113605
+        "timestamp": "2019-01-04T10:00:32-05:00"
     }
 }
 ```
 
-## Job Request
+### Job Request
 A request to the job endpoint requires a CareerBuilder Job Identifier also known as a Job DID and serves data pertaining to active jobs(open positions). Relevant data points returned include: number of clicks, number of applies, number of views, and total number of actions.
 
 Requests consist of:
