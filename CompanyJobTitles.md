@@ -17,15 +17,22 @@ classifications) that are personalized for a given company. Company Job Titles i
 
 
 ## Request Structure
-Requests consist of a `company_id` string:
+Requests consist of a `company_id` and `country` string:
 
 ```json
 {
 	"company_id": "NC6623058c-2e0b-4998-ac4a-72e478e91337",
+	"country": "us",
 	"carotene_version": "carotenev3",
 	"onet_version": "onet17"
 }
 ```
+
+`company_id` is required. `country` is optional and defaults to 'US' if not specified. Currently 
+supported countries are:
+
+- US
+- UK
 
 The ONet and Carotene versions currently supported are listed in the [Versioning](#versioning) 
 section of this document and are subject to change over time. Any removal of support for a taxonomy 
@@ -54,7 +61,6 @@ its associated ONet and Carotene classification code.
     }
 }
 ```
-
 
 ## Versioning
 The current version of the service is 1.0. 
