@@ -55,7 +55,7 @@ for more information about carotene classification and carotene IDs.
 ## Response Structure
 The response consists of a list of `job_descriptions` where each item contains a `description`, an 
 `id`, and an `education` object containing a `degree` and a list of `majors`, which have a `major` and
-a `confiden
+a `confidence`.
 
 Example response body:
 

@@ -28,8 +28,8 @@ Requests consist of a `company_id` and `country` string:
 }
 ```
 
-`company_id` is required. `country` is optional and defaults 'US' if not specified. Currently 
-supported coutries are:
+`company_id` is required. `country` is optional and defaults to 'US' if not specified. Currently 
+supported countries are:
 
 - US
 - UK
