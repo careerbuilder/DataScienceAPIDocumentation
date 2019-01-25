@@ -355,6 +355,8 @@ The service makes a best attempt at scrubbing Personally Identifiable Informatio
 
 In addition, the service attempts to scrub Date Of Birth from the same set of fields. Text resembling a date of birth will be replaced with "\*\*\*Date of Birth Removed\*\*\*". To see how to disable this feature please review the `return_date_of_birth` field in the [Request structure](#request-structure) section.
 
+If PII is scrubbed from the response then the field `scrubbed_sensitive_info` will be set to `true` on the response.
+
 Versioning
 -----------
 The data returned is unversioned. The current version is 1.0. We expect that each of our vendors return the same data for repeated calls, however we have not verified this systematically.  We will occasionally update our vendors which may change the output.  If we believe this change is significant we will communicate about it.  However, customers will not be able to specify vendor versions; we will not be running multiple versions of a parser.
