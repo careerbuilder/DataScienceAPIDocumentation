@@ -32,11 +32,11 @@ https://api.careerbuilder.com/core/search/candidatereranker.
 OAUTH credentials are **required**.
 
 A request is composed of 4 main parts:
-`reranker_config`, `source`, `query`, and `profiles`.
+`model_version`, `source`, `query`, and `profiles`.
 
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
-| reranker_config | String | **TRUE** | Accepted Value: **RERANKER_V1** The `reranker_config` determines which learned model to apply to your incoming rerank request. Currently there is only one reranker model to call, "RERANKER_V1".
+| model_version | String | **TRUE** | Accepted Value: **X.Y** The `model_version` determines which learned model to apply to your incoming rerank request. Currently there is only two reranker models to call, **1.0** and **1.1**. The default value is 1.0.
 | source | String | **TRUE** | Accepted Values: **EDGE** or **MY_SUPPLY**. The source identifies where profile data was obtained. A model can be learned based on the source, thereby providing more accurate results per each data format.
 | query | [Query](#query) | **TRUE** | The original, fully enriched query sent to SOLR for the list of candidate profiles.
 | profiles | [Profile[]](#profile) | **TRUE** | Array of profiles to be reranked.
@@ -162,7 +162,7 @@ Each Job Title object only has a single title field associated as follows:
 
 ```
 {
-  "reranker_config": "RERANKER_V1",
+  "model_version": "1.0",
   "source": "EDGE",
   "query": {
     "search_keywords": "java",
