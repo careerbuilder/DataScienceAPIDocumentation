@@ -1,7 +1,7 @@
 Company Normalization Service
 =============
 
-The Company Normalization Service accepts HTTP GET or POST requests that specify information about a company, and returns normalized company data including but not limited to: name, location, website, NAICS data, and Dun & Bradstreet (DUNS) number. It is backed by the CompanyDepot classifier developed by the Information Extraction and Retrieval team.
+The Company Normalization Service accepts HTTP GET or POST requests that specify information about a company, and returns normalized company data including but not limited to: name, location, website, and NAICS data. It is backed by the CompanyDepot classifier developed by the Information Extraction and Retrieval team.
 
 The service handles two types of requests: search requests and lookup requests. Search requests attempt to resolve an unnormalized query to an entity from the CompanyDepot knowledge base. Lookup requests return the normalized entity corresponding to the provided ID.
 _________
@@ -17,8 +17,8 @@ The following parameters may be used in constructing a request to the service:
 
  Field                      | Required | Description  
  -------------------------- |----------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- ```company_name```         | true     | The company name to be normalized. 
- ```website```              | true     | The website of the company to be normalized. *(Note: Either* ```company_name``` *or* ```website``` *must be provided. It is not necessary to provide both.)* 
+ ```company_name```         | true     | The company name to be normalized.
+ ```website```              | true     | The website of the company to be normalized. *(Note: Either* ```company_name``` *or* ```website``` *must be provided. It is not necessary to provide both.)*
  ```country```              | false    | The country component of the provided company's location. Two-digit ISO country codes are supported.
  ```state```                | false    | The state component of the provided company's location.
  ```city```                 | false    | The city component of the provided company's location.
@@ -27,12 +27,12 @@ The following parameters may be used in constructing a request to the service:
  ```filter_by_country```    | false    | With this set to false, the country parameter only biases results and this is traditionally how the service has worked. Setting this value to true will filter results based on country. This param defaults to false.
 
 \* *Note that company_name and website are each constrained to a maximum length of 400 characters. Requests that contain a company_name or website value exceeding this limit will fail with an HTTP 400 Bad Request status.*
- 
+
 Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=careerbuilder&max_results=1
 
 ## Search Responses
 
-The response for a search request returns a single `data` node which contains a `normalized_companies` array. These normalized companies are ordered by the confidence score (descending). Each normalized company has a `normalized_name` (string), a `naics_code` *([more info](http://www.census.gov/eos/www/naics/))* (string), a `naics_description` (string), a `duns_number` (string), a `country` (string), a `state` (string), a `city` (string), a `postal_code` (string), a `website` (string), a `company_size` (int), an `id` (string), and a `confidence` (decimal). Confidence scores range from 0.0 to 1.0. A single master company will be returned.
+The response for a search request returns a single `data` node which contains a `normalized_companies` array. These normalized companies are ordered by the confidence score (descending). Each normalized company has a `normalized_name` (string), a `naics_code` *([more info](http://www.census.gov/eos/www/naics/))* (string), a `naics_description` (string), a `duns_number`[<sup>[1]</sup>](1) (string), a `country` (string), a `state` (string), a `city` (string), a `postal_code` (string), a `website` (string), a `company_size` (int), an `id` (string), and a `confidence` (decimal). Confidence scores range from 0.0 to 1.0. A single master company will be returned.
 
 The master company is the highest division of the requested company. For example a request with the company name "amazon web services" returns "Amazon Web Services LLC" in its normalized_companies list, with a master company of "Amazon.com, Inc."
 
@@ -55,7 +55,7 @@ Following is an example JSON response body:
         "country": "US",
         "address": "200 N La Salle St # 1100",
         "naics_description": "Employment Placement Agencies",
-        "duns_number": "095301110",
+        "duns_number": "",
         "company_size": "42868",
         "website": "www.careerbuilder.com"
       }
@@ -92,3 +92,5 @@ Lookup responses are identical to search responses in structure, with the `maste
 The response from the Company Normalization Service is versioned with the current version being 1.0. The CompanyDepot data is also versioned, and we will always use the latest.
 
 Our general versioning strategy is available [here](/Versioning.md).
+
+[1] This number is now deprecated and set to empty string. It would be removed from later version.
