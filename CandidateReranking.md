@@ -36,7 +36,7 @@ A request is composed of 4 main parts:
 
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
-| model_version | String | **TRUE** | Accepted Value: **X.Y** The `model_version` determines which learned model to apply to your incoming rerank request. Currently there is only two reranker models to call, **1.0** and **1.1**. The default value is 1.0.
+| model_version | String | **TRUE** | Accepted Value: **X.Y** The `model_version` determines which learned model to apply to your incoming rerank request. Currently there are only two reranker models to call, **1.0** and **1.1**. The default value is 1.0.
 | source | String | **TRUE** | Accepted Values: **EDGE** or **MY_SUPPLY**. The source identifies where profile data was obtained. A model can be learned based on the source, thereby providing more accurate results per each data format.
 | query | [Query](#query) | **TRUE** | The original, fully enriched query sent to SOLR for the list of candidate profiles.
 | profiles | [Profile[]](#profile) | **TRUE** | Array of profiles to be reranked.

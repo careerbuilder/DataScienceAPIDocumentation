@@ -32,7 +32,7 @@ Example: https://api.careerbuilder.com/core/normalizedcompanies?company_name=car
 
 ## Search Responses
 
-The response for a search request returns a single `data` node which contains a `normalized_companies` array. These normalized companies are ordered by the confidence score (descending). Each normalized company has a `normalized_name` (string), a `naics_code` *([more info](http://www.census.gov/eos/www/naics/))* (string), a `naics_description` (string), a `duns_number`[<sup>[1]</sup>](1) (string), a `country` (string), a `state` (string), a `city` (string), a `postal_code` (string), a `website` (string), a `company_size` (int), an `id` (string), and a `confidence` (decimal). Confidence scores range from 0.0 to 1.0. A single master company will be returned.
+The response for a search request returns a single `data` node which contains a `normalized_companies` array. These normalized companies are ordered by the confidence score (descending). Each normalized company has a `normalized_name` (string), a `naics_code` *([more info](http://www.census.gov/eos/www/naics/))* (string), a `naics_description` (string), a `duns_number`<sup id="a1">[1](#f1)</sup> (string, and always empty), a `country` (string), a `state` (string), a `city` (string), a `postal_code` (string), a `website` (string), a `company_size` (int), an `id` (string), and a `confidence` (decimal). Confidence scores range from 0.0 to 1.0. A single master company will be returned.
 
 The master company is the highest division of the requested company. For example a request with the company name "amazon web services" returns "Amazon Web Services LLC" in its normalized_companies list, with a master company of "Amazon.com, Inc."
 
@@ -55,7 +55,7 @@ Following is an example JSON response body:
         "country": "US",
         "address": "200 N La Salle St # 1100",
         "naics_description": "Employment Placement Agencies",
-        "duns_number": "",
+        "duns_number": "",   // deprecated
         "company_size": "42868",
         "website": "www.careerbuilder.com"
       }
@@ -71,7 +71,7 @@ Following is an example JSON response body:
       "country": "US",
       "address": "200 N La Salle St # 1100",
       "naics_description": "Employment Placement Agencies",
-      "duns_number": "095301110",
+      "duns_number": "",  // deprecated
       "company_size": "42868",
       "website": "www.careerbuilder.com"
     },
@@ -93,4 +93,4 @@ The response from the Company Normalization Service is versioned with the curren
 
 Our general versioning strategy is available [here](/Versioning.md).
 
-[1] This number is now deprecated and set to empty string. It would be removed from later version.
+<b id="f1">1</b> The `duns_number` is now deprecated and the string will always return empty. It will be removed from later versions.
