@@ -11,13 +11,13 @@ Semantic Autocomplete V2
 
 
 ## Summary
-Semantic Autocomplete is a service which provides textual autocomplete for search terms relating to DSAD's Semantic Search API. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel. Textkernel refines FSTs throughout the year and updates happen every few months. With the exception of some removed feilds from the response, this version of the service functions exactly like V1.
+Semantic Autocomplete is a service which provides textual autocomplete for search terms relating to DSAD's Semantic Search API. Version 2 of the Semantic Autocomplete service is a complete rewrite of the original service and makes use of the latest FSTs provided to DSAD from Textkernel. Textkernel refines FSTs throughout the year and updates happen every few months. With the exception of some removed fields from the response, this version of the service functions exactly like V1.
 
-For ease of use DSAD autogenerates and publishes Java and C# SDKs for all of our services using swagger. For documentation on usage please see our SDK repo [here](https://github.com/cbdr/dsad-sdks). All sdks are published to [cbdatascience jfrog artifactory](https://cbdatascience.jfrog.io/cbdatascience/webapp/#/home) and located in *ext-release-local/com/careerbuilder/datascience/sdk/*. Jfrog is managed by the CloudOps team, for permissions accessesing artifacts please reach out to CloudOpsSupport@careerbuilder.com.
+For ease of use DSAD auto-generates and publishes Java and C# SDKs for all of our services using swagger. For documentation on usage please see our SDK repo [here](https://github.com/cbdr/dsad-sdks). All sdks are published to [cbdatascience jfrog artifactory](https://cbdatascience.jfrog.io/cbdatascience/webapp/#/home) and located in *ext-release-local/com/careerbuilder/datascience/sdk/*. Jfrog is managed by the CloudOps team, for permissions accessing artifacts please reach out to CloudOpsSupport@careerbuilder.com.
 
 ## Request
 As with all DSAD services, Semantic Autocomplete accepts requests sent as either HTTP GET or HTTP POST. Access to semantic autocomplete is made available at:
- https://www.api.careerbuilder.com/core/semanticsearch/autocompleterequires
+ https://www.api.careerbuilder.com/core/semanticsearch/autocomplete
 
  This service requires Careerbuilder Oauth 2.0 client credentials. For more information please see our ReadMe [here](/Readme.md#access).
 
