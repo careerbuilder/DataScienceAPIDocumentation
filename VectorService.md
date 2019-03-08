@@ -94,7 +94,7 @@ Semantic Fingerprint requests are processed by a deep learning model produced by
 
 ## Response Structure
 
-All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node. The response will contain each `vector_type` requested and an associated list of decimal numbers representing the computed vectors for the request.
+All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node. The response will contain each `vector_type` requested and an associated list of decimal numbers representing the computed vectors for the request. `vector_types` not requested will not show in the response.
 
 ### Sample Response
 ```
