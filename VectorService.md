@@ -21,14 +21,14 @@ Requests can be sent in the form of GET or POST (form or json).
 
 ## Request
 
-A request can be broken out into two distinct types identified through a parameter called `vector_type`. Available  `vector_type`'s are: **carotene_skills** and **semantic_fingerprint**.
+A request can be broken out into two distinct types identified through a parameter called `vector_type`. Available  `vector_types` are: **carotene_skills** and **semantic_fingerprint**.
 
 ### Carotene Skills
 
 | Parameter  | Type | Required |  Description |
 |------------|------|----------|--------------|
 | carotene_id | String | True | A carotene ID as provided by our Job Classification services which uniquely identifies a job title.
-| carotene_version   | String | True | The version of carotene the ID is associated with.
+| carotene_version   | String | True | The version of carotene the ID is associated with. Currently the only accepted version is **CAROTENEV3**.
 | skills | List | False | A list of skill objects.
 
 Each skill object is made up of a unique number/letter identifier provided as a String.
@@ -53,7 +53,7 @@ Each skill object is made up of a unique number/letter identifier provided as a 
 ```
 
 ### Semantic Fingerprint
-Semantic Fingerprint requests are processed by a deep learning model produced by Textkernel. The model can process both job and resume documents identified by the `document_type` param. If a document is provided the `document_type` is required and requests sent for this vector transformation will fail without it.
+Semantic Fingerprint requests are processed by a deep learning model produced by Textkernel. The model can process both job and resume documents identified by the `document_type` param. If a `document` is provided the `document_type` is required and requests sent for this vector transformation will fail without it.
 
 | Parameter  | Type | Required |  Description |
 |------------|------|----------|--------------|
