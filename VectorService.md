@@ -12,7 +12,7 @@ VectorService
 
 ## Description
 
-This service provides vector representations for documents such as a Job or Resume, and for Carotene IDs with optional skills.
+This service provides vector representations through two separate conversion methodologies. Firstly, the service accepts a CaroteneID and a set of skills; this vector transformation is referred to as Carotene Skills. The second transformation is called Semantic Fingerprint; Semantic Fingerprint takes a document, a job or resume, with other optional parameters and returns a vector representation.
 
 
 The service is located at https://api.careerbuilder.com/core/document/vectors.  This service requires CareerBuilder OAuth 2.0 client credentials. For more information please see the authorization [documentation](/Readme.md#access).
@@ -27,8 +27,8 @@ A request can be broken out into two distinct types identified through a paramet
 
 | Parameter  | Type | Required |  Description |
 |------------|------|----------|--------------|
-| carotene_id | String | True | A carotene ID as provided by our Job Classification services which uniquely identifies a job title.
-| carotene_version   | String | True | The version of carotene the ID is associated with. Currently the only accepted version is **CAROTENEV3**.
+| carotene_id | String | True | A carotene ID as provided by our Job Title Classification service which uniquely identifies a job title.
+| carotene_version   | String | True | The version of Carotene that `carotene_id` is associated with. Currently the only accepted version is **CAROTENEV3**.
 | skills | List | False | A list of skill objects.
 
 Each skill object is made up of a unique number/letter identifier provided as a String.
