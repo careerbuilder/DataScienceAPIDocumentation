@@ -21,14 +21,14 @@ Requests can be sent in the form of GET or POST (form or json).
 
 ## Request
 
-A request can be broken out into two distinct types identified through a parameter called `vector_type`. Available  `vector_types` are: **carotene_skills** and **semantic_fingerprint**.
+A request can be broken out into two distinct types identified through a parameter called `vector_types`. Available  `vector_types` are: **carotene_skills** and **semantic_fingerprint**.
 
 ### Carotene Skills
 
 | Parameter  | Type | Required |  Description |
 |------------|------|----------|--------------|
 | carotene_id | String | True | A carotene ID as provided by our Job Title Classification service which uniquely identifies a job title.
-| carotene_version   | String | True | The version of Carotene that `carotene_id` is associated with. Currently the only accepted version is **CAROTENEV3**.
+| carotene_version   | String | True | The version of Carotene that the `carotene_id` is associated with. Currently the only accepted version is **CAROTENEV3**.
 | skills | List | False | A list of skill objects.
 
 Each skill object is made up of a unique number/letter identifier provided as a String.
@@ -94,7 +94,7 @@ Semantic Fingerprint requests are processed by a deep learning model produced by
 
 ## Response Structure
 
-All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node. The response will contain each `vector_type` requested and an associated list of decimal numbers representing the computed vectors for the request. `vector_types` not requested will not show in the response.
+All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node. The response will contain each **vector_type** requested and an associated list of decimal numbers representing the computed vectors for the request. `vector_types` not requested will not show in the response.
 
 ### Sample Response
 ```
