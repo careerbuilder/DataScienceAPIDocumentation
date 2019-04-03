@@ -11,7 +11,7 @@ _______
 
 ## Summary
 
-The Company Address Service takes a request containing a company id, other company details as described in the below request structure and returns a response containing company Address. CompanyAddress is available at 
+The Company Address Service takes a request containing a company id, other company details as described in the below request structure and returns a response containing company address. CompanyAddress is available at 
 `/core/geography/companyaddress`.
 
 
@@ -48,7 +48,7 @@ curl -X POST \
 
 
 ## Response Structure
-All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node. The response consists of company address and other location parameters like country,state,city,postal code,latitude,longitude and branch codes as show in the below sample response.
+All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node. The response consists of company address and other location parameters like country, state, city, postal code, latitude, longitude and branch codes as show in the below sample response. The latitude and longitude are optional fields.
 ### Sample Response
 ```json
 {
