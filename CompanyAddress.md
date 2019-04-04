@@ -11,12 +11,12 @@ _______
 
 ## Summary
 
-The Company Address Service takes a request containing a company id, other company details as described in the below request structure and returns a response containing company address. CompanyAddress is available at 
+The Company Address Service takes a request containing a company id and other company details as described in the below request structure and returns a response containing company address and normalized name of master company. The company address will be that of the branch we provide in the request. If branch is not provided then will try to get match against the given location parameters. If multiple results are found, we will return empty response. CompanyAddress is available at 
 `/core/geography/companyaddress`.
 
 
 ## Request Structure
-Requests consist of:
+Request consist of:
 
 | Field Name        | Type   | Required |
 |-------------------|--------|----------|
