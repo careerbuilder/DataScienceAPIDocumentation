@@ -12,7 +12,7 @@ _______
 ## Summary
 
 The Company Address Service takes a request containing a company id and other company details as described in the below request structure and returns a response containing company address and normalized name of master company. The company address will be that of the branch we provide in the request. If branch is not provided then will try to get match against the given location parameters. If multiple results are found, we will return empty response. CompanyAddress is available at 
-`/core/geography/companyaddress`.
+` https://api.careerbuilder.com/core/geography/companyaddress`.
 
 
 ## Request Structure
