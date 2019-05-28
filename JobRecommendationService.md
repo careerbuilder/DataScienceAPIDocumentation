@@ -17,25 +17,25 @@
 ----------------------------
 # Summary
 
-Job Recommendation Service is part of the profile recommendations, which recommends similar and related jobs to a user based on the jobs he applied and user preferences. The recommendations are combined from FAISS indexes and GBR data, then filtered by the applied jobs.
+Given a job ID and, optionally, a visitor ID, email, and a set of user preferences, the Job Recommendation Service provides recommendations of relevant and similar jobs.
 
-The endpoint for Job Recommendation Service is at https://api.careerbuilder.com/core/recommendations/job
+The endpoint for Job Recommendation Service is at https://api.careerbuilder.com/core/recommendations/job.
 
 ----------------------------
 # Request structure
 The service supports GET and POST requests to:
-https://api.careerbuilder.com/core/search/candidatereranker.
+https://api.careerbuilder.com/core/recommendations/job.
 
-OAUTH credentials are **required**.
+OAUTH credentials are **required** and [here](https://apimanagement.cbplatform.link/#/oauth/faq) is the link to acqurire them.
 
 A request is composed of 3 main parts:
 `job_data`, `user_data`, `user_preferences`.
 
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
-| `job_data` | [**JobData**](#jobdata) | **TRUE** | **JobData** contains a list of jobs which is needed for recommendations.
-| `user_data` | [**UserData**](#userdata) | **FALSE** | **UserData** contains visitor id and email address of the user, which is then used to retrieve applied jobs for filtering.
-| `user_preferences` | [**UserPreferences**](#userpreferences) | **FALSE** | **UserPreferences** indicates preferences of the user including location, compensation, job titles in carotenes and the associated varotene version.
+| `job_data` | [**JobData**](#jobdata) | **TRUE** | **JobData** contains a list of jobs which are needed for recommendations.
+| `user_data` | [**UserData**](#userdata) | **FALSE** | **UserData** contains the visitor id and email address for a given user. This data is used for filtering jobs that the user has already applied to from the final recommendations set.
+| `user_preferences` | [**UserPreferences**](#userpreferences) | **FALSE** | **UserPreferences** indicates preferences of the user including location, compensation, job titles.
 
 ### JobData
 | Param    | Type | Required | Description |
@@ -47,52 +47,56 @@ Note: currently only the first job in the list is used for recommendations.
 #### Job
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
-| `job_did` | String | **TRUE** | This String is required to start with `J` and have a length that is less than the given `MAX_LENGTH`, specifically 22 currently.
+| `job_did` | String | **TRUE** | This needs to be a valid jobdid.
 
 ### UserData
-| Param    | Type | Required | Description |
-|----------|------|----------|-------------|
-| `visitor_id` | String | **FALSE** | This starts with `VX` and is required to be shorter than 50 (`MAX_LENGTH`) characters .
-| `email_address` | String | **TRUE** | The email of the registered user.
-
 **UserData** contains two String parameters: `visitor_id` and `email_address`. However, currently only `email_address` is used to retrieve user applications.
 
+| Param    | Type | Required | Description |
+|----------|------|----------|-------------|
+| `visitor_id` | String | **FALSE** | This needs to be a valid visitor ID.
+| `email_address` | String | **TRUE** | The email of the registered user.
+
+
 ### UserPreferences
+**UserPreferences** provides additional constraints for recommendations. The service will rank recommendations from FAISS indexes and GBR data based on the location,  complesation and job titles. All the parameters are optional. But it has to be in valid format if any of them is provided.
+
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | `location_filter` | [**PreferredLocation**](#preferredlocation) | **FALSE** | Preferered working location.
 | `compensation_filter` | [**Compensation**](#compensation) | **FALSE** | Expected compensation for a job application or a user.
-| `carotene_titles` | List<[**CaroteneTitle**](#carotenetitle)> | **FALSE**<sup>[1](#myfootnote1)</sup> | A list of carotene job titles that the user is interested.
+| `carotene_titles` | List<[**CaroteneTitle**](#carotenetitle)> | **FALSE**<sup>[1](#myfootnote1)</sup> | A list of carotene job titles for the user.
 | `carotene_version` | [**CaroteneVersion**](#caroteneversion) | **FALSE**<sup>[1](#myfootnote1)</sup> | The email of the registered user.
 
-**UserPreferences** provides additional constraints for recommendations. The service will rank recommendations from FAISS indexes and GBR data based on the location,  complesation and job titles. All the parameters are optional. But it has to be in valid format if any of them is provided.
-
-<a name="myfootnote1">1</a>: Carotene titles and version must be presented together or left blank, otherwise will be considered invalid.
+<a name="myfootnote1">1</a>: `carotene_version` is required if `carotene_titles` is supplied, and vice versa. Otherwise will be considered invalid.
 
 #### PreferredLocation
+**PreferredLocation** uses coordinates along with the radius to indicate the preferred work location. All the parameters have to be present in valid values.
+
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | `latitude` | double | **TRUE** | latitude of the location, range in `(-90, 90)`.
 | `longitude` | double | **TRUE** | longitude of the location, range in `(-180, 180)`.
-| `radius_in_miles` | float | **TRUE** | The redius of the location to specify the range of location filter, which has to be a positive number.
+| `radius_in_miles` | float | **TRUE** | The radius surrounding the preferred location within which all recommended jobs must be located.
 
-**PreferredLocation** uses coordinates along with the radius to indicate the preferred work location. All the parameters have to be present in valid values.
+
 
 #### Compensation
+**Compensation** is defined as composition of `type`, `amount` and `currency_code`, all of which are mandatory.
+
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | `type` | String | **TRUE** | Type of the compensation, currently only support `HOURLY` and `ANNUALLY`.
-| `amount` | double | **TRUE** | The total expected amount of the compensation, which is required to be a positive number.
+| `amount` | double | **TRUE** | The total expected amount of the compensation.
 | `currency_code` | String | **TRUE** | The currency code of the expected compensation, identified by [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
 
-**Compensation** is defined as composition of `type`, `amount` and `currency_code`, all of which are mandatory.
-
 #### CaroteneTitle
+Each **CaroteneTitle** is composed with `title` and associated `id`. More details about carotene job titles can be found in our [JobTitleService](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md).
+
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | `title` | String | **TRUE** | Job title from carotene taxonomy.
 | `id` | double | **TRUE** | The associated carotene id to the job title.
-Each **CaroteneTitle** is composed with `title` and associated `id`. The list of carotene titles can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle).
 
 #### CaroteneVersion
 | Param    | Type | Required | Description |
@@ -113,7 +117,7 @@ Each **CaroteneTitle** is composed with `title` and associated `id`. The list of
   },
   "user_data": {
       "visitor_id": "VX0E66C150DDE311E89FF2E5FA5B5A794816285H",
-      "email_address": "esat.sulejmani56@gmail.com"
+      "email_address": "test@example.com"
   },
   "user_preferences": {
     	"location_filter":
