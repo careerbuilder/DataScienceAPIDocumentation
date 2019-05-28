@@ -17,7 +17,7 @@
 ----------------------------
 # Summary
 
-Given a job ID and, optionally, a visitor ID, email, and a set of user preferences, the Job Recommendation Service provides recommendations of relevant and similar jobs.
+Given a job ID and, optionally, an email, and a set of user preferences, the Job Recommendation Service provides recommendations of relevant and similar jobs.
 
 The endpoint for Job Recommendation Service is at https://api.careerbuilder.com/core/recommendations/job.
 
@@ -34,7 +34,7 @@ A request is composed of 3 main parts:
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | `job_data` | [**JobData**](#jobdata) | **TRUE** | **JobData** contains a list of jobs which are needed for recommendations.
-| `user_data` | [**UserData**](#userdata) | **FALSE** | **UserData** contains the visitor id and email address for a given user. This data is used for filtering jobs that the user has already applied to from the final recommendations set.
+| `user_data` | [**UserData**](#userdata) | **FALSE** | **UserData** contains the email address for a given user. This data is used for filtering jobs that the user has already applied to from the final recommendations set.
 | `user_preferences` | [**UserPreferences**](#userpreferences) | **FALSE** | **UserPreferences** indicates preferences of the user including location, compensation, job titles.
 
 ### JobData
@@ -50,11 +50,10 @@ Note: currently only the first job in the list is used for recommendations.
 | `job_did` | String | **TRUE** | This needs to be a valid jobdid.
 
 ### UserData
-**UserData** contains two String parameters: `visitor_id` and `email_address`. However, currently only `email_address` is used to retrieve user applications.
+**UserData** contains only one String parameter: `email_address`.
 
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
-| `visitor_id` | String | **FALSE** | This needs to be a valid visitor ID.
 | `email_address` | String | **TRUE** | The email of the registered user.
 
 
@@ -116,7 +115,6 @@ Each **CaroteneTitle** is composed with `title` and associated `id`. More detail
       ]
   },
   "user_data": {
-      "visitor_id": "VX0E66C150DDE311E89FF2E5FA5B5A794816285H",
       "email_address": "test@example.com"
   },
   "user_preferences": {
