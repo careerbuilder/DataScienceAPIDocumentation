@@ -16,14 +16,12 @@
 
 Given a job ID and, optionally, an email, and a set of user preferences, the Job Recommendation Service provides recommendations of relevant and similar jobs.
 
-The endpoint for Job Recommendation Service is at https://api.careerbuilder.com/core/recommendations/job.
-
 ----------------------------
 # Request structure
 The service supports GET and POST requests to:
 https://api.careerbuilder.com/core/recommendations/job.
 
-OAUTH credentials are **required** and the reference is provided [here](https://apimanagement.cbplatform.link/#/oauth/faq).
+OAUTH credentials are **required** and Documentation for CareerBuilder authentication is provided [here](https://apimanagement.cbplatform.link/#/oauth/faq) by the Platform Software team.
 
 A request is composed of 3 main parts:
 `job_data`, `user_data`, `user_preferences`.
@@ -32,7 +30,7 @@ A request is composed of 3 main parts:
 |----------|------|----------|-------------|
 | `job_data` | [**JobData**](#jobdata) | **TRUE** | **JobData** contains a list of jobs which are needed for recommendations.
 | `user_data` | [**UserData**](#userdata) | **FALSE** | **UserData** contains the  email address for a given user. This data is used for filtering jobs that the user has already applied to from the final recommendations set.
-| `user_preferences` | [**UserPreferences**](#userpreferences) | **FALSE** | **UserPreferences** indicates preferences of the user including location, compensation, job titles.
+| `user_preferences` | [**UserPreferences**](#userpreferences) | **FALSE** | **UserPreferences** indicates preferences of the user including location, compensation, and job titles.
 
 ### JobData
 | Param    | Type | Required | Description |
