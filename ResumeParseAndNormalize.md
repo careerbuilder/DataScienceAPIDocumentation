@@ -202,7 +202,7 @@ Response Structure
               "confidence": float,
               "type": string
             },
-            [... more skillsV4 results]
+            ... 
           ],
           "5.0": [
             {
@@ -211,7 +211,7 @@ Response Structure
               "confidence": float,
               "type": string
             },
-            [... more skillsV5 results]
+            ...
           ]
         },
         "company_normalization": {
@@ -284,7 +284,7 @@ Response Structure
           "confidence": float
           "type": string
         },
-        [... more skillsV4 results]
+        ... 
       ],
       "5.0": [
         {
@@ -293,7 +293,7 @@ Response Structure
           "confidence": float
           "type": string
         },
-        [... more skillsV5 results]
+        ...
       ]
     },
     "job_level": {
