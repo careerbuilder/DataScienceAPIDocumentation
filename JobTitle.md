@@ -15,37 +15,51 @@ HTTP method: GET or POST (form or JSON)
 
 Parameters:
 
-* `taxonomy` (required) : classification taxonomy to use; accepted values are `onet17`, `carotenev3`, and `carotenev3_1`. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly). A single title/description may be classified against multiple taxonomies in a single request by providing multiple taxonomies in this parameter, separated by the pipe ("|") character (see example query below).
+* `taxonomy` (required) : classification taxonomy to use; accepted values are `onet17`, `carotenev3`, `carotenev3_1` and `carotenev3_3`. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly). A single title/description may be classified against multiple taxonomies in a single request by providing multiple taxonomies in this parameter, separated by the pipe ("|") character (see example query below).
 * `title` (required if description is empty) : job title
 * `description` (required if title is empty) : job description
 
-Example: https://api.careerbuilder.com/core/classifier/jobtitle?title=Janitor&taxonomy=carotenev3.1|onet17
+Example: https://api.careerbuilder.com/core/classifier/jobtitle?title=Janitor&taxonomy=carotenev3.3|onet17
 # Sample Response
 ```
 {
-    "data": {
-        "onet17": [
-            {
-                "title": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
-                "id": "37-2011.00",
-                "confidence": 90
-            },
-            {
-                "title": "First-Line Supervisors of Housekeeping and Janitorial Workers",
-                "id": "37-1011.00",
-                "confidence": 56
-            }
-        ],
-        "carotenev3.1": [
-            {
-                "title": "Janitor",
-                "id": "37.1",
-                "confidence": 1,
-                "minor_title": "Building Cleaning and Pest Control Workers",
-                "minor_id": "2000"
-            }
-        ]
-    }
+  "data": {
+    "onet17": [
+      {
+        "title": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+        "id": "37-2011.00",
+        "confidence": 95.0
+      },
+      {
+        "title": "First-Line Supervisors of Housekeeping and Janitorial Workers",
+        "id": "37-1011.00",
+        "confidence": 54.0
+      }
+    ],
+    "carotenev3.3_us": [
+      {
+        "title": "Janitor",
+        "id": "37.1",
+        "confidence": 1.0,
+        "minor_title": "Building Cleaning and Pest Control Workers",
+        "minor_id": "2000"
+      },
+      {
+        "title": "Assistant Landscaper",
+        "id": "37.1083",
+        "confidence": 0.0,
+        "minor_title": "Supervisors of Building and Grounds Cleaning and Maintenance Workers",
+        "minor_id": "1000"
+      },
+      {
+        "title": "Head Cleaner",
+        "id": "37.1122",
+        "confidence": 0.0,
+        "minor_title": "Building Cleaning and Pest Control Workers",
+        "minor_id": "2000"
+      }
+    ]
+  }
 }
 ```
 

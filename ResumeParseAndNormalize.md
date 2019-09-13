@@ -152,18 +152,40 @@ Response Structure
             {
               "title": string,
               "id": string,
-              "confidence": integer
+              "confidence": double
             },
-            [... more onet17 results]
+  	    ...
           ],
-          "carotenev3": [
+	  "carotenev3": [
             {
               "title": string,
               "id": string,
-              "confidence": integer
+              "confidence": double,
+              "minor_title": string,
+              "minor_id": string
             },
-            [... more carotenev3 results]
-          ]
+          ...
+          ],
+	  "carotenev3.1": [
+            {
+              "title": string,
+              "id": string,
+              "confidence": double,
+              "minor_title": string,
+              "minor_id": string
+            },
+            ...
+          ],
+	  "carotenev3.3_us": [
+            {
+              "title": string,
+              "id": string,
+              "confidence": double,
+              "minor_title": string,
+              "minor_id": string
+            },
+            ...
+          ],
         },
         "job_level": {
           "1.0": {
@@ -286,18 +308,40 @@ Response Structure
         {
           "title": string,
           "id": string,
-          "confidence": integer
+          "confidence": double
         },
-        [... more onet17 results]
+        ...
       ],
       "carotenev3": [
         {
           "title": string,
           "id": string,
-          "confidence": integer
+          "confidence": double,
+          "minor_title": string,
+          "minor_id": string
         },
-        [... more carotenev3 results]
-      ]
+        ...
+      ],
+      "carotenev3.1": [
+        {
+          "title": string,
+          "id": string,
+          "confidence": double,
+          "minor_title": string,
+          "minor_id": string
+        },
+        ...
+      ],
+     "carotenev3.3_us": [
+        {
+          "title": string,
+          "id": string,
+          "confidence": double,
+          "minor_title": string,
+          "minor_id": string
+        },
+        ...
+      ],
     },
     "geography": {
       "2.0": [
