@@ -176,7 +176,7 @@ Response Structure
             },
             ...
           ],
-	  "carotenev3.3_us": [
+	  "carotenev3.3": [
             {
               "title": string,
               "id": string,
@@ -332,7 +332,7 @@ Response Structure
         },
         ...
       ],
-     "carotenev3.3_us": [
+     "carotenev3.3": [
         {
           "title": string,
           "id": string,
