@@ -156,11 +156,23 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
           {
             "title": string,
             "id": string,
-            "confidence": double
+            "confidence": double,
+            "minor_title": string,
+            "minor_id": string
+          },
+	  ...
+        ],
+        "carotene_v3.1": [
+          {
+            "title": string,
+            "id": string,
+            "confidence": double,
+            "minor_title": string,
+            "minor_id": string
           },
           ...
         ],
-        "carotene_v3.1": [
+	"carotene_v3.3": [
           {
             "title": string,
             "id": string,
@@ -174,7 +186,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
           {
             "title": string,
             "id": string,
-            "confidence": integer
+            "confidence": double
           },
           ...
         ],
