@@ -29,6 +29,7 @@ DSAD's Autocomplete Service is an HTTP REST webservice for autocompleting querie
 | ONet17 | `/core/autocomplete/onet17` |
 | Skills V4 | `/core/autocomplete/skillsv4` |
 | Skills V5 | `/core/autocomplete/skillsv5` |
+| Multiple taxonomies | `/core/autocomplete/taxonomies` |
 
 ### Request Structure
 
@@ -46,6 +47,13 @@ The Normalized Schools taxonomy also uses an additional request parameter:
 | Field    | Description | Required? |
 |----------|-------------|-----------|
 | `school_level` | The type of school to which the results should be limited. Accepted values are `secondary` and `postsecondary` (case-insensitive). | No |
+
+The Multi taxonomy endpoint needs the following additional parameter
+
+| Field    | Description | Required? |
+|----------|-------------|-----------|
+| `taxnomies` | List of taxonomies used for retrieving autocomplete results based on the query param | Yes |
+
 
 Requests may be provided as HTTP GET requests with query parameters, or as HTTP POST requests with either URL-encoded form or JSON content.
 
@@ -85,6 +93,15 @@ Result objects for the Normalized Schools taxonomy also include an additional fi
 &nbsp;
 
 Normalized Company, Major, and School entities maintain an internal "popularity" score and results for these taxonomies will be returned in descending sorted order according to this score. Other taxonomies are not scored in this way and will return their results in alphabetical order.
+
+&nbsp;
+
+For multiple taxonomies the response should have the following structure
+
+| Field    | Description |
+|----------|-------------|
+| `results` | A JSON array containing zero or more result objects. Each result represents an object  with a list of results  from each requested taxonomy. The result object structure in this case will be very similar to the individual taxonomy response |
+
 
 All responses will be returned as JSON.
 
@@ -209,6 +226,61 @@ Following are several request-response examples that demonstrate usage of the se
       }
     ],
     "data_version": "2018-03-29"
+  }
+}
+```
+
+**Multiple taxonomies request (carotenev3, school_norm]) [link](https://apimanagement.cbplatform.link/?#routes/tester?preURL=https%3A%2F%2Fwwwtest.api.careerbuilder.com%2F&postURL=%2Fcore%2Fautocomplete%2Ftaxonomies&method=post&contentType=application%2Fjson&acceptType=application%2Fjson&version=1.0&region=staging&flow=client_credentials&userDid=&accountDid=&headers=&body={+%0D%0A+++%22query%22%3A%22java%22%2C%0D%0A+++%22limit%22%3A3%2C%0D%0A+++%22taxonomies%22+%3A+[%22carotenev3%22%2C+%22school_norm%22]%0D%0A})**
+
+**Request**
+
+```json
+{ 
+   "query":"java",
+   "limit":3,
+   "taxonomies" : ["carotenev3", "school_norm"]
+}
+```
+## Sample Response
+
+```json
+{
+  "data": {
+    "results": [
+      {
+        "results": [
+          {
+            "suggestion": "Java Analyst",
+            "id": "15.11674"
+          },
+          {
+            "suggestion": "Java Architect",
+            "id": "15.128"
+          },
+          {
+            "suggestion": "Java Developer",
+            "id": "15.2"
+          }
+        ],
+        "taxonomy": "CAROTENEV3"
+      },
+      {
+        "results": [
+          {
+            "suggestion": "Jawaharlal Nehru Technological University",
+            "id": "53bff579e4b04710d09fb35f",
+            "school_level": "POSTSECONDARY"
+          },
+          {
+            "suggestion": "Jazan University",
+            "id": "53bff579e4b04710d09fb36f",
+            "school_level": "POSTSECONDARY"
+          }
+        ],
+        "data_version": "2018-03-29",
+        "taxonomy": "SCHOOL_NORM"
+      }
+    ]
   }
 }
 ```
