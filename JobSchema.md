@@ -1,4 +1,4 @@
-Job Schema Service
+JSON-LD-JS
 ==================
 
 #### Table of Contents
@@ -148,7 +148,7 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
         "estimatedSalary": {
             "@type": string,
             "currency": string,
-            "unitText": string,
+            "duration": string,
             "percentile10": number,
             "median": number,
             "percentile90": number
@@ -189,12 +189,8 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
         "baseSalary": {
             "@type": "MonetaryAmount",
             "currency": string,
-            "value": {
-                "@type": "QuantitativeValue",
-                "minValue": number,
-                "maxValue": number,
-                "unitText": string
-            }
+            "minValue": number,
+            "maxValue": number,
         },
         "occupationalCategory": [
             string
@@ -205,7 +201,6 @@ Job Schema Service (JSS) takes a request containing data for a job posting and r
         "skills": string,
         "workHours": string,
         "incentiveCompensation": string,
-        "salaryCurrency": string,
         "identifier": {
             "@type": "PropertyValue",
             "propertyID": string,
