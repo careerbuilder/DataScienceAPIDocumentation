@@ -94,7 +94,7 @@ All fields:
     "radius": 50000,
     "strict_bounds": true,
     "language": "zh-cn",
-    "components": ["CN", "US", "CA", "ET", "FR", "UK"],
+    "components": ["CN", "US", "CA", "ET", "FR"],
     "types": "(regions)"
 }
 ````
