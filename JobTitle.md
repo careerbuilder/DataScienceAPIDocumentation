@@ -15,7 +15,7 @@ HTTP method: GET or POST (form or JSON)
 
 Parameters:
 
-* `taxonomy` (required) : classification taxonomy to use; accepted values are `onet17`, `carotenev3`, `carotenev3_1` and `carotenev3_3`. Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly). A single title/description may be classified against multiple taxonomies in a single request by providing multiple taxonomies in this parameter, separated by the pipe ("|") character (see example query below).
+* `taxonomy` (required) : classification taxonomy to use; accepted values are listed [here](#taxonomies). A single title/description may be classified against multiple taxonomies in a single request by providing multiple taxonomies in this parameter, separated by the pipe ("|") character (see example query below).
 * `title` (required if description is empty) : job title
 * `description` (required if title is empty) : job description
 
@@ -73,6 +73,8 @@ Possible taxonomies (with links to full taxonomy results)
 | [carotenev3.1](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/CaroteneV3.1.csv) | Changes from Carotene v3 include 4 additions, 78 updates, and 28 removals. Adds disambiguation to v3 and includes minor_title and minor_id fields for hierarchical classification. <br>[Carotenev3 to v3.1 Crosswalk.xlsx](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/Carotenev3%20to%20v3.1%20Crosswalk.xlsx)
 | carotenev3.3_us | Carotene taxonomy based on a deep-learning approach (v3.1 is hierarchal) for improved prediction of SOC major. This taxonomy was trained with U.S.-specific data.
 | carotenev3.3_uk | Same as _carotenev3.3_us_, but trained with data specific to U.K.
+
+Complete taxonomy lists can be found [here](https://github.com/cbdr/DataScienceAPITaxonomies/tree/master/JobTitle) (restricted to CBReadOnly).
 
 # Versioning
 -----------
