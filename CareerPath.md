@@ -37,6 +37,7 @@ Requests consist of:
 |:--------------|:--------|:-------------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `carotene_id` | string  | query string | yes      | The Carotene ID from which to start the path searches.                                                                                                                                                  |
 | `max_hops`    | integer | request body | no       | The maximum number of hops, or steps, to consider when doing path searches. Larger values would likely increase the time it takes to complete the searches. Allowed values: from 1 to 5; defaults to 3. |
+| `rank_threshold`   | integer | request body | no       | A measure of how many of the top results on each hop are considered and tracked when searching for paths. Larger values would likely increase the time it takes to complete the searches. Allowed values: from 1 to 8; defaults to 5. |
 
 Example cURL request:
 
@@ -47,7 +48,8 @@ curl -X POST \
   -H 'Authorization: <BEARER_TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-	"max_hops": 3
+	"max_hops": 3,
+	"rank_threshold": 5
       }'
 ```
 
@@ -96,6 +98,7 @@ Requests consist of:
 | `carotene_id_from` | string  | query string | yes      | The Carotene ID from which to start the path searches.                                                                                                                                                  |
 | `carotene_id_to`   | string  | query string | yes      | The target Carotene ID that should be the ending point of the paths returned.                                                                                                                           |
 | `max_hops`         | integer | request body | no       | The maximum number of hops, or steps, to consider when doing path searches. Larger values would likely increase the time it takes to complete the searches. Allowed values: from 1 to 5; defaults to 3. |
+| `rank_threshold`   | integer | request body | no       | A measure of how many of the top results on each hop are considered and tracked when searching for paths. Larger values would likely increase the time it takes to complete the searches. Allowed values: from 1 to 8; defaults to 5. |
 
 Example cURL request:
 
@@ -106,7 +109,8 @@ curl -X POST \
   -H 'Authorization: <BEARER_TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-	"max_hops": 3
+	"max_hops": 3,
+	"rank_threshold": 5
       }'
 ```
 
