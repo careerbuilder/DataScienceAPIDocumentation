@@ -19,7 +19,9 @@ This service makes use of two different requests: Geocoding Requests and Google 
 
 ----------------------------
 # Geocoding Request
-A Geocoding request contains at least one of (query, address, locality, postal_code, admin_area, country) that must be provided in the query string.
+A Geocoding request contains at least one of (query, address, locality, postal_code, admin_area, country) that must be provided in the query string. 
+
+Please note that although there is no requirement that requests contain the address field or that the query field be a complete street address, the intended use case for Google Geocoding, as stated by Google itself, is to geocode street addresses. Requests for individual cities, postal codes, etc. are liable to encounter data quality issues that Google may decline to address due to their API being used for unsupported request types. The Google Geo services' intended to be used for non-street addresses are [Place Autocomplete](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceAutocomplete.md) and [Place Details](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md). 
 
 ### Headers and Version
 
