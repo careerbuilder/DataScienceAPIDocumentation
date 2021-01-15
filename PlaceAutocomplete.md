@@ -13,15 +13,16 @@ _______
 ## Summary
 
 Place Autocomplete (`/core/geography/place/autocomplete`) is a wrapper service for Google's Place 
-Autocomplete API, which returns place predictions based upon a user input string. Please refer to 
-[Google's documentation](https://developers.google.com/places/web-service/autocomplete) for information about this service.
+Autocomplete API, which returns place predictions based upon a user input string. It can be used in conjunction with [Google Place Details]
+to validate user input and retrieve geographic information. Please refer to 
+[Google's documentation](https://developers.google.com/places/web-service/autocomplete) for information about this service. 
 
 ## Session Tokens and Usage Example
 
 All requests require a UUID session token. Session tokens are used by Google to group multiple 
 requests into one billing session. 
 
-As an example of the intended usage of sessions, suppose a consumer of the Place Details api has a 
+As an example of the intended usage of sessions, suppose a consumer of the Place Autocomplete and [Place Details](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md) apis has a 
 user searching for a place:
 
 1. A session token UUID `A` is generated for the session.
@@ -208,6 +209,8 @@ for additional information on these fields.
   }
 }
 ```
+
+In the above example, the `place_id` value in the response could then be sent to [Place Details](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md) to retrieve relevant geo information about this locality. Please see the [request](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md#example-request) and [response](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md#examples] sections of Place Details documentation, which continue the above example and show this locations place information.
 
 ## Versioning
 
