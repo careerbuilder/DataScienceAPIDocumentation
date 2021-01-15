@@ -210,7 +210,7 @@ for additional information on these fields.
 }
 ```
 
-In the above example, the `place_id` value in the response could then be sent to [Place Details](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md) to retrieve relevant geo information about this locality. Please see the [request](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md#example-request) and [response](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md#examples] sections of Place Details documentation, which continue the above example and show this locations place information.
+In the above example, the `place_id` value in the response could then be sent to [Place Details](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md) to retrieve relevant geo information about this locality. Please see the [request](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md#example-request) and [response](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/PlaceDetails.md#examples) sections of Place Details documentation, which continue the above example and show this locations place information.
 
 ## Versioning
 
