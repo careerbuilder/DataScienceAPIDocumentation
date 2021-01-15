@@ -17,7 +17,7 @@ Autocomplete API, which returns place predictions based upon a user input string
 to validate user input and retrieve geographic information. Please refer to 
 [Google's documentation](https://developers.google.com/places/web-service/autocomplete) for information about this service. 
 
-NOTE: Aside from autocompleting user input, the Place Autocomplete is also the Google Geo service to use for validating or normalizing 
+NOTE: Aside from autocompleting user input, Place Autocomplete is also the geo service to use for validating or normalizing 
 non-street address location types, such as cities or zip codes.
 
 ## Session Tokens and Usage Example
