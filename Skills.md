@@ -1,30 +1,32 @@
 # Semantic Skills Tagging API
 
-https://api.careerbuilder.com/core/tagging/skills
+The Semantic Skills Tagging service (available at https://api.careerbuilder.com/core/tagging/skills) takes raw text and tags surface forms of skills which appear in the text, returning a list of normalized skills and a confidence score.
 
 This API supports the HTTP/GET and HTTP/POST methods.  
 
-This API currently supports versions 4.1, 4.2, 5.0, and 8.0. Version is passed in the `Accept` header as the parameter version (E.g. ```Accept:application/json;version=8.0```).
+Currently supported versions are 4.1, 4.2, 5.0, and 8.0. Version is passed in the `Accept` header as the parameter version (E.g. ```Accept:application/json;version=8.0```).
 
 **For versions < 8.0, this API is also available as a locally-runnable JAR. Clients with JVM-based applications may find this useful to avoid the overhead of repeated network calls. More information can be found [here](https://github.com/cbdr/SkillsExtractor).**
 
-Taxonomies can be found through the TaxonomyAPI [here](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/TaxonomyService.md)
+Taxonomies can be found through the [Taxonomy API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/TaxonomyService.md).
 
 Request
 ------- 
 
-| Parameter             | 4.1      | 4.2      | 5.0      | 8.0                    | Description |
-|-----------------------|----------|----------|----------|------------------------|-----------------|
-| `version`               | Required | Required | Required | Required             | Passed in via the Accept header. Possible values are "4.1", "4.2", or "5.0". | 
-| `content`               | Required | Required | Required | Required<sup>*</sup> |  A string containing the content to be tagged |
-| `language`              | Optional | Optional | Optional | Optional             | A string determining the language (total 22 languages supported) in which the input text is written. Default value is en. Note that the input parameter passing to language should be the language id. |
-| `threshold`             | Optional | Optional | Optional | Optional             | A double value between 0 and 1 controlling minimum relevancy scores for skill recognition. Higher values will more tightly restrict the returned skill tags. Default is 0.5. A threshold of 0 means all seed skill phrases recognized by exact string matching will be returned. Note that this parameter is only supported for inputs in English. |
-| `auto_threshold`        | Optional | Optional | Optional | N/A                  | A boolean value indicating whether automatic thresholding is desired. If enabled, then when input text contains 150 or fewer words, the threshold parameter will be overwritten to 0 and all confidence values will be overwritten to 1.0<sup>†</sup>. Default is true.  Note that this parameter is only supported for inputs in en, fr, and de. |
-| `return_related_skills` | Optional | Optional | Optional | N/A                  | A boolean value indicating whether to return related skills for each extracted skill. Defaults to false. Related skills contain the same fields as extracted skills, with confidence scores indicating their relevance to the extracted skill. |
+| Parameter             | 4.1                    | 4.2                  | 5.0                  | 8.0                  | Description | Default value |
+|-----------------------|------------------------|----------------------|----------------------|----------------------|-------|------|
+| `version`               | Required             | Required             | Required             | Required             | Passed in via the Accept header. Possible values are "4.1", "4.2", or "5.0". | - |
+| `content`               | Required             | Required             | Required             | Required<sup>*</sup> |  A string containing the content to be tagged | - |
+| `language`              | Optional             | Optional             | Optional             | Optional             | A string containing an ISO 639-1 code indicating the language in which the input text is written. If `language` is not provided in the request then English is used as the default. | English |
+| `threshold`             | Optional<sup>†</sup> | Optional<sup>†</sup> | Optional<sup>†</sup> | Optional             | A double value between 0 and 1 controlling minimum relevancy scores for skill recognition. Higher values will more tightly restrict the returned skill tags. Default is 0.5. A threshold of 0 means all seed skill phrases recognized by exact string matching will be returned.  | 0.5 |
+| `auto_threshold`        | Optional             | Optional             | Optional             | -                    | A boolean value indicating whether automatic thresholding is desired. If enabled, then when input text contains 150 or fewer words, the threshold parameter will be overwritten to 0 and all confidence values will be overwritten to 1.0<sup>‡</sup>. Default is true.  Note that this parameter is only supported for inputs in en, fr, and de. | - |
+| `return_related_skills` | Optional             | Optional             | Optional             | -                    | A boolean value indicating whether to return related skills for each extracted skill. Defaults to false. Related skills contain the same fields as extracted skills, with confidence scores indicating their relevance to the extracted skill. | - |
 
 <sup>*</sup> The `content` field has a limit of 50,000 characters after which subsequent characters are ignored.
 
-<sup>†</sup> A more detailed explanation of this functionality: The tagger uses “context” to define semantic relevancy.  If the input is too short (<= 150 words) to constitute a “context,” the tagger by default returns everything by direct matching, resulting in 0.0 confidence scores due to lack of context for relatedness. To avoid confusion, a pseudo score “1” is assigned to indicate “directly matched.” This feature is called “auto thresholding”.
+<sup>†</sup> Prior to version 8.0 `threshold` was only supported for English `content`.
+
+<sup>‡</sup> A more detailed explanation of this functionality: The tagger uses “context” to define semantic relevancy.  If the input is too short (<= 150 words) to constitute a “context,” the tagger by default returns everything by direct matching, resulting in 0.0 confidence scores due to lack of context for relatedness. To avoid confusion, a pseudo score “1” is assigned to indicate “directly matched.” This feature is called “auto thresholding”.
 
 #### Example request
 
