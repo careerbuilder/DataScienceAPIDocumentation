@@ -22,7 +22,7 @@ Request
 | `auto_threshold`        | Optional             | Optional             | Optional             | -                    | A boolean value indicating whether automatic thresholding is desired. If enabled, then when input text contains 150 or fewer words, the threshold parameter will be overwritten to 0 and all confidence values will be overwritten to 1.0<sup>‡</sup>. Default is true.  Note that this parameter is only supported for inputs in en, fr, and de. | - |
 | `return_related_skills` | Optional             | Optional             | Optional             | -                    | A boolean value indicating whether to return related skills for each extracted skill. Defaults to false. Related skills contain the same fields as extracted skills, with confidence scores indicating their relevance to the extracted skill. | - |
 
-<sup>*</sup> In version 8.0, the `content` field has a limit of 50,000 characters after which subsequent characters are ignored.
+<sup>*</sup> In version 8.0 the `content` field has a limit of 50,000 characters after which subsequent characters are ignored.
 
 <sup>†</sup> Prior to version 8.0 `threshold` was only supported for English `content`.
 
