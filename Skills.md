@@ -84,8 +84,6 @@ The response structure of version 8.0 differs slightly from previous version.
 - `likelihood` and `confidence` range between 0.0 and 1.0.
 - Possible `type` values:
     - Certification
-    - Comp Skill
-    - Hard Skill
     - IT Skill
     - Language
     - Professional Skill
