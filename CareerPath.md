@@ -93,25 +93,18 @@ Endpoint: `/core/careerpath/carotenev3.3/paths/from/{carotene_id_from}/to/{carot
 
 Requests consist of:
 
-| Field name         | Type    | Place        | Required | Notes                                                                                                                                                                                                   |
-|:-------------------|:--------|:-------------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `carotene_id_from` | string  | query string | yes      | The Carotene ID from which to start the path searches.                                                                                                                                                  |
-| `carotene_id_to`   | string  | query string | yes      | The target Carotene ID that should be the ending point of the paths returned.                                                                                                                           |
-| `max_hops`         | integer | request body | no       | The maximum number of hops, or steps, to consider when doing path searches. Larger values would likely increase the time it takes to complete the searches. Allowed values: from 1 to 5; defaults to 3. |
-| `rank_threshold`   | integer | request body | no       | A measure of how many of the top results on each hop are considered and tracked when searching for paths. Larger values would likely increase the time it takes to complete the searches. Allowed values: from 1 to 8; defaults to 5. |
+| Field name         | Type    | Place        | Required | Notes                                                                         |
+|:-------------------|:--------|:-------------|:---------|:------------------------------------------------------------------------------|
+| `carotene_id_from` | string  | query string | yes      | The Carotene ID from which to start the path searches.                        |
+| `carotene_id_to`   | string  | query string | yes      | The target Carotene ID that should be the ending point of the paths returned. |
 
 Example cURL request:
 
 ```
-curl -X POST \
-  https://api.careerbuilder.com/core/careerpath/carotenev3.3/paths/from/11.30597/to/33.0 \
-  -H 'Accept: application/json;version=1.0' \
-  -H 'Authorization: <BEARER_TOKEN>' \
-  -H 'Content-Type: application/json' \
-  -d '{
-	"max_hops": 3,
-	"rank_threshold": 5
-      }'
+curl -L -X GET 'https://wwwtest.api.careerbuilder.com/core/careerpath/carotenev3.3/paths/from/43.37/to/43.10657' \
+-H 'Accept: application/json;version=1.0' \
+-H 'Authorization: <BEARER_TOKEN>' \
+--data-raw ''
 ```
 
 ### Response Structure
@@ -121,6 +114,6 @@ The response for this endpoint are identical to the one for [finding paths from 
 ## Versioning
 The current version of the service is 1.0.
 
-Version must be specified in the Accept header. E.g. `application/json;version=1.0`.
+Version must be specified in the `Accept` header. E.g. `application/json;version=1.0`.
 
 Our general versioning strategy is available [here](/Versioning.md).
