@@ -103,8 +103,7 @@ Example cURL request:
 ```
 curl -L -X GET 'https://wwwtest.api.careerbuilder.com/core/careerpath/carotenev3.3/paths/from/43.37/to/43.10657' \
 -H 'Accept: application/json;version=1.0' \
--H 'Authorization: <BEARER_TOKEN>' \
---data-raw ''
+-H 'Authorization: <BEARER_TOKEN>'
 ```
 
 ### Response Structure
