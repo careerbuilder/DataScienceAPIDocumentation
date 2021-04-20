@@ -10,6 +10,7 @@
 - [Place ID Lookup Request Structure](#place-id-lookup-request-structure)
 - [Response Structure](#response-structure)
 - [Remarks and Recommendations](#remarks-and-recommendations)
+- [Reporting data quality issues](#reporting-data-quality-issues)  
 - [Versioning](#versioning)
 
 ----------------------------
@@ -136,6 +137,57 @@ One common use case of the geocoding API is in normalizing location queries for 
 
 
 &nbsp;
+
+-----------
+# Reporting Data Quality Issues
+
+There are multiple ways to formulate a request for a given geographic entity. For example, while 
+the following requests bodies are all conceptually queries about Chicago, IL, they are all unique 
+queries that are handled in different ways by Google and cached separately by DSAD:
+
+- `query=chicago, il`
+- `query=chicago il`
+- `query=chicago, illinois`
+- `query=chicago, il, us`
+- `query=chicago, il&country=usa`
+- `query=chicago, illlinois&country=united states`
+- `query=chicago&admin_area=illinois&country=us`
+- `locality=chicago&admin_area=il&country=usa`
+- `locality=chicago&query=chigago illinois&country=usa`
+- `locality=chicago illinois&query=il usa&country=united states`
+- `locality=chicago&query=illinois&country=united states`
+- etc.
+
+As you can see, there are tens if not hundreds of ways to formulate a query for chicago using the 
+city, state, and country name alone, and that is not including spelling variants (e.g. NYC, NY, 
+New York, etc.) and misspellings. As previously mentioned, all of these are handled differently by 
+Google and potentially return different results. If you have a problem with the response for a 
+request of, for example,`query=chicago, il`, then asking Google to change the response for 
+`query=chicago illinois` will not necessarily result in a change for the former. 
+
+When investigating data quality issues, **DSAD and Google need to know the exact character for 
+character request you are sending to `/core/geography/geocoding`**. It is not sufficient to simply 
+report 'When I run a query for Chicago I get an unexpected value for the `foo` field on the 
+response'. Such a request contains no actionable information which DSAD or Google could use to 
+investigate your issue and will at best delay resolution while we ask you to provide reproduction 
+steps and at worst lead to a resolution for a completely different query than the one your code is 
+actually sending (and therefore potentially not fixing your actual query at all).
+
+When submitting a data quality report to DSAD please ensure you include the following information:
+- Confirm you are calling `/core/geography/geocoding`. There are multiple Geography related services
+  at CB and just because your code is working with geo information, that doesn't mean it came from 
+  `/core/geography/geocoding`.
+- Provide the region you are calling in.
+- Provide the actual character-for-character request that your code is sending.
+- Provide the response returned from the service for your request or at least the field or fields 
+  that you believe to be incorrect.
+  
+For example:
+- I am calling `/core/geography/geocoding`
+- I am calling in the EU region  
+- When I send the following request: `locality=chicago&query=chicago il, usa&country=us` 
+- ... then  `data.results.admin_areas[1].short_name` is `DuPage County`
+- ... I think it should instead be `Cook County`
 
 -----------
 # Versioning
