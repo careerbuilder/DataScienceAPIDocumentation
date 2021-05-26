@@ -29,7 +29,7 @@ A request is composed of 3 main parts:
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
 | `job_data` | [**JobData**](#jobdata) | **TRUE** | **JobData** contains a list of jobs which are needed for recommendations.
-| `hostsite` | String | **False** | Hostsite for `source_jobs`. Currently supports US, GB, CA. Defaults to US if omitted 
+| `hostsite` | String | **False** | Hostsite for `source_jobs`. Currently supports US, UK, CA. Defaults to US if omitted 
 | `user_data` | [**UserData**](#userdata) | **FALSE** | **UserData** contains the  email address for a given user. This data is used for filtering jobs that the user has already applied to from the final recommendations set.
 | `user_preferences` | [**UserPreferences**](#userpreferences) | **FALSE** | **UserPreferences** indicates preferences of the user including location, compensation, and job titles.
 
