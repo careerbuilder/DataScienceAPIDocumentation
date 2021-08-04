@@ -19,7 +19,7 @@ Parameters:
 * `title` (required if description is empty) : job title
 * `description` (required if title is empty) : job description
 
-Example: https://api.careerbuilder.com/core/classifier/jobtitle?title=Janitor&taxonomy=ccarotenev3_3_US|onet17
+Example: https://api.careerbuilder.com/core/classifier/jobtitle?title=Janitor&taxonomy=carotenev3_3_US|onet17
 # Sample Response
 ```
 {
