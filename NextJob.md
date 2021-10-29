@@ -13,9 +13,15 @@ _______
 ## Summary
 
 The Next Job service returns common next jobs for a given carotene ID. For example, Administrative 
-Assistant and Office Manager are common next jobs for Receptionists. Additionally it returns the 
+Assistant and Office Manager are common next jobs for Receptionists. Additionally it returns carotene description and the 
 set of skills associated with the requested carotene ID, as well as the skills the carotene ID has
 in common with its next jobs and the missing skills a person should acquire to pursue the next job. 
+Moreover, for each job we provide active jobs count based on location passed to the endpoint.
+Salary will be provided based on criteria :
+** if postal_code or cbsa_code is provided we will return for specific area
+** if not we will provide nation wide data
+You can get this salary per hour or per year.
+
 
 The Next Job service is available at `/core/careerpath/nextjob`.
 
@@ -23,22 +29,47 @@ The Next Job service is available at `/core/careerpath/nextjob`.
 
 Requests consist of:
 
-| Field name        | Type   |
-|:------------------|:-------|
-|`carotene_id`      | string |
-|`carotene_version` | string |
+| Field name        | Type   |Required|
+|:------------------|:-------|:-------|
+|`carotene_id`      | string |    Y   |
+|`salary_period`    | string |    Y   | // "HOUR" OR "YEAR"
+|`cbsa_code`        | string |    N   |
+|`postal_code`      | string |    N   |
+|`locality`         | string |    N   |
+|`admin_area`       | string |    N   |
                      
-Example cURL request:
+Example cURL request with cbsa_code:
 
 ```
 curl -X POST \
   https://api.careerbuilder.com/core/careerpath/nextjob \
-  -H 'Accept: application/json;version=1.0' \
+  -H 'Accept: application/json;version=2.0' \
   -H 'Authorization: <BEARER_TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
 	"carotene_id": "11.0",
-	"carotene_version": "carotenev3"
+  "salary_period": "YEAR",
+  "cbsa_code": "77000",
+  "locality": "Chicago",
+  "admin_area": "IL"
+      }'
+```
+
+Example cURL request with postal_code:
+
+```
+curl -X POST \
+  https://api.careerbuilder.com/core/careerpath/nextjob \
+  -H 'Accept: application/json;version=2.0' \
+  -H 'Authorization: <BEARER_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"carotene_id": "11.0",
+	"carotene_version": "carotenev3",
+  "salary_period": "YEAR",
+  "postal_code": "60601",
+  "locality": "Chicago",
+  "admin_area": "IL"
       }'
 ```
 
@@ -47,17 +78,24 @@ for more information about carotene classification and carotene IDs.
 
 ## Response Structure
 
-The response consist of a `carotene_id`, `carotene_title`, and list of `skills` for the requested 
+The response consist of a `carotene_id`, `carotene_title`, `carotene_description`, `salary`,`active_job_count`  and list of `skills` for the requested 
 `carotene_id`. Each item in the `skills` list contains `term`, `id` strings, and `description` 
 strings as well as  list of links to relevant videos. The `next_jobs` sections is 
-a list consisting of objects containing a `carotene_id` and `carotene_title` string for the next job
-as well as a list of `common_skills` and list of `missing_skills`.
+a list consisting of objects containing a `carotene_id`, `carotene_title`, `carotene_description`, associated `confidence` to carotene, `salary`,`active_job_count` and  string for the next job as well as a list of `common_skills` and list of `missing_skills`.
 
 ```json
 {
     "data": {
         "carotene_id": "11.0",
         "carotene_title": "sales manager (management)",
+        "carotene_description": "Plan, direct, or coordinate the actual distribution or movement of a product or service to the customer. Coordinate sales distribution by establishing sales territories, quotas, and goals and establish training programs for sales representatives. Analyze sales statistics gathered by staff to determine sales potential and inventory requirements and monitor the preferences of customers.",
+        "salary": {
+          "currency": "USD",
+          "percentile_10": 10.0,
+          "percentile_90": 14.0,
+          "period": "YEAR"
+        },
+       "active_job_count": 0,
         "skills": [
             {
                 "term": "manage sale team",
@@ -94,6 +132,15 @@ as well as a list of `common_skills` and list of `missing_skills`.
             {
                 "carotene_id": "11.13",
                 "carotene_title": "business development manager (management)",
+                "carotene_description": "Plan, direct, or coordinate marketing policies and programs, such as determining the demand for products and services offered by a firm and its competitors, and identify potential customers. Develop pricing strategies with the goal of maximizing the firm's profits or share of the market while ensuring the firm's customers are satisfied. Oversee product development or monitor trends that indicate the need for new products and services.",
+                "confidence": 0.016686638076838227,
+                "salary": {
+                  "currency": "USD",
+                  "percentile_10": 10.0,
+                  "percentile_90": 14.0,
+                  "period": "YEAR"
+                },
+                "active_job_count": 12,
                 "common_skills": [
                     {
                         "term": "business development",
@@ -156,8 +203,8 @@ as well as a list of `common_skills` and list of `missing_skills`.
 ```
 
 ## Versioning
-The current version of the service is 1.0. 
+The current version of the service is 2.0. 
 
-Version must be specified in the Accept header. E.g. `application/json;version=1.0`. 
+Version must be specified in the Accept header. E.g. `application/json;version=2.0`. 
 
 Our general versioning strategy is available [here](/Versioning.md).
