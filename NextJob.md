@@ -32,6 +32,7 @@ Requests consist of:
 | Field name        | Type   |Required|
 |:------------------|:-------|:-------|
 |`carotene_id`      | string |    Y   |
+|`carotene_version` | string |    Y   |
 |`salary_period`    | string |    Y   | // "HOUR" OR "YEAR"
 |`cbsa_code`        | string |    N   |
 |`postal_code`      | string |    N   |
@@ -48,6 +49,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -d '{
 	"carotene_id": "11.0",
+  "carotene_version": "CAROTENEV3",
   "salary_period": "YEAR",
   "cbsa_code": "77000",
   "locality": "Chicago",
