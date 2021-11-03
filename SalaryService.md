@@ -27,7 +27,7 @@ Requests consist of:
 |`carotene_id`| Yes | string | A unique id|
 |`cbsa_code` | Optional | string |  Unique Identifiers for US Metropolitan Statistical areas. |
 |`postal_code` | Optional | string |  Optional. The post code, postal code, or ZIP Code of an address.|
-|`salary_period` | Yes | string | Possible values are "YEAR", "HOUR". | 
+|`salary_period` | Yes | string | Possible values are "Year", "Hour". | 
 |`country` | Yes | string |A country name or two-letter ISO-3166 country code. Supports only "US". |
 
 Example cURL request with cbsa_code:
@@ -39,10 +39,10 @@ curl -X POST \
   -H 'Authorization: <BEARER_TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-	"carotene_id": "11.8",
-	"cbsa_code": "38060",
-	"postal_code": null,
-	"salary_period": "year"
+	"carotene_id": "43.1",
+	"cbsa_code": "26420",
+	"postal_code": "",
+	"salary_period": "year",
 	"country": "US"
       }'
 ```
@@ -56,10 +56,27 @@ curl -X POST \
   -H 'Authorization: <BEARER_TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-	"carotene_id": "11.0",
-	"cbsa_code": null,
-	"postal_code": "78745"
-	"salary_period": "year"
+	"carotene_id": "43.1",
+	"postal_code": "77494",
+	"cbsa_code": "",
+	"salary_period": "year",
+	"country": "US"
+      }'
+```
+
+Example cURL request nationwide:
+
+```
+curl -X POST \
+  https://api.careerbuilder.com/core/salary \
+  -H 'Accept: application/json;version=1.0' \
+  -H 'Authorization: <BEARER_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"carotene_id": "43.1",
+	"salary_period": "year",
+	"postal_code": "",
+	"cbsa_code": "",
 	"country": "US"
       }'
 ```
@@ -72,8 +89,8 @@ which consists of `currency`, `percentile_10`, `percentile_90`, `period`.
 {
   "data": {
     "currency": "USD",
-    "percentile_10": 9.0,
-    "percentile_90": 13.0,
+    "percentile_10": 21870.0,
+    "percentile_90": 59100.0,
     "period": "YEAR"
   }
 }
