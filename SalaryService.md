@@ -75,8 +75,6 @@ curl -X POST \
   -d '{
 	"carotene_id": "43.1",
 	"salary_period": "year",
-	"postal_code": "",
-	"cbsa_code": "",
 	"country": "US"
       }'
 ```
