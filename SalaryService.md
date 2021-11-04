@@ -11,7 +11,8 @@ _____________
 
 Summary
 -----------
-The Salary service returns salary info for a carotene id and, optionally, a postal or a cbsa code in either hourly or yearly amounts.
+The Salary service returns salary info for a carotene id and, optionally, a postal or a CBSA code.
+Salary info can be requested in either hourly or yearly amounts.
 
 e.g.: How much does a `Customer service representative` make per `year` in `Chicago`?
 
@@ -24,11 +25,11 @@ Requests consist of:
 
 | Parameter | Require/Optional | Type | Description |
 |:----------|:-------|:-------|:-------|
-|`carotene_id`| Yes | string | A unique id|
-|`cbsa_code` | Optional | string |  Unique Identifiers for US Metropolitan Statistical areas. |
-|`postal_code` | Optional | string |  Optional. The post code, postal code, or ZIP Code of an address.|
+|`carotene_id`| Yes | string | A unique id representing a [carotene job title classification|https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md#taxonomies]|
+|`cbsa_code` | Optional | string |  Unique Identifiers for US metropolitan statistical areas. |
+|`postal_code` | Optional | string | A postal code.|
 |`salary_period` | Yes | string | Possible values are "Year", "Hour". | 
-|`country` | Yes | string |A country name or two-letter ISO-3166 country code. Supports only "US". |
+|`country` | Yes | string |An ISO-3166 country code.|
 
 Example cURL request with cbsa_code:
 
@@ -41,7 +42,6 @@ curl -X POST \
   -d '{
 	"carotene_id": "43.1",
 	"cbsa_code": "26420",
-	"postal_code": "",
 	"salary_period": "year",
 	"country": "US"
       }'
@@ -58,7 +58,6 @@ curl -X POST \
   -d '{
 	"carotene_id": "43.1",
 	"postal_code": "77494",
-	"cbsa_code": "",
 	"salary_period": "year",
 	"country": "US"
       }'
@@ -80,21 +79,38 @@ curl -X POST \
 ```
 Response Structure
 -----------
+The returned response is a salary information of a given carotene id and location
+consist of:
 
-The returned response is a salary information of a given carotene id and location,
-which consists of `currency`, `percentile_10`, `percentile_90`, `period`.
+| Parameter | Type | Description |
+|:----------|:-------|:-------|
+|`currency` | string | An ISO 4217 currency code.|
+|`percentile_10` | string | 10th percentile wage of the requested `salary_period`. |
+|`percentile_90` | string |  90th percentile wage of the requested `salary_period`. |
+|`salary_period` | string | Possible values are `YEAR`, `HOUR` based on the requested`salary_period`.| 
+
+Yearly Response:
 ```json
 {
   "data": {
     "currency": "USD",
     "percentile_10": 21870.0,
     "percentile_90": 59100.0,
-    "period": "YEAR"
+    "salary_period": "YEAR"
   }
 }
-
 ```
-
+Hourly Response:
+```json
+{
+  "data": {
+    "currency": "USD",
+    "percentile_10": 10.52,
+    "percentile_90": 29.049999999999997,
+    "salary_period": "HOUR"
+  }
+}
+```
 Versioning
 -----------
 The response from the Salary Service is versioned with the current version being 1.0. 
