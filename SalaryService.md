@@ -87,6 +87,12 @@ consist of:
 |`currency` | string | An ISO 4217 currency code.|
 |`percentile_10` | string | 10th percentile wage of the requested `salary_period`. |
 |`percentile_90` | string |  90th percentile wage of the requested `salary_period`. |
+|`percentile_25` | string |  25th percentile wage of the requested `salary_period`. |
+|`percentile_75` | string |  75th percentile wage of the requested `salary_period`. |
+|`median` | string |  median wage of the requested `salary_period`. |
+|`mean` | string |  mean wage of the requested `salary_period`. |
+|`employment_per_thousand_jobs` | string | An Employment rate per 1000 jobs  |
+|`wage_percent_relative_standard_error` | string | -  |
 |`salary_period` | string | Possible values are `YEAR`, `HOUR` based on the requested`salary_period`.| 
 
 Yearly Response:
@@ -96,6 +102,12 @@ Yearly Response:
     "currency": "USD",
     "percentile_10": 21870.0,
     "percentile_90": 59100.0,
+    "percentile_25": 30660.0,
+    "percentile_75": 48340.0,
+    "median": 38500.0,
+    "mean": 39690.0,
+    "employment_per_thousand_jobs": 12.311,
+    "wage_percent_relative_standard_error": 1.2,
     "salary_period": "YEAR"
   }
 }
@@ -107,6 +119,12 @@ Hourly Response:
     "currency": "USD",
     "percentile_10": 10.52,
     "percentile_90": 29.049999999999997,
+    "percentile_25": 14.74,
+    "percentile_75": 23.24,
+    "median": 18.51,
+    "mean": 19.08,
+    "employment_per_thousand_jobs": 12.311,
+    "wage_percent_relative_standard_error": 1.2,
     "salary_period": "HOUR"
   }
 }
