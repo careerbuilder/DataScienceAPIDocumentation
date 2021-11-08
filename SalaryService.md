@@ -25,7 +25,7 @@ Requests consist of:
 
 | Parameter | Require/Optional | Type | Description |
 |:----------|:-------|:-------|:-------|
-|`carotene_id`| Yes | string | A unique id representing a [carotene job title classification|https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md#taxonomies]|
+|`carotene_id`| Yes | string | A unique id representing a carotene job title classification https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/JobTitle.md#taxonomies|
 |`cbsa_code` | Optional | string |  Unique Identifiers for US metropolitan statistical areas. |
 |`postal_code` | Optional | string | A postal code.|
 |`salary_period` | Yes | string | Possible values are "Year", "Hour". | 
