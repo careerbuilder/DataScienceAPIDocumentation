@@ -93,8 +93,14 @@ a list consisting of objects containing a `carotene_id`, `carotene_title`, `caro
         "carotene_description": "Plan, direct, or coordinate the actual distribution or movement of a product or service to the customer. Coordinate sales distribution by establishing sales territories, quotas, and goals and establish training programs for sales representatives. Analyze sales statistics gathered by staff to determine sales potential and inventory requirements and monitor the preferences of customers.",
         "salary": {
           "currency": "USD",
-          "percentile_10": 52000.0,
-          "percentile_90": 134000.0,
+          "percentile_10": 21870.0,
+          "percentile_25": 30660.0,
+          "percentile_75": 48340.0,
+          "percentile_90": 59100.0,
+          "median": 38500.0,
+          "mean": 39690.0,
+          "employment_per_thousand_jobs": 12.311,
+          "wage_percent_relative_standard_error": 1.2,
           "salary_period": "YEAR"
         },
        "active_job_count": 567,
@@ -139,8 +145,14 @@ a list consisting of objects containing a `carotene_id`, `carotene_title`, `caro
                 "confidence": 0.016686638076838227,
                 "salary": {
                   "currency": "USD",
-                  "percentile_10": 52000.0,
-                  "percentile_90": 14.0,
+                  "percentile_10": 21870.0,
+                  "percentile_25": 30660.0,
+                  "percentile_75": 48340.0,
+                  "percentile_90": 59100.0,
+                  "median": 38500.0,
+                  "mean": 39690.0,
+                  "employment_per_thousand_jobs": 12.311,
+                  "wage_percent_relative_standard_error": 1.2,
                   "salary_period": "YEAR"
                 },
                 "active_job_count": 128,
