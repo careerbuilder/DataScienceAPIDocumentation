@@ -65,7 +65,7 @@ The response returns a single data node which maps each language code supported 
 
 # Available Taxonomies
 -----------
-onet15, onet17, carotenev1, carotenev2, carotenev2_2, carotenev3, skillsv4, skillsv5, skillsv8, naics2007.
+onet15, onet17, carotenev1, carotenev2, carotenev2_2, carotenev3, carotenev3_1, skillsv4, skillsv5, skillsv8, naics2007, company_norm, school_norm, major_norm.
 
 
 # Versioning
