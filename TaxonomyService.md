@@ -76,9 +76,7 @@ The response returns a single data node which maps each language code supported 
 - skillsv5
 - skillsv8
 - naics2007
-- company_norm
-- school_norm
-- major_norm
+
 
 
 # Versioning
