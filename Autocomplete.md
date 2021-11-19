@@ -231,7 +231,7 @@ Following are several request-response examples that demonstrate usage of the se
 }
 ```
 
-**Multiple taxonomies request (carotenev3, school_norm]) [link](https://apimanagement.cbplatform.link/?#routes/tester?preURL=https%3A%2F%2Fwwwtest.api.careerbuilder.com%2F&postURL=%2Fcore%2Fautocomplete%2Ftaxonomies&method=post&contentType=application%2Fjson&acceptType=application%2Fjson&version=1.0&region=staging&flow=client_credentials&userDid=&accountDid=&headers=&body={+%0D%0A+++%22query%22%3A%22java%22%2C%0D%0A+++%22limit%22%3A3%2C%0D%0A+++%22taxonomies%22+%3A+[%22carotenev3%22%2C+%22school_norm%22]%0D%0A})**
+**Multiple taxonomies request (carotenev3, school_norm) [link](https://apimanagement.cbplatform.link/?#routes/tester?preURL=https%3A%2F%2Fwwwtest.api.careerbuilder.com%2F&postURL=%2Fcore%2Fautocomplete%2Ftaxonomies&method=post&contentType=application%2Fjson&acceptType=application%2Fjson&version=1.0&region=staging&flow=client_credentials&userDid=&accountDid=&headers=&body={+%0D%0A+++%22query%22%3A%22java%22%2C%0D%0A+++%22limit%22%3A3%2C%0D%0A+++%22taxonomies%22+%3A+[%22carotenev3%22%2C+%22school_norm%22]%0D%0A})**
 
 **Request**
 
