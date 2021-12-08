@@ -42,7 +42,7 @@ This service will call jobtitle, so please get a valid jwt token to send request
 ```
 {
     "data": {
-        "not_over_threshold": true
+        "is_over_threshold": true
     }
 }
 ```
