@@ -25,16 +25,15 @@ Parameters:
 * `admin_area`: The subdivision name in the country or region for an address.
 
 ```
-curl --location --request POST 'localhost:8080/programmatic/filter' \
---header 'x-proxy-secret-token: {TOKEN}' \
---header 'Content-Type: application/json' \
+curl --location --request POST 'https://api.careerbuilder.com/core/programmatic/filter' \
+-H 'Accept: application/json;version=1.0' \
+-H 'Authorization: <BEARER_TOKEN>' \
+-H 'Content-Type: application/json' \
 --data-raw '{
-    "title": "Police Officer",
-    "description": "Supervisor of detectives",
-    "locality": "Atlanta",
-    "admin_area": "GA"
+    "title": "material scientist",
+    "locality": "WAUNA",
+    "admin_area": "WA"
 }'
-
 ```
 This service will call jobtitle, so please get a valid jwt token to send request when running locally.
 
