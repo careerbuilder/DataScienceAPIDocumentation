@@ -3,120 +3,68 @@
 
 - [Summary](#summary)
 - [Request structure](#request-structure)
-  - [JobData](#jobdata)
-    - [Job](#job)
-  - [UserData](#userdata)
-  - [UserPreferences](#userpreferences)
-    - [PreferredLocation](#preferredlocation)
 - [Response Structure](#response-structure)
 - [Versioning](#versioning)
 
 ----------------------------
 # Summary
 
-Given a job ID and, optionally, an email, and a set of user preferences, the Job Recommendation Service provides recommendations of relevant and similar jobs.
+Given a job ID and, optionally, a algorithm name and a host site, the Job Recommendation Service provides recommendations of relevant and similar jobs.
 
 ----------------------------
 # Request structure
-The service supports GET and POST requests to:
-https://api.careerbuilder.com/core/recommendations/job.
+The service supports `GET` and `POST` requests to:
+https://api.careerbuilder.com/consumer/recommendations/platform.
 
 OAUTH credentials are **required** and Documentation for CareerBuilder authentication is provided [here](https://apimanagement.cbplatform.link/#/oauth/faq) by the Platform Software team.
 
-A request is composed of 3 main parts:
-`job_data`, `user_data`, `user_preferences`.
+The request parameters:
 
 | Param    | Type | Required | Description |
 |----------|------|----------|-------------|
-| `job_data` | [**JobData**](#jobdata) | **TRUE** | **JobData** contains a list of jobs which are needed for recommendations.
-| `hostsite` | String | **False** | Hostsite for `source_jobs`. Currently supports US, UK, CA. Defaults to US if omitted 
-| `user_data` | [**UserData**](#userdata) | **FALSE** | **UserData** contains the  email address for a given user. This data is used for filtering jobs that the user has already applied to from the final recommendations set.
-| `user_preferences` | [**UserPreferences**](#userpreferences) | **FALSE** | **UserPreferences** indicates preferences of the user including location, compensation, and job titles.
+| `jobID` | String | **True** | This needs to be a valid jobdid.
+| `hostSite` | String | **False** | Hostsite for source `jobID`. Currently supports US, UK, CA. Defaults to US if omitted 
+| `personalizationAlgorithm` | String | **False** | Current supported algorithms are `gbr_only`(**default**), `gbr_programmatic`, `gbr_wfh`, `gbr_conversion_rate`
 
-### JobData
-| Param    | Type | Required | Description |
-|----------|------|----------|-------------|
-| `source_jobs` | List<[**Job**](#job)> | **TRUE** | A list of **Job**.
-
-Note: currently only the first job in the list is used for recommendations.
-
-#### Job
-| Param    | Type | Required | Description |
-|----------|------|----------|-------------|
-| `job_did` | String | **TRUE** | This needs to be a valid jobdid.
-
-### UserData
-**UserData** contains only one String parameter: `email_address`.
-
-| Param    | Type | Required | Description |
-|----------|------|----------|-------------|
-| `email_address` | String | **TRUE** | The email of the registered user.
-
-
-### UserPreferences
-**UserPreferences** provides additional constraints for recommendations. The service will rank recommendations based on the location.
-
-| Param    | Type | Required | Description |
-|----------|------|----------|-------------|
-| `location_filter` | [**PreferredLocation**](#preferredlocation) | **FALSE** | Preferered working location.
-
-#### PreferredLocation
-**PreferredLocation** uses coordinates along with the radius to indicate the preferred work location. All the parameters have to be present in valid values.
-
-| Param    | Type | Required | Description |
-|----------|------|----------|-------------|
-| `latitude` | double | **TRUE** | latitude of the location, range in `(-90, 90)`.
-| `longitude` | double | **TRUE** | longitude of the location, range in `(-180, 180)`.
-| `radius_in_miles` | float | **TRUE** | The radius surrounding the preferred location within which all recommended jobs must be located.
 
 &nbsp;
 ### Full Request Example
 
 ```json
 {
-  "job_data": {
-      "source_jobs": [
-          {
-              "job_did": "J2W4YS61P1FX58XCNBT"
-          }
-      ]
-  },
-  "user_data": {
-      "email_address": "test@example.com"
-  },
-  "user_preferences": {
-    	"location_filter":
-      {
-          "latitude": 33.9679,
-          "longitude": -84.2224,
-          "radius_in_miles": 15
-      }
-  }
+  "jobID": "J3T2QQ6CJCRBZ6JS46VS",
+  "hostSite": "US",
+  "personalizationAlgorithm": "gbr_only"
 }
 ```
 ----------------------
 # Response Structure
 
-All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a list of `recommendations`, which is composed of `job_did` and `score`.
+All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a list of `records`, which is composed of recommended job metadata and its `score`.
 
 Example response body:
 ```JSON
 {
     "data": {
-        "recommendations": [
+        "records": [
             {
-                "job_did": "JD63LL6GZBV3R6H4K72",
-                "score": 0.15
-            },
-            {
-                "job_did": "J4R4MK6BGXMZPMSBTK6",
-                "score": 0.14
-            },
-            {
-                "job_did": "J8H74V6HS1X04J38VT9",
-                "score": 0.09
+                "city": "Chicago",
+                "state": "IL",
+                "date_posted": "2022-02-22T01:06:10.0000000Z",
+                "company_name": "Button Chrysler Jeep Dodge Ram",
+                "expire_date": "2022-03-21T23:59:59.0000000Z",
+                "id": "J4R3CJ5X89FNYFPC25K",
+                "has_quick_apply": false,
+                "title": "Chrysler Certified Automotive Technician",
+                "score": 0.7234,
+                "location": "US-IL-Chicago",
+                "job_details_url": "https://api.careerbuilder.com/v1/joblink?DID=J4R3CJ5X89FNYFPC25K&recid=TR659D6723C6384E9480F9A42071B1AB69",
+                "description": "  Chrysler Certified Automotive Technician ...",
+                "pay": "$60,000 - $95,000/Year",
+                "company_image_url": ""
             }
-        ]
+        ],
+        "rec_id": "TR659D6723C6384E9480F9A42071B1AB69"
     }
 }
 ```
