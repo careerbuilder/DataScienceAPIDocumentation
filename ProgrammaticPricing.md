@@ -53,6 +53,5 @@ The current version of the service is 1.0.
 
 Currently ONet17 classification is available.
 
-Version must be specified in the Accept header. E.g. `application/json;version=1.0`.
 
 Our general versioning strategy is available [here](/Versioning.md).
