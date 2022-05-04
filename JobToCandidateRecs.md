@@ -3,7 +3,6 @@ Job To Candidate Recommendation Service
 
 - [Summary](#summary)
 - [Request Response Structure](#request-response-structure)
-- [Develop Setup](#develop-setup)
 - [Table Structure](#table-structure)
 
 ## Summary
@@ -50,19 +49,6 @@ Response
     ]
 }
 ```
-## Develop Setup
-
-### Poetry config for downloading library from Jfrog
-
-> `poetry config repositories.jfrog https://cbdatascience.jfrog.io/artifactory/api/pypi/pypi-local/simple`
-> `poetry config http-basic.jfrog {JFROG_USER_ID} {JFROG_PASSWORD}`
-> `poetry install`
-
-### Start the built image locally
-> `docker run -p 9000:8000 \
-  --env ENVIRONMENT=LOCAL
-  --env LOGGLY_URL=https://logs-01.loggly.com/inputs/{loggly_token}/tag/JobToCandiateService-Dev \
-  dsad-jobtocandidate-recs`
 
 ## Table Structure
 
