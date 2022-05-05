@@ -2,23 +2,28 @@ Job To Candidate Recommendation Service
 =========================================
 
 - [Summary](#summary)
-- [Request Response Structure](#request-response-structure)
-- [Table Structure](#table-structure)
+- [Request](#request)
+- [Response](#response)
 
 ## Summary
-DSAD's job-to-candidate-recs service is a FastAPI based web service, which takes a `job_id` and its related `latitude` 
-and `longitude`, and will return a list of `Candidate` within 50 miles of `job_id` location. 
-
-The related dynamodb tables are `JobCandidateGeo` and `CaroteneCandidateGeo`. 
-
-If the `job_id` exists in table `JobCandidateGeo`, the service will grab all items with this `job_id` and collect their `Candidate` attribute as response. If the `job_id` is not found in table `JobCandidateGeo`, the service will try get job's carotene code by calling jobdetails service, and then do a radius search in table `CaroteneCandidateTable` and get candidates within 50 miles of requested job's location for the corresponding `carotene_code`. The service will also add those candidates for the `job_id` to the `JobCandidateGeo` table for future use.
+DSAD's job-to-candidate-recs service accepts POST requests which specify a `job_id` and its related `latitude` 
+and `longitude`, and will return a list of `Candidate` including their `document_id`, `data_source`, `first_name`, `last_name`, `email` and `quality_score`. 
 
 The route: 
 - Staging: https://wwwtest.api.careerbuilder.com/core/jobtocandidate/recs
 - Produs: https://api.careerbuilder.com/core/jobtocandidate/recs
 
-## Request Response Structure
-Request
+## Request 
+
+HTTP method: POST (form or JSON)
+
+Parameters:
+
+* `job_id` (required) : the unique id of a job
+* `latitude` (required) : the latitude of the requested job, `Decimal` type, don't need quote on it
+* `longitude` (required) : the longitude of the requested job, `Decimal` type, don't need quote on it
+
+Example: 
 ```
 {
     "job_id": "j3322",
@@ -26,7 +31,8 @@ Request
     "longitude": -110.271953
 }
 ```
-Response
+## Response
+example:
 ```
 {
     "data": [
@@ -50,24 +56,3 @@ Response
 }
 ```
 
-## Table Structure
-
-### JobCandidateGeo
-| Field    | Description |
-|----------|-------------|
-| `hashKey` | The number of most significant digits (in base 10) of the 64-bit geo hash to use as the hash key. In our case, the dynamodbgeo use Sphere2 to calculate geohash and we chose `4` as the hashKey lenghth. | 
-| `rangeKey` | The name of the attribute storing the range key. It is a `uuid` in our table.| 
-| `job_id` | The unique job id to locate job. Also serve as the GSI in this table. |
-| `candidate` | Candidate with fields: `document_id`, `data_source`, `first_name`, `last_name`, `email`, and `quality_score`. | 
-| `geohash` |The name of the attribute storing the full 64-bit geohash. Its value is auto-generated based on item coordinates. | 
-| `geoJson`| The name of the attribute which will contain the longitude/latitude pair in a GeoJSON-style point. |
-
-### CaroteneCandidateGeo
-| Field    | Description |
-|----------|-------------|
-| `hashKey` | The number of most significant digits (in base 10) of the 64-bit geo hash to use as the hash key. In our case, the dynamodbgeo use Sphere2 to calculate geohash and we chose `4` as the hashKey lenghth. | 
-| `rangeKey` | The name of the attribute storing the range key. It is a `uuid` in our table.| 
-| `carotene_code` | Classified job title code. Also serve as the GSI in this table. |
-| `candidate` | Candidate with fields: `document_id`, `data_source`, `first_name`, `last_name`, `email`, and `quality_score`. | 
-| `geohash` |The name of the attribute storing the full 64-bit geohash. Its value is auto-generated based on item coordinates. | 
-| `geoJson`| The name of the attribute which will contain the longitude/latitude pair in a GeoJSON-style point. | 
