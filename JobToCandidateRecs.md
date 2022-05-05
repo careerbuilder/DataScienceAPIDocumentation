@@ -20,8 +20,8 @@ HTTP method: POST (form or JSON)
 Parameters:
 
 * `job_id` (required) : the unique id of a job
-* `latitude` (required) : the latitude of the requested job, `Decimal` type, don't need quote on it
-* `longitude` (required) : the longitude of the requested job, `Decimal` type, don't need quote on it
+* `latitude` (required) : the latitude of the requested job, `float` type, don't need quote on it
+* `longitude` (required) : the longitude of the requested job, `float` type, don't need quote on it
 
 Example: 
 ```
