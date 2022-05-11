@@ -44,7 +44,9 @@ Response consist of a float of `price`.
 
 ```json
 {
-  "price": 26.68
+  "data": {
+    "price": 21.88
+  }
 }
 ```
 
