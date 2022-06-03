@@ -41,6 +41,7 @@ The request parameters:
 # Response Structure
 
 All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a list of `records`, which is composed of recommended job metadata and its `score`.
+This example is showing an example of a programmatic job.
 If this not a programmatic job, "partner_id" will be set to 0 and "is_programmatic" to false 
 
 Example response body:
