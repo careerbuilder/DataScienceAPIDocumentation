@@ -41,6 +41,8 @@ The request parameters:
 # Response Structure
 
 All responses with an HTTP status of 200 will consist of a JSON object with a top-level "data" node containing a list of `records`, which is composed of recommended job metadata and its `score`.
+This example is showing an example of a programmatic job.
+If this not a programmatic job, "partner_id" will be set to 0 and "is_programmatic" to false 
 
 Example response body:
 ```JSON
@@ -61,7 +63,9 @@ Example response body:
                 "job_details_url": "https://api.careerbuilder.com/v1/joblink?DID=J4R3CJ5X89FNYFPC25K&recid=TR659D6723C6384E9480F9A42071B1AB69",
                 "description": "  Chrysler Certified Automotive Technician ...",
                 "pay": "$60,000 - $95,000/Year",
-                "company_image_url": ""
+                "company_image_url": "",
+                "partner_id": "PGMPTNR",
+                "is_programmatic": true
             }
         ],
         "rec_id": "TR659D6723C6384E9480F9A42071B1AB69"
