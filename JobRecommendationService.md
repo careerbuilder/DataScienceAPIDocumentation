@@ -24,7 +24,7 @@ The request parameters:
 |----------|------|----------|-------------|
 | `jobID` | String | **True** | This needs to be a valid jobdid.
 | `hostSite` | String | **False** | Hostsite for source `jobID`. Currently supports US, UK, CA. Defaults to US if omitted 
-| `personalizationAlgorithm` | String | **False** | Current supported algorithms are `gbr_only`(**default**), `gbr_programmatic`, `gbr_wfh`, `gbr_conversion_rate`
+| `personalizationAlgorithm` | String | **False** | Current supported algorithms are `gbr_only`(**default**), `gbr_programmatic`, `gbr_wfh`, `gbr_conversion_rate`, `gbr_scale`
 
 
 &nbsp;
