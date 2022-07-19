@@ -80,3 +80,286 @@ Example response body:
 The current API version is 1.0. The data returned from the service is unversioned.
 
 Our general versioning strategy is available [here](/Versioning.md).
+
+
+# Job Recommendation service - JobSearch Endpoint
+# Contents
+
+- [Summary](#summary)
+- [Request structure](#request-structure)
+- [Response Structure](#response-structure)
+
+----------------------------
+# Summary
+
+Given a carotene ID and, other params such as location, talentnetworkdidcsv and job did, the Job Recommendation Service provides recommendations of relevant and similar jobs.
+This service will trigger a jobsearch v4 based on the given parameters.
+----------------------------
+# Request structure
+The service supports `GET` and `POST` requests to:
+https://api.careerbuilder.com/consumer/jobs/recommendations.
+
+OAUTH credentials are **required** and Documentation for CareerBuilder authentication is provided [here](https://apimanagement.cbplatform.link/#/oauth/faq) by the Platform Software team.
+
+The request parameters:
+
+| Param                 | Type   | Required   | Description                                                           |
+|-----------------------|--------|------------|-----------------------------------------------------------------------|
+| `carotene_id`         | String | **True**   | This needs to be a valid carotene id.                                 |
+| `host_site`           | String | **True**   | Hostsite for source `jobID`. Value is "US"                            |
+| `talentnetworkdidcsv` | String | **False**  | This needs to be a valid talentnetworkdidcsv                          |
+| `job_did`             | String | **False**  | This needs to be a valid jobdid.                                      |
+| `lat`                 | String | **False**  | This needs to be a valid latitude.                                    |
+| `lng`                 | String | **False**  | This needs to be a valid longitude.                                   |
+| `count_limit`         | String | **False**  | This needs to be a valid integer. count_limit range is from 1 to 100. |
+
+&nbsp;
+### Full Request Example
+
+```json
+{
+  "carotene_id": "15.1272",
+  "host_site": "US",
+  "lat":32.81402,
+  "lng":-96.94889,
+  "count_limit": "10"
+}
+```
+----------------------
+# Response Structure
+
+Example response body:
+```JSON
+{
+  "total_pages": "2",
+  "total_count": "14",
+  "first_item_index": "1",
+  "last_item_index": "10",
+  "data": {
+    "results": [
+      {
+        "distance": "Nearby",
+        "location": "TX - Irving",
+        "hostsite": "US",
+        "country_code": "US",
+        "job_branding_icons": "",
+        "id": "J3R7TZ6DFLZ4856891B",
+        "job_title": "Big Data Developer",
+        "display_city": "Irving",
+        "admin_area_1": "TX",
+        "latitude": "32.81402",
+        "longitude": "-96.94889",
+        "company_name": "Mindtree",
+        "company_id": "",
+        "discrete_field_1": "",
+        "discrete_field_2": "",
+        "discrete_field_3": "",
+        "discrete_field_4": "",
+        "discrete_field_5": "",
+        "discrete_field_6": "",
+        "discrete_field_7": "",
+        "discrete_field_8": "",
+        "discrete_field_9": "",
+        "discrete_field_10": "",
+        "job_details_url": "http://swarm.careerbuilder.com/v1/joblink?DID=J3R7TZ6DFLZ4856891B&TrackingID=306B089E-C58B-4A70-BFF8-9AA0FBE593A7&HostSite=us",
+        "employment_type": "Full-Time",
+        "employment_type_code": "JTFT",
+        "education_required": "Not Specified",
+        "education_required_code": "DRNS",
+        "experience_required": "Not Specified",
+        "experience_required_code": "",
+        "external_client_key": "10440_3153205202",
+        "pay": "N/A",
+        "skills": [
+          "Data Pipeline"
+        ],
+        "street_address_1": "",
+        "street_address_2": "",
+        "onet15_code": "15-1031.00",
+        "onet15_friendly_title": "Computer Software Engineers, Applications",
+        "onet17_code": "15-1132.00",
+        "onet17_friendly_title": "Software Developers, Applications",
+        "carotene2p2_code": "15.1272",
+        "carotene2p2_friendly_title": "Data Developer",
+        "carotene3_code": "15.1272",
+        "carotene3_friendly_title": "Data Developer",
+        "normalized_title": "Data Developer",
+        "date_posted": "2022-07-09T12:37:10-04:00",
+        "job_level": "3",
+        "apply_requirements": [
+          "IsExternal"
+        ],
+        "account_did": "A7909S6JFDSX73HW6K0",
+        "city": "Irving",
+        "description_teaser": "Big Data Developer Irving, TX Full Time Job Description Minimum experience of 6 years working as a Bigdata developer Ability to develop data integration and transformation code pipelines in object-oriented scripting language: PySpark Python in Spark Exper",
+        "display_job_id": "LI13-10440_3153205202",
+        "apply_url": "https://click.appcast.io/track/enrecy0?cs=lxb&exch=4s&jg=2wis&bid=lqoIfZS7Ja_LCveufxvy9g==&ob=Xxps_NXaD8VEVqiwSSFTWg==",
+        "company_image_url": "",
+        "applications": "0",
+        "mastercommunitylist": [
+          "CMAL"
+        ]
+      }
+    ]
+  }
+}
+```
+
+&nbsp;
+
+-----------
+
+# Job Recommendation service - Wants Endpoint
+# Contents
+
+- [Summary](#summary)
+- [Request structure](#request-structure)
+- [Response Structure](#response-structure)
+
+----------------------------
+# Summary
+
+Given a job title and, other params such as location filter and compensation filter then the Job Recommendation Service provides recommendations of relevant and similar jobs.
+This service will trigger a jobsearch v3 based on the given parameters.
+----------------------------
+# Request structure
+The service supports `GET` and `POST` requests to:
+https://api.careerbuilder.com/consumer/recommendations/wants.
+
+OAUTH credentials are **required** and Documentation for CareerBuilder authentication is provided [here](https://apimanagement.cbplatform.link/#/oauth/faq) by the Platform Software team.
+
+The request parameters:
+
+| Param                | Type         | Required  | Description                                 |
+|----------------------|--------------|-----------|---------------------------------------------|
+| `title`              | String       | **False**  | This needs to be a valid job title.         |
+| `compensationFilter` | Object       | **False** | This needs to be a valid compensationFilter |
+| `hostSite`           | String       | **False**  | Hostsite for source `title`. Value is "US"  |
+| `locationFilters`    | List[Object] | **False**  | This needs to be a valid locationFilter.    |
+
+&nbsp;
+### Full Request Example
+
+```json
+{
+  "title":"Report Analyst",
+  "hostSite":"US",
+  "compensationFilter":{
+    "type":"ANNUALIZED_TOTAL_AMOUNT",
+    "range":{
+      "min":{
+        "currencyCode":"USD",
+        "units":0
+      },
+      "max":{
+        "currencyCode":"USD",
+        "units":9999999
+      }
+    }
+  },
+  "locationFilters":[
+    {
+      "latLng":{
+        "latitude":32.81402,
+        "longitude":-96.94889
+      },
+      "distanceInMiles":50
+    }
+  ]
+}
+```
+----------------------
+# Response Structure
+
+Example response body:
+```JSON
+{
+  "forensics": [],
+  "timing": {
+    "time_received": "2022-07-19T09:02:00.000Z",
+    "time_elapsed_milliseconds": 476
+  },
+  "data": [
+    {
+      "title": "Associate Report Analyst - Telecommute",
+      "distance": 9,
+      "score": 1.0,
+      "jobDID": "J3R7WC68GS0N5J30Q1K",
+      "employmentTypes": [
+        "FULL_TIME"
+      ],
+      "description": "UnitedHealthcare is a company that's on the rise. We're expanding in multiple directions, across borders and, most of all, in the way we think. Her...",
+      "applicationUrls": [
+        "https://api.careerbuilder.com/v1/application/applylink?JobDID=J3R7WC68GS0N5J30Q1K&TrackingID=HY8NXZ3D&HostSite=US"
+      ],
+      "startDate": "2022-06-25T04:17:15.000Z",
+      "endDate": "2022-03-25T00:00:00.000Z",
+      "compensationInfo": {
+        "type": "BASE",
+        "min": {
+          "units": 0,
+          "nanos": ""
+        },
+        "max": {
+          "units": 0,
+          "nanos": ""
+        },
+        "entries": [
+          {
+            "type": "BASE",
+            "unit": "",
+            "range": {
+              "min": {
+                "units": 0
+              },
+              "max": {
+                "units": 0
+              }
+            }
+          }
+        ]
+      },
+      "companyID": "C8E59J6ZM4TR74GZK7L",
+      "companyTitle": "UnitedHealth Group",
+      "jobLocations": [
+        {
+          "locationType": "LOCALITY",
+          "postalAddress": {
+            "regionCode": "US",
+            "postalCode": "",
+            "administrativeArea": "TX",
+            "locality": "Dallas",
+            "addressLines": [
+              "TX - Dallas"
+            ]
+          },
+          "latLng": {
+            "latitude": 32.77666,
+            "longitude": -96.79699
+          },
+          "radiusMeters": 12
+        }
+      ],
+      "onet": "13-1111.00",
+      "jobTypeCodes": [
+        "JN010"
+      ],
+      "upgradeList": [
+        "JCPR0"
+      ],
+      "applyRequirements": [
+        "IsExternal"
+      ],
+      "displayFields": {
+        "display_city": "Dallas",
+        "hide_compensation": true
+      },
+      "logo": "https://secure.icbdr.com/MediaManagement/FF/MH17FF6DB5Q8R948GFF.jpg"
+    }
+  ]
+}
+```
+
+&nbsp;
+
+-----------
