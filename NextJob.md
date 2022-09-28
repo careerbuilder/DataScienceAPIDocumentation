@@ -22,6 +22,8 @@ Salary will be provided based on the following criteria::
 ** if not we will provide nation wide data
 You can get this salary per hour or per year.
 
+OG data is now supported, you can pass hostite and country to query only on OG data.
+
 
 The Next Job service is available at `/core/careerpath/nextjob`.
 
@@ -38,6 +40,8 @@ Requests consist of:
 |`postal_code`      | string |    N   |
 |`locality`         | string |    N   |
 |`admin_area`       | string |    N   |
+|`hostsite`         | string |    N   |
+|`country`          | string |    N   |
                      
 Example cURL request with cbsa_code:
 
