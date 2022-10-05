@@ -31,8 +31,8 @@ Requests consist of:
 |`cbsa_code` | Optional | string |  Unique Identifiers for US metropolitan statistical areas. |
 |`postal_code` | Optional | string | A postal code.|
 |`salary_period` | Yes | string | Possible values are "Year", "Hour". | 
-|`country` | Yes | string |An ISO-3166 country code.|
-|`hostiste` | Yes | string |A valid CareerBuilder hostsite.|
+|`country` | Yes | string | An ISO-3166 country code.|
+|`hostsite` | Optional | string | A valid CareerBuilder hostsite. ("OG" is only supported for now) |
 
 Example cURL request with cbsa_code:
 
