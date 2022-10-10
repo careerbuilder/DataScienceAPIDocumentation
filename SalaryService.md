@@ -32,7 +32,7 @@ Requests consist of:
 |`postal_code` | Optional | string | A postal code.|
 |`salary_period` | Yes | string | Possible values are "Year", "Hour". | 
 |`country` | Yes | string | An ISO-3166 country code.|
-|`hostsite` | Optional | string | A valid CareerBuilder hostsite. ("OG" is only supported for now) |
+|`hostsite` | Optional | string | A valid CareerBuilder hostsite.("US", "OG" are supported for now). Defaulted to US if not provided |
 
 Example cURL request with cbsa_code:
 
