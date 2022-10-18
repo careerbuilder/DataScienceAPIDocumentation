@@ -89,7 +89,7 @@ Only required fields w/ a postal code:
 }
 ````
 
-Only required fields w/ a country code:
+Only required fields w/ a country:
 ````json
 {
     "input": "China",
