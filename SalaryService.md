@@ -18,6 +18,8 @@ e.g.: How much does a `Customer service representative` make per `year` in `Chic
 
 The Salary service is available at `/core/salary`.
 
+OG data is now supported, you can pass hostite and country to query only on OG data.
+
 Request Structure
 -----------
 
@@ -29,7 +31,8 @@ Requests consist of:
 |`cbsa_code` | Optional | string |  Unique Identifiers for US metropolitan statistical areas. |
 |`postal_code` | Optional | string | A postal code.|
 |`salary_period` | Yes | string | Possible values are "Year", "Hour". | 
-|`country` | Yes | string |An ISO-3166 country code.|
+|`country` | Yes | string | An ISO-3166 country code.|
+|`hostsite` | Optional | string | A valid CareerBuilder hostsite.("US", "OG" are supported for now). Defaulted to US if not provided |
 
 Example cURL request with cbsa_code:
 
@@ -77,6 +80,23 @@ curl -X POST \
 	"country": "US"
       }'
 ```
+
+Example cURL request with hostsite request:
+
+```
+curl -X POST \
+  https://api.careerbuilder.com/core/salary \
+  -H 'Accept: application/json;version=1.0' \
+  -H 'Authorization: <BEARER_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"carotene_id": "43.1",
+	"salary_period": "year",
+	"country": "UK"
+	"hostsite": "OG"
+      }'
+```
+
 Response Structure
 -----------
 The returned response is a salary information of a given carotene id and location
