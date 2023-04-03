@@ -24,7 +24,7 @@ The request parameters:
 |----------|------|----------|-------------|
 | `jobID` | String | **True** | This needs to be a valid jobdid.
 | `hostSite` | String | **False** | Hostsite for source `jobID`. Currently supports US, UK, CA. Defaults to US if omitted 
-| `personalizationAlgorithm` | String | **False** | Current supported algorithms are `gbr_only`(**default**), `gbr_programmatic`, `gbr_wfh`, `gbr_conversion_rate`, `gbr_scale`
+| `personalizationAlgorithm` | String | **False** | Current supported algorithms are `gbr_only`(**default**), `gbr_programmatic`, `gbr_wfh`, `gbr_scale_ten`, `gbr_mix_a`, `gbr_mix_b`, `gbr_mix_b_ranked`, `flex_rec` 
 
 
 &nbsp;
@@ -65,7 +65,9 @@ Example response body:
                 "pay": "$60,000 - $95,000/Year",
                 "company_image_url": "",
                 "partner_id": "PGMPTNR",
-                "is_programmatic": true
+                "is_programmatic": true,
+                "work_from_home": "true",
+                "product_id": "JCPGM2"
             }
         ],
         "rec_id": "TR659D6723C6384E9480F9A42071B1AB69"
