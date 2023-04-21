@@ -223,7 +223,8 @@ Example response body:
 
 - [Summary](#summary)
 - [Request structure](#request-structure)
-- [Response Structure](#response-structure)
+- [Response Structure](#response-structure-v1--default)
+- [Response Structure](#response-structure-v2) V2 version 
 
 ----------------------------
 # Summary
