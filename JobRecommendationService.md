@@ -228,8 +228,10 @@ This service will trigger a jobsearch v1 based on the given parameters.
 The service supports `GET` and `POST` requests to:
 https://api.careerbuilder.com/consumer/recommendations/wants.
 
-Version 2.0 is available and provide same response than platform endpoint
+Version 2.0 is available 
+This v2 will trigger a jobsearch v4 based on the given parameters and provide same response than platform endpoint.
 Request is the same model
+
 
 OAUTH credentials are **required** and Documentation for CareerBuilder authentication is provided [here](https://apimanagement.cbplatform.link/#/oauth/faq) by the Platform Software team.
 
