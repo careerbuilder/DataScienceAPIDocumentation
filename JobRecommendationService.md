@@ -1,4 +1,11 @@
 # Job Recommendation service
+3 different model
+- [Platform](#job-Recommendation-service---Platform)
+- [Search](#jobsearch-endpoint)
+- [Want](#job-recommendation-service---wants-endpoint)
+
+
+# Job Recommendation service - Platform
 # Contents
 
 - [Summary](#summary)
