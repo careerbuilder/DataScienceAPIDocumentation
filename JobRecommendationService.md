@@ -2,7 +2,7 @@
 3 different model
 - [Platform](#job-Recommendation-service---Platform)
 - [Search](#jobsearch-endpoint)
-- [Want](#job-recommendation-service---wants-endpoint)
+- [Wants](#job-recommendation-service---wants-endpoint)
 
 
 # Job Recommendation service - Platform
