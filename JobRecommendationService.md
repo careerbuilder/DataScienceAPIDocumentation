@@ -222,11 +222,14 @@ Example response body:
 # Summary
 
 Given a job title and, other params such as location filter and compensation filter then the Job Recommendation Service provides recommendations of relevant and similar jobs.
-This service will trigger a jobsearch v3 based on the given parameters.
+This service will trigger a jobsearch v1 based on the given parameters.
 ----------------------------
 # Request structure
 The service supports `GET` and `POST` requests to:
 https://api.careerbuilder.com/consumer/recommendations/wants.
+
+Version 2.0 is available and provide same response than platform endpoint
+Request is the same model
 
 OAUTH credentials are **required** and Documentation for CareerBuilder authentication is provided [here](https://apimanagement.cbplatform.link/#/oauth/faq) by the Platform Software team.
 
@@ -271,7 +274,7 @@ The request parameters:
 }
 ```
 ----------------------
-# Response Structure
+# Response Structure V1 / Default
 
 Example response body:
 ```JSON
@@ -361,6 +364,48 @@ Example response body:
   ]
 }
 ```
+
+
+# Response Structure V2
+
+Example response body:
+```JSON
+{
+    "data": {
+        "records": [
+            {
+                "city": "Denton",
+                "state": "TX",
+                "date_posted": "2023-04-09T07:37:40.1730000Z",
+                "company_name": "UNT System",
+                "expire_date": "2023-06-03T11:03:38.0270000Z",
+                "id": "J3M0WQ70VQQB2RGPRL2",
+                "has_quick_apply": false,
+                "title": "UNT WISE Senior Administrative Specialist",
+                "score": 1.0,
+                "location": "US-TX-Denton",
+                "job_details_url": "https://wwwtest.api.careerbuilder.com/v1/joblink?DID=J3M0WQ70VQQB2RGPRL2&recid=TR46E608F79F604FEEB46562438604D051",
+                "description": "&lt;b&gt;Position Details&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;Position Information&lt;br /&gt;&lt;br /&gt;UNT System Overview &lt;br /&gt;&lt;br /&gt;Welcome to the University of North Texas System . UNT System includes the University of North Texas in Denton , the University of North Texas at Dallas and the University of North Texas Health Science Center in Fort Worth. We are the only university system based exclusively in the robust Dallas-Fort Worth region and we are committed to transforming lives and creating economic opportunity through education. We are growing with the DFW region, enrolling a record 47,000+ students across our system and awarding nearly 12,000 degrees each year.&lt;br /&gt;&lt;br /&gt;Posting Title &lt;br /&gt;UNT WISE Senior Administrative Specialist&lt;br /&gt;&lt;br /&gt;Department &lt;br /&gt;UNT-UNTWISE - Workplace Inclusion-135351&lt;br /&gt;&lt;br /&gt;Job Location &lt;br /&gt;Denton&lt;br /&gt;&lt;br /&gt;Full Time/Part Time &lt;br /&gt;Full-Time&lt;br ...",
+                "text_pay": "N/A",
+                "partner_id": "PGMPTNR",
+                "is_programmatic": true,
+                "work_from_home": "false",
+                "product_id": "JCPGM2",
+                "apply_requirements": [
+                    "IsExternal"
+                ],
+                "job_type": "JTFT",
+                "master_community_list": [
+                    "CMAL",
+                    "CMIN"
+                ]
+            }
+        ],
+        "rec_id": "TR46E608F79F604FEEB46562438604D051"
+    }
+}
+```
+
 
 &nbsp;
 
