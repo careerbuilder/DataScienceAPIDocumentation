@@ -73,10 +73,34 @@ Request structure for this service mirrors [Google's request structure](https://
 
 #### Examples
 
-Only required fields:
+Only required fields w/ a city:
 ````json
 {
     "input": "Harbi",
+    "session_token": "<UUID_TOKEN>"
+}
+````
+
+Only required fields w/ a postal code:
+````json
+{
+    "input": "90210",
+    "session_token": "<UUID_TOKEN>"
+}
+````
+
+Only required fields w/ a country:
+````json
+{
+    "input": "China",
+    "session_token": "<UUID_TOKEN>"
+}
+````
+
+Only required fields w/ an address code:
+````json
+{
+    "input": "1600 Pennsylvania Avenue, washington dc",
     "session_token": "<UUID_TOKEN>"
 }
 ````
