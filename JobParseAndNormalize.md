@@ -20,7 +20,6 @@ The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting a
     - __Textkernel__
  - __[Normalized Company](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md)__  <sup>(optional)</sup> - Normalized company data including name, website, etc.
  - __Skills Extraction__
-    - __Textkernel Skills Extraction__ - Normalized skills extracted using Textkernel's extraction engine and skills taxonomy. These skills are returned by default as part of the response (regardless of desired_enrichments) and are unversioned.
     - __[CareerBuilder Skills Extraction](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md)__ <sup>(optional)</sup> - When either `skillsv5` or `skillsv8` is requested as a `desired_enrichment`, the service will enrich the parsed job data using the CareerBuilder Skills API.
  - __Language Skills__ 
  - __[Geocoding](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md)__ <sup>(optional)</sup> - Location normalization for both company and job locations
@@ -152,27 +151,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
     },
     "normalized": {
       "job_classifications": {
-        "carotene_v3": [
-          {
-            "title": string,
-            "id": string,
-            "confidence": double,
-            "minor_title": string,
-            "minor_id": string
-          },
-	  ...
-        ],
-        "carotene_v3.1": [
-          {
-            "title": string,
-            "id": string,
-            "confidence": double,
-            "minor_title": string,
-            "minor_id": string
-          },
-          ...
-        ],
-	"carotene_v3.3": [
+        "carotene_v3.3": [
           {
             "title": string,
             "id": string,
@@ -237,24 +216,6 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
         "data_version": string
       },
       "skills": {
-        "textkernel": [
-          {
-            "name": string,
-            "skill_code": integer,
-            "required": boolean,
-            "skill_group": string
-          },
-          ...
-        ],
-        "4.0": [
-          {
-            "skilldid": string,
-            "normalized_term": string,
-            "confidence": string,
-            "type": string
-          },
-          ...
-        ]
         "5.0": [
           {
             "skilldid": string,
