@@ -17,11 +17,9 @@ The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting a
  - __Job Title Classifications__
     - __[Carotene](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md)__ <sup>(optional)</sup>
     - __[ONET](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md)__ <sup>(optional)</sup>
-    - __Textkernel__
  - __[Normalized Company](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md)__  <sup>(optional)</sup> - Normalized company data including name, website, etc.
  - __Skills Extraction__
-    - __Textkernel Skills Extraction__ - Normalized skills extracted using Textkernel's extraction engine and skills taxonomy. These skills are returned by default as part of the response (regardless of desired_enrichments) and are unversioned.
-    - __[CareerBuilder Skills Extraction](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md)__ <sup>(optional)</sup> - When either `skillsv5` or `skillsv8` is requested as a `desired_enrichment`, the service will enrich the parsed job data using the CareerBuilder Skills API.
+   - __[CareerBuilder Skills Extraction](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md)__ <sup>(optional)</sup> - When either `skillsv5` or `skillsv8` is requested as a `desired_enrichment`, the service will enrich the parsed job data using the CareerBuilder Skills API.
  - __Language Skills__ 
  - __[Geocoding](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md)__ <sup>(optional)</sup> - Location normalization for both company and job locations
  - __[Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md)__ <sup>(optional)</sup> - Experience, or seniority level of the job posting
@@ -61,7 +59,8 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
     | `job_title_carotene` | Carotene Job Title Classifications |
     | `job_title_onet` | ONET Job Title Classifications |
     | `skillsv5` |  Careerbuilder Skills V5 Extraction |
-    | `skillsv8` |  Careerbuilder Skills V Extraction |
+    | `skillsv8` |  Careerbuilder Skills V8 Extraction |
+    | `full_text_job` |  TextKernel full text Extraction |
 
     For example, a request with a desired_enrichments value equal to `job_level,skillsv5,job_title_onet,company_norm` would receive job level classifications, skills V5 extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service. The value `none` must be supplied to return none of the optional enrichments. 
 
@@ -148,31 +147,11 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
           "text": string
         }
       },
-      "full_text": string
+      "full_text": string //Only returned if request into Desired Enrichments
     },
     "normalized": {
       "job_classifications": {
-        "carotene_v3": [
-          {
-            "title": string,
-            "id": string,
-            "confidence": double,
-            "minor_title": string,
-            "minor_id": string
-          },
-	  ...
-        ],
-        "carotene_v3.1": [
-          {
-            "title": string,
-            "id": string,
-            "confidence": double,
-            "minor_title": string,
-            "minor_id": string
-          },
-          ...
-        ],
-	"carotene_v3.3": [
+	     "carotene_v3.3": [
           {
             "title": string,
             "id": string,
@@ -190,16 +169,6 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
           },
           ...
         ],
-        "textkernel": [
-          {
-            "classification": string,
-            "code": integer,
-            "group": integer,
-            "profession_class": integer,
-            "confidence": double
-          },
-          ...
-        ]
       },
       "normalized_company": {
         "normalized_companies": [
@@ -237,16 +206,7 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
         "data_version": string
       },
       "skills": {
-        "textkernel": [
-          {
-            "name": string,
-            "skill_code": integer,
-            "required": boolean,
-            "skill_group": string
-          },
-          ...
-        ],
-        "4.0": [
+        "5.0": [
           {
             "skilldid": string,
             "normalized_term": string,
@@ -254,8 +214,8 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
             "type": string
           },
           ...
-        ]
-        "5.0": [
+        ],
+       "8.0": [
           {
             "skilldid": string,
             "normalized_term": string,
