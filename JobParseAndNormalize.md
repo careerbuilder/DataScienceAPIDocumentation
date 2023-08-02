@@ -19,7 +19,7 @@ The Job Parse and Normalize (JPAN) service parses a Base64-encoded job posting a
     - __[ONET](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md)__ <sup>(optional)</sup>
  - __[Normalized Company](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md)__  <sup>(optional)</sup> - Normalized company data including name, website, etc.
  - __Skills Extraction__
-   - __[CareerBuilder Skills Extraction](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md)__ <sup>(optional)</sup> - When either `skillsv5` or `skillsv8` is requested as a `desired_enrichment`, the service will enrich the parsed job data using the CareerBuilder Skills API.
+    - __[CareerBuilder Skills Extraction](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md)__ <sup>(optional)</sup> - When either `skillsv5` or `skillsv8` is requested as a `desired_enrichment`, the service will enrich the parsed job data using the CareerBuilder Skills API.
  - __Language Skills__ 
  - __[Geocoding](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md)__ <sup>(optional)</sup> - Location normalization for both company and job locations
  - __[Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md)__ <sup>(optional)</sup> - Experience, or seniority level of the job posting
