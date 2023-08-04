@@ -19,7 +19,7 @@ Parameters: The only parameter accepted by this service is the name of the desir
 
 https://api.careerbuilder.com/core/taxonomy/ {[Desired Taxonomy](#available-taxonomies)} /
  
-Example: https://api.careerbuilder.com/core/taxonomy/carotenev1
+Example: https://api.careerbuilder.com/core/taxonomy/carotenev3_3
 
 
 # Response Information
@@ -65,14 +65,11 @@ The response returns a single data node which maps each language code supported 
 
 # Available Taxonomies
 -----------
-- onet15
+
 - onet17
-- carotenev1
-- carotenev2
-- carotenev2_2
-- carotenev3
-- carotenev3_1
-- skillsv4
+- carotenev3 // will return V3.3 values
+- carotenev3_1 // will return V3.3 values
+- carotenev3_3
 - skillsv5
 - skillsv8
 - naics2007
