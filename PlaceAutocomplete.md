@@ -63,7 +63,7 @@ Request structure for this service mirrors [Google's request structure](https://
 |`strict_bounds`|`boolean`|False|`true`||
 |`language`|`string`|False|`"et"`|See [supported languages](https://developers.google.com/maps/faq#languagesupport)|
 |`components`|`array[string]`|False|`["US", "CA", "CN"]`|No more than 5 countries. Must be ISO 3166-1 Alpha-2|
-|`types`|`string`|False|`"(region)"`|See [place types](https://developers.google.com/places/web-service/autocomplete#place_types)|
+|`types`|`string`|False|`"(regions)"`|See [place types](https://developers.google.com/places/web-service/autocomplete#place_types)|
 
 #### `location` and `origin`
 |Field|Type|Required|Example|Note|
