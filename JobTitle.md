@@ -83,3 +83,94 @@ JobTitle versions the API contract and taxonomies separately. The API version co
 Both the Carotene and ONet taxonomies are strongly and immutably versioned. For both systems, the underlying classifiers may occasionally be updated without a version change. This may slightly change the classification results for some inputs, but will not affect the underlying taxonomy data.
 
 Our general versioning strategy is available [here](/Versioning.md).
+
+
+Job Title Batch Service
+=============
+
+Table of Contents
+_________
+- [Request Information](#batch-request-information)
+- [Sample Response](#batch-sample-response)
+- [Available Taxonomies](#batch-taxonomies)
+
+
+# Batch Request Information
+
+HTTP method:  POST (JSON)
+``` 
+{
+    "requests": [
+        {"title": "Management Analysts", "description": ""},
+        {"title":"Computer Systems Engineers","description":""}
+    ],
+    "taxonomy":"ONET17|CAROTENEV3_3_US"
+}
+```
+Parameters:
+* `taxonomy` (required) : classification taxonomy to use; accepted values are [here](#taxonomies). A single/multiple title/description may be classified against multiple taxonomies in a single request by providing multiple taxonomies in this parameter, separated by the pipe ("|") character (see example query below).
+* `requests` (required) a list of job titles or descriptions. Maximum of 100 titles/descriptions.
+  * `title` (required if description is empty) : job title
+  * `description` (required if title is empty) : job description
+
+Example: https://api.careerbuilder.com/core/classifier/jobtitle-batch
+# Batch Sample Response
+```
+{
+    "data": {
+        "classifications": [
+            {
+                "onet17": [
+                    {
+                        "title": "Management Analysts",
+                        "id": "13-1111.00",
+                        "confidence": 90.0
+                    },
+                    {
+                        "title": "Computer Systems Analysts",
+                        "id": "15-1121.00",
+                        "confidence": 54.0
+                    }
+                ],
+                "carotenev3.3_us": [
+                    {
+                        "title": "Requirements Management Analyst",
+                        "id": "15.272",
+                        "confidence": 0.44,
+                        "minor_title": "Computer Occupations",
+                        "minor_id": "1100"
+                    }
+                ]
+            },
+            {
+                "onet17": [
+                    {
+                        "title": "Software Developers, Systems Software",
+                        "id": "15-1133.00",
+                        "confidence": 93.0
+                    }
+                ],
+                "carotenev3.3_us": [
+                    {
+                        "title": "Computer Systems Specialist",
+                        "id": "15.144",
+                        "confidence": 0.95,
+                        "minor_title": "Computer Occupations",
+                        "minor_id": "1100"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+# Batch Taxonomies
+Possible taxonomies (with links to full taxonomy results)
+
+| Taxonomy                                                                                  | description                                                                                                                                                       |
+|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [onet17](https://github.com/cbdr/DataScienceAPITaxonomies/blob/master/JobTitle/oNet17.md) | Updated ONets                                                                                                                                                     |
+| carotenev3.3_us                                                                           | Carotene taxonomy based on a deep-learning approach (v3.1 is hierarchal) for improved prediction of SOC major. This taxonomy was trained with U.S.-specific data. |
+| carotenev3.3_uk                                                                           | Same as _carotenev3.3_us_, but trained with data specific to U.K.                                                                                                 |
+
