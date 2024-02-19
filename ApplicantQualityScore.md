@@ -20,7 +20,7 @@ For each job you add, we provide a relevance score:
 * 3 - Relevant
 * 4 - High Relevant
 
-The Applicant Quality Score Service is available at `/core/optimizer`.
+The Applicant Quality Score Service is available at `/core/application-quality-score`.
 
 Request Structure
 -----------
