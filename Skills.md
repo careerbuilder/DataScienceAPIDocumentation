@@ -143,13 +143,13 @@ The following table lists available languages and which versions they are availa
 |-------------|-------------------------------------------------------------------------|-------|-----|
 | Bulgarian   | bg                                                                      | ✓     |     |
 | Czech       | cs                                                                      | ✓     |     |
-| Danish      | da                                                                      | ✓     | ✓   |
+| Danish      | da                                                                      | ✓     |     |
 | Dutch       | nl                                                                      | ✓     | ✓   |
 | English     | en                                                                      | ✓     | ✓   |
 | Estonian    | et                                                                      | ✓     |     |
 | Finnish     | fi                                                                      | ✓     |     |
 | French      | fr                                                                      | ✓     | ✓   |
-| German      | de                                                                      | ✓     |     |
+| German      | de                                                                      | ✓     | ✓   |
 | Greek       | el                                                                      | ✓     |     |
 | Hungarian   | hu                                                                      | ✓     |     |
 | Italian     | it                                                                      | ✓     | ✓   |
