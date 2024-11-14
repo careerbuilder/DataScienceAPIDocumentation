@@ -245,6 +245,28 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
     }
 }
 ```
+Job score is based on the quality of the job title and description:
+
+1. **Title Score (up to 50 points)**:
+   - Must be under 100 characters.
+   - Must be well-formatted (not fully capitalized and free of undesirable characters).
+   - Must be properly classified with sufficient confidence.
+
+2. **Description Score (up to 50 points)**:
+   - Must include at least two sentences.
+   - Length must be between 2500-5500 characters.
+   - Must meet formatting standards (not fully capitalized and free of undesirable characters).
+
+3. **Total Score and Bucketing**:
+   - The combined score ranges from 0 to 100.
+   - Categorized into buckets based on score:
+     - `VERY_LOW`: 0 points or flagged as spam
+     - `LOW`: 1-30 points
+     - `MEDIUM`: 31-70 points
+     - `GOOD`: 71-100 points
+
+This scoring method evaluates both the title and description to determine overall job quality.
+
 
 ## Domains With Custom Parsing Rules
 
