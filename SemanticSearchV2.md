@@ -148,7 +148,7 @@ Parameters:
 -	document (required) : base64 encoded string of the document to be parsed.
 -	type (required) : the type of the document. Acceptable values are "JOB" and "RESUME".
 -	job_title (optional, only valid when type is JOB) : a pre-defined job title which overrides the job_title field extracted from a job document. Note that the job_title field will also be cleaned.
--	location (optional, only valid when type is JOB): a pre-defined location which overrides the location extracted from a job document.
+-	location (required, only valid when type is JOB): location for a job document, could be vacancy or company location.
 
 Example 2.0 request:
 ```
@@ -158,6 +158,7 @@ https://api.careerbuilder.com/core/semanticsearch/document
 {
 	"type": "JOB",
 	"document": "SmF2YSBkZXZlbG9wZXIKCkNvbXBhbnk6IENhcmVlckJ1aWxkZXIKTG9jYXRpb246IEF0bGFudGEsIEdlb3JnaWEKCgpBcHBseSBub3chIFRoYW5rIHlvdSBmb3IgYXBwbHlpbmcuCg==",
+	"location": "200 N LaSalle St, Chicago"
 	"relationships_threshold": "0.9"
 }
 ```
@@ -178,7 +179,6 @@ The document response includes the following parts. First is the `parsed_input` 
 		- relationships (map of strings):
 			- occupations (for type: job_title, skill, company, keyword)
 			- related_keywords (for type: job_title, skill, company, keyword)
-			- textkernel_related_keywords (for type: job_title, skill, company, keyword)
 			- skills (for type: job_title, skill, company, keyword)
 			- job_titles (for type: job_title, skill, company, keyword)
 			- job_level (for type: job_title, skill, company, keyword)
@@ -205,19 +205,6 @@ The document response includes the following parts. First is the `parsed_input` 
 ```
 {
 	"data" : {
-		"parsed_input" : {
-			"input" : "Java developer,Careerbuilder, ...",
-			"parsed_fragments" : [
-				"java developer",
-				"careerbuilder",
-				...
-			],
-			"input_to_extracted_keywords" : {
-				"Careerbuilder" : "careerbuilder",
-				"Java developer" : "java developer",
-				...
-			}
-		},
 		"semantic_keywords" : [
 			{
 				"name" : "java developer",
@@ -252,21 +239,7 @@ The document response includes the following parts. First is the `parsed_input` 
 							"id" : "3",
 							"weight" : 1
 						}
-					],
-					"text_kernel_related_keywords" : [
-						{
-							"name" : "Java Architect",
-							"weight" : 1
-						},
-						{
-							"name" : "J2EE",
-							"weight" : 1
-						},
-						{
-							"weight" : 1,
-							"name" : "Java Programmer"
-						}
-					],
+					],					
 					"occupations" : [],
 					"related_keywords" : []
 				},
