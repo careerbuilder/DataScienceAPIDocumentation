@@ -44,19 +44,19 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 * **language** (Optional) -- The language of the document, specified using language codes (e.g., "en" for English, "fr" for French).
 
 * **Company Information Attributes**  
-  * **companyName** (Optional): The name of the company associated with the job or vacancy. _**Required if Enrichment.COMPANY_NORM is requested.**_
-  * **companyAddress** (Optional): The street address of the company.
-  * **companyLocality** (Optional): The locality or city where the company is located.
-  * **companyAdminArea** (Optional): The administrative area or region (e.g., state or province) where the company is located.
-  * **companyPostalCode** (Optional): The postal code of the company's address.
-  * **companyCountry** (String): The country where the company is located.
+  * **company_name** (Optional): The name of the company associated with the job or vacancy. _**Required if Enrichment.COMPANY_NORM is requested.**_
+  * **company_address** (Optional): The street address of the company.
+  * **company_locality** (Optional): The locality or city where the company is located.
+  * **company_admin_area** (Optional): The administrative area or region (e.g., state or province) where the company is located.
+  * **company_postal_code** (Optional): The postal code of the company's address.
+  * **company_country** (String): The country where the company is located.
 
 * **Vacancy Location Attributes**
-  * **vacancyAddress** (Optional): The specific street address where the vacancy is based, if different from the company's main address.
-  * **vacancyLocality** (Optional): The locality or city where the vacancy is located.
-  * **vacancyAdminArea** (Optional): The administrative area or region of the vacancy location.
-  * **vacancyPostalCode** (Optional): The postal code for the vacancy's address.
-  * **vacancyCountry** (Optional): The country where the vacancy is located.
+  * **vacancy_address** (Optional): The specific street address where the vacancy is based, if different from the company's main address.
+  * **vacancy_locality** (Optional): The locality or city where the vacancy is located.
+  * **vacancy_admin_area** (Optional): The administrative area or region of the vacancy location.
+  * **vacancy_postal_code** (Optional): The postal code for the vacancy's address.
+  * **vacancy_country** (Optional): The country where the vacancy is located.
 
 **If desired_enrichments GEOCODING is requested, at least one location-related attribute (either in the company or vacancy section) must be provided.**
 
