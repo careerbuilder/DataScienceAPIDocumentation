@@ -56,20 +56,9 @@ Request structure for this service mirrors [Google's request structure](https://
 |----|----|----|----|----|
 |`input`|`string`|True|`"Harbi"`||
 |`session_token`|`string`|True|-|Must be UUID.|
-|`offset`|`number`|False|`2`|Must be greater than 0 and less than input lenght|
-|`location`|`object`|False|-|See below for structure|
-|`origin`|`object`|False|-|See below for structure|
-|`radius`|`number`|False|`5000`|Meters|
-|`strict_bounds`|`boolean`|False|`true`||
 |`language`|`string`|False|`"et"`|See [supported languages](https://developers.google.com/maps/faq#languagesupport)|
 |`components`|`array[string]`|False|`["US", "CA", "CN"]`|No more than 5 countries. Must be ISO 3166-1 Alpha-2|
 |`types`|`string`|False|`"(regions)"`|See [place types](https://developers.google.com/places/web-service/autocomplete#place_types)|
-
-#### `location` and `origin`
-|Field|Type|Required|Example|Note|
-|----|----|----|----|----|
-|`latitude`|`number`|True|45.7576||
-|`longitude`|`number`|True|126.6409||
 
 #### Examples
 
@@ -110,17 +99,6 @@ All fields:
 {
     "input": "Harbi",
     "session_token": "<UUID_TOKEN>",
-    "offset": 4.0,
-    "location": {
-        "latitude": 45.7576,
-        "longitude": 126.6409
-    },
-    "origin": {
-        "latitude": 45.818107,
-        "longitude": 126.599279
-    },
-    "radius": 50000,
-    "strict_bounds": true,
     "language": "zh-cn",
     "components": ["CN", "US", "CA", "ET", "FR"],
     "types": "(regions)"
