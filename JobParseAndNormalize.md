@@ -76,12 +76,24 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
     | `skillsv8` |  Careerbuilder Skills V8 Extraction |
     | `summary` |  Summary from the job created by LLM|
 
-    For example, a request with a desired_enrichments value equal to `job_level,skillsv5,job_title_onet,company_norm` would receive job level classifications, skills V5 extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service. The value `none` must be supplied to return none of the optional enrichments. 
+    For example, a request with a desired_enrichments value equal to `job_level,skillsv5,job_title_onet,company_norm` would receive job level classifications, skills V5 extractions, ONet job title classifications, and company normalizations. The API does not currently allow callers to request only certain versions of a classification service. The value `none` must be supplied to return none of the optional enrichments.
+
+  
 
 ## Response Structure
+Salary information is coming from the legacy Monster Salary parsing service. Please note that the "parsed" node will not be present if we are unable to find any salary information.
+
 ```
 {
     "data": {
+        "parsed": {
+            "salary": {
+                "from": "35000",
+                "to": "38000",
+                "time_scale": "ANNUAL",
+                "currency": "USD"
+            }
+        },
         "normalized": {
             "normalized_company": {
                 "normalized_companies": [
