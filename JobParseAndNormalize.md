@@ -72,7 +72,6 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
     | `job_level` | Job Level |
     | `job_title_carotene` | Carotene Job Title Classifications |
     | `job_title_onet` | ONET Job Title Classifications |
-    | `skillsv5` |  Careerbuilder Skills V5 Extraction |
     | `skillsv8` |  Careerbuilder Skills V8 Extraction |
     | `summary` |  Summary from the job created by LLM|
 
@@ -133,15 +132,6 @@ Salary information is coming from the legacy Monster Salary parsing service. Ple
                 "data_version": "string"
             },
             "skills": {
-                "5.0": [
-                    {
-                        "skilldid": "string",
-                        "skill_id": "string",
-                        "normalized_term": "string",
-                        "confidence": "float",
-                        "type": "string"
-                    }
-                ],
                 "8.0": [
                     {
                         "type": "string",
