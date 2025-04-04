@@ -21,7 +21,7 @@ The service is located at https://api.careerbuilder.com/core/parsing/normalizedr
 Languages
 ============
 
-The resume parsing portion of this service is backed by Textkernel's CV parsing software, which supports the following languages: 
+The resume parsing portion of this service is backed by LLM parsing software, which supports the following languages: 
 
 | Language |
 |----------|
@@ -51,7 +51,7 @@ Request Structure
 
 This service supports the HTTP GET and POST methods. Because Base64-encoded documents can be quite large, POST is encouraged for production use.
 
-The following parameters may be supplied in the query string (for HTTP GET) or form body (for HTTP POST):
+The following parameters may be supplied in form body (for HTTP POST):
 
 * **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, or .wps document given in a BASE64 encoded string. 
 
@@ -61,7 +61,6 @@ The following parameters may be supplied in the query string (for HTTP GET) or f
 * **desired_enrichments** (Required) -- A comma-separated list of the desired normalization calls to perform on the results of the resume parsing operation. The list of possible values is as follows (case-insensitive): **company_norm, geocoding, job_level, job_title_carotene, job_title_onet, school_norm, skills**. For example, a request with a desired_enrichments value equal to **job_level,skills,job_title_onet,company_norm** would receive job level classifications, skills extractions, ONet job title classifications, and company normalizations. If no additional enrichments are needed, the value **"none"** may be supplied to skip all post-parsing classifications and simply return the parsed resume data.
 
   * Note that the **experience_months_by_job_category** field relies on job title classifications, and will only appear in the response if either the **job_title_onet** or **job_title_carotene** enrichment is requested. (This field will be computed using the most recent version of Carotene that is available, or the most recent version of ONet if no Carotene versions are available)
-  * Note: In EU, only the **geocoding, company_norm, skills** values are supported.
 
 * **return_date_of_birth** (Optional) -- If this parameter is provided then the service will return a filled date of birth field when it is included on the document. If not provided then this will return an empty string. Note, this field was made available mainly for our international clients. It can be considered age discriminatory in the US and should only be used in special circumstances.
 
@@ -179,15 +178,6 @@ Response Structure
           }
         },
         "skills": {
-          "5.0": [
-            {
-              "skilldid": string,
-              "normalized_term": string,
-              "confidence": float,
-              "type": string
-            },
-            ... 
-          ],
           "8.0": [
             {
               "skilldid": string,
@@ -251,25 +241,10 @@ Response Structure
         "is_current_position": boolean,
         "is_last_item": boolean,
         "experience": string,
-        "full_text": string,
-        "textkernel_title_normalization": {
-          "textkernel_normalized_title": string,
-          "textkernel_normalized_title_code": integer,
-          "textkernel_normalized_title_group": integer,
-          "textkernel_normalized_title_class": integer
-        },
+        "full_text": string       
       }
     ],
     "skills": {
-      "5.0": [
-        {
-          "skilldid": string,
-          "normalized_term": string,
-          "confidence": float
-          "type": string
-        },
-        ... 
-      ],
       "8.0": [
         {
           "skilldid": string,
