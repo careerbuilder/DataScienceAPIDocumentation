@@ -7,12 +7,12 @@ _____________
 - [Summary](#summary)
 - [Languages](#languages)
 - [Parser Default](#parser-default)
-  - [Request structure default](#request-structure-default)
-  - [Response structure default](#response-structure-default)
+  - [Request Structure Default](#request-structure-default)
+  - [Response Structure Default](#response-structure-default)
   - [PII Scrubbing](#pii-scrubbing)
 - [Parser OpenAI Monster TK](#parser-openai-monster-tk)
-  - [Request structure TK](#request-structure-tk)
-  - [Response structure TK](#response-structure-tk)
+  - [Request Structure TK](#request-structure-tk)
+  - [Response Structure TK](#response-structure-tk)
 - [Versioning](#versioning)
 
 Summary
@@ -345,6 +345,7 @@ If PII is scrubbed from the response then the field `scrubbed_sensitive_info` wi
 
 Parser OPENAI MONSTER TK
 ========================
+
 ###Request Structure TK
 
 The following parameters may be supplied in form body (for HTTP POST):
