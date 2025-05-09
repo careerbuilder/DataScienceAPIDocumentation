@@ -6,9 +6,13 @@ _____________
 
 - [Summary](#summary)
 - [Languages](#languages)
-- [Request structure](#request-structure)
-- [Response structure](#response-structure)
-- [PII Scrubbing](#pii-scrubbing)
+- [Parser Default](#parser-default)
+  - [Request Structure Default](#request-structure-default)
+  - [Response Structure Default](#response-structure-default)
+  - [PII Scrubbing](#pii-scrubbing)
+- [Parser OpenAI Monster TK](#parser-openai-monster-tk)
+  - [Request Structure TK](#request-structure-tk)
+  - [Response Structure TK](#response-structure-tk)
 - [Versioning](#versioning)
 
 Summary
@@ -16,7 +20,12 @@ Summary
 
 This service parses a Base64-encoded resume, then (optionally) further enriches the parsed data by issuing calls to several other classification APIs. Specifically, the service currently makes one call to our [Geocoding API](https://github.com/careerbuilder/DataScienceAPIDocumentation/blob/master/Geocoding.md) to normalize the candidate's location information; one call to the [Skills API](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) to parse skills from the complete text of the resume; and one call per work history item to the [Job Level](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobLevel.md), [Job Title](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/JobTitle.md), [Company Normalization](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/CompanyNormalization.md), and [Skills](https://github.com/cbdr/DataScienceAPIDocumentation/blob/master/Skills.md) APIs to enrich each work history accordingly. These additional enrichment calls can be enabled or disabled as desired using the **desired_enrichments** parameter; for example, a client who only needs Job Title and Skills classifications could use this parameter to construct a Parse and Normalize request that would only retrieve these classifications. This parameter is documented in further detail below.
 
-The service is located at https://api.careerbuilder.com/core/parsing/normalizedresume. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
+The service is located at https://internal.api.careerbuilder.com/core/parsing/normalizedresume. As usual, you will need OAuth core credentials to use this service. (*If you do not have these, please go [here](http://apitester.cbplatform.link/credentials) or email PlatformSoftware@careerbuilder.com to request core credentials.*)
+
+**Key Features:**
+- Configurable enrichments via `desired_enrichments`
+- Automatic language detection
+- Two distinct parser types with different response structures
 
 Languages
 ============
@@ -46,8 +55,10 @@ The resume parsing portion of this service is backed by LLM parsing software, wh
 
 Note that language detection is a built-in feature of the CV parsing software. There is no need to supply information about the document's language.
 
-Request Structure
-==========
+Parser Default
+==============
+
+###Request Structure Default
 
 This service supports the HTTP GET and POST methods. Because Base64-encoded documents can be quite large, POST is encouraged for production use.
 
@@ -64,8 +75,7 @@ The following parameters may be supplied in form body (for HTTP POST):
 
 * **return_date_of_birth** (Optional) -- If this parameter is provided then the service will return a filled date of birth field when it is included on the document. If not provided then this will return an empty string. Note, this field was made available mainly for our international clients. It can be considered age discriminatory in the US and should only be used in special circumstances.
 
-Response Structure
-============
+###Response Structure Default
 ```
 {
   "data": {
@@ -332,6 +342,307 @@ The service makes a best attempt at scrubbing Personally Identifiable Informatio
 In addition, the service attempts to scrub Date Of Birth from the same set of fields. Text resembling a date of birth will be replaced with "\*\*\*Date of Birth Removed\*\*\*". To see how to disable this feature please review the `return_date_of_birth` field in the [Request structure](#request-structure) section.
 
 If PII is scrubbed from the response then the field `scrubbed_sensitive_info` will be set to `true` on the response.
+
+Parser OPENAI MONSTER TK
+========================
+
+###Request Structure TK
+
+The following parameters may be supplied in form body (for HTTP POST):
+
+* **document** (Required) -- A .doc, .docx, .pdf, .rtf, .txt, .odt, or .wps document given in a BASE64 encoded string.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **NOTE:** Documents with no or few newlines will be rejected by the parser.
+
+* **desired_enrichments** (Required) -- **None**
+
+* **parser**(Required)   -- **OPENAI_MONSTER_TK**
+```
+curl --location 'https://internal.api.careerbuilder.com/core/parsing/normalizedresume' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer token' \
+--data '{"document":"documentbase64",
+    "desired_enrichments": "none",
+    "force_refresh": true,
+    "parser": "OPENAI_MONSTER_TK"
+}'
+```
+
+###Response Structure TK
+```
+{
+    "Value": {
+        "ResumeData": {
+            "ContactInformation": {
+                "CandidateName": {
+                    "FormattedName": "Rose Blane",
+                    "GivenName": "Rose",
+                    "FamilyName": "Blane"
+                },
+                "Telephones": [
+                    {
+                        "Raw": "410 500 8400",
+                        "Normalized": "+1-410-500-8400"
+                    }
+                ],
+                "EmailAddresses": [
+                    "caregiver@gmail.com"
+                ],
+                "Location": {
+                    "CountryCode": "US",
+                    "PostalCode": "20902",
+                    "Regions": [
+                        "MD"
+                    ],
+                    "Municipality": "Silver Spring",
+                    "StreetAddressLines": [
+                        "11 Monticello Ave"
+                    ]
+                },
+                "WebAddresses": []
+            },
+            "ProfessionalSummary": "Registered Nurse, with 8 years of experience treating patients in a wide variety of clinical settings, seeking case management position",
+            "Education": {
+                "EducationDetails": [
+                    {
+                        "Text": "Master of Science, Clinical Nurse Leadership, University of Maryland, Baltimore, MD December 2022– December 2024 (GPA: 3.8/4.0)",
+                        "SchoolName": {
+                            "Raw": "University of Maryland",
+                            "Normalized": ""
+                        },
+                        "SchoolType": "university",
+                        "Location": {
+                            "CountryCode": "US",
+                            "Regions": [
+                                "MD"
+                            ],
+                            "Municipality": "Baltimore"
+                        },
+                        "Degree": {
+                            "Name": {
+                                "Raw": "Master of Science, Clinical Nurse Leadership"
+                            },
+                            "Type": "masters"
+                        },
+                        "Majors": [
+                            "Clinical Nurse Leadership"
+                        ],
+                        "StartDate": {
+                            "Date": "2022-12-01",
+                            "FoundYear": true,
+                            "FoundMonth": true
+                        },
+                        "EndDate": {
+                            "Date": "2024-12-01",
+                            "FoundYear": true,
+                            "FoundMonth": true
+                        }
+                    },
+                    {
+                        "Text": "Bachelor of Arts, History, Yeshiva University, New York City, NY May 2003 (GPA: 3.7/4.0)",
+                        "SchoolName": {
+                            "Raw": "Yeshiva University",
+                            "Normalized": ""
+                        },
+                        "SchoolType": "university",
+                        "Location": {
+                            "CountryCode": "US",
+                            "Regions": [
+                                "NY"
+                            ],
+                            "Municipality": "New York City"
+                        },
+                        "Degree": {
+                            "Name": {
+                                "Raw": "Bachelor of Arts, History"
+                            },
+                            "Type": "bachelors"
+                        },
+                        "Majors": [
+                            "History"
+                        ],
+                        "EndDate": {
+                            "Date": "2003-05-01",
+                            "FoundYear": true,
+                            "FoundMonth": true
+                        }
+                    }
+                ]
+            },
+            "EmploymentHistory": {
+                "Positions": [
+                    {
+                        "Employer": {
+                            "Name": {
+                                "Raw": "Washington Adventist Hospital",
+                                "Normalized": ""
+                            },
+                            "Location": {
+                                "CountryCode": "US",
+                                "Regions": [
+                                    "MD"
+                                ],
+                                "Municipality": "Takoma Park"
+                            }
+                        },
+                        "IsCurrent": true,
+                        "JobTitle": {
+                            "Raw": "Registered Nurse, Float Pool",
+                            "Normalized": ""
+                        },
+                        "StartDate": {
+                            "Date": "2010-04-01",
+                            "FoundYear": true,
+                            "FoundMonth": true
+                        },
+                        "EndDate": {
+                            "Date": "2025-05-07",
+                            "FoundYear": false,
+                            "FoundMonth": false
+                        },
+                        "Description": "*\tProvide compassionate, efficient, and highly competent care to an extremely diverse patient population, including Medical-Surgical, Cardiac/ Telemetry, Post-Partum, Behavioral Health and Post Anesthesia patients\n*\tInitiate communication with medical and allied health care staff regarding changes in patient acuity and plan of care\n*\tEnsure the safe and timely discharge of patients from the hospital by participating in daily multi- disciplinary rounds with case management, social workers and practitioners\n*\tMentor and supervise newly hired nursing staff as well as experienced nurses trained for lower acuity populations\n*\tTriage and assess post-operative patients via telephone, referring high risk patients to physician for follow up\n*\tRated as “Exceeding Expectations” and  “demonstrating very high level performance in all areas of responsibility,” in supervisor’s evaluation for 2016\n"
+                    }
+                ]
+            },
+            "Skills": {
+                "Raw": [
+                    {
+                        "Name": "Medical-Surgical",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "Cardiac/ Telemetry",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "Post-Partum",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "Behavioral Health",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "Post Anesthesia",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "patient acuity",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "plan of care",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "case management",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "social workers",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    },
+                    {
+                        "Name": "nursing staff",
+                        "MonthsExperience": {
+                            "Value": "182"
+                        },
+                        "LastUsed": {
+                            "Value": "2025-05-07"
+                        }
+                    }
+                ]
+            },
+            "Certifications": [
+                {
+                    "Name": "Maryland Registered Nurse License # R185223"
+                },
+                {
+                    "Name": "ACLS and PALS certified"
+                }
+            ],
+            "Licences": [
+                {
+                    "Name": "Maryland Registered Nurse License # R185223"
+                },
+                {
+                    "Name": "ACLS and PALS certified"
+                }
+            ],
+            "LanguageCompetencies": [
+                {
+                    "LanguageCode": "en"
+                }
+            ],
+            "Achievements": [
+                "Rated as “Exceeding Expectations” and  “demonstrating very high level performance in all areas of responsibility,” in supervisor’s evaluation for 2016"
+            ],
+            "References": [],
+            "ResumeMetadata": {
+                "ReservedData": {
+                    "Phones": [
+                        "410 500 8400"
+                    ],
+                    "Names": [
+                        "Rose Blane"
+                    ],
+                    "EmailAddresses": [
+                        "caregiver@gmail.com"
+                    ],
+                    "Urls": []
+                },
+                "PlainText": "\n\n\nRose Blane \n11 Monticello Ave\nSilver Spring, MD 20902\n410 500 8400\ncaregiver@gmail.com\n\nSUMMARY:  Registered Nurse, with 8 years of experience treating patients in a wide variety of clinical settings, seeking case management position .\n \nWORK EXPERIENCE \n \nRegistered Nurse, Washington Adventist Hospital, Float Pool, Takoma Park, MD \nApril 2010-present\n· Provide compassionate, efficient, and highly competent care to an extremely diverse patient population, including Medical-Surgical, Cardiac/ Telemetry, Post-Partum, Behavioral Health and Post Anesthesia patients\n· Initiate communication with medical and allied health care staff regarding changes in patient acuity and plan of care\n· Ensure the safe and timely discharge of patients from the hospital by participating in daily multi- disciplinary rounds with case management, social workers and practitioners\n· Mentor and supervise newly hired nursing staff as well as experienced nurses trained for lower acuity populations\n· Triage and assess post-operative patients via telephone, referring high risk patients to physician for follow up \n· Rated as “Exceeding Expectations” and  “demonstrating very high level performance in all areas of responsibility,” in supervisor’s evaluation for 2016\n \nRegistered Nurse, Washington Adventist Hospital, Intermediate Care Unit, Takoma Park, MD\nApril 2009-April 2010\n· Provided safe and effective care to critically ill patients, including post tracheostomy and ventilator dependent patients\n· Provided patient and family education regarding disease progression, infection prevention, medication regimen, and detailed discharge instructions\n\nSKILLS\n· Excellent verbal and written communication skills\n· Highly computer literate, including expertise in Cerner electronic medical records, Microsoft Office products and Windows operating systems\n\nEDUCATION \n \nMaster of Science, Clinical Nurse Leadership, University of Maryland, Baltimore, MD December 2022– December 2024 (GPA: 3.8/4.0)\n\t\nBachelor of Arts, History, Yeshiva University, New York City, NY \nMay 2003 (GPA: 3.7/4.0) \n\nLICENSES \n \nMaryland Registered Nurse License # R185223\nACLS and PALS certified\n\n\n\n"
+            }
+        }
+    }
+}
+```
+
 
 Versioning
 -----------
