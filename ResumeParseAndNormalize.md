@@ -58,7 +58,7 @@ Note that language detection is a built-in feature of the CV parsing software. T
 Parser Default
 ==============
 
-###Request Structure Default
+### Request Structure Default
 
 This service supports the HTTP GET and POST methods. Because Base64-encoded documents can be quite large, POST is encouraged for production use.
 
@@ -75,7 +75,7 @@ The following parameters may be supplied in form body (for HTTP POST):
 
 * **return_date_of_birth** (Optional) -- If this parameter is provided then the service will return a filled date of birth field when it is included on the document. If not provided then this will return an empty string. Note, this field was made available mainly for our international clients. It can be considered age discriminatory in the US and should only be used in special circumstances.
 
-###Response Structure Default
+### Response Structure Default
 ```
 {
   "data": {
@@ -346,7 +346,7 @@ If PII is scrubbed from the response then the field `scrubbed_sensitive_info` wi
 Parser OPENAI MONSTER TK
 ========================
 
-###Request Structure TK
+### Request Structure TK
 
 The following parameters may be supplied in form body (for HTTP POST):
 
@@ -368,7 +368,7 @@ curl --location 'https://internal.api.careerbuilder.com/core/parsing/normalizedr
 }'
 ```
 
-###Response Structure TK
+### Response Structure TK
 ```
 {
     "Value": {
